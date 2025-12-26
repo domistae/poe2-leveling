@@ -17,7 +17,11 @@
         .progress-info { background: #252525; border-radius: 4px; padding: 0.75rem; margin-bottom: 1rem; }
         .progress-bar-bg { height: 6px; background: #1a1a1a; border-radius: 3px; overflow: hidden; margin-bottom: 0.5rem; }
         .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #af6025, #d4943a); width: 0%; transition: width 0.3s; }
-        .progress-text { font-size: 12px; color: #8a8a8a; text-align: center; }
+        .progress-bar-fill.fast { background: linear-gradient(90deg, #af6025, #d4943a); }
+        .progress-bar-fill.complete { background: linear-gradient(90deg, #2a6a2a, #4a9a4a); }
+        .progress-label { font-size: 10px; color: #af6025; margin-bottom: 0.2rem; font-weight: 600; }
+        .progress-label.complete { color: #7ec47e; margin-top: 0.5rem; }
+        .progress-text { font-size: 11px; color: #8a8a8a; text-align: right; }
         .reset-btn { width: 100%; background: #2a2a2a; border: 1px solid #3a3a3a; color: #8a8a8a; padding: 0.5rem; border-radius: 4px; cursor: pointer; font-size: 12px; transition: all 0.15s; margin-top: 0.5rem; }
         .reset-btn:hover { background: #3a3a3a; color: #d4d4d4; }
         .export-btn { background: #1a2e1a; border-color: #2a4a2a; color: #7ec47e; }
@@ -78,8 +82,12 @@
     <div class="container">
         <aside class="sidebar">
             <div class="progress-info">
-                <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar"></div></div>
-                <div class="progress-text" id="progressText">0 / 0</div>
+                <div class="progress-label">⚡ Fast Run</div>
+                <div class="progress-bar-bg"><div class="progress-bar-fill fast" id="progressBarFast"></div></div>
+                <div class="progress-text" id="progressTextFast">0 / 0</div>
+                <div class="progress-label complete">✦ Complete</div>
+                <div class="progress-bar-bg"><div class="progress-bar-fill complete" id="progressBarComplete"></div></div>
+                <div class="progress-text" id="progressTextComplete">0 / 0</div>
             </div>
             <button class="reset-btn" onclick="resetProgress()">Reset Progress</button>
             <button class="reset-btn export-btn" onclick="exportAllProgress()">📤 Export Progress</button>
@@ -454,9 +462,20 @@
         function toggleStep(checkbox) { const step = checkbox.closest('.step'); step.classList.toggle('completed'); saveProgress(); updateProgressBar(); }
         function resetProgress() { if (confirm('Reset all progress?')) { localStorage.removeItem(STORAGE_KEY); document.querySelectorAll('.step.completed').forEach(el => { el.classList.remove('completed'); }); updateProgressBar(); } }
         function updateProgressBar() {
-            const total = document.querySelectorAll('.step').length; const completed = document.querySelectorAll('.step.completed').length;
-            document.getElementById('progressBar').style.width = (completed / total) * 100 + '%';
-            document.getElementById('progressText').textContent = `${completed} / ${total}`;
+            const allSteps = document.querySelectorAll('.step');
+            const requiredSteps = document.querySelectorAll('.step:not(:has(.skip))');
+            const completedAll = document.querySelectorAll('.step.completed');
+            const completedRequired = document.querySelectorAll('.step.completed:not(:has(.skip))');
+            
+            const totalAll = allSteps.length;
+            const totalRequired = requiredSteps.length;
+            const doneAll = completedAll.length;
+            const doneRequired = completedRequired.length;
+            
+            document.getElementById('progressBarFast').style.width = (doneRequired / totalRequired) * 100 + '%';
+            document.getElementById('progressTextFast').textContent = `${doneRequired} / ${totalRequired}`;
+            document.getElementById('progressBarComplete').style.width = (doneAll / totalAll) * 100 + '%';
+            document.getElementById('progressTextComplete').textContent = `${doneAll} / ${totalAll}`;
         }
         loadProgress();
     </script>
