@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POE2 Act 4 - Complete Guide (Patch 0.4)</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #1a1a1a; color: #b8b8b8; font-size: 14px; line-height: 1.4; min-height: 100vh; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; }
+        .sidebar { width: 220px; background: #0d0d0d; border-right: 1px solid #2a2a2a; padding: 1rem; position: fixed; height: 100vh; overflow-y: auto; }
+        .sidebar h2 { color: #af6025; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid #2a2a2a; }
+        .sidebar-section { margin-bottom: 1.25rem; }
+        .sidebar-link { display: block; color: #8a8a8a; text-decoration: none; padding: 0.3rem 0.5rem; font-size: 12px; border-radius: 3px; transition: all 0.15s; }
+        .sidebar-link:hover { background: #252525; color: #d4d4d4; }
+        .sidebar-link.perm { color: #7ec47e; }
+        .sidebar-link.quest { color: #c4a47e; }
+        .progress-info { background: #252525; border-radius: 4px; padding: 0.75rem; margin-bottom: 1rem; }
+        .progress-bar-bg { height: 6px; background: #1a1a1a; border-radius: 3px; overflow: hidden; margin-bottom: 0.5rem; }
+        .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #af6025, #d4943a); width: 0%; transition: width 0.3s; }
+        .progress-text { font-size: 12px; color: #8a8a8a; text-align: center; }
+        .reset-btn { width: 100%; background: #2a2a2a; border: 1px solid #3a3a3a; color: #8a8a8a; padding: 0.5rem; border-radius: 4px; cursor: pointer; font-size: 12px; transition: all 0.15s; margin-top: 0.5rem; }
+        .reset-btn:hover { background: #3a3a3a; color: #d4d4d4; }
+        .export-btn { background: #1a2e1a; border-color: #2a4a2a; color: #7ec47e; }
+        .export-btn:hover { background: #2a4a2a; }
+        .import-btn { background: #1a2a3a; border-color: #2a4a5a; color: #7fbadc; }
+        .import-btn:hover { background: #2a4a5a; }
+        .import-dialog { margin-top: 0.5rem; }
+        .import-dialog textarea { width: 100%; height: 60px; background: #1a1a1a; border: 1px solid #3a3a3a; color: #b8b8b8; padding: 0.5rem; border-radius: 4px; font-size: 11px; resize: none; font-family: monospace; }
+        .import-actions { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+        .import-actions button { flex: 1; padding: 0.4rem; background: #2a2a2a; border: 1px solid #3a3a3a; color: #b8b8b8; border-radius: 4px; cursor: pointer; font-size: 11px; }
+        .import-actions button:first-child { background: #1a2e1a; border-color: #2a4a2a; color: #7ec47e; }
+        .import-actions button:hover { opacity: 0.8; }
+        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1a2e1a; border: 1px solid #2a4a2a; color: #7ec47e; padding: 0.75rem 1.5rem; border-radius: 6px; font-size: 13px; z-index: 1000; animation: fadeInOut 3s forwards; }
+        .toast.error { background: #2e1a1a; border-color: #4a2a2a; color: #e07a5f; }
+        @keyframes fadeInOut { 0% { opacity: 0; transform: translateX(-50%) translateY(20px); } 10% { opacity: 1; transform: translateX(-50%) translateY(0); } 90% { opacity: 1; } 100% { opacity: 0; } }
+        .main { margin-left: 220px; flex: 1; padding: 1.5rem 2rem; max-width: 900px; }
+        .header { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #2a2a2a; }
+        .header h1 { color: #af6025; font-size: 1.5rem; font-weight: normal; margin-bottom: 0.25rem; }
+        .header .patch { color: #5a5a5a; font-size: 12px; }
+        .summary-box { background: #1f1f1f; border: 1px solid #2a2a2a; border-radius: 6px; padding: 1rem; margin-bottom: 1.5rem; }
+        .summary-box h3 { color: #7fbadc; font-size: 13px; margin-bottom: 0.5rem; }
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.5rem; }
+        .summary-item { background: #1a2e1a; border: 1px solid #2a4a2a; color: #7ec47e; padding: 0.4rem 0.6rem; border-radius: 3px; font-size: 11px; }
+        .summary-item.new { background: #2a2a1a; border-color: #4a4a2a; color: #c4c47e; }
+        .info-box { background: #1c2128; border: 1px solid #2a3a4a; border-radius: 6px; padding: 1rem; margin-bottom: 1.5rem; }
+        .info-box h3 { color: #7fbadc; font-size: 13px; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+        .info-box ul { list-style: none; font-size: 12px; }
+        .info-box li { padding: 0.25rem 0; display: flex; align-items: center; gap: 0.5rem; }
+        .info-box .icon { width: 18px; text-align: center; }
+        .zone-header { background: linear-gradient(90deg, #252525 0%, transparent 100%); border-left: 3px solid #7fbadc; padding: 0.5rem 1rem; margin: 1.5rem 0 0.5rem; color: #7fbadc; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .zone-header .wp { background: #1a2a3a; color: #7fbadc; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 10px; font-weight: normal; }
+        .zone-header .town { background: #2a1a2a; color: #c47ec4; }
+        .zone-header .frag { background: #2a2a1a; color: #c4c47e; }
+        .zone-header .map { background: #1a2a2a; color: #7ec4c4; }
+        .step { display: flex; background: #1f1f1f; margin-bottom: 1px; transition: all 0.15s; border-left: 2px solid transparent; }
+        .step:hover { background: #252525; }
+        .step.completed { opacity: 0.5; }
+        .step.completed .step-content { text-decoration: line-through; text-decoration-color: #5a5a5a; }
+        .step-check { width: 36px; display: flex; align-items: flex-start; justify-content: center; padding-top: 0.5rem; cursor: pointer; }
+        .checkbox { width: 14px; height: 14px; border: 1px solid #4a4a4a; border-radius: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; background: #1a1a1a; }
+        .step:hover .checkbox { border-color: #af6025; }
+        .step.completed .checkbox { background: #af6025; border-color: #af6025; }
+        .step.completed .checkbox::after { content: '✓'; color: #1a1a1a; font-size: 10px; font-weight: bold; }
+        .step-content { flex: 1; padding: 0.4rem 0.5rem 0.4rem 0; font-size: 12px; color: #b8b8b8; }
+        .step-content .npc { color: #c4a47e; }
+        .step-content .boss { color: #e07a5f; }
+        .step-content .item { color: #7ec4c4; }
+        .step-content .loc { color: #7fbadc; }
+        .step-content .skip { color: #6a6a6a; font-style: italic; }
+        .reward-tag { display: inline-block; background: #1a2e1a; border: 1px solid #2a4a2a; color: #7ec47e; padding: 0.1rem 0.35rem; border-radius: 2px; font-size: 10px; margin-left: 0.5rem; }
+        .reward-tag.gem { background: #1a2a2a; border-color: #2a4a4a; color: #7ec4c4; }
+        .reward-tag.optional { background: #2a2a2a; border-color: #3a3a3a; color: #8a8a8a; }
+        .reward-tag.choice { background: #2a1a2a; border-color: #4a2a4a; color: #c47ec4; }
+        .reward-tag.frag { background: #2a2a1a; border-color: #4a4a2a; color: #c4c47e; }
+        .reward-tag.map { background: #1a2a2a; border-color: #2a4a4a; color: #7ec4c4; }
+        .reward-tag.new { background: #1a2e1a; border-color: #2a4a2a; color: #7ec47e; font-weight: bold; }
+        .note { background: #1c2128; border-left: 2px solid #5a6a7a; padding: 0.4rem 0.6rem; margin: 0.25rem 0 0.25rem 36px; font-size: 11px; color: #8a8a8a; }
+        .note.warning { background: #281c1c; border-color: #7a5a5a; color: #c47e7e; }
+        .note.info { background: #1c2128; border-color: #5a7a7a; color: #7ec4c4; }
+        .phase-header { background: #252525; border: 1px solid #3a3a3a; border-radius: 4px; padding: 0.75rem 1rem; margin: 1.5rem 0 1rem; color: #af6025; font-size: 14px; font-weight: 600; }
+        .nav-links { display: flex; justify-content: space-between; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #2a2a2a; }
+        .nav-link { color: #7fbadc; text-decoration: none; font-size: 13px; padding: 0.5rem 1rem; background: #1f1f1f; border-radius: 4px; }
+        .nav-link:hover { background: #252525; }
+        @media (max-width: 768px) { .sidebar { display: none; } .main { margin-left: 0; padding: 1rem; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="progress-info">
+                <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar"></div></div>
+                <div class="progress-text" id="progressText">0 / 0</div>
+            </div>
+            <button class="reset-btn" onclick="resetProgress()">Reset Progress</button>
+            <button class="reset-btn export-btn" onclick="exportAllProgress()">📤 Export Progress</button>
+            <button class="reset-btn import-btn" onclick="showImportDialog()">📥 Import Progress</button>
+            <div id="importDialog" class="import-dialog" style="display:none;">
+                <textarea id="importCode" placeholder="Paste progress code here..."></textarea>
+                <div class="import-actions">
+                    <button onclick="importAllProgress()">Import</button>
+                    <button onclick="hideImportDialog()">Cancel</button>
+                </div>
+            </div>
+            <div class="sidebar-section">
+                <h2>Islands</h2>
+                <a href="#kingsmarch" class="sidebar-link">Kingsmarch (Hub)</a>
+                <a href="#whakapanu" class="sidebar-link quest">Whakapanu ⚔️</a>
+                <a href="#shrike" class="sidebar-link quest">Shrike Island ⚔️</a>
+                <a href="#prison" class="sidebar-link perm">Abandoned Prison ✦</a>
+                <a href="#isleofkin" class="sidebar-link quest">Isle of Kin ⚔️</a>
+                <a href="#hinekora" class="sidebar-link perm">Eye of Hinekora ✦</a>
+                <a href="#kedge" class="sidebar-link perm">Kedge Bay ✦ (0.4)</a>
+                <a href="#arastas" class="sidebar-link">Arastas</a>
+                <a href="#ngakanu" class="sidebar-link">Ngakanu</a>
+            </div>
+            <div class="sidebar-section">
+                <h2>Navigation</h2>
+                <a href="poe2_act1_guide.html" class="sidebar-link">← Act 1</a>
+                <a href="poe2_act2_guide.html" class="sidebar-link">← Act 2</a>
+                <a href="poe2_act3_guide.html" class="sidebar-link">← Act 3</a>
+            </div>
+        </aside>
+        
+        <main class="main">
+            <header class="header">
+                <h1>🏝️ Act 4 – Complete Walkthrough</h1>
+                <span class="patch">Patch 0.4 • Karui Archipelago • All Rewards</span>
+            </header>
+
+            <div class="summary-box">
+                <h3>Act 4 Permanent Rewards</h3>
+                <div class="summary-grid">
+                    <div class="summary-item new">+2 Skill Points (Kedge) NEW 0.4</div>
+                    <div class="summary-item">+2 Skill Points (Ancestors)</div>
+                    <div class="summary-item">+5% Maximum Mana</div>
+                    <div class="summary-item">Tattoo (+5 Stat or Res)</div>
+                    <div class="summary-item">Flask Recovery (choice)</div>
+                    <div class="summary-item">🏠 Shoreline Hideout</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>🗺️ Main Quest: Weapon Fragments</h3>
+                <ul>
+                    <li><span class="icon">⚔️</span> Collect 3 <strong>Precursor Weapon Fragments</strong> from island bosses</li>
+                    <li><span class="icon">🔀</span> Locations <strong>randomized each league</strong>: Whakapanu, Shrike, Prison, Isle of Kin</li>
+                    <li><span class="icon">👤</span> <strong>Matiki</strong> also on one island (needed for Eye of Hinekora)</li>
+                    <li><span class="icon">✅</span> After 3 fragments + Matiki → Arastas unlocks</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h3>🗺️ Optional: Torn Map Pieces (Forgotten Bounty)</h3>
+                <ul>
+                    <li><span class="icon">1</span> <strong>Kedge Bay</strong> - Dead Man's Chest / Smuggler's Stash</li>
+                    <li><span class="icon">2</span> <strong>Whakapanu</strong> - Petrified Pirate on coast</li>
+                    <li><span class="icon">3</span> <strong>Isle of Kin</strong> - Flayed Sailor near shore</li>
+                    <li><span class="icon">4</span> <strong>Shrike Island</strong> - Corpse Nest (Impaled Karui)</li>
+                    <li><span class="icon">→</span> Return to <strong>Makoru</strong> → <strong>Plunder's Point</strong> (Expedition)</li>
+                </ul>
+            </div>
+
+            <div class="phase-header">Phase 1: Kingsmarch & First Islands</div>
+
+            <div class="zone-header" id="kingsmarch">Kingsmarch <span class="wp town">HUB TOWN</span></div>
+            <div class="step" data-step="1"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Doryani</span></div></div>
+            <div class="step" data-step="2"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Continue to town, talk to <span class="npc">Alva</span> (with Rog)</div></div>
+            <div class="step" data-step="3"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Rog</span> in house for boat charter</div></div>
+            <div class="step" data-step="4"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Makoru</span> on ship, choose destination</div></div>
+            <div class="note info">📌 Act 4 is non-linear. Visit islands in any order.</div>
+
+            <div class="zone-header" id="whakapanu">Whakapanu Island <span class="frag">FRAG?</span> <span class="map">MAP</span></div>
+            <div class="step" data-step="5"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Petrified Pirate</span> on coast <span class="reward-tag map">Torn Map 2/4</span></div></div>
+            <div class="step" data-step="6"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> Shark Pit: <span class="boss">Great White One</span> <span class="reward-tag optional">Shark Fin</span></div></div>
+            <div class="step" data-step="7"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> Crabshell Cavern: <span class="boss">Clawcrunch</span> <span class="reward-tag gem">Support Gem 4</span></div></div>
+            <div class="step" data-step="8"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Singing Caverns</span></div></div>
+
+            <div class="zone-header">Singing Caverns <span class="wp">WAYPOINT</span></div>
+            <div class="step" data-step="9"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Beckoning Clam</span> → <span class="item">Humming Pearl</span> (give to Rog)</div></div>
+            <div class="step" data-step="10"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Kill <span class="boss">Diamora, Song of Death</span> <span class="reward-tag frag">Fragment?</span></div></div>
+            <div class="step" data-step="11"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Hooded One</span>, TP to town</div></div>
+
+            <div class="zone-header">Kingsmarch - Hideout</div>
+            <div class="step" data-step="12"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Ange</span> → <span class="loc">Shoreline Hideout</span></div></div>
+            <div class="step" data-step="13"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Clear hideout, talk to <span class="npc">Ange</span> <span class="reward-tag">Hideout + Trading</span></div></div>
+
+            <div class="zone-header" id="shrike">Shrike Island <span class="frag">FRAG?</span> <span class="map">MAP</span></div>
+            <div class="step" data-step="14"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Corpse Nest</span> (Impaled Karui) <span class="reward-tag map">Torn Map 4/4</span></div></div>
+            <div class="step" data-step="15"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Kill <span class="boss">Scourge of the Skies</span> <span class="reward-tag frag">Fragment?</span></div></div>
+            <div class="step" data-step="16"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Hooded One</span>, TP, sail next</div></div>
+
+            <div class="zone-header" id="prison">Abandoned Prison <span class="frag">FRAG?</span> <span class="wp">WAYPOINT</span></div>
+            <div class="step" data-step="17"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Kill mobs until <span class="item">Chapel Key</span> drops</div></div>
+            <div class="step" data-step="18"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Open Chapel, kill <span class="boss">Forael</span>, use <span class="item">Goddess of Justice</span> <span class="reward-tag choice">Flask choice</span></div></div>
+            <div class="note">⚡ +30% Life OR Mana Recovery from Flasks (changeable)</div>
+            <div class="step" data-step="19"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Solitary Confinement</span></div></div>
+
+            <div class="zone-header">Solitary Confinement</div>
+            <div class="step" data-step="20"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Kill <span class="boss">The Prisoner</span> <span class="reward-tag frag">Fragment?</span></div></div>
+            <div class="step" data-step="21"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Hooded One</span>, sail to <span class="loc">Isle of Kin</span></div></div>
+
+            <div class="zone-header" id="isleofkin">Isle of Kin <span class="frag">MATIKI?</span> <span class="map">MAP</span></div>
+            <div class="step" data-step="22"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Flayed Sailor</span> near shore <span class="reward-tag map">Torn Map 3/4</span></div></div>
+            <div class="step" data-step="23"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> Beast Pen <span class="reward-tag gem">Skill + Support Gem</span></div></div>
+            <div class="step" data-step="24"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> Primal Arena: <span class="boss">Blind Beast</span></div></div>
+            <div class="note warning">⚠️ 0.4: Blind Beast NO LONGER gives +2 skill points! Moved to Kedge Bay.</div>
+            <div class="step" data-step="25"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Volcanic Warrens</span></div></div>
+
+            <div class="zone-header">Volcanic Warrens <span class="wp">WAYPOINT</span></div>
+            <div class="step" data-step="26"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Kill <span class="boss">Krutog, Lord of Kin</span></div></div>
+            <div class="step" data-step="27"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Click cage, free <span class="npc">Matiki</span></div></div>
+            <div class="note">✅ Matiki freed → Eye of Hinekora unlocked!</div>
+            <div class="step" data-step="28"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">TP to <span class="loc">Kingsmarch</span></div></div>
+
+            <div class="phase-header">Phase 2: Permanent Buffs</div>
+
+            <div class="zone-header" id="hinekora">Eye of Hinekora <span class="wp">WAYPOINT</span></div>
+            <div class="step" data-step="29"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Matiki</span> in town, click well</div></div>
+            <div class="step" data-step="30"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> Chest behind waterfall <span class="reward-tag gem">Skill Gem 12</span></div></div>
+            <div class="step" data-step="31"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Complete 3 Tests: Fire, Nature, Cold</div></div>
+            <div class="step" data-step="32"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="loc">Silent Hall</span> altar (Pay Respects), talk to <span class="npc">Navali</span> <span class="reward-tag">+5% Max Mana</span></div></div>
+            <div class="step" data-step="33"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Halls of the Dead</span></div></div>
+
+            <div class="zone-header">Halls of the Dead</div>
+            <div class="step" data-step="34"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Trial of Ngakanu (3 tests), loot <span class="item">Blank Tattoos</span></div></div>
+            <div class="step" data-step="35"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Fight <span class="boss">Yama the White</span>, enter <span class="loc">Trial of Ancestors</span></div></div>
+
+            <div class="zone-header">Trial of the Ancestors</div>
+            <div class="step" data-step="36"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Hinekora</span> <span class="reward-tag">+2 Skill Points + Tattoo</span></div></div>
+            <div class="note">⚡ Tattoo: +5 Str/Dex/Int OR +5% Fire/Cold/Lightning Res</div>
+            <div class="step" data-step="37"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">TP, sail to <span class="loc">Kedge Bay</span></div></div>
+
+            <div class="zone-header" id="kedge">Kedge Bay <span class="map">MAP</span> <span class="wp">WAYPOINT</span></div>
+            <div class="step" data-step="38"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Dead Man's Chest</span> / <span class="item">Smuggler's Stash</span> <span class="reward-tag map">Torn Map 1/4</span></div></div>
+            <div class="step" data-step="39"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Journey's End</span></div></div>
+
+            <div class="zone-header">Journey's End <span class="wp">WAYPOINT</span></div>
+            <div class="step" data-step="40"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Tujen</span></div></div>
+            <div class="step" data-step="41"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Kill <span class="boss">Captain Harlin</span>, loot <span class="item">Verisium</span></div></div>
+            <div class="step" data-step="42"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">TP start, talk to <span class="npc">Freya Hartlin</span></div></div>
+            <div class="step" data-step="43"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Town → <span class="npc">Dannig</span> → <span class="item">Verisium Spikes</span></div></div>
+            <div class="step" data-step="44"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Back to Journey's End → <span class="npc">Freya</span></div></div>
+            <div class="step" data-step="45"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Totem → kill <span class="boss">Omniphobia</span> <span class="reward-tag new">+2 Skill Points NEW 0.4</span></div></div>
+            <div class="note">✅ NEW 0.4: This +2 skill points moved here from Blind Beast!</div>
+            <div class="step" data-step="46"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Tujen</span> in town for reward</div></div>
+
+            <div class="zone-header">Plunder's Point (Optional)</div>
+            <div class="step" data-step="47"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> Give 4 maps to <span class="npc">Makoru</span> → sail → <span class="npc">Dannig</span> → Expedition</div></div>
+
+            <div class="phase-header">Phase 3: Main Quest Finale</div>
+
+            <div class="zone-header" id="arastas">Arastas <span class="wp">WAYPOINT</span></div>
+            <div class="step" data-step="48"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="npc">Missionari Lorandis</span> → follow → destroy shield</div></div>
+            <div class="step" data-step="49"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Evening/Morning Bells</span> <span class="reward-tag optional">3 Regal each</span></div></div>
+            <div class="step" data-step="50"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Kill <span class="boss">Torvian</span> → enter <span class="loc">Excavation</span></div></div>
+
+            <div class="zone-header">The Excavation</div>
+            <div class="step" data-step="51"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Kill <span class="boss">Benedictus</span>, talk to <span class="npc">Hooded One</span></div></div>
+            <div class="step" data-step="52"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Sail to <span class="loc">Ngakanu</span></div></div>
+
+            <div class="zone-header" id="ngakanu">Ngakanu → Heart of the Tribe</div>
+            <div class="step" data-step="53"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Navigate maze → <span class="loc">Heart of the Tribe</span></div></div>
+            <div class="step" data-step="54"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Kill <span class="boss">Tavaki</span>, talk to him</div></div>
+            <div class="step" data-step="55"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">TP town → <span class="npc">Rhodri</span> → sail to final</div></div>
+
+            <div class="zone-header">Act 4 Finale</div>
+            <div class="step" data-step="56"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Kill <span class="boss">Zarokh</span> (Final Boss)</div></div>
+            <div class="step" data-step="57"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Return, talk to <span class="npc">Hooded One</span></div></div>
+            <div class="note">✅ Act 4 Complete! → Interludes</div>
+
+            <div class="nav-links">
+                <a href="poe2_act3_guide.html" class="nav-link">← Act 3</a>
+                <span style="color:#5a5a5a;font-size:12px;">Interludes soon...</span>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        const STORAGE_KEY = 'poe2-act4-full-v3';
+        const ALL_STORAGE_KEYS = ['poe2-act1-full-v2', 'poe2-act2-full-v2', 'poe2-act3-full-v2', 'poe2-act4-full-v3'];
+        
+        function showToast(message, isError = false) {
+            const existing = document.querySelector('.toast');
+            if (existing) existing.remove();
+            const toast = document.createElement('div');
+            toast.className = 'toast' + (isError ? ' error' : '');
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+        
+        function exportAllProgress() {
+            const allData = {};
+            ALL_STORAGE_KEYS.forEach(key => {
+                const saved = localStorage.getItem(key);
+                if (saved) allData[key] = JSON.parse(saved);
+            });
+            if (Object.keys(allData).length === 0) {
+                showToast('No progress to export!', true);
+                return;
+            }
+            const encoded = btoa(JSON.stringify(allData));
+            const code = 'PoE2_' + encoded;
+            navigator.clipboard.writeText(code).then(() => {
+                showToast('Progress code copied to clipboard!');
+            }).catch(() => {
+                prompt('Copy this progress code:', code);
+            });
+        }
+        
+        function showImportDialog() {
+            document.getElementById('importDialog').style.display = 'block';
+            document.getElementById('importCode').value = '';
+            document.getElementById('importCode').focus();
+        }
+        
+        function hideImportDialog() {
+            document.getElementById('importDialog').style.display = 'none';
+        }
+        
+        function importAllProgress() {
+            const code = document.getElementById('importCode').value.trim();
+            if (!code.startsWith('PoE2_')) {
+                showToast('Invalid progress code!', true);
+                return;
+            }
+            try {
+                const decoded = JSON.parse(atob(code.substring(5)));
+                let imported = 0;
+                Object.keys(decoded).forEach(key => {
+                    if (ALL_STORAGE_KEYS.includes(key)) {
+                        localStorage.setItem(key, JSON.stringify(decoded[key]));
+                        imported += decoded[key].length;
+                    }
+                });
+                hideImportDialog();
+                loadProgress();
+                showToast(`Imported ${imported} completed steps!`);
+            } catch (e) {
+                showToast('Failed to import - invalid code!', true);
+            }
+        }
+        function loadProgress() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) { JSON.parse(saved).forEach(step => { const el = document.querySelector(`[data-step="${step}"]`); if (el) el.classList.add('completed'); }); }
+            updateProgressBar();
+        }
+        function saveProgress() {
+            const completed = []; document.querySelectorAll('.step.completed').forEach(el => { completed.push(el.dataset.step); });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+        }
+        function toggleStep(checkbox) { const step = checkbox.closest('.step'); step.classList.toggle('completed'); saveProgress(); updateProgressBar(); }
+        function resetProgress() { if (confirm('Reset all progress?')) { localStorage.removeItem(STORAGE_KEY); document.querySelectorAll('.step.completed').forEach(el => { el.classList.remove('completed'); }); updateProgressBar(); } }
+        function updateProgressBar() {
+            const total = document.querySelectorAll('.step').length; const completed = document.querySelectorAll('.step.completed').length;
+            document.getElementById('progressBar').style.width = (completed / total) * 100 + '%';
+            document.getElementById('progressText').textContent = `${completed} / ${total}`;
+        }
+        loadProgress();
+    </script>
+</body>
+</html>

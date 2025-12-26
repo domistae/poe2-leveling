@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POE2 Act 3 - Complete Guide (Patch 0.4)</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #1a1a1a; color: #b8b8b8; font-size: 14px; line-height: 1.4; min-height: 100vh; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; }
+        .sidebar { width: 220px; background: #0d0d0d; border-right: 1px solid #2a2a2a; padding: 1rem; position: fixed; height: 100vh; overflow-y: auto; }
+        .sidebar h2 { color: #af6025; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid #2a2a2a; }
+        .sidebar-section { margin-bottom: 1.25rem; }
+        .sidebar-link { display: block; color: #8a8a8a; text-decoration: none; padding: 0.3rem 0.5rem; font-size: 12px; border-radius: 3px; transition: all 0.15s; }
+        .sidebar-link:hover { background: #252525; color: #d4d4d4; }
+        .sidebar-link.perm { color: #7ec47e; }
+        .sidebar-link.warn { color: #c47e7e; }
+        .progress-info { background: #252525; border-radius: 4px; padding: 0.75rem; margin-bottom: 1rem; }
+        .progress-bar-bg { height: 6px; background: #1a1a1a; border-radius: 3px; overflow: hidden; margin-bottom: 0.5rem; }
+        .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #af6025, #d4943a); width: 0%; transition: width 0.3s; }
+        .progress-text { font-size: 12px; color: #8a8a8a; text-align: center; }
+        .reset-btn { width: 100%; background: #2a2a2a; border: 1px solid #3a3a3a; color: #8a8a8a; padding: 0.5rem; border-radius: 4px; cursor: pointer; font-size: 12px; transition: all 0.15s; margin-top: 0.5rem; }
+        .reset-btn:hover { background: #3a3a3a; color: #d4d4d4; }
+        .export-btn { background: #1a2e1a; border-color: #2a4a2a; color: #7ec47e; }
+        .export-btn:hover { background: #2a4a2a; }
+        .import-btn { background: #1a2a3a; border-color: #2a4a5a; color: #7fbadc; }
+        .import-btn:hover { background: #2a4a5a; }
+        .import-dialog { margin-top: 0.5rem; }
+        .import-dialog textarea { width: 100%; height: 60px; background: #1a1a1a; border: 1px solid #3a3a3a; color: #b8b8b8; padding: 0.5rem; border-radius: 4px; font-size: 11px; resize: none; font-family: monospace; }
+        .import-actions { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+        .import-actions button { flex: 1; padding: 0.4rem; background: #2a2a2a; border: 1px solid #3a3a3a; color: #b8b8b8; border-radius: 4px; cursor: pointer; font-size: 11px; }
+        .import-actions button:first-child { background: #1a2e1a; border-color: #2a4a2a; color: #7ec47e; }
+        .import-actions button:hover { opacity: 0.8; }
+        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1a2e1a; border: 1px solid #2a4a2a; color: #7ec47e; padding: 0.75rem 1.5rem; border-radius: 6px; font-size: 13px; z-index: 1000; animation: fadeInOut 3s forwards; }
+        .toast.error { background: #2e1a1a; border-color: #4a2a2a; color: #e07a5f; }
+        @keyframes fadeInOut { 0% { opacity: 0; transform: translateX(-50%) translateY(20px); } 10% { opacity: 1; transform: translateX(-50%) translateY(0); } 90% { opacity: 1; } 100% { opacity: 0; } }
+        .main { margin-left: 220px; flex: 1; padding: 1.5rem 2rem; max-width: 900px; }
+        .header { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #2a2a2a; }
+        .header h1 { color: #af6025; font-size: 1.5rem; font-weight: normal; margin-bottom: 0.25rem; }
+        .header .patch { color: #5a5a5a; font-size: 12px; }
+        .summary-box { background: #1f1f1f; border: 1px solid #2a2a2a; border-radius: 6px; padding: 1rem; margin-bottom: 1.5rem; }
+        .summary-box h3 { color: #7fbadc; font-size: 13px; margin-bottom: 0.5rem; }
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.5rem; }
+        .summary-item { background: #1a2e1a; border: 1px solid #2a4a2a; color: #7ec47e; padding: 0.4rem 0.6rem; border-radius: 3px; font-size: 11px; }
+        .summary-item.warning { background: #2e1a1a; border-color: #4a2a2a; color: #c47e7e; }
+        .zone-header { background: linear-gradient(90deg, #252525 0%, transparent 100%); border-left: 3px solid #7fbadc; padding: 0.5rem 1rem; margin: 1.5rem 0 0.5rem; color: #7fbadc; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .zone-header .wp { background: #1a2a3a; color: #7fbadc; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 10px; font-weight: normal; }
+        .zone-header .town { background: #2a1a2a; color: #c47ec4; }
+        .zone-header .trial { background: #2a2a1a; color: #c4c47e; }
+        .step { display: flex; background: #1f1f1f; margin-bottom: 1px; transition: all 0.15s; border-left: 2px solid transparent; }
+        .step:hover { background: #252525; }
+        .step.completed { opacity: 0.5; }
+        .step.completed .step-content { text-decoration: line-through; text-decoration-color: #5a5a5a; }
+        .step-check { width: 36px; display: flex; align-items: flex-start; justify-content: center; padding-top: 0.5rem; cursor: pointer; }
+        .checkbox { width: 14px; height: 14px; border: 1px solid #4a4a4a; border-radius: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; background: #1a1a1a; }
+        .step:hover .checkbox { border-color: #af6025; }
+        .step.completed .checkbox { background: #af6025; border-color: #af6025; }
+        .step.completed .checkbox::after { content: '✓'; color: #1a1a1a; font-size: 10px; font-weight: bold; }
+        .step-content { flex: 1; padding: 0.4rem 0.5rem 0.4rem 0; font-size: 12px; color: #b8b8b8; }
+        .step-content .action { color: #d4d4d4; }
+        .step-content .npc { color: #c4a47e; }
+        .step-content .boss { color: #e07a5f; }
+        .step-content .item { color: #7ec4c4; }
+        .step-content .loc { color: #7fbadc; }
+        .step-content .skip { color: #6a6a6a; font-style: italic; }
+        .reward-tag { display: inline-block; background: #1a2e1a; border: 1px solid #2a4a2a; color: #7ec47e; padding: 0.1rem 0.35rem; border-radius: 2px; font-size: 10px; margin-left: 0.5rem; }
+        .reward-tag.craft { background: #2a2a1a; border-color: #4a4a2a; color: #c4c47e; }
+        .reward-tag.gem { background: #1a2a2a; border-color: #2a4a4a; color: #7ec4c4; }
+        .reward-tag.optional { background: #2a2a2a; border-color: #3a3a3a; color: #8a8a8a; }
+        .reward-tag.choice { background: #2a1a2a; border-color: #4a2a4a; color: #c47ec4; }
+        .reward-tag.asc { background: #2a2a1a; border-color: #4a4a2a; color: #c4c47e; }
+        .reward-tag.perm { background: #2e1a1a; border-color: #4a2a2a; color: #c47e7e; }
+        .note { background: #1c2128; border-left: 2px solid #5a6a7a; padding: 0.4rem 0.6rem; margin: 0.25rem 0 0.25rem 36px; font-size: 11px; color: #8a8a8a; }
+        .note.warning { background: #281c1c; border-color: #7a5a5a; color: #c47e7e; }
+        .nav-links { display: flex; justify-content: space-between; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #2a2a2a; }
+        .nav-link { color: #7fbadc; text-decoration: none; font-size: 13px; padding: 0.5rem 1rem; background: #1f1f1f; border-radius: 4px; }
+        .nav-link:hover { background: #252525; }
+        @media (max-width: 768px) { .sidebar { display: none; } .main { margin-left: 0; padding: 1rem; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="progress-info">
+                <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar"></div></div>
+                <div class="progress-text" id="progressText">0 / 0</div>
+            </div>
+            <button class="reset-btn" onclick="resetProgress()">Reset Progress</button>
+            <button class="reset-btn export-btn" onclick="exportAllProgress()">📤 Export Progress</button>
+            <button class="reset-btn import-btn" onclick="showImportDialog()">📥 Import Progress</button>
+            <div id="importDialog" class="import-dialog" style="display:none;">
+                <textarea id="importCode" placeholder="Paste progress code here..."></textarea>
+                <div class="import-actions">
+                    <button onclick="importAllProgress()">Import</button>
+                    <button onclick="hideImportDialog()">Cancel</button>
+                </div>
+            </div>
+            <div class="sidebar-section">
+                <h2>Zones</h2>
+                <a href="#sandswept" class="sidebar-link">Sandswept Marsh</a>
+                <a href="#ziggurat" class="sidebar-link">Ziggurat Encampment</a>
+                <a href="#jungle" class="sidebar-link perm">Jungle Ruins ✦</a>
+                <a href="#venom" class="sidebar-link warn">Venom Crypts ⚠️</a>
+                <a href="#infested" class="sidebar-link">Infested Barrens</a>
+                <a href="#chimeral" class="sidebar-link">Chimeral Wetlands</a>
+                <a href="#machinarium" class="sidebar-link perm">Jiquani's Machinarium ✦</a>
+                <a href="#azakbog" class="sidebar-link perm">Azak Bog ✦</a>
+                <a href="#molten" class="sidebar-link">Molten Vault</a>
+                <a href="#utzaal" class="sidebar-link">Utzaal</a>
+                <a href="#aggorat" class="sidebar-link perm">Aggorat ✦</a>
+            </div>
+            <div class="sidebar-section">
+                <h2>Navigation</h2>
+                <a href="poe2_act1_guide.html" class="sidebar-link">← Act 1</a>
+                <a href="poe2_act2_guide.html" class="sidebar-link">← Act 2</a>
+                <a href="poe2_act4_guide.html" class="sidebar-link">→ Act 4</a>
+            </div>
+        </aside>
+        
+        <main class="main">
+            <header class="header">
+                <h1>🌿 Act 3 – Complete Walkthrough</h1>
+                <span class="patch">Patch 0.4 • Normal Difficulty • All Rewards</span>
+            </header>
+
+            <div class="summary-box">
+                <h3>Act 3 Permanent Rewards</h3>
+                <div class="summary-grid">
+                    <div class="summary-item">+4 Weapon Set Skill Points</div>
+                    <div class="summary-item">+10% Fire Resistance</div>
+                    <div class="summary-item">+30 Spirit</div>
+                    <div class="summary-item">🔧 Reforging Bench</div>
+                    <div class="summary-item">⚡ Second Ascendancy Trial</div>
+                    <div class="summary-item warning">⚠️ Venom choice PERMANENT</div>
+                </div>
+            </div>
+
+            <!-- SANDSWEPT MARSH -->
+            <div class="zone-header" id="sandswept">Sandswept Marsh</div>
+            <div class="step" data-step="1"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">The Hooded One</span></div></div>
+            <div class="step" data-step="2"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Optional)</span> Kill <span class="boss">Rootdredge</span> <span class="reward-tag gem">Skill Gem Lvl 9</span></div></div>
+            <div class="step" data-step="3"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Optional)</span> Loot <span class="item">Basket</span> from Orok Campsite <span class="reward-tag optional">Lesser Jeweller's Orb</span></div></div>
+            <div class="step" data-step="4"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Optional)</span> Loot corpse from hanging tree <span class="reward-tag optional">Magic Ring</span></div></div>
+            <div class="step" data-step="5"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Ziggurat Encampment</span></div></div>
+
+            <!-- ZIGGURAT ENCAMPMENT -->
+            <div class="zone-header" id="ziggurat">Ziggurat Encampment <span class="wp town">TOWN</span></div>
+            <div class="step" data-step="6"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Alva</span>, <span class="npc">Oswald</span>, <span class="npc">The Hooded One</span></div></div>
+            <div class="step" data-step="7"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Jungle Ruins</span> (top exit)</div></div>
+
+            <!-- JUNGLE RUINS -->
+            <div class="zone-header" id="jungle">Jungle Ruins <span class="wp">WAYPOINT</span></div>
+            <div class="step" data-step="8"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Kill <span class="boss">Mighty Silverfist</span> <span class="reward-tag">+2 Skill Points</span></div></div>
+            <div class="note">⚠️ Dodge slam sideways (NOT backwards) - sends wave in attack direction</div>
+            <div class="step" data-step="9"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Find waypoint near <span class="loc">The Venom Crypts</span></div></div>
+            <div class="step" data-step="10"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Infested Barrens</span></div></div>
+
+            <!-- INFESTED BARRENS -->
+            <div class="zone-header" id="infested">Infested Barrens <span class="wp">WAYPOINT</span></div>
+            <div class="step" data-step="11"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Find and talk to <span class="npc">Alva</span>, take waypoint near her</div></div>
+            <div class="step" data-step="12"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Chimeral Wetlands</span>, take waypoint, go back</div></div>
+            <div class="step" data-step="13"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Azak Bog</span>, take waypoint, go back</div></div>
+            <div class="step" data-step="14"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Teleport to <span class="loc">Venom Crypts</span> (via Jungle Ruins WP)</div></div>
+
+            <!-- VENOM CRYPTS -->
+            <div class="zone-header" id="venom">The Venom Crypts ⚠️ PERMANENT CHOICE</div>
+            <div class="step" data-step="15"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Find corpse, loot <span class="item">Corpse-snake Venom</span></div></div>
+            <div class="step" data-step="16"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Teleport back to town</div></div>
+
+            <!-- ZIGGURAT -->
+            <div class="zone-header">Ziggurat Encampment</div>
+            <div class="step" data-step="17"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Servi</span> <span class="reward-tag perm">PERMANENT choice</span></div></div>
+            <div class="note warning">⚠️ PERMANENT CHOICE - Cannot change later!<br>• +25% Stun Threshold<br>• +30% Elemental Ailment Threshold<br>• +25% Mana Regeneration Rate</div>
+            <div class="step" data-step="18"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Teleport to <span class="loc">Chimeral Wetlands</span></div></div>
+
+            <!-- CHIMERAL WETLANDS -->
+            <div class="zone-header" id="chimeral">Chimeral Wetlands <span class="wp">WAYPOINT</span></div>
+            <div class="step" data-step="19"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Temple of Chaos</span>, take waypoint, go back <span class="reward-tag asc">2nd Ascendancy</span></div></div>
+            <div class="step" data-step="20"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Kill <span class="boss">Xyclucian, the Chimera</span>, loot <span class="item">Inscribed Ultimatum</span></div></div>
+            <div class="step" data-step="21"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Jiquani's Machinarium</span> behind boss</div></div>
+
+            <!-- JIQUANI'S MACHINARIUM -->
+            <div class="zone-header" id="machinarium">Jiquani's Machinarium</div>
+            <div class="step" data-step="22"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Summon and talk to <span class="npc">Alva</span></div></div>
+            <div class="step" data-step="23"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Loot <span class="item">Small Soul Core</span>, use on Stone Altar next to Alva</div></div>
+            <div class="step" data-step="24"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Loot 3 <span class="item">Small Soul Cores</span> to open doors</div></div>
+            <div class="step" data-step="25"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Open door, kill <span class="boss">Blackjaw</span>, use <span class="item">Flame Core</span> <span class="reward-tag">+10% Fire Res</span></div></div>
+            <div class="step" data-step="26"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Open another door, enter <span class="loc">Jiquani's Sanctum</span></div></div>
+
+            <!-- JIQUANI'S SANCTUM -->
+            <div class="zone-header">Jiquani's Sanctum</div>
+            <div class="step" data-step="27"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Summon and talk to <span class="npc">Alva</span></div></div>
+            <div class="step" data-step="28"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Loot 2 <span class="item">Medium Soul Cores</span>, place in Generators</div></div>
+            <div class="step" data-step="29"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Go back to beginning, click <span class="item">Large Soul Core</span>, kill <span class="boss">Zicoatly</span>, loot core</div></div>
+            <div class="step" data-step="30"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Teleport to <span class="loc">Infested Barrens</span></div></div>
+
+            <!-- INFESTED BARRENS RETURN -->
+            <div class="zone-header">Infested Barrens (Return)</div>
+            <div class="step" data-step="31"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Use core on <span class="item">Stone Altar</span> next to waypoint</div></div>
+            <div class="step" data-step="32"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">The Matlan Waterways</span></div></div>
+
+            <!-- MATLAN WATERWAYS -->
+            <div class="zone-header">The Matlan Waterways</div>
+            <div class="step" data-step="33"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Optional)</span> Go to hut, kill rare <span class="reward-tag optional">Random loot</span></div></div>
+            <div class="step" data-step="34"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Use big <span class="item">Canal Lever</span> at end of zone</div></div>
+            <div class="step" data-step="35"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Teleport back to town</div></div>
+
+            <!-- ZIGGURAT -->
+            <div class="zone-header">Ziggurat Encampment</div>
+            <div class="step" data-step="36"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Go downstairs, talk to <span class="npc">Alva</span></div></div>
+            <div class="step" data-step="37"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">The Drowned City</span> (bottom exit)</div></div>
+
+            <!-- DROWNED CITY -->
+            <div class="zone-header">The Drowned City</div>
+            <div class="step" data-step="38"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Find <span class="loc">Apex of Filth</span>, take waypoint, go back</div></div>
+            <div class="step" data-step="39"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Find <span class="loc">The Molten Vault</span>, take waypoint, go back</div></div>
+            <div class="step" data-step="40"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Teleport to <span class="loc">Azak Bog</span></div></div>
+
+            <!-- AZAK BOG -->
+            <div class="zone-header" id="azakbog">Azak Bog <span class="wp">WAYPOINT</span></div>
+            <div class="step" data-step="41"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Summon and talk to <span class="npc">Servi</span></div></div>
+            <div class="step" data-step="42"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Optional)</span> Activate Flameskin rituals <span class="reward-tag optional">Fire Res + Rarity buff</span></div></div>
+            <div class="step" data-step="43"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Kill <span class="boss">Ignagduk, the Bog Witch</span>, use <span class="item">Gemrot Skull</span> <span class="reward-tag">+30 Spirit</span></div></div>
+            <div class="step" data-step="44"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">TP to <span class="loc">Molten Vault</span> (first char) or town</div></div>
+
+            <!-- MOLTEN VAULT -->
+            <div class="zone-header" id="molten">The Molten Vault <span class="wp">WAYPOINT</span></div>
+            <div class="step" data-step="45"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="action">(First char)</span> Kill <span class="boss">Mektul, the Forgemaster</span> <span class="reward-tag craft">Reforging Bench</span></div></div>
+            <div class="note">📌 Return Hammer of Kamasa to Oswald in town to unlock bench</div>
+            <div class="step" data-step="46"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Teleport back to town</div></div>
+
+            <!-- ZIGGURAT -->
+            <div class="zone-header">Ziggurat Encampment</div>
+            <div class="step" data-step="47"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Oswald</span></div></div>
+            <div class="step" data-step="48"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Teleport to <span class="loc">Apex of Filth</span></div></div>
+
+            <!-- APEX OF FILTH -->
+            <div class="zone-header">Apex of Filth <span class="wp">WAYPOINT</span></div>
+            <div class="step" data-step="49"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Optional)</span> Find 3 Mushrooms, use on Cauldron <span class="reward-tag optional">Superior Flasks</span></div></div>
+            <div class="step" data-step="50"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Kill <span class="boss">Queen of Filth</span>, get <span class="item">Temple Door Idol</span></div></div>
+            <div class="step" data-step="51"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Teleport back to town</div></div>
+
+            <!-- ZIGGURAT -->
+            <div class="zone-header">Ziggurat Encampment</div>
+            <div class="step" data-step="52"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Alva</span> downstairs</div></div>
+            <div class="step" data-step="53"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Interact with Door behind her, enter <span class="loc">Temple of Kopec</span></div></div>
+
+            <!-- TEMPLE OF KOPEC -->
+            <div class="zone-header">Temple of Kopec</div>
+            <div class="step" data-step="54"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Kill <span class="boss">Ketzuli, High Priest of the Sun</span> (upstairs)</div></div>
+            <div class="step" data-step="55"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Alva</span>, wait for lore</div></div>
+
+            <!-- ZIGGURAT -->
+            <div class="zone-header">Ziggurat Encampment</div>
+            <div class="step" data-step="56"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Take the Gateway</div></div>
+            <div class="step" data-step="57"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Go downstairs, enter <span class="loc">Utzaal</span></div></div>
+
+            <!-- UTZAAL -->
+            <div class="zone-header" id="utzaal">Utzaal</div>
+            <div class="step" data-step="58"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Optional)</span> Farm <span class="item">Sacrificial Heart</span> from Vaal Goliaths</div></div>
+            <div class="note">📌 Can also drop in Aggorat - keep killing until it drops!</div>
+            <div class="step" data-step="59"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Optional)</span> Enter small doors for idols (sell to Oswald for gold)</div></div>
+            <div class="step" data-step="60"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Kill <span class="boss">Viper Napuatzi</span></div></div>
+            <div class="step" data-step="61"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Aggorat</span></div></div>
+
+            <!-- AGGORAT -->
+            <div class="zone-header" id="aggorat">Aggorat</div>
+            <div class="step" data-step="62"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Find <span class="item">Sacrificial Altar</span> (top right of map)</div></div>
+            <div class="step" data-step="63"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Place <span class="item">Sacrificial Heart</span>, stab with Dagger <span class="reward-tag">+2 Skill Points</span></div></div>
+            <div class="step" data-step="64"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">The Black Chambers</span> (top left of map)</div></div>
+
+            <!-- BLACK CHAMBERS -->
+            <div class="zone-header">The Black Chambers</div>
+            <div class="step" data-step="65"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Kill <span class="boss">Doryani, the Blood Alchemist</span> (Act 3 Boss)</div></div>
+            <div class="step" data-step="66"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Wait for loot (~30 seconds)</div></div>
+            <div class="step" data-step="67"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Teleport back to town</div></div>
+
+            <!-- END -->
+            <div class="zone-header">Ziggurat Encampment (End of Act)</div>
+            <div class="step" data-step="68"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Doryani</span></div></div>
+            <div class="step" data-step="69"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Doryani</span> again, then <span class="npc">Alva</span>, then <span class="npc">The Hooded One</span>, then <span class="npc">Alva</span></div></div>
+            <div class="note">✅ Act 3 Complete! Proceed to Act 4.</div>
+
+            <div class="nav-links">
+                <a href="poe2_act2_guide.html" class="nav-link">← Act 2</a>
+                <a href="poe2_act4_guide.html" class="nav-link">Act 4 →</a>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        const STORAGE_KEY = 'poe2-act3-full-v2';
+        const ALL_STORAGE_KEYS = ['poe2-act1-full-v2', 'poe2-act2-full-v2', 'poe2-act3-full-v2', 'poe2-act4-full-v3'];
+        
+        function showToast(message, isError = false) {
+            const existing = document.querySelector('.toast');
+            if (existing) existing.remove();
+            const toast = document.createElement('div');
+            toast.className = 'toast' + (isError ? ' error' : '');
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+        
+        function exportAllProgress() {
+            const allData = {};
+            ALL_STORAGE_KEYS.forEach(key => {
+                const saved = localStorage.getItem(key);
+                if (saved) allData[key] = JSON.parse(saved);
+            });
+            if (Object.keys(allData).length === 0) {
+                showToast('No progress to export!', true);
+                return;
+            }
+            const encoded = btoa(JSON.stringify(allData));
+            const code = 'PoE2_' + encoded;
+            navigator.clipboard.writeText(code).then(() => {
+                showToast('Progress code copied to clipboard!');
+            }).catch(() => {
+                prompt('Copy this progress code:', code);
+            });
+        }
+        
+        function showImportDialog() {
+            document.getElementById('importDialog').style.display = 'block';
+            document.getElementById('importCode').value = '';
+            document.getElementById('importCode').focus();
+        }
+        
+        function hideImportDialog() {
+            document.getElementById('importDialog').style.display = 'none';
+        }
+        
+        function importAllProgress() {
+            const code = document.getElementById('importCode').value.trim();
+            if (!code.startsWith('PoE2_')) {
+                showToast('Invalid progress code!', true);
+                return;
+            }
+            try {
+                const decoded = JSON.parse(atob(code.substring(5)));
+                let imported = 0;
+                Object.keys(decoded).forEach(key => {
+                    if (ALL_STORAGE_KEYS.includes(key)) {
+                        localStorage.setItem(key, JSON.stringify(decoded[key]));
+                        imported += decoded[key].length;
+                    }
+                });
+                hideImportDialog();
+                loadProgress();
+                showToast(`Imported ${imported} completed steps!`);
+            } catch (e) {
+                showToast('Failed to import - invalid code!', true);
+            }
+        }
+        function loadProgress() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) { JSON.parse(saved).forEach(step => { const el = document.querySelector(`[data-step="${step}"]`); if (el) el.classList.add('completed'); }); }
+            updateProgressBar();
+        }
+        function saveProgress() {
+            const completed = []; document.querySelectorAll('.step.completed').forEach(el => { completed.push(el.dataset.step); });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+        }
+        function toggleStep(checkbox) { const step = checkbox.closest('.step'); step.classList.toggle('completed'); saveProgress(); updateProgressBar(); }
+        function resetProgress() { if (confirm('Reset all progress?')) { localStorage.removeItem(STORAGE_KEY); document.querySelectorAll('.step.completed').forEach(el => { el.classList.remove('completed'); }); updateProgressBar(); } }
+        function updateProgressBar() {
+            const total = document.querySelectorAll('.step').length; const completed = document.querySelectorAll('.step.completed').length;
+            document.getElementById('progressBar').style.width = (completed / total) * 100 + '%';
+            document.getElementById('progressText').textContent = `${completed} / ${total}`;
+        }
+        loadProgress();
+    </script>
+</body>
+</html>
