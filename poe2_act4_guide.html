@@ -116,6 +116,7 @@
             </div>
             <div class="sidebar-section">
                 <h2>Navigation</h2>
+                <a href="index.html" class="sidebar-link">← Back to Index</a>
                 <a href="poe2_act1_guide.html" class="sidebar-link">← Act 1</a>
                 <a href="poe2_act2_guide.html" class="sidebar-link">← Act 2</a>
                 <a href="poe2_act3_guide.html" class="sidebar-link">← Act 3</a>
@@ -382,13 +383,23 @@
                 showToast('Invalid progress code!', true);
                 return;
             }
+            if (code.length > 10000) {
+                showToast('Progress code too large!', true);
+                return;
+            }
             try {
                 const decoded = JSON.parse(atob(code.substring(5)));
+                if (typeof decoded !== 'object' || decoded === null || Array.isArray(decoded)) {
+                    throw new Error('Invalid format');
+                }
                 let imported = 0;
                 Object.keys(decoded).forEach(key => {
                     if (ALL_STORAGE_KEYS.includes(key)) {
-                        localStorage.setItem(key, JSON.stringify(decoded[key]));
-                        imported += decoded[key].length;
+                        const steps = decoded[key];
+                        if (!Array.isArray(steps) || steps.length > 200) return;
+                        if (!steps.every(s => typeof s === 'string' && /^\d+$/.test(s))) return;
+                        localStorage.setItem(key, JSON.stringify(steps));
+                        imported += steps.length;
                     }
                 });
                 hideImportDialog();
