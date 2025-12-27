@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://domistae.github.io/poe2-leveling/sitemap.xml
