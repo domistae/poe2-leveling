@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POE2 Leveling Guide - Campaign Walkthrough (Patch 0.4)</title>
-    <meta name="description" content="Free interactive Path of Exile 2 campaign guide with progress tracking. All permanent rewards, skill points, and optimal pathing for Acts 1-4.">
+    <meta name="description" content="Free interactive Path of Exile 2 campaign guide with progress tracking. All permanent rewards, skill points, and optimal pathing for Acts 1-4 and Interludes.">
     <meta name="keywords" content="PoE2, Path of Exile 2, leveling guide, leveling, campaign guide, walkthrough, skill points, permanent rewards">
     <meta name="author" content="domistae">
     <link rel="canonical" href="https://domistae.github.io/poe2-leveling/">
@@ -15,7 +15,7 @@
     <meta property="og:description" content="Free interactive Path of Exile 2 campaign guide with progress tracking. All permanent rewards and optimal pathing.">
     <meta property="og:url" content="https://domistae.github.io/poe2-leveling/">
     
-    <!-- Google Search Console Verification - REPLACE WITH YOUR CODE -->
+    <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM" />
     
     <!-- Google tag (gtag.js) -->
@@ -43,7 +43,6 @@
             padding: 2rem 1.5rem; 
         }
         
-        /* Header */
         .header { 
             border-bottom: 1px solid #2a2a2a; 
             padding-bottom: 1.5rem; 
@@ -60,7 +59,6 @@
             font-size: 12px; 
         }
         
-        /* Quest Log Title */
         .quest-log-title {
             color: #af6025;
             font-size: 11px;
@@ -71,7 +69,6 @@
             border-bottom: 1px solid #2a2a2a;
         }
         
-        /* Journey Path */
         .journey {
             position: relative;
             padding-left: 2.5rem;
@@ -86,7 +83,6 @@
             background: linear-gradient(180deg, #af6025 0%, #2a4a2a 100%);
         }
         
-        /* Act Entry */
         .act-entry {
             position: relative;
             margin-bottom: 1rem;
@@ -103,7 +99,7 @@
             border: 2px solid #af6025;
             border-radius: 50%;
         }
-        .act-entry:last-child::before {
+        .act-entry.final::before {
             border-color: #7ec47e;
             background: #1a2e1a;
         }
@@ -122,7 +118,7 @@
             border-color: #3a3a3a;
             border-left-color: #d4943a;
         }
-        .act-entry:last-child .act-link {
+        .act-entry.final .act-link {
             border-left-color: #7ec47e;
         }
         
@@ -165,8 +161,12 @@
             border-color: #4a4a2a;
             color: #c4c47e;
         }
+        .reward.new {
+            background: #2a1a1a;
+            border-color: #4a2a2a;
+            color: #c4a47e;
+        }
         
-        /* Features */
         .features {
             margin-top: 2rem;
             padding-top: 1.5rem;
@@ -194,7 +194,6 @@
             margin-right: 0.3rem;
         }
         
-        /* Footer */
         .footer {
             margin-top: 2rem;
             padding-top: 1rem;
@@ -205,16 +204,6 @@
         .footer a {
             color: #5a5a5a;
             text-decoration: none;
-        }
-        
-        /* Note */
-        .note {
-            background: #1c2128;
-            border-left: 2px solid #5a6a7a;
-            padding: 0.5rem 0.75rem;
-            margin-top: 1rem;
-            font-size: 11px;
-            color: #7a8a9a;
         }
         
         @media (max-width: 500px) {
@@ -228,7 +217,7 @@
     <div class="container">
         <header class="header">
             <h1>⚔ POE2 Leveling Guide</h1>
-            <div class="subtitle">Patch 0.4 • Acts 1–4 • All Permanent Rewards</div>
+            <div class="subtitle">Patch 0.4 • Acts 1–4 + Interludes • All Permanent Rewards</div>
         </header>
         
         <div class="quest-log-title">Campaign Progress</div>
@@ -237,14 +226,15 @@
             <div class="act-entry">
                 <a href="poe2_act1_guide.html" class="act-link">
                     <div class="act-header">
-                        <span class="act-name">Act 1 — Clearfell to Ogham</span>
+                        <span class="act-name">Act 1 – Clearfell to Ogham</span>
                         <span class="act-number">62 steps</span>
                     </div>
                     <div class="act-rewards">
-                        <span class="reward">+2 Skill Points</span>
-                        <span class="reward">+50 Spirit</span>
+                        <span class="reward">+4 Skill Points</span>
+                        <span class="reward">+30 Spirit</span>
+                        <span class="reward">+20 Life</span>
                         <span class="reward res">+10% Cold Res</span>
-                        <span class="reward special">Waypoints ×4</span>
+                        <span class="reward special">Salvage Bench</span>
                     </div>
                 </a>
             </div>
@@ -252,14 +242,14 @@
             <div class="act-entry">
                 <a href="poe2_act2_guide.html" class="act-link">
                     <div class="act-header">
-                        <span class="act-name">Act 2 — Vastiri to Dreadnought</span>
-                        <span class="act-number">75 steps</span>
+                        <span class="act-name">Act 2 – Vastiri to Dreadnought</span>
+                        <span class="act-number">72 steps</span>
                     </div>
                     <div class="act-rewards">
                         <span class="reward">+4 Skill Points</span>
                         <span class="reward res">+10% Lightning Res</span>
-                        <span class="reward special">Trials ×2</span>
-                        <span class="reward special">Choice Reward</span>
+                        <span class="reward special">1st Ascendancy</span>
+                        <span class="reward special">Charm/Mana Choice</span>
                     </div>
                 </a>
             </div>
@@ -267,14 +257,15 @@
             <div class="act-entry">
                 <a href="poe2_act3_guide.html" class="act-link">
                     <div class="act-header">
-                        <span class="act-name">Act 3 — Utzaal to Ziggurat</span>
-                        <span class="act-number">68 steps</span>
+                        <span class="act-name">Act 3 – Sandswept to Ziggurat</span>
+                        <span class="act-number">69 steps</span>
                     </div>
                     <div class="act-rewards">
                         <span class="reward">+4 Skill Points</span>
                         <span class="reward">+30 Spirit</span>
                         <span class="reward res">+10% Fire Res</span>
-                        <span class="reward special">Trials ×2</span>
+                        <span class="reward special">2nd Ascendancy</span>
+                        <span class="reward new">⚠️ Permanent Choice</span>
                     </div>
                 </a>
             </div>
@@ -282,35 +273,48 @@
             <div class="act-entry">
                 <a href="poe2_act4_guide.html" class="act-link">
                     <div class="act-header">
-                        <span class="act-name">Act 4 — Keth to Nightmare</span>
-                        <span class="act-number">54 steps</span>
+                        <span class="act-name">Act 4 – Karui Archipelago</span>
+                        <span class="act-number">60 steps</span>
                     </div>
                     <div class="act-rewards">
-                        <span class="reward">+3 Skill Points</span>
-                        <span class="reward">+30 Spirit</span>
-                        <span class="reward special">Ascendancy</span>
-                        <span class="reward special">Trials ×2</span>
+                        <span class="reward">+4 Skill Points</span>
+                        <span class="reward">+5% Max Mana</span>
+                        <span class="reward special">Tattoo Choice</span>
+                        <span class="reward special">Hideout</span>
+                        <span class="reward new">0.4: Kedge Bay</span>
                     </div>
                 </a>
             </div>
-        </div>
-        
-        <div class="note">
-            📌 Interludes not included yet — main campaign acts only.
+            
+            <div class="act-entry final">
+                <a href="poe2_interludes_guide.html" class="act-link">
+                    <div class="act-header">
+                        <span class="act-name">Interludes – Rewards Only</span>
+                        <span class="act-number">Quick ref</span>
+                    </div>
+                    <div class="act-rewards">
+                        <span class="reward">+8 Skill Points</span>
+                        <span class="reward">+5% Max Life</span>
+                        <span class="reward">+40 Spirit</span>
+                        <span class="reward special">Free Unique</span>
+                        <span class="reward special">7 Boons Choice</span>
+                    </div>
+                </a>
+            </div>
         </div>
         
         <div class="features">
             <div class="features-title">Guide Features</div>
             <div class="features-list">
                 <span class="feature">Progress saves to browser</span>
-                <span class="feature">Export/import codes</span>
-                <span class="feature">Fast vs Complete tracking</span>
+                <span class="feature">All waypoints marked</span>
+                <span class="feature">Patch 0.4 verified</span>
                 <span class="feature">Mobile friendly</span>
             </div>
         </div>
         
         <footer class="footer">
-            Made with AI assistance • <a href="https://github.com/domistae/poe2-leveling">GitHub</a>
+            Made for the PoE2 community • <a href="https://github.com/domistae/poe2-leveling">GitHub</a>
         </footer>
     </div>
 </body>
