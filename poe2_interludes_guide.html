@@ -3,232 +3,1273 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POE2 Interludes - Permanent Rewards Guide (Patch 0.4)</title>
-    <meta name="description" content="Path of Exile 2 Interludes permanent rewards guide. All skill points, buffs, and must-not-miss rewards for Act 5.1, 5.2, 5.3.">
-    <meta name="keywords" content="PoE2, Path of Exile 2, Interludes, Act 5, leveling guide, permanent rewards, skill points">
+    <title>PoE 2 Interludes Guide — Acts 5.1–5.3 Permanent Rewards (Patch 0.5)</title>
+    <meta name="description" content="Path of Exile 2 Interludes walkthrough: 5.1 Ogham, 5.2 Khari Bazaar, 5.3 Mount Kriar. All permanent rewards: +8 skill points, +5% max life, +40 spirit, free unique. Patch 0.5.">
     <meta name="author" content="domistae">
+    <meta name="theme-color" content="#181410">
     <link rel="canonical" href="https://domistae.github.io/poe2-leveling/poe2_interludes_guide.html">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="POE2 Interludes - Permanent Rewards">
-    <meta property="og:description" content="All permanent rewards from Interludes 5.1, 5.2, and 5.3.">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PoE 2 Leveling Guide">
+    <meta property="og:title" content="PoE 2 Interludes Guide — Acts 5.1–5.3 Permanent Rewards (Patch 0.5)">
+    <meta property="og:description" content="Interludes 5.1–5.3 with progress tracking — all permanent rewards: +8 skill points, +5% life, +40 spirit. Patch 0.5.">
     <meta property="og:url" content="https://domistae.github.io/poe2-leveling/poe2_interludes_guide.html">
+    <meta property="og:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Path of Exile 2 Interludes Guide — Acts 5.1, 5.2, 5.3 permanent rewards (Patch 0.5)">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PoE 2 Interludes Guide — Acts 5.1–5.3 Permanent Rewards (Patch 0.5)">
+    <meta name="twitter:description" content="Interludes 5.1–5.3 with progress tracking — all permanent rewards: +8 skill points, +5% life, +40 spirit. Patch 0.5.">
+    <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
+
     <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7N3S1HHM51"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7N3S1HHM51');</script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7N3S1HHM51');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('poe2-theme');
+                if (saved === 'light' || saved === 'dark') {
+                    document.documentElement.setAttribute('data-theme', saved);
+                } else {
+                    var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+                }
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #1a1a1a; color: #b8b8b8; font-size: 14px; line-height: 1.5; min-height: 100vh; }
-        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
-        .header { margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid #2a2a2a; }
-        .header h1 { color: #af6025; font-size: 1.5rem; font-weight: normal; margin-bottom: 0.25rem; }
-        .header .patch { color: #5a5a5a; font-size: 12px; }
-        .summary-box { background: #1f1f1f; border: 1px solid #2a2a2a; border-radius: 6px; padding: 1rem; margin-bottom: 2rem; }
-        .summary-box h3 { color: #7fbadc; font-size: 13px; margin-bottom: 0.75rem; }
-        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.5rem; }
-        .summary-item { background: #1a2e1a; border: 1px solid #2a4a2a; color: #7ec47e; padding: 0.5rem 0.75rem; border-radius: 3px; font-size: 12px; }
-        .interlude-section { background: #1f1f1f; border: 1px solid #2a2a2a; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; }
-        .interlude-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #2a2a2a; }
-        .interlude-header h2 { color: #af6025; font-size: 1.1rem; font-weight: 600; }
-        .interlude-header .tag { background: #2a2a1a; color: #c4c47e; padding: 0.2rem 0.5rem; border-radius: 3px; font-size: 11px; }
-        .reward-list { list-style: none; }
-        .reward-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.6rem 0; border-bottom: 1px solid #252525; }
-        .reward-item:last-child { border-bottom: none; }
-        .reward-icon { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; background: #252525; border-radius: 4px; font-size: 12px; flex-shrink: 0; }
-        .reward-icon.skill { background: #1a2e1a; color: #7ec47e; }
-        .reward-icon.life { background: #2e1a1a; color: #c47e7e; }
-        .reward-icon.spirit { background: #1a1a2e; color: #7e7ec4; }
-        .reward-icon.choice { background: #2a1a2a; color: #c47ec4; }
-        .reward-icon.item { background: #2a2a1a; color: #c4c47e; }
-        .reward-icon.shop { background: #1a2a2a; color: #7ec4c4; }
-        .reward-content { flex: 1; }
-        .reward-title { color: #d4d4d4; font-weight: 500; margin-bottom: 0.15rem; }
-        .reward-location { color: #7fbadc; font-size: 12px; }
-        .reward-detail { color: #8a8a8a; font-size: 11px; margin-top: 0.25rem; }
-        .reward-value { color: #7ec47e; font-weight: 600; font-size: 13px; white-space: nowrap; }
-        .note { background: #1c2128; border-left: 2px solid #5a6a7a; padding: 0.5rem 0.75rem; margin: 0.5rem 0; font-size: 11px; color: #8a8a8a; border-radius: 0 4px 4px 0; }
-        .nav-links { display: flex; justify-content: space-between; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #2a2a2a; }
-        .nav-link { color: #7fbadc; text-decoration: none; font-size: 13px; padding: 0.5rem 1rem; background: #1f1f1f; border-radius: 4px; }
-        .nav-link:hover { background: #252525; }
+/* ─────────────────────────────────────────────────────────────
+   POE2 v0.5 — Unified theme (light default + dark via [data-theme="dark"])
+   League colors tuned to canonical PoE iconography, bright for light mode.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+    /* Surfaces */
+    --bg-base: #f4f6fa;          /* cool off-white */
+    --bg-surface: #ffffff;
+    --bg-elevated: #eef2f7;
+    --bg-step: #f8fafc;
+    --border-subtle: #dfe4ec;
+    --border-accent: #c4cbd6;
+
+    /* Text */
+    --text-primary: #0f172a;     /* near-black, slate undertone */
+    --text-body: #334155;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --parchment: #0f172a;        /* now means "darkest text" for headings */
+
+    /* Gold accents (PoE2 native) */
+    --gold: #b08537;
+    --gold-bright: #d4a258;
+    --gold-deep: #8a6a2c;
+
+    /* Semantic colors — bright, canonical PoE league hues */
+    --sage:    #16a34a;          /* tip / success / ritual / wildwood */
+    --burnt:   #dc2626;          /* warning / vaal */
+    --steel:   #1d4ed8;          /* loc / abyss */
+    --tan:     #b45309;          /* npc / fortress bronze */
+    --plum:    #7c3aed;          /* new pathing notes / breach */
+    --crimson: #b91c1c;          /* pinnacle threats */
+
+    /* Per-league solid colors (used in endgame zone cards + diagram) */
+    --c-fortress:   #b45309;     /* NW · precursor bronze */
+    --c-vaal:       #991b1b;     /* N  · vaal crimson */
+    --c-abyss:      #047857;     /* E  · deep green (per user) */
+    --c-expedition: #d97706;     /* SE · Kalguuran gold */
+    --c-breach:     #7c3aed;     /* S  · breach purple */
+    --c-delirium:   #64748b;     /* SW · silver chrome (mid-stop) */
+    --c-delirium-a: #e2e8f0;     /* light end of silver gradient */
+    --c-delirium-b: #64748b;     /* dark end of silver gradient */
+    --c-ritual:     #be185d;     /* W  · rose-wine (blood ritual) */
+
+    /* Shadow stack */
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.08);
+    --shadow-lg: 0 12px 30px rgba(15, 23, 42, 0.12);
+
+    /* Overlays (theme-aware) */
+    --overlay-gold-soft: rgba(176, 133, 55, 0.07);
+    --overlay-gold-strong: rgba(176, 133, 55, 0.14);
+    --overlay-sage: rgba(22, 163, 74, 0.08);
+    --overlay-burnt: rgba(220, 38, 38, 0.08);
+    --overlay-steel: rgba(29, 78, 216, 0.08);
+    --overlay-tan: rgba(180, 83, 9, 0.08);
+    --overlay-plum: rgba(124, 58, 237, 0.08);
+
+    /* Body font weight feels lighter on cream — use normal */
+    --body-weight: 400;
+}
+
+[data-theme="dark"] {
+    --bg-base: #181410;
+    --bg-surface: #221c15;
+    --bg-elevated: #2a2218;
+    --bg-step: #1f1a13;
+    --border-subtle: #3a2f20;
+    --border-accent: #5a4830;
+
+    --text-primary: #d8cab0;
+    --text-body: #b8a888;
+    --text-muted: #8a7c64;
+    --text-dim: #5a4f3e;
+    --parchment: #e8d8a8;
+
+    --gold: #c89860;
+    --gold-bright: #e8b878;
+    --gold-deep: #a07840;
+
+    --sage:    #9bb87a;
+    --burnt:   #c87060;
+    --steel:   #7e9eb8;
+    --tan:     #c4a47e;
+    --plum:    #b88aa0;
+    --crimson: #c84a4a;
+
+    /* Per-league colors — slightly desaturated for dark mode */
+    --c-fortress:   #d97706;
+    --c-vaal:       #dc2626;
+    --c-abyss:      #10b981;     /* brighter green for dark */
+    --c-expedition: #fbbf24;
+    --c-breach:     #a78bfa;
+    --c-delirium:   #94a3b8;
+    --c-delirium-a: #cbd5e1;
+    --c-delirium-b: #475569;
+    --c-ritual:     #ec4899;     /* brighter rose for dark */
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.55);
+
+    --overlay-gold-soft: rgba(200, 152, 96, 0.06);
+    --overlay-gold-strong: rgba(200, 152, 96, 0.12);
+    --overlay-sage: rgba(155, 184, 122, 0.08);
+    --overlay-burnt: rgba(200, 112, 96, 0.08);
+    --overlay-steel: rgba(126, 158, 184, 0.08);
+    --overlay-tan: rgba(196, 164, 126, 0.08);
+    --overlay-plum: rgba(184, 138, 160, 0.08);
+
+    --body-weight: 300;
+}
+
+/* ─── BASE ─────────────────────────────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Inter', 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--bg-base);
+    color: var(--text-body);
+    font-size: 13.5px;
+    line-height: 1.6;
+    min-height: 100vh;
+    font-weight: var(--body-weight);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: none;
+    pointer-events: none;
+    z-index: 0;
+}
+[data-theme="dark"] body { background: radial-gradient(ellipse at top left, rgba(200, 152, 96, 0.05) 0%, transparent 50%), var(--bg-base); }
+
+/* ─── THEME TOGGLE (top-right floating) ────────────────────── */
+.theme-toggle {
+    position: fixed;
+    top: 1rem; right: 1rem;
+    z-index: 1000;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-accent);
+    color: var(--text-body);
+    padding: 0.5rem 0.9rem;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: 'Inter', 'IBM Plex Sans', sans-serif;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    display: flex; align-items: center; gap: 0.45rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s;
+}
+.theme-toggle:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+.theme-toggle .icon { font-size: 13px; }
+
+/* ─── CONTAINER ────────────────────────────────────────────── */
+.container { display: flex; max-width: 1240px; margin: 0 auto; position: relative; z-index: 1; }
+
+/* ─── SIDEBAR ──────────────────────────────────────────────── */
+.sidebar {
+    width: 240px;
+    background: var(--bg-surface);
+    border-right: 1px solid var(--border-subtle);
+    padding: 1.25rem 1rem;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-sm);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+[data-theme="dark"] .sidebar {
+    background: linear-gradient(180deg, rgba(34, 28, 21, 0.95) 0%, rgba(24, 20, 16, 0.95) 100%);
+    box-shadow: none;
+}
+.sidebar h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    font-weight: 600;
+}
+.sidebar-section { margin-bottom: 1.25rem; }
+.sidebar-link {
+    display: block;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.35rem 0.5rem;
+    font-size: 11.5px;
+    border-radius: 3px;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+}
+.sidebar-link:hover {
+    background: var(--overlay-gold-soft);
+    color: var(--text-primary);
+    border-left-color: var(--gold);
+}
+.sidebar-link.perm  { color: var(--sage); }
+.sidebar-link.quest { color: var(--tan); }
+.sidebar-link.story { color: var(--tan); }
+.sidebar-link.boss  { color: var(--burnt); }
+.sidebar-link.system{ color: var(--steel); }
+
+/* Progress info panel */
+.progress-info {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+}
+.progress-bar-bg { height: 5px; background: var(--bg-base); border-radius: 3px; overflow: hidden; margin-bottom: 0.4rem; }
+.progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright)); width: 0%; transition: width 0.3s; }
+.progress-bar-fill.complete { background: linear-gradient(90deg, #4a7a2a, var(--sage)); }
+.progress-label {
+    font-size: 9.5px; color: var(--gold); margin-bottom: 0.2rem; font-weight: 600;
+    font-family: 'Cinzel', serif; letter-spacing: 1.5px; text-transform: uppercase;
+}
+.progress-label.complete { color: var(--sage); margin-top: 0.5rem; }
+.progress-text { font-size: 10.5px; color: var(--text-muted); text-align: right; font-family: 'IBM Plex Mono', monospace; }
+
+/* Sidebar buttons */
+.reset-btn, .export-btn, .import-btn {
+    width: 100%; background: var(--bg-elevated); border: 1px solid var(--border-subtle);
+    color: var(--text-muted); padding: 0.45rem; border-radius: 3px; cursor: pointer;
+    font-size: 11px; transition: all 0.15s; margin-top: 0.4rem;
+    font-family: 'Inter', sans-serif; letter-spacing: 0.3px;
+}
+.reset-btn:hover { background: var(--overlay-gold-soft); color: var(--text-primary); border-color: var(--gold); }
+.export-btn { color: var(--sage); }
+.export-btn:hover { background: var(--overlay-sage); border-color: var(--sage); }
+.import-btn { color: var(--steel); }
+.import-btn:hover { background: var(--overlay-steel); border-color: var(--steel); }
+.import-dialog { margin-top: 0.5rem; }
+.import-dialog textarea {
+    width: 100%; height: 60px; background: var(--bg-base); border: 1px solid var(--border-subtle);
+    color: var(--text-body); padding: 0.4rem; border-radius: 3px; font-size: 10.5px; resize: none;
+    font-family: 'IBM Plex Mono', monospace;
+}
+.import-actions { display: flex; gap: 0.4rem; margin-top: 0.4rem; }
+.import-actions button { flex: 1; padding: 0.35rem; background: var(--bg-elevated); border: 1px solid var(--border-subtle); color: var(--text-body); border-radius: 3px; cursor: pointer; font-size: 10.5px; }
+.import-actions button:first-child { background: var(--overlay-sage); border-color: var(--sage); color: var(--sage); }
+.import-actions button:hover { opacity: 0.85; }
+
+.toast {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background: var(--bg-surface); border: 1px solid var(--sage); color: var(--sage);
+    padding: 0.7rem 1.5rem; border-radius: 3px; font-size: 12.5px; z-index: 1001;
+    animation: fadeInOut 3s forwards; font-family: 'Cinzel', serif; letter-spacing: 0.5px;
+    box-shadow: var(--shadow-md);
+}
+.toast.error { border-color: var(--burnt); color: var(--burnt); }
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* ─── MAIN ─────────────────────────────────────────────────── */
+.main { margin-left: 240px; flex: 1; padding: 1.75rem 2.25rem; max-width: 940px; }
+
+.header { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); }
+.header .eyebrow {
+    font-family: 'Cinzel', serif; color: var(--gold-deep);
+    font-size: 10px; letter-spacing: 3.5px; text-transform: uppercase; margin-bottom: 0.4rem;
+}
+.header h1 {
+    font-family: 'Cinzel', serif; color: var(--text-primary);
+    font-size: 1.75rem; font-weight: 600; letter-spacing: 0.8px; margin-bottom: 0.3rem; line-height: 1.2;
+}
+.header .patch {
+    color: var(--text-muted); font-size: 11.5px;
+    font-family: 'IBM Plex Mono', monospace;
+}
+.header .subtitle, .subtitle {
+    color: var(--text-muted); font-size: 12.5px; font-style: italic;
+}
+
+/* Endgame banner under header */
+.endgame-banner, .banner-05 {
+    background: linear-gradient(90deg, var(--overlay-plum) 0%, var(--bg-elevated) 100%);
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid var(--plum);
+    padding: 0.7rem 1rem; margin: 0 0 1.5rem 0; border-radius: 4px;
+    font-size: 12px; color: var(--text-body);
+}
+.endgame-banner .label, .banner-05 .label {
+    font-family: 'Cinzel', serif; color: var(--plum); font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase; margin-right: 0.5rem; font-weight: 600;
+}
+.endgame-banner a, .banner-05 a {
+    color: var(--gold); text-decoration: none; font-weight: 600;
+}
+.endgame-banner a:hover, .banner-05 a:hover { text-decoration: underline; color: var(--gold-deep); }
+
+/* Summary box (permanent rewards) */
+.summary-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 1rem 1.25rem; margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+.summary-box h3 {
+    font-family: 'Cinzel', serif; color: var(--gold); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.6rem; font-weight: 600;
+}
+.summary-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.4rem;
+}
+.summary-item {
+    background: var(--overlay-sage); border: 1px solid rgba(22, 163, 74, 0.3);
+    color: var(--sage); padding: 0.35rem 0.55rem; border-radius: 3px; font-size: 10.5px; font-weight: 500;
+}
+[data-theme="dark"] .summary-item { color: var(--sage); border-color: rgba(155, 184, 122, 0.25); }
+
+/* Info box (routing notes) */
+.info-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 1rem 1.25rem; margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+.info-box h3 {
+    font-family: 'Cinzel', serif; color: var(--gold); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.6rem; font-weight: 600;
+}
+.info-box ul { list-style: none; padding: 0; }
+.info-box li {
+    padding: 0.3rem 0; font-size: 12px; color: var(--text-body);
+    display: flex; align-items: flex-start; gap: 0.5rem;
+}
+.info-box .icon { color: var(--gold); font-size: 10px; line-height: 1.5; }
+.info-box strong { color: var(--text-primary); font-weight: 600; }
+
+/* Zone header */
+.zone-header {
+    background: linear-gradient(90deg, var(--overlay-gold-strong) 0%, transparent 100%);
+    border-left: 3px solid var(--gold);
+    padding: 0.55rem 1rem;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--gold-deep);
+    font-size: 13px; font-weight: 600;
+    font-family: 'Cinzel', serif; letter-spacing: 0.8px;
+    display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+    border-radius: 0 3px 3px 0;
+}
+[data-theme="dark"] .zone-header { color: var(--gold-bright); }
+.zone-header .wp {
+    background: var(--overlay-steel); color: var(--steel);
+    padding: 0.13rem 0.4rem; border-radius: 3px; font-size: 9.5px; font-weight: 600;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.5px;
+    border: 1px solid rgba(29, 78, 216, 0.3);
+}
+[data-theme="dark"] .zone-header .wp { border-color: rgba(126, 158, 184, 0.25); }
+.zone-header .town {
+    background: var(--overlay-plum); color: var(--plum);
+    border-color: rgba(124, 58, 237, 0.3);
+}
+[data-theme="dark"] .zone-header .town { border-color: rgba(184, 138, 160, 0.25); }
+.zone-header .lvl, .zone-header .frag, .zone-header .map {
+    background: var(--overlay-gold-strong); color: var(--gold);
+    padding: 0.13rem 0.4rem; border-radius: 3px; font-size: 9.5px;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.5px;
+    border: 1px solid rgba(168, 115, 40, 0.3);
+    margin-left: auto;
+}
+[data-theme="dark"] .zone-header .lvl { border-color: rgba(200, 152, 96, 0.25); }
+
+/* Phase header */
+.phase-header {
+    font-family: 'Cinzel', serif; color: var(--gold); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; margin: 1rem 0 0.3rem; font-weight: 600;
+    display: flex; align-items: center; gap: 0.4rem;
+}
+.phase-header::before { content: '◆'; color: var(--gold); font-size: 9px; }
+
+/* Steps */
+.step {
+    display: flex;
+    background: var(--bg-surface);
+    margin-bottom: 1px;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+    border-radius: 0 3px 3px 0;
+}
+.step:hover { background: var(--overlay-gold-soft); }
+.step.completed { opacity: 0.45; }
+.step.completed .step-content { text-decoration: line-through; text-decoration-color: var(--text-dim); }
+.step-check { width: 36px; display: flex; align-items: flex-start; justify-content: center; padding-top: 0.5rem; cursor: pointer; }
+.checkbox {
+    width: 14px; height: 14px;
+    border: 1.5px solid var(--border-accent); border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s; background: var(--bg-base);
+}
+.step:hover .checkbox { border-color: var(--gold); }
+.step.completed .checkbox { background: var(--gold); border-color: var(--gold); }
+.step.completed .checkbox::after { content: '✓'; color: white; font-size: 10px; font-weight: bold; }
+[data-theme="dark"] .step.completed .checkbox::after { color: var(--bg-base); }
+.step-content {
+    flex: 1; padding: 0.45rem 0.75rem 0.45rem 0; font-size: 12.5px; color: var(--text-body);
+}
+.step-content .action { color: var(--text-primary); font-weight: 500; }
+.step-content .npc { color: var(--tan); font-weight: 500; }
+.step-content .boss { color: var(--burnt); font-weight: 600; }
+.step-content .item { color: var(--steel); font-weight: 500; }
+.step-content .loc { color: var(--gold); font-weight: 500; }
+.step-content .skip { color: var(--text-dim); font-style: italic; }
+.step-content strong { color: var(--text-primary); font-weight: 600; }
+[data-theme="dark"] .step-content .item { color: var(--gold-bright); }
+[data-theme="dark"] .step-content .loc { color: var(--steel); }
+
+/* Reward tags */
+.reward-tag {
+    display: inline-block;
+    background: var(--overlay-sage); border: 1px solid rgba(22, 163, 74, 0.35);
+    color: var(--sage); padding: 0.1rem 0.4rem; border-radius: 3px;
+    font-size: 9.5px; margin-left: 0.4rem;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.3px; font-weight: 600;
+}
+[data-theme="dark"] .reward-tag { border-color: rgba(155, 184, 122, 0.3); }
+.reward-tag.craft { background: var(--overlay-gold-strong); border-color: rgba(168, 115, 40, 0.35); color: var(--gold); }
+.reward-tag.gem   { background: var(--overlay-steel); border-color: rgba(29, 78, 216, 0.35); color: var(--steel); }
+.reward-tag.optional { background: var(--overlay-plum); border-color: rgba(124, 58, 237, 0.35); color: var(--plum); }
+.reward-tag.perm  { background: var(--overlay-sage); border-color: rgba(22, 163, 74, 0.45); color: var(--sage); font-weight: 700; }
+.reward-tag.quest { background: var(--overlay-gold-strong); border-color: rgba(168, 115, 40, 0.4); color: var(--gold); }
+
+/* Notes */
+.note {
+    background: var(--bg-elevated);
+    border-left: 2px solid var(--border-accent);
+    padding: 0.5rem 0.8rem; margin: 0.3rem 0 0.3rem 38px;
+    font-size: 11.5px; color: var(--text-muted); font-style: italic;
+    border-radius: 0 3px 3px 0;
+}
+.note.warning, .note.warn {
+    background: var(--overlay-burnt); border-left-color: var(--burnt);
+    color: var(--burnt); font-style: normal;
+}
+.note.tip {
+    background: var(--overlay-steel); border-left-color: var(--steel);
+    color: var(--steel); font-style: normal;
+}
+.note.success {
+    background: var(--overlay-sage); border-left-color: var(--sage);
+    color: var(--sage); font-style: normal;
+}
+.note.new {
+    background: var(--overlay-plum); border-left-color: var(--plum);
+    color: var(--text-body); font-style: normal;
+}
+.note .label {
+    font-family: 'Cinzel', serif; font-size: 9.5px; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-right: 0.5rem; font-weight: 600;
+    color: var(--gold);
+}
+.note.warning .label, .note.warn .label { color: var(--burnt); }
+.note.tip .label { color: var(--steel); }
+.note.success .label { color: var(--sage); }
+.note.new .label { color: var(--plum); }
+.note.new strong { color: var(--text-primary); font-weight: 600; }
+.note.new .loc { color: var(--gold); font-weight: 500; }
+
+/* Footer nav */
+.footer-nav {
+    margin-top: 2rem; padding-top: 1rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex; justify-content: space-between;
+    font-size: 12px; font-family: 'Cinzel', serif; letter-spacing: 1px;
+}
+.footer-nav a { color: var(--gold); text-decoration: none; text-transform: uppercase; transition: color 0.15s; font-weight: 600; }
+.footer-nav a:hover { color: var(--gold-deep); }
+[data-theme="dark"] .footer-nav a:hover { color: var(--gold-bright); }
+
+/* ─── ENDGAME STORYLINE BLOCKS ─────────────────────────────── */
+.storyline {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    margin-bottom: 1.75rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+.storyline-header {
+    padding: 1rem 1.5rem;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex; align-items: baseline; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.6rem;
+}
+.storyline-header h2 {
+    font-family: 'Cinzel', serif; color: var(--text-primary);
+    font-size: 1.2rem; font-weight: 700; letter-spacing: 1px;
+}
+.storyline-header .ordinal {
+    font-family: 'Cinzel', serif; color: var(--gold-deep);
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600;
+}
+.storyline-tagline {
+    color: var(--text-muted); font-style: italic; font-size: 12px;
+    margin-top: 0.35rem;
+}
+.storyline-body { padding: 1.5rem; }
+.storyline-body h3 {
+    font-family: 'Cinzel', serif; color: var(--text-primary);
+    font-size: 14px; font-weight: 600; letter-spacing: 0.8px;
+    margin-top: 1.25rem; margin-bottom: 0.5rem; text-transform: uppercase;
+}
+.storyline-body h3:first-child { margin-top: 0; }
+.storyline-body p { color: var(--text-body); margin-bottom: 0.6rem; }
+.storyline-body ul { list-style: none; padding-left: 0; margin-bottom: 0.6rem; }
+.storyline-body li {
+    color: var(--text-body); padding: 0.25rem 0 0.25rem 1.4rem;
+    position: relative; line-height: 1.55;
+}
+.storyline-body li::before {
+    content: '◆'; position: absolute; left: 0.2rem;
+    color: var(--gold-deep); font-size: 8px; top: 0.6rem;
+}
+.storyline-body strong { color: var(--text-primary); font-weight: 600; }
+.storyline-body em { color: var(--gold); font-style: normal; font-weight: 500; }
+
+/* Storyline accent stripes — one per league */
+.storyline.lg-breach     { border-top: 3px solid var(--c-breach); }
+.storyline.lg-expedition { border-top: 3px solid var(--c-expedition); }
+.storyline.lg-abyss      { border-top: 3px solid var(--c-abyss); }
+.storyline.lg-ritual     { border-top: 3px solid var(--c-ritual); }
+.storyline.lg-delirium   { border-top: 3px solid var(--c-delirium); }
+.storyline.lg-fortress   { border-top: 3px solid var(--c-fortress); }
+.storyline.lg-vaal       { border-top: 3px solid var(--c-vaal); }
+.storyline.lg-meta       { border-top: 3px solid var(--gold); }
+
+/* Tags inside storyline body */
+.tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px; font-weight: 600;
+    padding: 0.13rem 0.45rem; border-radius: 3px;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    margin: 0 0.15rem; white-space: nowrap; vertical-align: 1px;
+}
+.tag.hub      { background: var(--overlay-sage); color: var(--sage); border: 1px solid rgba(22, 163, 74, 0.35); }
+.tag.boss     { background: var(--overlay-burnt); color: var(--burnt); border: 1px solid rgba(220, 38, 38, 0.4); }
+.tag.pinnacle { background: rgba(185, 28, 28, 0.12); color: var(--crimson); border: 1px solid rgba(185, 28, 28, 0.45); font-weight: 700; }
+.tag.craft    { background: var(--overlay-steel); color: var(--steel); border: 1px solid rgba(29, 78, 216, 0.35); }
+.tag.atlas    { background: var(--overlay-plum); color: var(--plum); border: 1px solid rgba(124, 58, 237, 0.35); }
+.tag.npc      { background: var(--overlay-tan); color: var(--tan); border: 1px solid rgba(180, 83, 9, 0.35); }
+[data-theme="dark"] .tag.hub { border-color: rgba(155, 184, 122, 0.3); }
+[data-theme="dark"] .tag.boss { border-color: rgba(200, 112, 96, 0.35); }
+[data-theme="dark"] .tag.pinnacle { background: rgba(200, 74, 74, 0.15); border-color: rgba(200, 74, 74, 0.4); }
+[data-theme="dark"] .tag.craft { border-color: rgba(126, 158, 184, 0.35); }
+[data-theme="dark"] .tag.atlas { border-color: rgba(184, 138, 160, 0.35); }
+[data-theme="dark"] .tag.npc   { border-color: rgba(196, 164, 126, 0.35); }
+
+/* Callouts */
+.callout {
+    background: var(--bg-elevated);
+    border-left: 2px solid var(--gold);
+    padding: 0.8rem 1rem; margin: 0.9rem 0;
+    font-size: 12.5px; border-radius: 0 3px 3px 0;
+    color: var(--text-body);
+}
+.callout.warn { border-left-color: var(--burnt); }
+.callout.tip  { border-left-color: var(--sage); }
+.callout-label {
+    display: block; font-family: 'Cinzel', serif;
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.3rem; font-weight: 600;
+}
+.callout.warn .callout-label { color: var(--burnt); }
+.callout.tip  .callout-label { color: var(--sage); }
+
+/* Card grids inside storylines */
+.card-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0.8rem; margin: 1rem 0;
+}
+.card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px; padding: 0.85rem 1rem;
+}
+.card h4 {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 13px; font-weight: 600; margin-bottom: 0.35rem; letter-spacing: 0.5px;
+}
+.card .role {
+    font-family: 'IBM Plex Mono', monospace; color: var(--text-muted);
+    font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.card p { color: var(--text-body); font-size: 12px; margin-bottom: 0.35rem; }
+
+/* TOC */
+.toc {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 6px;
+    box-shadow: var(--shadow-sm);
+}
+.toc-title {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    margin-bottom: 0.85rem; font-weight: 600;
+}
+.toc ol { list-style: none; counter-reset: storyline; padding: 0; }
+.toc ol li {
+    counter-increment: storyline; padding: 0.4rem 0;
+    border-bottom: 1px dotted var(--border-subtle);
+}
+.toc ol li:last-child { border-bottom: none; }
+.toc ol li::before {
+    content: counter(storyline, upper-roman) ".";
+    font-family: 'Cinzel', serif; color: var(--gold-deep);
+    font-size: 11px; letter-spacing: 1px; margin-right: 0.7rem;
+    display: inline-block; width: 2rem; font-weight: 600;
+}
+.toc a {
+    color: var(--text-body); text-decoration: none;
+    font-size: 12.5px; transition: color 0.15s; font-weight: 500;
+}
+.toc a:hover { color: var(--gold); }
+.toc-meta {
+    color: var(--text-muted); font-size: 11px; font-style: italic;
+    display: block; margin-left: 2.7rem; margin-top: 0.15rem;
+}
+
+/* Intro block (endgame guide) */
+.intro-block {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid var(--gold);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem; border-radius: 6px;
+    box-shadow: var(--shadow-sm);
+}
+.intro-block p { color: var(--text-body); margin-bottom: 0.6rem; }
+.intro-block p:last-child { margin-bottom: 0; }
+.intro-block strong { color: var(--text-primary); font-weight: 600; }
+
+/* ─── INDEX-SPECIFIC ───────────────────────────────────────── */
+.index-container {
+    max-width: 980px; margin: 0 auto;
+    padding: 3rem 1.5rem 4rem; position: relative; z-index: 1;
+}
+.quest-log-title {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    text-align: center; margin-bottom: 1.25rem; font-weight: 600;
+}
+.journey { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2.5rem; }
+.act-entry { position: relative; }
+.act-entry::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: linear-gradient(180deg, var(--gold-deep), var(--gold));
+    border-radius: 3px 0 0 3px;
+}
+.act-entry.final::before { background: linear-gradient(180deg, var(--gold), var(--gold-bright)); }
+.act-entry.endgame::before { background: linear-gradient(180deg, var(--plum) 0%, var(--c-fortress) 100%); }
+
+.act-link {
+    display: block; background: var(--bg-surface);
+    border: 1px solid var(--border-subtle); border-left: none;
+    border-radius: 0 6px 6px 0;
+    padding: 1rem 1.25rem; padding-left: 1.5rem;
+    text-decoration: none; color: var(--text-body);
+    transition: all 0.2s; box-shadow: var(--shadow-sm);
+}
+.act-link:hover {
+    background: var(--overlay-gold-soft);
+    border-color: var(--gold); transform: translateX(2px);
+    box-shadow: var(--shadow-md);
+}
+.act-entry.endgame .act-link {
+    background: linear-gradient(135deg, var(--bg-surface) 0%, var(--overlay-plum) 100%);
+    border-color: rgba(124, 58, 237, 0.3);
+}
+.act-entry.endgame .act-link:hover {
+    border-color: var(--plum);
+}
+.act-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; gap: 1rem; flex-wrap: wrap; }
+.act-name {
+    font-family: 'Cinzel', serif; color: var(--text-primary);
+    font-size: 15px; font-weight: 600; letter-spacing: 0.5px;
+}
+.act-entry.endgame .act-name { color: var(--plum); }
+.act-meta {
+    font-family: 'IBM Plex Mono', monospace; color: var(--text-muted);
+    font-size: 11px; letter-spacing: 0.3px;
+}
+.act-rewards { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.reward {
+    background: var(--overlay-gold-soft); border: 1px solid rgba(168, 115, 40, 0.3);
+    color: var(--gold); padding: 0.2rem 0.55rem; border-radius: 3px;
+    font-size: 10.5px; font-weight: 500;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.3px;
+}
+.reward.res {
+    background: var(--overlay-steel); border-color: rgba(29, 78, 216, 0.3); color: var(--steel);
+}
+.reward.special {
+    background: var(--overlay-sage); border-color: rgba(22, 163, 74, 0.35); color: var(--sage); font-weight: 600;
+}
+.reward.warn {
+    background: var(--overlay-burnt); border-color: rgba(220, 38, 38, 0.35); color: var(--burnt);
+}
+.reward.new {
+    background: var(--overlay-plum); border-color: rgba(124, 58, 237, 0.4); color: var(--plum); font-weight: 600;
+}
+[data-theme="dark"] .reward { border-color: rgba(200, 152, 96, 0.3); }
+[data-theme="dark"] .reward.res { border-color: rgba(126, 158, 184, 0.3); }
+[data-theme="dark"] .reward.special { border-color: rgba(155, 184, 122, 0.35); }
+[data-theme="dark"] .reward.warn { border-color: rgba(200, 112, 96, 0.35); }
+[data-theme="dark"] .reward.new { border-color: rgba(184, 138, 160, 0.4); }
+
+.features {
+    background: var(--bg-surface); border: 1px solid var(--border-subtle);
+    border-radius: 6px; padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+.features-title {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    text-align: center; margin-bottom: 1rem; font-weight: 600;
+}
+.features-list {
+    display: flex; flex-wrap: wrap; gap: 1rem 1.5rem;
+    justify-content: center;
+}
+.feature {
+    color: var(--text-muted); font-size: 11.5px;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.3px;
+}
+.header .version {
+    font-family: 'IBM Plex Mono', monospace; color: var(--text-muted);
+    font-size: 11px; letter-spacing: 0.5px;
+}
+
+/* ─── ENDGAME DIAGRAM (emblem grid — minimal, compact) ────── */
+.diagram-wrap {
+    margin: 0 auto 2rem;
+    max-width: 540px;
+}
+.diagram-title {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    color: var(--text-primary);
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.85rem;
+}
+.atlas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    max-width: 480px;
+    margin: 0 auto;
+}
+.atlas-tile {
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0.55rem 0.6rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+[data-theme="dark"] .atlas-tile { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); }
+.atlas-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+}
+[data-theme="dark"] .atlas-tile:hover { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.55); }
+
+.atlas-tile .compass-tag {
+    position: absolute; top: 0.45rem; right: 0.55rem;
+    font: 600 7px 'Cinzel', serif;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    opacity: 0.6; z-index: 3;
+}
+.atlas-tile .name {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    line-height: 1.1;
+    z-index: 2;
+    margin-top: auto;
+}
+.atlas-tile .pinnacle {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 0.2px;
+    font-weight: 400;
+    text-transform: none;
+    opacity: 0.7;
+    margin-top: 0.12rem;
+}
+.atlas-tile .symbol {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+    padding-top: 4px;
+}
+.atlas-tile .symbol svg { width: 56%; height: 56%; }
+
+/* League tile color treatments */
+.atlas-tile.fortress    { background: var(--c-fortress); color: #fef3c7; }
+.atlas-tile.vaal        { background: var(--c-vaal);     color: #fee2e2; }
+.atlas-tile.abyss       { background: var(--c-abyss);    color: #d1fae5; }
+.atlas-tile.expedition  { background: var(--c-expedition); color: #fef3c7; }
+.atlas-tile.breach      { background: var(--c-breach);   color: #ede9fe; }
+.atlas-tile.ritual      { background: var(--c-ritual);   color: #fce7f3; }
+.atlas-tile.fortress    .symbol svg { stroke: #fef3c7; }
+.atlas-tile.vaal        .symbol svg { stroke: #fee2e2; }
+.atlas-tile.abyss       .symbol svg { stroke: #d1fae5; }
+.atlas-tile.expedition  .symbol svg { stroke: #fef3c7; }
+.atlas-tile.breach      .symbol svg { stroke: #ede9fe; }
+.atlas-tile.ritual      .symbol svg { stroke: #fce7f3; }
+
+/* Delirium — metallic silver gradient */
+.atlas-tile.delirium {
+    background: linear-gradient(135deg,
+        var(--c-delirium-a) 0%, var(--c-delirium-b) 45%,
+        var(--c-delirium-a) 75%, var(--c-delirium-b) 100%);
+    color: #1e293b;
+}
+[data-theme="dark"] .atlas-tile.delirium { color: #f8fafc; }
+.atlas-tile.delirium .symbol svg { stroke: #1e293b; }
+[data-theme="dark"] .atlas-tile.delirium .symbol svg { stroke: #f8fafc; }
+.atlas-tile.delirium .compass-tag { color: #1e293b; }
+[data-theme="dark"] .atlas-tile.delirium .compass-tag { color: #f8fafc; }
+
+/* Spawn + compass tiles — neutral */
+.atlas-tile.center, .atlas-tile.compass {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    box-shadow: none;
+}
+.atlas-tile.center .symbol svg, .atlas-tile.compass .symbol svg {
+    stroke: var(--text-primary);
+}
+.atlas-tile.center .name, .atlas-tile.compass .name {
+    text-align: center; align-self: center; margin-top: auto;
+}
+
+/* Subtle inner vignette on league tiles */
+.atlas-tile.fortress::before, .atlas-tile.vaal::before, .atlas-tile.abyss::before,
+.atlas-tile.expedition::before, .atlas-tile.breach::before, .atlas-tile.delirium::before,
+.atlas-tile.ritual::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.10) 0%, transparent 55%),
+                radial-gradient(circle at 70% 90%, rgba(0,0,0,0.16) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.diagram-caption {
+    text-align: center; color: var(--text-muted);
+    font-size: 11.5px; font-style: italic; margin-top: 0.9rem;
+    max-width: 480px; margin-left: auto; margin-right: auto;
+}
+.diagram-caption strong { color: var(--text-body); font-style: normal; font-weight: 600; }
+
+@media (max-width: 520px) {
+    .atlas-grid { gap: 6px; }
+    .atlas-tile { padding: 0.35rem 0.45rem; }
+    .atlas-tile .name { font-size: 8.5px; letter-spacing: 0.4px; }
+    .atlas-tile .pinnacle { font-size: 6.5px; }
+    .atlas-tile .compass-tag { font-size: 6px; }
+}
+
+/* ─── MOBILE ───────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .sidebar {
+        position: relative; width: 100%; height: auto;
+        border-right: none; border-bottom: 1px solid var(--border-subtle);
+    }
+    .container { flex-direction: column; }
+    .main { margin-left: 0; padding: 1.25rem 1rem; max-width: 100%; }
+    .header h1 { font-size: 1.35rem; }
+    .index-container { padding: 2rem 1rem; }
+    .theme-toggle { top: 0.5rem; right: 0.5rem; padding: 0.4rem 0.7rem; font-size: 10.5px; }
+}
+
     </style>
-</head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span class="icon" id="theme-icon">☀</span>
+        <span id="theme-label">Light</span>
+    </button>
+
     <div class="container">
-        <header class="header">
-            <h1>📜 Interludes – Permanent Rewards Guide</h1>
-            <span class="patch">Patch 0.4 • Don't Miss These! • Quick Reference</span>
-        </header>
-
-        <div class="summary-box">
-            <h3>Total Interlude Rewards</h3>
-            <div class="summary-grid">
-                <div class="summary-item">+8 Weapon Set Skill Points</div>
-                <div class="summary-item">+5% Maximum Life</div>
-                <div class="summary-item">+40 Spirit</div>
-                <div class="summary-item">Choice of 7 Boons (Qimah)</div>
-                <div class="summary-item">Free Unique Item</div>
-                <div class="summary-item">Cheap Greater Runes</div>
+        <aside class="sidebar">
+            <div class="progress-info">
+                <div class="progress-label">⚡ Required</div>
+                <div class="progress-bar-bg"><div class="progress-bar-fill fast" id="progressBarFast"></div></div>
+                <div class="progress-text" id="progressTextFast">0 / 0</div>
+                <div class="progress-label complete">◆ Complete</div>
+                <div class="progress-bar-bg"><div class="progress-bar-fill complete" id="progressBarComplete"></div></div>
+                <div class="progress-text" id="progressTextComplete">0 / 0</div>
             </div>
-        </div>
-
-        <!-- INTERLUDE 5.1 -->
-        <section class="interlude-section">
-            <div class="interlude-header">
-                <h2>Interlude 5.1 – Ogham</h2>
-                <span class="tag">The Refuge</span>
+            <button class="btn" onclick="resetProgress()">Reset Progress</button>
+            <button class="btn export" onclick="exportAllProgress()">Export Progress</button>
+            <button class="btn import" onclick="showImportDialog()">Import Progress</button>
+            <div id="importDialog" class="import-dialog" style="display:none;">
+                <textarea id="importCode" placeholder="Paste progress code…"></textarea>
+                <div class="import-actions">
+                    <button class="btn" onclick="importAllProgress()">Import</button>
+                    <button class="btn" onclick="hideImportDialog()">Cancel</button>
+                </div>
             </div>
-            <ul class="reward-list">
-                <li class="reward-item">
-                    <div class="reward-icon skill">⭐</div>
-                    <div class="reward-content">
-                        <div class="reward-title">Slay Oswin, the Dread Warden</div>
-                        <div class="reward-location">Wolvenhold (after Holten)</div>
-                    </div>
-                    <div class="reward-value">+2 Skill Points</div>
-                </li>
-                <li class="reward-item">
-                    <div class="reward-icon shop">🏪</div>
-                    <div class="reward-content">
-                        <div class="reward-title">Soul of the Ferryman</div>
-                        <div class="reward-location">Holten (by the docks)</div>
-                        <div class="reward-detail">Sells Greater Runes at ~2000 Gold each (very cheap!)</div>
-                    </div>
-                    <div class="reward-value">Shop</div>
-                </li>
-            </ul>
-        </section>
-
-        <!-- INTERLUDE 5.2 -->
-        <section class="interlude-section">
-            <div class="interlude-header">
-                <h2>Interlude 5.2 – Khari Bazaar</h2>
-                <span class="tag">The Kaari Bazar</span>
+            <div class="sidebar-section">
+                <h2>Interludes</h2>
+                <a href="#interlude51" class="sidebar-link perm">5.1 Ogham ◆</a>
+                <a href="#interlude52" class="sidebar-link perm">5.2 Khari Bazaar ◆</a>
+                <a href="#interlude53" class="sidebar-link perm">5.3 Mount Kriar ◆</a>
+                <a href="#completion" class="sidebar-link quest">Completion ⚡</a>
+                <a href="#maps" class="sidebar-link">→ Maps / Endgame</a>
             </div>
-            <ul class="reward-list">
-                <li class="reward-item">
-                    <div class="reward-icon life">❤️</div>
-                    <div class="reward-content">
-                        <div class="reward-title">Molten One's Gift</div>
-                        <div class="reward-location">Khari Crossing → Skullmaw Stairway</div>
-                        <div class="reward-detail">May need to find seals and reset instance if bugged</div>
-                    </div>
-                    <div class="reward-value">+5% Max Life</div>
-                </li>
-                <li class="reward-item">
-                    <div class="reward-icon skill">⭐</div>
-                    <div class="reward-content">
-                        <div class="reward-title">Slay Akthi & Anundr (Worm + Scorpion)</div>
-                        <div class="reward-location">Khari Crossing</div>
-                        <div class="reward-detail">Talk to Risu after for reward</div>
-                    </div>
-                    <div class="reward-value">+2 Skill Points</div>
-                </li>
-                <li class="reward-item">
-                    <div class="reward-icon choice">🔮</div>
-                    <div class="reward-content">
-                        <div class="reward-title">Orbala's Pillar - Choose a Boon</div>
-                        <div class="reward-location">Qimah</div>
-                        <div class="reward-detail">7 options available, can change by returning</div>
-                    </div>
-                    <div class="reward-value">Choice of 7</div>
-                </li>
-                <li class="reward-item">
-                    <div class="reward-icon item">💎</div>
-                    <div class="reward-content">
-                        <div class="reward-title">Baryas of Rageen & Yoon</div>
-                        <div class="reward-location">Sel Khari Sanctuary</div>
-                        <div class="reward-detail">Place on pedestals for jewellery wish</div>
-                    </div>
-                    <div class="reward-value">Rare Ring/Amulet/Jewel</div>
-                </li>
-                <li class="reward-item">
-                    <div class="reward-icon item">💰</div>
-                    <div class="reward-content">
-                        <div class="reward-title">Sacred Wells</div>
-                        <div class="reward-location">Qimah Reservoir</div>
-                        <div class="reward-detail">Use Vials of Sacred Water for currency (Exalt/Alchemy)</div>
-                    </div>
-                    <div class="reward-value">Currency</div>
-                </li>
-                <li class="reward-item">
-                    <div class="reward-icon shop">🏪</div>
-                    <div class="reward-content">
-                        <div class="reward-title">Torbek (Merchant)</div>
-                        <div class="reward-location">Khari Crossing</div>
-                        <div class="reward-detail">Sells rare Caster Weapons at discount</div>
-                    </div>
-                    <div class="reward-value">Shop</div>
-                </li>
-            </ul>
-            <div class="note">💡 The 7 Qimah Boons include various stat bonuses. You can swap anytime by returning!</div>
-        </section>
-
-        <!-- INTERLUDE 5.3 -->
-        <section class="interlude-section">
-            <div class="interlude-header">
-                <h2>Interlude 5.3 – Mount Kriar</h2>
-                <span class="tag">The Glade</span>
+            <div class="sidebar-section">
+                <h2>Navigation</h2>
+                <a href="index.html" class="sidebar-link">← Back to Index</a>
+                <a href="poe2_act1_guide.html" class="sidebar-link">← Act I</a>
+                <a href="poe2_act2_guide.html" class="sidebar-link">← Act II</a>
+                <a href="poe2_act3_guide.html" class="sidebar-link">← Act III</a>
+                <a href="poe2_act4_guide.html" class="sidebar-link">← Act IV</a>
             </div>
-            <ul class="reward-list">
-                <li class="reward-item">
-                    <div class="reward-icon item">💎</div>
-                    <div class="reward-content">
-                        <div class="reward-title">Ancient Monument</div>
-                        <div class="reward-location">Ashen Forest</div>
-                    </div>
-                    <div class="reward-value">Skill Gem Lvl 14</div>
-                </li>
-                <li class="reward-item">
-                    <div class="reward-icon spirit">💫</div>
-                    <div class="reward-content">
-                        <div class="reward-title">Slay Lythara, the Wayward Spear</div>
-                        <div class="reward-location">Kriar Village</div>
-                        <div class="reward-detail">Also drops Gemcrust Skull + Spirit Gem Lvl 14</div>
-                    </div>
-                    <div class="reward-value">+40 Spirit</div>
-                </li>
-                <li class="reward-item">
-                    <div class="reward-icon skill">⭐</div>
-                    <div class="reward-content">
-                        <div class="reward-title">Slay The Abominable Yeti</div>
-                        <div class="reward-location">Howling Caves (from Glacial Tarn)</div>
-                        <div class="reward-detail">Also drops Icy Tusks for quest</div>
-                    </div>
-                    <div class="reward-value">+2 Skill Points</div>
-                </li>
-                <li class="reward-item">
-                    <div class="reward-icon item">🎁</div>
-                    <div class="reward-content">
-                        <div class="reward-title">Elder Madox</div>
-                        <div class="reward-location">Kriar Peaks</div>
-                    </div>
-                    <div class="reward-value">Free Unique Item</div>
-                </li>
-            </ul>
-        </section>
+        </aside>
 
-        <!-- COMPLETION BONUS -->
-        <section class="interlude-section">
-            <div class="interlude-header">
-                <h2>Interlude Completion</h2>
-                <span class="tag">Talk to Hooded One</span>
+        <main class="main">
+            <header class="header">
+                <h1>Interludes — Permanent Rewards</h1>
+                <span class="patch">Patch 0.5 · Lvl 52–58 · All classes · Endgame unlock</span>
+            </header>
+            <div class="endgame-banner">
+                <span class="label">Patch 0.5 · Return of the Ancients</span>
+                Ships <strong>May 29, 2026</strong>. Seven endgame headings (Breach · Expedition · Abyss · Ritual · Delirium · Vaal Temple · Fortress) + Masters of the Atlas —
+                <a href="poe2_endgame_guide.html">read the endgame guide →</a>
             </div>
-            <ul class="reward-list">
-                <li class="reward-item">
-                    <div class="reward-icon skill">⭐</div>
-                    <div class="reward-content">
-                        <div class="reward-title">Complete All Three Interludes</div>
-                        <div class="reward-location">Talk to The Hooded One after finishing</div>
-                    </div>
-                    <div class="reward-value">+2 Skill Points</div>
-                </li>
-            </ul>
-            <div class="note">✅ After completing interludes → Endgame / Maps unlock!</div>
-        </section>
 
-        <div class="nav-links">
-            <a href="poe2_act4_guide.html" class="nav-link">← Act 4</a>
-            <a href="poe2_act1_guide.html" class="nav-link">Act 1 →</a>
-        </div>
+
+            <div class="summary-box">
+                <h3>Total Interlude Rewards</h3>
+                <div class="summary-grid">
+                    <div class="summary-item">+8 Skill Points (cumulative)</div>
+                    <div class="summary-item">+5% Maximum Life</div>
+                    <div class="summary-item">+40 Spirit</div>
+                    <div class="summary-item">Free Unique Item</div>
+                    <div class="summary-item">Choice of 7 Boons (Orbala)</div>
+                    <div class="summary-item" style="background:rgba(155,184,122,0.08);border-color:rgba(155,184,122,0.3);color:var(--sage);">⚡ Maps / Endgame Unlock</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>Routing Notes</h3>
+                <ul>
+                    <li><span class="icon">◆</span> Interludes are <strong>permanent reward zones</strong> — every reward listed is missable, do all three before maps</li>
+                    <li><span class="icon">◆</span> Layouts persist between runs — once you know an interlude, subsequent characters can speedrun the rewards</li>
+                    <li><span class="icon">◆</span> Total weapon-swap skill point target by end of interludes: <strong>~24 points</strong></li>
+                    <li><span class="icon">◆</span> Orbala's 7 Boons (Khari Bazaar) — <strong>can be swapped anytime</strong> by returning to the pillar</li>
+                    <li><span class="icon">◆</span> Mount Kriar layouts and POIs are very consistent — Elder Madox always near 10–11 o'clock, Doriani far right</li>
+                </ul>
+            </div>
+
+            <!-- INTERLUDE 5.1 -->
+            <div class="zone-header" id="interlude51">Interlude 5.1 — Ogham, The Refuge <span class="lvl">Lvl 52–53</span></div>
+            <div class="step" data-step="1"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Travel to <span class="loc">Holten</span> (docks town) — talk to <span class="npc">The Hooded One</span></div></div>
+            <div class="step" data-step="2"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> Visit <span class="npc">Soul of the Ferryman</span> (docks) <span class="reward-tag optional">Greater Runes ~2000g (cheap)</span></div></div>
+            <div class="step" data-step="3"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Progress through <span class="loc">Wolvenhold</span> after Holten</div></div>
+            <div class="step" data-step="4"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><strong>Slay <span class="boss">Oswin, the Dread Warden</span></strong> <span class="reward-tag perm">+2 Skill Points</span></div></div>
+            <div class="step" data-step="5"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Complete interlude 5.1, return to town for next interlude</div></div>
+
+            <!-- INTERLUDE 5.2 -->
+            <div class="zone-header" id="interlude52">Interlude 5.2 — Khari Bazaar <span class="lvl">Lvl 54–55</span></div>
+            <div class="step" data-step="6"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Travel to <span class="loc">Khari Crossing</span> via Hooded One</div></div>
+            <div class="step" data-step="7"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><strong>Slay <span class="boss">Akthi &amp; Anundr</span></strong> (Worm + Scorpion) — talk to <span class="npc">Risu</span> after <span class="reward-tag perm">+2 Skill Points</span></div></div>
+            <div class="step" data-step="8"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> <span class="npc">Torbek</span> (Khari Crossing) <span class="reward-tag optional">Discount rare caster weapons</span></div></div>
+            <div class="step" data-step="9"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Skullmaw Stairway</span> via Khari Crossing</div></div>
+            <div class="step" data-step="10"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><strong>Activate <span class="item">Molten One's Gift</span></strong> — find seals, reset instance if bugged <span class="reward-tag perm">+5% Maximum Life</span></div></div>
+            <div class="step" data-step="11"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Travel to <span class="loc">Qimah</span></div></div>
+            <div class="step" data-step="12"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><strong>Use <span class="item">Orbala's Pillar</span></strong> — pick 1 of 7 Boons (swap anytime) <span class="reward-tag choice">Permanent Boon</span></div></div>
+            <div class="step" data-step="13"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> <span class="loc">Qimah Reservoir</span> Sacred Wells <span class="reward-tag optional">Currency (Exalt/Alchemy via Vials)</span></div></div>
+            <div class="step" data-step="14"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Sel Khari Sanctuary</span></div></div>
+            <div class="step" data-step="15"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Place <span class="item">Baryas of Rageen &amp; Yoon</span> on pedestals <span class="reward-tag optional">Rare Ring/Amulet/Jewel</span></div></div>
+            <div class="step" data-step="16"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Complete interlude 5.2, return to town</div></div>
+
+            <!-- INTERLUDE 5.3 -->
+            <div class="zone-header" id="interlude53">Interlude 5.3 — Mount Kriar, The Glade <span class="lvl">Lvl 55–58</span></div>
+            <div class="step" data-step="17"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Travel to <span class="loc">Mount Kriar</span> via Hooded One</div></div>
+            <div class="step" data-step="18"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Ashen Forest</span></div></div>
+            <div class="step" data-step="19"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Find <span class="item">Ancient Monument</span> in Ashen Forest <span class="reward-tag gem">Skill Gem Lv14</span></div></div>
+            <div class="step" data-step="20"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Travel to <span class="loc">Kriar Village</span></div></div>
+            <div class="step" data-step="21"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><strong>Slay <span class="boss">Lythara, the Wayward Spear</span></strong> <span class="reward-tag perm">+40 Spirit</span> <span class="reward-tag gem">Spirit Gem Lv14 + Gemcrust Skull</span></div></div>
+            <div class="step" data-step="22"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Travel to <span class="loc">Glacial Tarn</span> → enter <span class="loc">Howling Caves</span></div></div>
+            <div class="step" data-step="23"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><strong>Slay <span class="boss">The Abominable Yeti</span></strong> (drops <span class="item">Icy Tusks</span>) <span class="reward-tag perm">+2 Skill Points</span></div></div>
+            <div class="step" data-step="24"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Travel to <span class="loc">Kriar Peaks</span></div></div>
+            <div class="step" data-step="25"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Find <span class="npc">Elder Madox</span> (10–11 o'clock position) <span class="reward-tag perm">Free Unique Item</span></div></div>
+            <div class="step" data-step="26"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><strong>(Opt)</strong> Travel far right to <span class="loc">Doriani's Contingency</span> <span class="reward-tag optional">Titan Rock Catafract (unique chest)</span></div></div>
+
+            <!-- COMPLETION -->
+            <div class="zone-header" id="completion">Completion <span class="wp town">+2 SP</span> <span class="lvl">Final</span></div>
+            <div class="step" data-step="27"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><strong>Talk to <span class="npc">The Hooded One</span></strong> after all 3 interludes <span class="reward-tag perm">+2 Skill Points</span></div></div>
+
+            <div class="zone-header" id="maps">Maps / Endgame</div>
+            <div class="step" data-step="28"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Endgame Atlas / Maps unlock at Lvl 58–60 <span class="reward-tag quest">Endgame begins</span></div></div>
+
+            <div class="footer-nav">
+                <a href="poe2_act4_guide.html">← Act IV</a>
+                <a href="index.html">Index</a>
+                <a href="poe2_act1_guide.html">Act I →</a>
+            </div>
+            <footer style="text-align:center; padding: 24px 16px; margin-top: 16px; font-size: 12px; color: var(--steel, #94a3b8); border-top: 1px solid var(--border, rgba(148,163,184,0.15));">
+                Made for the PoE2 community · AI-assisted, community-verified ·
+                <a href="https://github.com/domistae/poe2-leveling/issues/new" style="color: var(--gold, #c89860); text-decoration: none;">Suggestions</a> ·
+                <a href="https://github.com/domistae/poe2-leveling" style="color: var(--gold, #c89860); text-decoration: none;">GitHub</a><br>
+                <span style="font-size: 11px; opacity: 0.7;">Path of Exile 2 is © Grinding Gear Games. Unofficial fan-made content.</span>
+            </footer>
+        </main>
     </div>
+
+    <script>
+        const STORAGE_KEY = 'poe2-interludes-v05';
+        const ALL_STORAGE_KEYS = ['poe2-interludes-v05', 'poe2-act2-v05', 'poe2-act3-v05', 'poe2-act4-v05', 'poe2-interludes-v05'];
+
+        function showToast(message, isError = false) {
+            const existing = document.querySelector('.toast');
+            if (existing) existing.remove();
+            const toast = document.createElement('div');
+            toast.className = 'toast' + (isError ? ' error' : '');
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function exportAllProgress() {
+            const allData = {};
+            ALL_STORAGE_KEYS.forEach(key => {
+                const saved = localStorage.getItem(key);
+                if (saved) allData[key] = JSON.parse(saved);
+            });
+            if (Object.keys(allData).length === 0) {
+                showToast('No progress to export!', true);
+                return;
+            }
+            const encoded = btoa(JSON.stringify(allData));
+            const code = 'PoE2v05_' + encoded;
+            navigator.clipboard.writeText(code).then(() => {
+                showToast('Progress code copied to clipboard');
+            }).catch(() => {
+                prompt('Copy this progress code:', code);
+            });
+        }
+
+        function showImportDialog() {
+            document.getElementById('importDialog').style.display = 'block';
+            document.getElementById('importCode').value = '';
+            document.getElementById('importCode').focus();
+        }
+
+        function hideImportDialog() {
+            document.getElementById('importDialog').style.display = 'none';
+        }
+
+        function importAllProgress() {
+            const code = document.getElementById('importCode').value.trim();
+            const prefix = code.startsWith('PoE2v05_') ? 'PoE2v05_' : (code.startsWith('PoE2_') ? 'PoE2_' : null);
+            if (!prefix) {
+                showToast('Invalid progress code!', true);
+                return;
+            }
+            if (code.length > 10000) {
+                showToast('Progress code too large!', true);
+                return;
+            }
+            try {
+                const decoded = JSON.parse(atob(code.substring(prefix.length)));
+                if (typeof decoded !== 'object' || decoded === null || Array.isArray(decoded)) {
+                    throw new Error('Invalid format');
+                }
+                let imported = 0;
+                Object.keys(decoded).forEach(key => {
+                    if (ALL_STORAGE_KEYS.includes(key)) {
+                        const steps = decoded[key];
+                        if (!Array.isArray(steps) || steps.length > 200) return;
+                        if (!steps.every(s => typeof s === 'string' && /^\d+$/.test(s))) return;
+                        localStorage.setItem(key, JSON.stringify(steps));
+                        imported += steps.length;
+                    }
+                });
+                hideImportDialog();
+                loadProgress();
+                showToast(`Imported ${imported} completed steps`);
+            } catch (e) {
+                showToast('Failed to import — invalid code', true);
+            }
+        }
+
+        function loadProgress() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                JSON.parse(saved).forEach(step => {
+                    const el = document.querySelector(`[data-step="${step}"]`);
+                    if (el) el.classList.add('completed');
+                });
+            }
+            updateProgressBar();
+        }
+
+        function saveProgress() {
+            const completed = [];
+            document.querySelectorAll('.step.completed').forEach(el => completed.push(el.dataset.step));
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+        }
+
+        function toggleStep(checkbox) {
+            const step = checkbox.closest('.step');
+            step.classList.toggle('completed');
+            saveProgress();
+            updateProgressBar();
+        }
+
+        function resetProgress() {
+            if (confirm('Reset all progress for this Act?')) {
+                localStorage.removeItem(STORAGE_KEY);
+                document.querySelectorAll('.step.completed').forEach(el => el.classList.remove('completed'));
+                updateProgressBar();
+            }
+        }
+
+        function updateProgressBar() {
+            const allSteps = document.querySelectorAll('.step');
+            const requiredSteps = document.querySelectorAll('.step:not(:has(.skip))');
+            const completedAll = document.querySelectorAll('.step.completed');
+            const completedRequired = document.querySelectorAll('.step.completed:not(:has(.skip))');
+
+            const totalAll = allSteps.length;
+            const totalRequired = requiredSteps.length;
+            const doneAll = completedAll.length;
+            const doneRequired = completedRequired.length;
+
+            document.getElementById('progressBarFast').style.width = (doneRequired / totalRequired) * 100 + '%';
+            document.getElementById('progressTextFast').textContent = `${doneRequired} / ${totalRequired}`;
+            document.getElementById('progressBarComplete').style.width = (doneAll / totalAll) * 100 + '%';
+            document.getElementById('progressTextComplete').textContent = `${doneAll} / ${totalAll}`;
+        }
+
+        loadProgress();
+    </script>
+    <script>
+        // Initialize button state from current theme
+        (function() {
+            var cur = document.documentElement.getAttribute('data-theme') || 'light';
+            var ic = document.getElementById('theme-icon');
+            var lb = document.getElementById('theme-label');
+            if (ic) ic.textContent = cur === 'light' ? '☀' : '☾';
+            if (lb) lb.textContent = cur === 'light' ? 'Light' : 'Dark';
+        })();
+        function toggleTheme() {
+            var html = document.documentElement;
+            var cur = html.getAttribute('data-theme') || 'light';
+            var next = cur === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', next);
+            try { localStorage.setItem('poe2-theme', next); } catch (e) {}
+            document.getElementById('theme-icon').textContent = next === 'light' ? '☀' : '☾';
+            document.getElementById('theme-label').textContent = next === 'light' ? 'Light' : 'Dark';
+        }
+    </script>
 </body>
 </html>

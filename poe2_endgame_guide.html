@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoE 2 Endgame Guide — Return of the Ancients (Patch 0.5)</title>
+    <meta name="description" content="Path of Exile 2 patch 0.5 endgame guide. All five Return of the Ancients storylines (Fortress, Delirium, Breach/Genesis Tree, Ritual, Expedition), Masters of the Atlas, Atlas tree, pinnacle bosses.">
+    <meta name="author" content="domistae">
+    <meta name="theme-color" content="#181410">
+    <link rel="canonical" href="https://domistae.github.io/poe2-leveling/poe2_endgame_guide.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PoE 2 Leveling Guide">
+    <meta property="og:title" content="PoE 2 Endgame Guide — Return of the Ancients (Patch 0.5)">
+    <meta property="og:description" content="All five Return of the Ancients endgame storylines, Masters of the Atlas, and pinnacle bosses. Patch 0.5.">
+    <meta property="og:url" content="https://domistae.github.io/poe2-leveling/poe2_endgame_guide.html">
+    <meta property="og:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Path of Exile 2 Endgame Guide — Return of the Ancients five storylines (Patch 0.5)">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PoE 2 Endgame Guide — Return of the Ancients (Patch 0.5)">
+    <meta name="twitter:description" content="All five Return of the Ancients endgame storylines, Masters of the Atlas, and pinnacle bosses. Patch 0.5.">
+    <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
+
+    <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM" />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7N3S1HHM51"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7N3S1HHM51');
+    </script>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('poe2-theme');
+                if (saved === 'light' || saved === 'dark') {
+                    document.documentElement.setAttribute('data-theme', saved);
+                } else {
+                    var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+                }
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <style>
+/* ─────────────────────────────────────────────────────────────
+   POE2 v0.5 — Unified theme (light default + dark via [data-theme="dark"])
+   League colors tuned to canonical PoE iconography, bright for light mode.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+    /* Surfaces */
+    --bg-base: #f4f6fa;          /* cool off-white */
+    --bg-surface: #ffffff;
+    --bg-elevated: #eef2f7;
+    --bg-step: #f8fafc;
+    --border-subtle: #dfe4ec;
+    --border-accent: #c4cbd6;
+
+    /* Text */
+    --text-primary: #0f172a;     /* near-black, slate undertone */
+    --text-body: #334155;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --parchment: #0f172a;        /* now means "darkest text" for headings */
+
+    /* Gold accents (PoE2 native) */
+    --gold: #b08537;
+    --gold-bright: #d4a258;
+    --gold-deep: #8a6a2c;
+
+    /* Semantic colors — bright, canonical PoE league hues */
+    --sage:    #16a34a;          /* tip / success / ritual / wildwood */
+    --burnt:   #dc2626;          /* warning / vaal */
+    --steel:   #1d4ed8;          /* loc / abyss */
+    --tan:     #b45309;          /* npc / fortress bronze */
+    --plum:    #7c3aed;          /* new pathing notes / breach */
+    --crimson: #b91c1c;          /* pinnacle threats */
+
+    /* Per-league solid colors (used in endgame zone cards + diagram) */
+    --c-fortress:   #b45309;     /* NW · precursor bronze */
+    --c-vaal:       #991b1b;     /* N  · vaal crimson */
+    --c-abyss:      #047857;     /* E  · deep green (per user) */
+    --c-expedition: #d97706;     /* SE · Kalguuran gold */
+    --c-breach:     #7c3aed;     /* S  · breach purple */
+    --c-delirium:   #64748b;     /* SW · silver chrome (mid-stop) */
+    --c-delirium-a: #e2e8f0;     /* light end of silver gradient */
+    --c-delirium-b: #64748b;     /* dark end of silver gradient */
+    --c-ritual:     #be185d;     /* W  · rose-wine (blood ritual) */
+
+    /* Shadow stack */
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.08);
+    --shadow-lg: 0 12px 30px rgba(15, 23, 42, 0.12);
+
+    /* Overlays (theme-aware) */
+    --overlay-gold-soft: rgba(176, 133, 55, 0.07);
+    --overlay-gold-strong: rgba(176, 133, 55, 0.14);
+    --overlay-sage: rgba(22, 163, 74, 0.08);
+    --overlay-burnt: rgba(220, 38, 38, 0.08);
+    --overlay-steel: rgba(29, 78, 216, 0.08);
+    --overlay-tan: rgba(180, 83, 9, 0.08);
+    --overlay-plum: rgba(124, 58, 237, 0.08);
+
+    /* Body font weight feels lighter on cream — use normal */
+    --body-weight: 400;
+}
+
+[data-theme="dark"] {
+    --bg-base: #181410;
+    --bg-surface: #221c15;
+    --bg-elevated: #2a2218;
+    --bg-step: #1f1a13;
+    --border-subtle: #3a2f20;
+    --border-accent: #5a4830;
+
+    --text-primary: #d8cab0;
+    --text-body: #b8a888;
+    --text-muted: #8a7c64;
+    --text-dim: #5a4f3e;
+    --parchment: #e8d8a8;
+
+    --gold: #c89860;
+    --gold-bright: #e8b878;
+    --gold-deep: #a07840;
+
+    --sage:    #9bb87a;
+    --burnt:   #c87060;
+    --steel:   #7e9eb8;
+    --tan:     #c4a47e;
+    --plum:    #b88aa0;
+    --crimson: #c84a4a;
+
+    /* Per-league colors — slightly desaturated for dark mode */
+    --c-fortress:   #d97706;
+    --c-vaal:       #dc2626;
+    --c-abyss:      #10b981;     /* brighter green for dark */
+    --c-expedition: #fbbf24;
+    --c-breach:     #a78bfa;
+    --c-delirium:   #94a3b8;
+    --c-delirium-a: #cbd5e1;
+    --c-delirium-b: #475569;
+    --c-ritual:     #ec4899;     /* brighter rose for dark */
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.55);
+
+    --overlay-gold-soft: rgba(200, 152, 96, 0.06);
+    --overlay-gold-strong: rgba(200, 152, 96, 0.12);
+    --overlay-sage: rgba(155, 184, 122, 0.08);
+    --overlay-burnt: rgba(200, 112, 96, 0.08);
+    --overlay-steel: rgba(126, 158, 184, 0.08);
+    --overlay-tan: rgba(196, 164, 126, 0.08);
+    --overlay-plum: rgba(184, 138, 160, 0.08);
+
+    --body-weight: 300;
+}
+
+/* ─── BASE ─────────────────────────────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Inter', 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--bg-base);
+    color: var(--text-body);
+    font-size: 13.5px;
+    line-height: 1.6;
+    min-height: 100vh;
+    font-weight: var(--body-weight);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: none;
+    pointer-events: none;
+    z-index: 0;
+}
+[data-theme="dark"] body { background: radial-gradient(ellipse at top left, rgba(200, 152, 96, 0.05) 0%, transparent 50%), var(--bg-base); }
+
+/* ─── THEME TOGGLE (top-right floating) ────────────────────── */
+.theme-toggle {
+    position: fixed;
+    top: 1rem; right: 1rem;
+    z-index: 1000;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-accent);
+    color: var(--text-body);
+    padding: 0.5rem 0.9rem;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: 'Inter', 'IBM Plex Sans', sans-serif;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    display: flex; align-items: center; gap: 0.45rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s;
+}
+.theme-toggle:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+.theme-toggle .icon { font-size: 13px; }
+
+/* ─── CONTAINER ────────────────────────────────────────────── */
+.container { display: flex; max-width: 1240px; margin: 0 auto; position: relative; z-index: 1; }
+
+/* ─── SIDEBAR ──────────────────────────────────────────────── */
+.sidebar {
+    width: 240px;
+    background: var(--bg-surface);
+    border-right: 1px solid var(--border-subtle);
+    padding: 1.25rem 1rem;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-sm);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+[data-theme="dark"] .sidebar {
+    background: linear-gradient(180deg, rgba(34, 28, 21, 0.95) 0%, rgba(24, 20, 16, 0.95) 100%);
+    box-shadow: none;
+}
+.sidebar h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    font-weight: 600;
+}
+.sidebar-section { margin-bottom: 1.25rem; }
+.sidebar-link {
+    display: block;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.35rem 0.5rem;
+    font-size: 11.5px;
+    border-radius: 3px;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+}
+.sidebar-link:hover {
+    background: var(--overlay-gold-soft);
+    color: var(--text-primary);
+    border-left-color: var(--gold);
+}
+.sidebar-link.perm  { color: var(--sage); }
+.sidebar-link.quest { color: var(--tan); }
+.sidebar-link.story { color: var(--tan); }
+.sidebar-link.boss  { color: var(--burnt); }
+.sidebar-link.system{ color: var(--steel); }
+
+/* Progress info panel */
+.progress-info {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+}
+.progress-bar-bg { height: 5px; background: var(--bg-base); border-radius: 3px; overflow: hidden; margin-bottom: 0.4rem; }
+.progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright)); width: 0%; transition: width 0.3s; }
+.progress-bar-fill.complete { background: linear-gradient(90deg, #4a7a2a, var(--sage)); }
+.progress-label {
+    font-size: 9.5px; color: var(--gold); margin-bottom: 0.2rem; font-weight: 600;
+    font-family: 'Cinzel', serif; letter-spacing: 1.5px; text-transform: uppercase;
+}
+.progress-label.complete { color: var(--sage); margin-top: 0.5rem; }
+.progress-text { font-size: 10.5px; color: var(--text-muted); text-align: right; font-family: 'IBM Plex Mono', monospace; }
+
+/* Sidebar buttons */
+.reset-btn, .export-btn, .import-btn {
+    width: 100%; background: var(--bg-elevated); border: 1px solid var(--border-subtle);
+    color: var(--text-muted); padding: 0.45rem; border-radius: 3px; cursor: pointer;
+    font-size: 11px; transition: all 0.15s; margin-top: 0.4rem;
+    font-family: 'Inter', sans-serif; letter-spacing: 0.3px;
+}
+.reset-btn:hover { background: var(--overlay-gold-soft); color: var(--text-primary); border-color: var(--gold); }
+.export-btn { color: var(--sage); }
+.export-btn:hover { background: var(--overlay-sage); border-color: var(--sage); }
+.import-btn { color: var(--steel); }
+.import-btn:hover { background: var(--overlay-steel); border-color: var(--steel); }
+.import-dialog { margin-top: 0.5rem; }
+.import-dialog textarea {
+    width: 100%; height: 60px; background: var(--bg-base); border: 1px solid var(--border-subtle);
+    color: var(--text-body); padding: 0.4rem; border-radius: 3px; font-size: 10.5px; resize: none;
+    font-family: 'IBM Plex Mono', monospace;
+}
+.import-actions { display: flex; gap: 0.4rem; margin-top: 0.4rem; }
+.import-actions button { flex: 1; padding: 0.35rem; background: var(--bg-elevated); border: 1px solid var(--border-subtle); color: var(--text-body); border-radius: 3px; cursor: pointer; font-size: 10.5px; }
+.import-actions button:first-child { background: var(--overlay-sage); border-color: var(--sage); color: var(--sage); }
+.import-actions button:hover { opacity: 0.85; }
+
+.toast {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background: var(--bg-surface); border: 1px solid var(--sage); color: var(--sage);
+    padding: 0.7rem 1.5rem; border-radius: 3px; font-size: 12.5px; z-index: 1001;
+    animation: fadeInOut 3s forwards; font-family: 'Cinzel', serif; letter-spacing: 0.5px;
+    box-shadow: var(--shadow-md);
+}
+.toast.error { border-color: var(--burnt); color: var(--burnt); }
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* ─── MAIN ─────────────────────────────────────────────────── */
+.main { margin-left: 240px; flex: 1; padding: 1.75rem 2.25rem; max-width: 940px; }
+
+.header { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); }
+.header .eyebrow {
+    font-family: 'Cinzel', serif; color: var(--gold-deep);
+    font-size: 10px; letter-spacing: 3.5px; text-transform: uppercase; margin-bottom: 0.4rem;
+}
+.header h1 {
+    font-family: 'Cinzel', serif; color: var(--text-primary);
+    font-size: 1.75rem; font-weight: 600; letter-spacing: 0.8px; margin-bottom: 0.3rem; line-height: 1.2;
+}
+.header .patch {
+    color: var(--text-muted); font-size: 11.5px;
+    font-family: 'IBM Plex Mono', monospace;
+}
+.header .subtitle, .subtitle {
+    color: var(--text-muted); font-size: 12.5px; font-style: italic;
+}
+
+/* Endgame banner under header */
+.endgame-banner, .banner-05 {
+    background: linear-gradient(90deg, var(--overlay-plum) 0%, var(--bg-elevated) 100%);
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid var(--plum);
+    padding: 0.7rem 1rem; margin: 0 0 1.5rem 0; border-radius: 4px;
+    font-size: 12px; color: var(--text-body);
+}
+.endgame-banner .label, .banner-05 .label {
+    font-family: 'Cinzel', serif; color: var(--plum); font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase; margin-right: 0.5rem; font-weight: 600;
+}
+.endgame-banner a, .banner-05 a {
+    color: var(--gold); text-decoration: none; font-weight: 600;
+}
+.endgame-banner a:hover, .banner-05 a:hover { text-decoration: underline; color: var(--gold-deep); }
+
+/* Summary box (permanent rewards) */
+.summary-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 1rem 1.25rem; margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+.summary-box h3 {
+    font-family: 'Cinzel', serif; color: var(--gold); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.6rem; font-weight: 600;
+}
+.summary-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.4rem;
+}
+.summary-item {
+    background: var(--overlay-sage); border: 1px solid rgba(22, 163, 74, 0.3);
+    color: var(--sage); padding: 0.35rem 0.55rem; border-radius: 3px; font-size: 10.5px; font-weight: 500;
+}
+[data-theme="dark"] .summary-item { color: var(--sage); border-color: rgba(155, 184, 122, 0.25); }
+
+/* Info box (routing notes) */
+.info-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 1rem 1.25rem; margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+.info-box h3 {
+    font-family: 'Cinzel', serif; color: var(--gold); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.6rem; font-weight: 600;
+}
+.info-box ul { list-style: none; padding: 0; }
+.info-box li {
+    padding: 0.3rem 0; font-size: 12px; color: var(--text-body);
+    display: flex; align-items: flex-start; gap: 0.5rem;
+}
+.info-box .icon { color: var(--gold); font-size: 10px; line-height: 1.5; }
+.info-box strong { color: var(--text-primary); font-weight: 600; }
+
+/* Zone header */
+.zone-header {
+    background: linear-gradient(90deg, var(--overlay-gold-strong) 0%, transparent 100%);
+    border-left: 3px solid var(--gold);
+    padding: 0.55rem 1rem;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--gold-deep);
+    font-size: 13px; font-weight: 600;
+    font-family: 'Cinzel', serif; letter-spacing: 0.8px;
+    display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+    border-radius: 0 3px 3px 0;
+}
+[data-theme="dark"] .zone-header { color: var(--gold-bright); }
+.zone-header .wp {
+    background: var(--overlay-steel); color: var(--steel);
+    padding: 0.13rem 0.4rem; border-radius: 3px; font-size: 9.5px; font-weight: 600;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.5px;
+    border: 1px solid rgba(29, 78, 216, 0.3);
+}
+[data-theme="dark"] .zone-header .wp { border-color: rgba(126, 158, 184, 0.25); }
+.zone-header .town {
+    background: var(--overlay-plum); color: var(--plum);
+    border-color: rgba(124, 58, 237, 0.3);
+}
+[data-theme="dark"] .zone-header .town { border-color: rgba(184, 138, 160, 0.25); }
+.zone-header .lvl, .zone-header .frag, .zone-header .map {
+    background: var(--overlay-gold-strong); color: var(--gold);
+    padding: 0.13rem 0.4rem; border-radius: 3px; font-size: 9.5px;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.5px;
+    border: 1px solid rgba(168, 115, 40, 0.3);
+    margin-left: auto;
+}
+[data-theme="dark"] .zone-header .lvl { border-color: rgba(200, 152, 96, 0.25); }
+
+/* Phase header */
+.phase-header {
+    font-family: 'Cinzel', serif; color: var(--gold); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; margin: 1rem 0 0.3rem; font-weight: 600;
+    display: flex; align-items: center; gap: 0.4rem;
+}
+.phase-header::before { content: '◆'; color: var(--gold); font-size: 9px; }
+
+/* Steps */
+.step {
+    display: flex;
+    background: var(--bg-surface);
+    margin-bottom: 1px;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+    border-radius: 0 3px 3px 0;
+}
+.step:hover { background: var(--overlay-gold-soft); }
+.step.completed { opacity: 0.45; }
+.step.completed .step-content { text-decoration: line-through; text-decoration-color: var(--text-dim); }
+.step-check { width: 36px; display: flex; align-items: flex-start; justify-content: center; padding-top: 0.5rem; cursor: pointer; }
+.checkbox {
+    width: 14px; height: 14px;
+    border: 1.5px solid var(--border-accent); border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s; background: var(--bg-base);
+}
+.step:hover .checkbox { border-color: var(--gold); }
+.step.completed .checkbox { background: var(--gold); border-color: var(--gold); }
+.step.completed .checkbox::after { content: '✓'; color: white; font-size: 10px; font-weight: bold; }
+[data-theme="dark"] .step.completed .checkbox::after { color: var(--bg-base); }
+.step-content {
+    flex: 1; padding: 0.45rem 0.75rem 0.45rem 0; font-size: 12.5px; color: var(--text-body);
+}
+.step-content .action { color: var(--text-primary); font-weight: 500; }
+.step-content .npc { color: var(--tan); font-weight: 500; }
+.step-content .boss { color: var(--burnt); font-weight: 600; }
+.step-content .item { color: var(--steel); font-weight: 500; }
+.step-content .loc { color: var(--gold); font-weight: 500; }
+.step-content .skip { color: var(--text-dim); font-style: italic; }
+.step-content strong { color: var(--text-primary); font-weight: 600; }
+[data-theme="dark"] .step-content .item { color: var(--gold-bright); }
+[data-theme="dark"] .step-content .loc { color: var(--steel); }
+
+/* Reward tags */
+.reward-tag {
+    display: inline-block;
+    background: var(--overlay-sage); border: 1px solid rgba(22, 163, 74, 0.35);
+    color: var(--sage); padding: 0.1rem 0.4rem; border-radius: 3px;
+    font-size: 9.5px; margin-left: 0.4rem;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.3px; font-weight: 600;
+}
+[data-theme="dark"] .reward-tag { border-color: rgba(155, 184, 122, 0.3); }
+.reward-tag.craft { background: var(--overlay-gold-strong); border-color: rgba(168, 115, 40, 0.35); color: var(--gold); }
+.reward-tag.gem   { background: var(--overlay-steel); border-color: rgba(29, 78, 216, 0.35); color: var(--steel); }
+.reward-tag.optional { background: var(--overlay-plum); border-color: rgba(124, 58, 237, 0.35); color: var(--plum); }
+.reward-tag.perm  { background: var(--overlay-sage); border-color: rgba(22, 163, 74, 0.45); color: var(--sage); font-weight: 700; }
+.reward-tag.quest { background: var(--overlay-gold-strong); border-color: rgba(168, 115, 40, 0.4); color: var(--gold); }
+
+/* Notes */
+.note {
+    background: var(--bg-elevated);
+    border-left: 2px solid var(--border-accent);
+    padding: 0.5rem 0.8rem; margin: 0.3rem 0 0.3rem 38px;
+    font-size: 11.5px; color: var(--text-muted); font-style: italic;
+    border-radius: 0 3px 3px 0;
+}
+.note.warning, .note.warn {
+    background: var(--overlay-burnt); border-left-color: var(--burnt);
+    color: var(--burnt); font-style: normal;
+}
+.note.tip {
+    background: var(--overlay-steel); border-left-color: var(--steel);
+    color: var(--steel); font-style: normal;
+}
+.note.success {
+    background: var(--overlay-sage); border-left-color: var(--sage);
+    color: var(--sage); font-style: normal;
+}
+.note.new {
+    background: var(--overlay-plum); border-left-color: var(--plum);
+    color: var(--text-body); font-style: normal;
+}
+.note .label {
+    font-family: 'Cinzel', serif; font-size: 9.5px; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-right: 0.5rem; font-weight: 600;
+    color: var(--gold);
+}
+.note.warning .label, .note.warn .label { color: var(--burnt); }
+.note.tip .label { color: var(--steel); }
+.note.success .label { color: var(--sage); }
+.note.new .label { color: var(--plum); }
+.note.new strong { color: var(--text-primary); font-weight: 600; }
+.note.new .loc { color: var(--gold); font-weight: 500; }
+
+/* Footer nav */
+.footer-nav {
+    margin-top: 2rem; padding-top: 1rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex; justify-content: space-between;
+    font-size: 12px; font-family: 'Cinzel', serif; letter-spacing: 1px;
+}
+.footer-nav a { color: var(--gold); text-decoration: none; text-transform: uppercase; transition: color 0.15s; font-weight: 600; }
+.footer-nav a:hover { color: var(--gold-deep); }
+[data-theme="dark"] .footer-nav a:hover { color: var(--gold-bright); }
+
+/* ─── ENDGAME STORYLINE BLOCKS ─────────────────────────────── */
+.storyline {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    margin-bottom: 1.75rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+.storyline-header {
+    padding: 1rem 1.5rem;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex; align-items: baseline; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.6rem;
+}
+.storyline-header h2 {
+    font-family: 'Cinzel', serif; color: var(--text-primary);
+    font-size: 1.2rem; font-weight: 700; letter-spacing: 1px;
+}
+.storyline-header .ordinal {
+    font-family: 'Cinzel', serif; color: var(--gold-deep);
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600;
+}
+.storyline-tagline {
+    color: var(--text-muted); font-style: italic; font-size: 12px;
+    margin-top: 0.35rem;
+}
+.storyline-body { padding: 1.5rem; }
+.storyline-body h3 {
+    font-family: 'Cinzel', serif; color: var(--text-primary);
+    font-size: 14px; font-weight: 600; letter-spacing: 0.8px;
+    margin-top: 1.25rem; margin-bottom: 0.5rem; text-transform: uppercase;
+}
+.storyline-body h3:first-child { margin-top: 0; }
+.storyline-body p { color: var(--text-body); margin-bottom: 0.6rem; }
+.storyline-body ul { list-style: none; padding-left: 0; margin-bottom: 0.6rem; }
+.storyline-body li {
+    color: var(--text-body); padding: 0.25rem 0 0.25rem 1.4rem;
+    position: relative; line-height: 1.55;
+}
+.storyline-body li::before {
+    content: '◆'; position: absolute; left: 0.2rem;
+    color: var(--gold-deep); font-size: 8px; top: 0.6rem;
+}
+.storyline-body strong { color: var(--text-primary); font-weight: 600; }
+.storyline-body em { color: var(--gold); font-style: normal; font-weight: 500; }
+
+/* Storyline accent stripes — one per league */
+.storyline.lg-breach     { border-top: 3px solid var(--c-breach); }
+.storyline.lg-expedition { border-top: 3px solid var(--c-expedition); }
+.storyline.lg-abyss      { border-top: 3px solid var(--c-abyss); }
+.storyline.lg-ritual     { border-top: 3px solid var(--c-ritual); }
+.storyline.lg-delirium   { border-top: 3px solid var(--c-delirium); }
+.storyline.lg-fortress   { border-top: 3px solid var(--c-fortress); }
+.storyline.lg-vaal       { border-top: 3px solid var(--c-vaal); }
+.storyline.lg-meta       { border-top: 3px solid var(--gold); }
+
+/* Tags inside storyline body */
+.tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px; font-weight: 600;
+    padding: 0.13rem 0.45rem; border-radius: 3px;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    margin: 0 0.15rem; white-space: nowrap; vertical-align: 1px;
+}
+.tag.hub      { background: var(--overlay-sage); color: var(--sage); border: 1px solid rgba(22, 163, 74, 0.35); }
+.tag.boss     { background: var(--overlay-burnt); color: var(--burnt); border: 1px solid rgba(220, 38, 38, 0.4); }
+.tag.pinnacle { background: rgba(185, 28, 28, 0.12); color: var(--crimson); border: 1px solid rgba(185, 28, 28, 0.45); font-weight: 700; }
+.tag.craft    { background: var(--overlay-steel); color: var(--steel); border: 1px solid rgba(29, 78, 216, 0.35); }
+.tag.atlas    { background: var(--overlay-plum); color: var(--plum); border: 1px solid rgba(124, 58, 237, 0.35); }
+.tag.npc      { background: var(--overlay-tan); color: var(--tan); border: 1px solid rgba(180, 83, 9, 0.35); }
+[data-theme="dark"] .tag.hub { border-color: rgba(155, 184, 122, 0.3); }
+[data-theme="dark"] .tag.boss { border-color: rgba(200, 112, 96, 0.35); }
+[data-theme="dark"] .tag.pinnacle { background: rgba(200, 74, 74, 0.15); border-color: rgba(200, 74, 74, 0.4); }
+[data-theme="dark"] .tag.craft { border-color: rgba(126, 158, 184, 0.35); }
+[data-theme="dark"] .tag.atlas { border-color: rgba(184, 138, 160, 0.35); }
+[data-theme="dark"] .tag.npc   { border-color: rgba(196, 164, 126, 0.35); }
+
+/* Callouts */
+.callout {
+    background: var(--bg-elevated);
+    border-left: 2px solid var(--gold);
+    padding: 0.8rem 1rem; margin: 0.9rem 0;
+    font-size: 12.5px; border-radius: 0 3px 3px 0;
+    color: var(--text-body);
+}
+.callout.warn { border-left-color: var(--burnt); }
+.callout.tip  { border-left-color: var(--sage); }
+.callout-label {
+    display: block; font-family: 'Cinzel', serif;
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.3rem; font-weight: 600;
+}
+.callout.warn .callout-label { color: var(--burnt); }
+.callout.tip  .callout-label { color: var(--sage); }
+
+/* Card grids inside storylines */
+.card-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0.8rem; margin: 1rem 0;
+}
+.card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px; padding: 0.85rem 1rem;
+}
+.card h4 {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 13px; font-weight: 600; margin-bottom: 0.35rem; letter-spacing: 0.5px;
+}
+.card .role {
+    font-family: 'IBM Plex Mono', monospace; color: var(--text-muted);
+    font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.card p { color: var(--text-body); font-size: 12px; margin-bottom: 0.35rem; }
+
+/* TOC */
+.toc {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 6px;
+    box-shadow: var(--shadow-sm);
+}
+.toc-title {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    margin-bottom: 0.85rem; font-weight: 600;
+}
+.toc ol { list-style: none; counter-reset: storyline; padding: 0; }
+.toc ol li {
+    counter-increment: storyline; padding: 0.4rem 0;
+    border-bottom: 1px dotted var(--border-subtle);
+}
+.toc ol li:last-child { border-bottom: none; }
+.toc ol li::before {
+    content: counter(storyline, upper-roman) ".";
+    font-family: 'Cinzel', serif; color: var(--gold-deep);
+    font-size: 11px; letter-spacing: 1px; margin-right: 0.7rem;
+    display: inline-block; width: 2rem; font-weight: 600;
+}
+.toc a {
+    color: var(--text-body); text-decoration: none;
+    font-size: 12.5px; transition: color 0.15s; font-weight: 500;
+}
+.toc a:hover { color: var(--gold); }
+.toc-meta {
+    color: var(--text-muted); font-size: 11px; font-style: italic;
+    display: block; margin-left: 2.7rem; margin-top: 0.15rem;
+}
+
+/* Intro block (endgame guide) */
+.intro-block {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid var(--gold);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem; border-radius: 6px;
+    box-shadow: var(--shadow-sm);
+}
+.intro-block p { color: var(--text-body); margin-bottom: 0.6rem; }
+.intro-block p:last-child { margin-bottom: 0; }
+.intro-block strong { color: var(--text-primary); font-weight: 600; }
+
+/* ─── INDEX-SPECIFIC ───────────────────────────────────────── */
+.index-container {
+    max-width: 980px; margin: 0 auto;
+    padding: 3rem 1.5rem 4rem; position: relative; z-index: 1;
+}
+.quest-log-title {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    text-align: center; margin-bottom: 1.25rem; font-weight: 600;
+}
+.journey { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2.5rem; }
+.act-entry { position: relative; }
+.act-entry::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: linear-gradient(180deg, var(--gold-deep), var(--gold));
+    border-radius: 3px 0 0 3px;
+}
+.act-entry.final::before { background: linear-gradient(180deg, var(--gold), var(--gold-bright)); }
+.act-entry.endgame::before { background: linear-gradient(180deg, var(--plum) 0%, var(--c-fortress) 100%); }
+
+.act-link {
+    display: block; background: var(--bg-surface);
+    border: 1px solid var(--border-subtle); border-left: none;
+    border-radius: 0 6px 6px 0;
+    padding: 1rem 1.25rem; padding-left: 1.5rem;
+    text-decoration: none; color: var(--text-body);
+    transition: all 0.2s; box-shadow: var(--shadow-sm);
+}
+.act-link:hover {
+    background: var(--overlay-gold-soft);
+    border-color: var(--gold); transform: translateX(2px);
+    box-shadow: var(--shadow-md);
+}
+.act-entry.endgame .act-link {
+    background: linear-gradient(135deg, var(--bg-surface) 0%, var(--overlay-plum) 100%);
+    border-color: rgba(124, 58, 237, 0.3);
+}
+.act-entry.endgame .act-link:hover {
+    border-color: var(--plum);
+}
+.act-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; gap: 1rem; flex-wrap: wrap; }
+.act-name {
+    font-family: 'Cinzel', serif; color: var(--text-primary);
+    font-size: 15px; font-weight: 600; letter-spacing: 0.5px;
+}
+.act-entry.endgame .act-name { color: var(--plum); }
+.act-meta {
+    font-family: 'IBM Plex Mono', monospace; color: var(--text-muted);
+    font-size: 11px; letter-spacing: 0.3px;
+}
+.act-rewards { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.reward {
+    background: var(--overlay-gold-soft); border: 1px solid rgba(168, 115, 40, 0.3);
+    color: var(--gold); padding: 0.2rem 0.55rem; border-radius: 3px;
+    font-size: 10.5px; font-weight: 500;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.3px;
+}
+.reward.res {
+    background: var(--overlay-steel); border-color: rgba(29, 78, 216, 0.3); color: var(--steel);
+}
+.reward.special {
+    background: var(--overlay-sage); border-color: rgba(22, 163, 74, 0.35); color: var(--sage); font-weight: 600;
+}
+.reward.warn {
+    background: var(--overlay-burnt); border-color: rgba(220, 38, 38, 0.35); color: var(--burnt);
+}
+.reward.new {
+    background: var(--overlay-plum); border-color: rgba(124, 58, 237, 0.4); color: var(--plum); font-weight: 600;
+}
+[data-theme="dark"] .reward { border-color: rgba(200, 152, 96, 0.3); }
+[data-theme="dark"] .reward.res { border-color: rgba(126, 158, 184, 0.3); }
+[data-theme="dark"] .reward.special { border-color: rgba(155, 184, 122, 0.35); }
+[data-theme="dark"] .reward.warn { border-color: rgba(200, 112, 96, 0.35); }
+[data-theme="dark"] .reward.new { border-color: rgba(184, 138, 160, 0.4); }
+
+.features {
+    background: var(--bg-surface); border: 1px solid var(--border-subtle);
+    border-radius: 6px; padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+.features-title {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    text-align: center; margin-bottom: 1rem; font-weight: 600;
+}
+.features-list {
+    display: flex; flex-wrap: wrap; gap: 1rem 1.5rem;
+    justify-content: center;
+}
+.feature {
+    color: var(--text-muted); font-size: 11.5px;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.3px;
+}
+.header .version {
+    font-family: 'IBM Plex Mono', monospace; color: var(--text-muted);
+    font-size: 11px; letter-spacing: 0.5px;
+}
+
+/* ─── ENDGAME DIAGRAM (emblem grid — minimal, compact) ────── */
+.diagram-wrap {
+    margin: 0 auto 2rem;
+    max-width: 540px;
+}
+.diagram-title {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    color: var(--text-primary);
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.85rem;
+}
+.atlas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    max-width: 480px;
+    margin: 0 auto;
+}
+.atlas-tile {
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0.55rem 0.6rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+[data-theme="dark"] .atlas-tile { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); }
+.atlas-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+}
+[data-theme="dark"] .atlas-tile:hover { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.55); }
+
+.atlas-tile .compass-tag {
+    position: absolute; top: 0.45rem; right: 0.55rem;
+    font: 600 7px 'Cinzel', serif;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    opacity: 0.6; z-index: 3;
+}
+.atlas-tile .name {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    line-height: 1.1;
+    z-index: 2;
+    margin-top: auto;
+}
+.atlas-tile .pinnacle {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 0.2px;
+    font-weight: 400;
+    text-transform: none;
+    opacity: 0.7;
+    margin-top: 0.12rem;
+}
+.atlas-tile .symbol {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+    padding-top: 4px;
+}
+.atlas-tile .symbol svg { width: 56%; height: 56%; }
+
+/* League tile color treatments */
+.atlas-tile.fortress    { background: var(--c-fortress); color: #fef3c7; }
+.atlas-tile.vaal        { background: var(--c-vaal);     color: #fee2e2; }
+.atlas-tile.abyss       { background: var(--c-abyss);    color: #d1fae5; }
+.atlas-tile.expedition  { background: var(--c-expedition); color: #fef3c7; }
+.atlas-tile.breach      { background: var(--c-breach);   color: #ede9fe; }
+.atlas-tile.ritual      { background: var(--c-ritual);   color: #fce7f3; }
+.atlas-tile.fortress    .symbol svg { stroke: #fef3c7; }
+.atlas-tile.vaal        .symbol svg { stroke: #fee2e2; }
+.atlas-tile.abyss       .symbol svg { stroke: #d1fae5; }
+.atlas-tile.expedition  .symbol svg { stroke: #fef3c7; }
+.atlas-tile.breach      .symbol svg { stroke: #ede9fe; }
+.atlas-tile.ritual      .symbol svg { stroke: #fce7f3; }
+
+/* Delirium — metallic silver gradient */
+.atlas-tile.delirium {
+    background: linear-gradient(135deg,
+        var(--c-delirium-a) 0%, var(--c-delirium-b) 45%,
+        var(--c-delirium-a) 75%, var(--c-delirium-b) 100%);
+    color: #1e293b;
+}
+[data-theme="dark"] .atlas-tile.delirium { color: #f8fafc; }
+.atlas-tile.delirium .symbol svg { stroke: #1e293b; }
+[data-theme="dark"] .atlas-tile.delirium .symbol svg { stroke: #f8fafc; }
+.atlas-tile.delirium .compass-tag { color: #1e293b; }
+[data-theme="dark"] .atlas-tile.delirium .compass-tag { color: #f8fafc; }
+
+/* Spawn + compass tiles — neutral */
+.atlas-tile.center, .atlas-tile.compass {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    box-shadow: none;
+}
+.atlas-tile.center .symbol svg, .atlas-tile.compass .symbol svg {
+    stroke: var(--text-primary);
+}
+.atlas-tile.center .name, .atlas-tile.compass .name {
+    text-align: center; align-self: center; margin-top: auto;
+}
+
+/* Subtle inner vignette on league tiles */
+.atlas-tile.fortress::before, .atlas-tile.vaal::before, .atlas-tile.abyss::before,
+.atlas-tile.expedition::before, .atlas-tile.breach::before, .atlas-tile.delirium::before,
+.atlas-tile.ritual::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.10) 0%, transparent 55%),
+                radial-gradient(circle at 70% 90%, rgba(0,0,0,0.16) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.diagram-caption {
+    text-align: center; color: var(--text-muted);
+    font-size: 11.5px; font-style: italic; margin-top: 0.9rem;
+    max-width: 480px; margin-left: auto; margin-right: auto;
+}
+.diagram-caption strong { color: var(--text-body); font-style: normal; font-weight: 600; }
+
+@media (max-width: 520px) {
+    .atlas-grid { gap: 6px; }
+    .atlas-tile { padding: 0.35rem 0.45rem; }
+    .atlas-tile .name { font-size: 8.5px; letter-spacing: 0.4px; }
+    .atlas-tile .pinnacle { font-size: 6.5px; }
+    .atlas-tile .compass-tag { font-size: 6px; }
+}
+
+/* ─── MOBILE ───────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .sidebar {
+        position: relative; width: 100%; height: auto;
+        border-right: none; border-bottom: 1px solid var(--border-subtle);
+    }
+    .container { flex-direction: column; }
+    .main { margin-left: 0; padding: 1.25rem 1rem; max-width: 100%; }
+    .header h1 { font-size: 1.35rem; }
+    .index-container { padding: 2rem 1rem; }
+    .theme-toggle { top: 0.5rem; right: 0.5rem; padding: 0.4rem 0.7rem; font-size: 10.5px; }
+}
+
+    
+        .storyline-header .h2-sub {
+            color: var(--text-muted);
+            font-size: 0.7em;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-left: 0.3em;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span class="icon" id="theme-icon">☀</span>
+        <span id="theme-label">Light</span>
+    </button>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h2>League Storylines</h2>
+                <a href="#breach" class="sidebar-link story">I. Breach</a>
+                <a href="#expedition" class="sidebar-link story">II. Expedition</a>
+                <a href="#abyss" class="sidebar-link story">III. Abyss</a>
+                <a href="#ritual" class="sidebar-link story">IV. Ritual</a>
+                <a href="#delirium" class="sidebar-link story">V. Delirium</a>
+                <a href="#vaal-temple" class="sidebar-link story">VI. Vaal Temple</a>
+            </div>
+            <div class="sidebar-section">
+                <h2>Meta</h2>
+                <a href="#fortress" class="sidebar-link story">The Fortress</a>
+            </div>
+            <div class="sidebar-section">
+                <h2>Atlas</h2>
+                <a href="#masters-atlas" class="sidebar-link system">Masters of the Atlas</a>
+                <a href="#atlas-tree" class="sidebar-link system">New Atlas Tree</a>
+                <a href="#atlas-changes" class="sidebar-link system">Atlas Layout</a>
+            </div>
+            <div class="sidebar-section">
+                <h2>Reference</h2>
+                <a href="#bosses" class="sidebar-link boss">Pinnacle Bosses</a>
+                <a href="#runic-ward" class="sidebar-link system">Runic Ward</a>
+                <a href="#qol" class="sidebar-link system">QoL &amp; Tools</a>
+                <a href="#challenges" class="sidebar-link system">Challenge League</a>
+            </div>
+            <div class="sidebar-section">
+                <h2>Navigation</h2>
+                <a href="index.html" class="sidebar-link">← Back to Index</a>
+                <a href="poe2_act4_guide.html" class="sidebar-link">Act IV (campaign)</a>
+                <a href="poe2_interludes_guide.html" class="sidebar-link">Interludes 5.x</a>
+            </div>
+        </aside>
+
+        <main class="main">
+            <header class="header">
+                <div class="eyebrow">Return of the Ancients</div>
+                <h1>POE2 Endgame Guide</h1>
+                <div class="subtitle">Five new endgame storylines, Masters of the Atlas, and the road past Arbiter of Ash.</div>
+                <span class="patch">Patch 0.5.0 · 29 May 2026</span>
+            </header>
+
+            <div class="intro-block">
+                <p>Patch <strong>0.5.0 — Return of the Ancients</strong> revamps the entire endgame. The Atlas now has fixed points of interest, an immediate goal as soon as you finish the campaign, and pop-out progress bars for every active questline.</p>
+                <p>The headline number: <strong>six league storylines</strong> — Breach, Expedition, Abyss, Ritual, Delirium, Vaal Temple — each with a hub, NPCs, crafting, and a pinnacle boss. Plus <strong>The Fortress</strong> (Origins of Divinity) as the meta layer that grants the new Atlas tree, and <strong>Masters of the Atlas</strong> as endgame ascendancy.</p>
+                <p>Arbiter of Ash is no longer the top of the mountain. The new pinnacle sits at the centre of the Fortress.</p>
+            </div>
+
+            <section class="diagram-wrap">
+                <div class="diagram-title">The Atlas</div>
+                <div class="atlas-grid">
+
+                    <!-- NW · Atlas Fortress -->
+                    <div class="atlas-tile fortress">
+                        <span class="compass-tag">NW</span>
+                        <div class="symbol">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M 18 78 L 18 38 L 22 38 L 22 32 L 28 32 L 28 38 L 32 38 L 32 50 L 36 50 L 36 26 L 40 26 L 40 20 L 46 20 L 46 26 L 50 26 L 50 20 L 54 20 L 54 26 L 60 26 L 60 20 L 64 20 L 64 26 L 64 50 L 68 50 L 68 38 L 72 38 L 72 32 L 78 32 L 78 38 L 82 38 L 82 78 Z"/>
+                            </svg>
+                        </div>
+                        <div class="name">Fortress<span class="pinnacle">The Pinnacle</span></div>
+                    </div>
+
+                    <!-- N · Vaal Temple -->
+                    <div class="atlas-tile vaal">
+                        <span class="compass-tag">N</span>
+                        <div class="symbol">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M 12 82 L 88 82"/>
+                                <path d="M 18 82 L 26 64 L 74 64 L 82 82"/>
+                                <path d="M 28 64 L 34 48 L 66 48 L 72 64"/>
+                                <path d="M 36 48 L 42 32 L 58 32 L 64 48"/>
+                                <path d="M 47 82 L 47 74 L 53 74 L 53 82"/>
+                            </svg>
+                        </div>
+                        <div class="name">Vaal Temple<span class="pinnacle">Capstone corruption</span></div>
+                    </div>
+
+                    <!-- NE · Compass rose -->
+                    <div class="atlas-tile compass">
+                        <span class="compass-tag" style="opacity: 0">·</span>
+                        <div class="symbol">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="50,15 54,46 50,50 46,46"/>
+                                <polygon points="85,50 54,54 50,50 54,46"/>
+                                <polygon points="50,85 46,54 50,50 54,54"/>
+                                <polygon points="15,50 46,46 50,50 46,54"/>
+                                <circle cx="50" cy="50" r="2" fill="currentColor" stroke="none"/>
+                            </svg>
+                        </div>
+                        <div class="name">North</div>
+                    </div>
+
+                    <!-- W · Ritual -->
+                    <div class="atlas-tile ritual">
+                        <span class="compass-tag">W</span>
+                        <div class="symbol">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="34" y="12" width="32" height="20" rx="2"/>
+                                <circle cx="44" cy="22" r="2" fill="currentColor" stroke="none"/>
+                                <circle cx="56" cy="22" r="2" fill="currentColor" stroke="none"/>
+                                <path d="M 22 32 L 78 32 L 84 44 L 78 56 L 22 56 L 16 44 Z"/>
+                                <path d="M 38 40 L 46 48 M 54 40 L 62 48"/>
+                                <rect x="34" y="56" width="32" height="20" rx="2"/>
+                                <path d="M 40 64 L 60 64"/>
+                                <path d="M 30 76 L 70 76 L 64 88 L 36 88 Z"/>
+                            </svg>
+                        </div>
+                        <div class="name">Ritual<span class="pinnacle">The Bodach</span></div>
+                    </div>
+
+                    <!-- CENTER · Spawn Point -->
+                    <div class="atlas-tile center">
+                        <span class="compass-tag" style="opacity: 0">·</span>
+                        <div class="symbol">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="3.5" stroke-linecap="round">
+                                <line x1="50" y1="20" x2="50" y2="36"/>
+                                <line x1="50" y1="64" x2="50" y2="80"/>
+                                <line x1="20" y1="50" x2="36" y2="50"/>
+                                <line x1="64" y1="50" x2="80" y2="50"/>
+                                <circle cx="50" cy="50" r="14" stroke-width="3"/>
+                                <circle cx="50" cy="50" r="3" fill="currentColor" stroke="none"/>
+                            </svg>
+                        </div>
+                        <div class="name">Spawn</div>
+                    </div>
+
+                    <!-- E · Abyss -->
+                    <div class="atlas-tile abyss">
+                        <span class="compass-tag">E</span>
+                        <div class="symbol">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M 12 70 L 38 70" stroke-width="3"/>
+                                <path d="M 62 70 L 88 70" stroke-width="3"/>
+                                <path d="M 38 70 L 44 56 L 38 44 L 48 30 L 42 18 L 50 10"/>
+                                <path d="M 62 70 L 56 56 L 62 44 L 52 30 L 58 18 L 50 10"/>
+                                <path d="M 44 56 L 36 50" stroke-width="3"/>
+                                <path d="M 56 56 L 64 50" stroke-width="3"/>
+                            </svg>
+                        </div>
+                        <div class="name">Abyss<span class="pinnacle">Vessel of Kulemak</span></div>
+                    </div>
+
+                    <!-- SW · Delirium -->
+                    <div class="atlas-tile delirium">
+                        <span class="compass-tag">SW</span>
+                        <div class="symbol">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+                                <ellipse cx="50" cy="40" rx="22" ry="26"/>
+                                <path d="M 50 66 L 50 86"/>
+                                <path d="M 44 86 L 56 86"/>
+                                <path d="M 42 28 L 50 42 L 44 56" stroke-width="2.5" opacity="0.7"/>
+                            </svg>
+                        </div>
+                        <div class="name">Delirium<span class="pinnacle">Tangmazu</span></div>
+                    </div>
+
+                    <!-- S · Breach -->
+                    <div class="atlas-tile breach">
+                        <span class="compass-tag">S</span>
+                        <div class="symbol">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M 26 88 L 26 56 Q 24 50, 22 44 L 18 30 Q 17 24, 22 22 Q 27 22, 28 28 L 32 42 L 32 22 Q 33 16, 38 16 Q 43 16, 44 22 L 44 42 L 44 14 Q 45 8, 50 8 Q 55 8, 56 14 L 56 42 L 56 18 Q 57 12, 62 12 Q 67 12, 68 18 L 68 44 L 72 30 Q 74 24, 78 26 Q 82 28, 80 34 L 76 50 Q 74 56, 72 60 L 72 88 Z"/>
+                            </svg>
+                        </div>
+                        <div class="name">Breach<span class="pinnacle">Tul &amp; Esh · Xesht</span></div>
+                    </div>
+
+                    <!-- SE · Expedition -->
+                    <div class="atlas-tile expedition">
+                        <span class="compass-tag">SE</span>
+                        <div class="symbol">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="36" y="36" width="28" height="48" rx="3"/>
+                                <path d="M 36 58 L 64 58" stroke-width="3"/>
+                                <path d="M 36 36 L 64 36 L 64 30 L 36 30 Z"/>
+                                <path d="M 50 30 Q 56 22, 62 22 Q 70 22, 70 14 Q 70 8, 64 8"/>
+                                <circle cx="64" cy="8" r="3" fill="currentColor" stroke="none"/>
+                            </svg>
+                        </div>
+                        <div class="name">Expedition<span class="pinnacle">Eldritch Nightmare</span></div>
+                    </div>
+
+                </div>
+                <div class="diagram-caption">
+                    Seven storylines arranged by compass heading. <strong>Pinnacle boss</strong> beneath each league name.
+                </div>
+            </section>
+
+
+            <div class="toc">
+                <div class="toc-title">The Six League Storylines</div>
+                <ol>
+                    <li><a href="#breach">Breach</a> — Keepers of the Flame<span class="toc-meta">Monastery · Genesis Tree · Tul &amp; Esh · Xesht</span></li>
+                    <li><a href="#expedition">Expedition</a> — Ocean Expansion<span class="toc-meta">Kingsmarch · island-hopping · Medved → Eldritch nightmare</span></li>
+                    <li><a href="#abyss">Abyss</a> — Atlas placement only (no major redesign)<span class="toc-meta">Eastern cracks · Well of Souls · Vessel of Kulemak</span></li>
+                    <li><a href="#ritual">Ritual</a> — Rite of the Nameless<span class="toc-meta">Wildwood · King in the Mists · 5-map chain · Bodach</span></li>
+                    <li><a href="#delirium">Delirium</a> — The Hare and the Raven<span class="toc-meta">Withered Willow · Tangmazu · jewel crafting</span></li>
+                <li><a href="#vaal-temple">Vaal Temple</a> — Capstone corruption crafting<span class="toc-meta">North · Vaal City · room chaining · TBC</span></li>
+                </ol>
+                <p style="margin-top: 0.85rem; padding-top: 0.85rem; border-top: 1px dotted var(--border-subtle); color: var(--text-muted); font-size: 11.5px; font-style: italic;">Plus the meta layer: <a href="#fortress" style="color: var(--gold-bright); text-decoration: none;">The Fortress / Origins of Divinity</a> — new Atlas tree, new top pinnacle.</p>
+            </div>
+
+            <!-- III. BREACH / KEEPERS -->
+            <section class="storyline lg-breach" id="breach">
+                <div class="storyline-header">
+                    <div>
+                        <h2>Breach <span class="h2-sub">— Keepers of the Flame</span></h2>
+                        <div class="storyline-tagline">"Twenty-five years on, the war with the Hiveborn has not gone well."</div>
+                    </div>
+                    <span class="ordinal">Storyline I · Breach</span>
+                </div>
+                <div class="storyline-body">
+                    <h3>Hub: <span class="tag hub">The Monastery</span> (South)</h3>
+                    <p>First endgame Breach introduces <span class="tag npc">Alith</span>, a Keeper of the Flame. She recruits you and sends you south to the monastery. Along the way you encounter more breaches — and the first new mechanic.</p>
+
+                    <h3>New Breach mechanics</h3>
+                    <ul>
+                        <li><strong>Visible duration timer</strong> — you can finally see how much time the breach has and exactly how much each kill extends it.</li>
+                        <li><strong>Stabilisation</strong> — keep a breach open long enough and it stabilises into a new phase. The Hiveborn send their toughest miscreations and the breach stays open until you annihilate them.</li>
+                        <li>Stable breaches drop <strong>Hive Blood</strong> — the resource needed to feed the Genesis Tree.</li>
+                        <li>Sometimes you'll attract a <strong>Marshal of Xesht</strong> — drops <strong>Wombgifts</strong>.</li>
+                    </ul>
+
+                    <h3>Crafting — The Genesis Tree</h3>
+                    <p>The monastery houses the <strong>Genesis Tree</strong>, gifted to the Keepers by the Dreamer himself, currently withered. Restore it with Hive Blood and use Wombgifts to craft.</p>
+                    <ul>
+                        <li>Each Wombgift socket births a different jewellery type. Place an amulet wombgift, fertilise with Hive Blood, get a random rare amulet.</li>
+                        <li>Feeding the tree regrows branches — <strong>15 allocation points</strong> across the tree control base type, mod selection, mod tier, even <em>new exclusive base types</em> (one with a free spirit skill, one with a built-in rune socket).</li>
+                        <li>Right branch → new <strong>caster mods on rings</strong> (extra spell elemental damage, niche options like unleash-seal generation rate).</li>
+                        <li>Left branch → new <strong>minion mods on rings</strong> — closes the long-standing gap between attack-only and caster/minion crafting density.</li>
+                        <li>Also covers belts and currency (e.g. new <em>jewel catalysts</em>; lightning-damage belts).</li>
+                        <li><strong>Free respec</strong> — toggle nodes on/off any time.</li>
+                    </ul>
+
+                    <h3>Hiveborn Incursion + Pinnacle: <span class="tag pinnacle">Tul &amp; Esh</span></h3>
+                    <p>Eventually you'll get a Wombgift that births a <strong>Breachstone</strong>. Use it on the hiveborn foothold:</p>
+                    <ul>
+                        <li><strong>Outskirts</strong> — Breach Hives fuelled by the Keepers' flame; burn them by walking through. Each one destroyed pulls more Hiveborn. These encounters are <em>extra rewarding for Wombgifts</em>.</li>
+                        <li><strong>Sky Hives</strong> — the deep objective. Inside the central sky hive: <span class="tag pinnacle">Tul and Esh</span>, the Breach Lords.</li>
+                        <li>After the questline, breach domains spawn randomly on the Atlas. Each needs its own breachstone, sky-hive purge, and lord kill. Repeating these unlocks <strong>Xesht</strong> — fight him by communing with the Dreamer back at the monastery.</li>
+                    </ul>
+
+                    <h3>New Atlas-tree highlights</h3>
+                    <ul>
+                        <li>Breach Hives spawn outside Hiveborn Domains.</li>
+                        <li>Alith gains hive-attack abilities (e.g. next wave forced Magic — way harder, way more loot).</li>
+                        <li>Marshal of Xesht gains a set of <em>Lineage Supports</em>.</li>
+                        <li>Xesht drops his head when killed → return to Genesis Tree, grow a <em>grasping orchid</em>. Putting rings on its fingers seems to make it happy.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- V. EXPEDITION OCEAN -->
+            <section class="storyline lg-expedition" id="expedition">
+                <div class="storyline-header">
+                    <div>
+                        <h2>Expedition <span class="h2-sub">— Ocean Expansion</span></h2>
+                        <div class="storyline-tagline">"Kingsmarch lies in ruins. Rog wants his wife back."</div>
+                    </div>
+                    <span class="ordinal">Storyline II · Expedition</span>
+                </div>
+                <div class="storyline-body">
+                    <h3>Hub: <span class="tag hub">Kingsmarch</span> (South — coastline now visible)</h3>
+                    <p>The Atlas now has a southern coastline with the open ocean beyond. Kingsmarch is in ruins after the cataclysm. Rog's shop is destroyed and he is far more concerned about his wife <span class="tag npc">Gwennen</span>. Use a logbook to launch an expedition into the southeast ocean.</p>
+
+                    <h3>Logbook → Island-hopping</h3>
+                    <p>A logbook is no longer a single encounter. Send ships, uncover islands, hop across them.</p>
+                    <ul>
+                        <li>Islands with <strong>expeditions</strong>, <strong>grand expeditions</strong>, <em>new bosses</em>, and unique encounters.</li>
+                        <li>Volcanic island example: <strong>Voltaxic Sulphite</strong> — blow up sulphite for extra waves; suspicious wall hides a giant ogre that gets bigger and more rewarding the more sulphite you've blown up.</li>
+                        <li>Islands hide trapped wisps to free, root doors to open, ancient precursor tech to raise — and bosses, of course.</li>
+                    </ul>
+
+                    <h3>Boss chain</h3>
+                    <ul>
+                        <li><span class="tag boss">Medved</span> — Gwennen has cracked open his tomb. Turns out he's not as dead as assumed.</li>
+                        <li>After Medved, every new logbook lets you <strong>choose direction</strong>. The ocean is enormous — go as deep as you like.</li>
+                        <li><span class="tag boss">Uhtred, the Star Drinker</span> — called down the Verisium meteors that powered Kalguuran magic. Killing him drops a truly gigantic meteor into the ocean.</li>
+                        <li>The meteor is shrouded by Verisium energy. To enter you need the <strong>Triskelion Flame</strong>, a Kalguuran artifact that cancels Verisium magic.</li>
+                        <li><span class="tag boss">Olroth, Leader of the Knights of the Sun</span> — guards the Triskelion Flame. Defeat him to gain entry.</li>
+                        <li><span class="tag pinnacle">Eldritch Nightmare (unspoiled)</span> — the thing growing inside the meristem core of the meteor. Its meristem is of a quality "not available for millennia" — bring it to Farrow and Dannig and they can forge artifacts whose creation has been lost to time.</li>
+                    </ul>
+
+                    <h3>Expedition × Runes of Aldur (league overlap)</h3>
+                    <p>Expeditions now contain <strong>runic remnants</strong> from the Runes of Aldur league mechanic. Crucial difference from the campaign remnant encounters: the rune empowerments <em>apply to every monster down the explosive line and stack</em>. Stack too many, you face a fight beyond your abilities — but each stacked mod also improves the items those monsters drop.</p>
+
+                    <div class="callout warn">
+                        <span class="callout-label">League warning</span>
+                        Pretty extreme situations possible if you over-stack runes. The risk:reward curve in expedition is much sharper than in normal remnant encounters.
+                    </div>
+                </div>
+            </section>
+
+            <!-- III. ABYSS -->
+            <section class="storyline lg-abyss" id="abyss">
+                <div class="storyline-header">
+                    <div>
+                        <h2>Abyss <span class="h2-sub">— Atlas placement only</span></h2>
+                        <div class="storyline-tagline">"The leagues we didn't do major redesigns to still got Atlas placement and a guided questline."</div>
+                    </div>
+                    <span class="ordinal">Storyline III · Abyss</span>
+                </div>
+                <div class="storyline-body">
+                    <h3>Hub: <span class="tag hub">The Well of Souls</span> (East)</h3>
+                    <p>First Abyss encounter in the endgame triggers a quest pointing east. There you'll find <strong>mega abyss cracks on the earth</strong>, leading away from the Well of Souls. This is the model GGG used for league mechanics that <em>didn't</em> get full redesigns — Atlas placement + questline + Atlas tree + a pinnacle, but no new mechanics or crafting system on top.</p>
+
+                    <h3>The crack chain</h3>
+                    <ul>
+                        <li>All maps along the cracks contain <strong>abysses with special properties</strong>.</li>
+                        <li>Mapping along the cracks <strong>closes Atlas-scale abysses</strong>, granting points for the <strong>Abyss Atlas Tree</strong>.</li>
+                        <li>At the end of each Atlas Abyss is an <strong>Abyssal Depths</strong> with the boss fight for one of the <strong>three Abyssal factions</strong> — guaranteed boss access, no key RNG.</li>
+                    </ul>
+
+                    <h3>Pinnacle: <span class="tag pinnacle">Vessel of Kulemak</span></h3>
+                    <p>Defeat all three Abyssal faction bosses to receive the key to the <strong>Well of Souls</strong>, which unlocks the fight against the <strong>Vessel of Kulemak</strong>.</p>
+
+                    <div class="callout tip">
+                        <span class="callout-label">Why this matters</span>
+                        Per the reveal: this structural pattern (quest → fixed Atlas location → tree → pinnacle key from sub-bosses) makes endgame leagues "much more friendly for new players" by giving obvious goals and a guided experience. It applies to <em>every</em> league mechanic, even the ones not getting major content drops.
+                    </div>
+
+                    <h3>Other note</h3>
+                    <p>The transcript only describes Abyss as the example for the "minor treatment" pattern. Mega-cracks and the Vessel of Kulemak are the headline beats for this storyline — there's no new crafting tree, no new currency, no new bosses beyond the three faction bosses + the pinnacle. If GGG ships more detail in patch notes (May 21st), this section will need expanding.</p>
+                </div>
+            </section>
+
+            <!-- IV. RITE OF THE NAMELESS -->
+            <section class="storyline lg-ritual" id="ritual">
+                <div class="storyline-header">
+                    <div>
+                        <h2>Ritual <span class="h2-sub">— Rite of the Nameless</span></h2>
+                        <div class="storyline-tagline">"Those with a name are unable to survive in the Bodach's prison."</div>
+                    </div>
+                    <span class="ordinal">Storyline IV · Ritual</span>
+                </div>
+                <div class="storyline-body">
+                    <h3>Hub: <span class="tag hub">The Wildwood</span> (West)</h3>
+                    <p>First endgame Ritual summons <span class="tag npc">Aoife</span>, a lost spirit. Few words, a lot of pointing — she leads you to the Wildwood. There, spirits take physical form. Aoife is bound by the <strong>King in the Mists</strong>; reclaim her body to free her, but you'll need an audience with the King.</p>
+
+                    <h3>Reworked Ritual mechanic</h3>
+                    <ul>
+                        <li>Each Ritual area still triggers — kill bound monsters, earn Tribute.</li>
+                        <li><strong>Stacking encounters</strong> — every Ritual you do in the area <em>adds the previous Ritual's monsters</em> on top. Encounters get progressively brutal.</li>
+                        <li><strong>Reward window now drops Uniques and Omens only</strong> — Ritual rewards just got significantly more valuable.</li>
+                    </ul>
+
+                    <h3>The Audience &amp; the Effigy</h3>
+                    <p>Sacrifice unspent Tribute to the King to fill the audience bar. With enough Tribute, return to the Wildwood and <em>divine his location</em> via the Nameless Shrine — kill him, take Aoife's body. That's when you learn the truth: the Wildwood is built on top of an ancient prison, and the King's powers come from the <strong>Bodach</strong>, an ancient being of darkness whose escape is imminent.</p>
+                    <p>To enter the prison you must surrender your name to the Effigy via the new <strong>Rite of the Nameless</strong> mechanic.</p>
+
+                    <h3>The Rite — A 5-map Ritual chain</h3>
+                    <ul>
+                        <li>The first Ritual culminates in a <strong>map-boss kill</strong>, granting you a piece of the Effigy.</li>
+                        <li>Atlas opens — pick an <em>adjacent map</em> to continue. Each adjacent map has different rewards (more Tribute / unique-currency conversion / specific item offers like <em>5 Chaos Orbs vs a Mageblood</em>).</li>
+                        <li>The next map's Rituals carry forward all monsters and bosses from the previous map. Final encounter requires defeating <em>both</em> map bosses.</li>
+                        <li>This continues for <strong>5 maps in total</strong>. The last fight stacks five map bosses simultaneously.</li>
+                    </ul>
+
+                    <h3>Pinnacle: <span class="tag pinnacle">The Bodach</span> (within the prison)</h3>
+                    <p>Complete the Rite, return to the Wildwood, transfer your name to the Effigy, don the Crown of the Nameless King, and enter the prison.</p>
+
+                    <h3>After the questline</h3>
+                    <p>Continue feeding Tribute on Atlas Rituals to gain repeat audiences. Each repeat lets you choose a new forest and start the Rite again — harder pinnacle, new uniques.</p>
+
+                    <h3>New Atlas-tree highlights</h3>
+                    <ul>
+                        <li>Extend Rite duration — fight 6 map bosses at once instead of 5.</li>
+                        <li>Maps during the Rite get <em>two reward mods</em> instead of one.</li>
+                        <li>Rituals can spawn inside <strong>Summoning Circles</strong>, adding random bosses.</li>
+                        <li>New encounter type: <strong>Audience with the Queen</strong> — the King's bride sometimes appears.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- II. HARE AND THE RAVEN -->
+            <section class="storyline lg-delirium" id="delirium">
+                <div class="storyline-header">
+                    <div>
+                        <h2>Delirium <span class="h2-sub">— The Hare and the Raven</span></h2>
+                        <div class="storyline-tagline">"Tangmazu delights in breaking the minds of those who step through his mirrors."</div>
+                    </div>
+                    <span class="ordinal">Storyline V · Delirium</span>
+                </div>
+                <div class="storyline-body">
+                    <h3>Hub: <span class="tag hub">The Withered Willow</span> (West)</h3>
+                    <p>First Delirium encounter in the endgame finds <span class="tag npc">Elder Maddox</span> trapped in a Tangmazu trance. Free him; he sends you west to the <strong>Withered Willow</strong>, where the Raven Trickster first gained his power. Every map on the way features Delirium encounters.</p>
+
+                    <h3>New Delirium mechanic — Depth bar</h3>
+                    <ul>
+                        <li>A <strong>depth bar</strong> at the bottom of the screen shows how deep into the delirium you are. The fog visually leans toward "deeper".</li>
+                        <li>Bar shows how long until the next Delirium ends, and previews the <em>special encounters</em> you'll hit.</li>
+                        <li>If you can reach the end of the bar, the <strong>map boss is always there</strong>.</li>
+                    </ul>
+
+                    <h3>Mirror Shard encounters</h3>
+                    <ul>
+                        <li><strong>Purple shard</strong> — shatter to make all enemies more nightmarish: bigger, scarier Delirium demons with more rewards.</li>
+                        <li><strong>Red shard</strong> — sent into the depths of your mind. Escape while fighting your worst fears. Rewards a powerful amulet with <em>two Instilled notables</em>.</li>
+                    </ul>
+
+                    <h3>Crafting — Liquid Emotions on Jewels</h3>
+                    <p>Liquid Emotions (the existing amulet-instil currency) now also <strong>add crafted mods to jewels</strong> — letting you force mods that are otherwise hard to roll.</p>
+                    <ul>
+                        <li>Liquid Despair → critical hit chance.</li>
+                        <li>Liquid Suffering → movement speed, area of effect.</li>
+                        <li>(Many more across the emotion set.)</li>
+                    </ul>
+
+                    <h3>Pinnacle: <span class="tag pinnacle">Tangmazu the Raven Trickster</span></h3>
+                    <p>Once you've done enough Delirium, the <strong>Grand Mirror</strong> appears. Tangmazu reflects the map boss into a ridiculous empowered fight and shatters his entrance. To find him you must consume the <em>strange fruit</em> he leaves behind — fully embrace the madness.</p>
+                    <ul>
+                        <li>The fruit fogs an entire region of the Atlas. Every map within gets harder as you push deeper.</li>
+                        <li>At a certain depth you enter a <strong>simulacrum</strong> of your own twisted memories.</li>
+                        <li>Complete the simulacrum and Tangmazu hands you the missing mirror shard — back to the Withered Willow to face him.</li>
+                    </ul>
+
+                    <h3>After the questline</h3>
+                    <p>Grand Mirrors start appearing on the Atlas after Delirium encounters. Each gives a key to re-fight Tangmazu — harder version, drops <em>uniques exclusive to the post-quest fight</em>. <strong>Where you spread the fog matters</strong>: some <em>potent emotions</em> only drop from specific map bosses afflicted by the fog, and these craft mods you cannot get any other way (e.g. <em>Potent Liquid Melancholy</em> from human bosses → on-hit effects).</p>
+
+                    <h3>New Atlas-tree highlights</h3>
+                    <ul>
+                        <li>Pause Delirium briefly so you can push deeper.</li>
+                        <li>Add new Mirror Shard variants.</li>
+                        <li>Simulacra drop special liquid emotions for crafting <em>time-lost jewels</em>.</li>
+                        <li>Grand Mirror spreads fog over a larger Atlas area — potentially multiple simulacra.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- VAAL TEMPLE -->
+            <section class="storyline lg-vaal" id="vaal-temple">
+                <div class="storyline-header">
+                    <div>
+                        <h2>Vaal Temple <span class="h2-sub">— Capstone corruption crafting</span></h2>
+                        <div class="storyline-tagline">"Build out a giant Vaal temple by chaining rooms — compounding difficulty, compounding rewards."</div>
+                    </div>
+                    <span class="ordinal">Endgame · Vaal</span>
+                </div>
+                <div class="storyline-body">
+                    <h3>Hub: <span class="tag hub">Vaal City</span> (North)</h3>
+                    <p>The northern pocket of the Atlas houses the ruins of a Vaal city. Within sits the Vaal Temple, the endgame zone for everything corruption-related. <em>This section is partially community-sourced and not detailed in the reveal video — expect patch notes (May 21st) to flesh this out.</em></p>
+
+                    <h3>Mechanic — Temple chaining</h3>
+                    <ul>
+                        <li>Build out a giant Vaal temple by <strong>chaining rooms together</strong>.</li>
+                        <li>Compounding difficulty and rewards as the layout expands — each room added makes the next harder and more valuable.</li>
+                        <li>Room-based reward specialisation — the choice of which room to chain next steers what kind of rewards the temple emphasises.</li>
+                    </ul>
+
+                    <h3>Crafting — Capstone corruption</h3>
+                    <ul>
+                        <li>Temple-style room progression + Vaal-focused crafting.</li>
+                        <li><strong>Capstone item crafting</strong> — corruption and double-corruption pathways for finishing endgame items.</li>
+                        <li><strong>Socket-related manipulation</strong> — socket extraction and rearrangement.</li>
+                        <li>Vaal-unique affix manipulation — modify the special affixes that only roll on Vaal uniques.</li>
+                    </ul>
+
+                    <h3>Items</h3>
+                    <ul>
+                        <li>Vaal uniques.</li>
+                        <li>Vaal-unique affix manipulation outcomes.</li>
+                        <li>Capstone-crafted gear (corruption and double-corruption results).</li>
+                        <li>Socket-related extraction/manipulation outcomes.</li>
+                    </ul>
+
+                    <div class="callout warn">
+                        <span class="callout-label">Source note</span>
+                        Vaal Temple is depicted as one of the seven endgame compass headings in the community Atlas infographic, but the Return of the Ancients reveal did <em>not</em> detail it as one of the named storyline overhauls. Treat the specifics as <strong>provisional</strong> until the May 21st patch notes drop.
+                    </div>
+                </div>
+            </section>
+
+            <!-- META · THE FORTRESS -->
+            <!-- I. ORIGINS OF DIVINITY -->
+            <section class="storyline lg-fortress" id="fortress">
+                <div class="storyline-header">
+                    <div>
+                        <h2>The Fortress <span class="h2-sub">— Origins of Divinity</span></h2>
+                        <div class="storyline-tagline">"The cataclysm of the beast invoked an ancient protocol — the world must be purged."</div>
+                    </div>
+                    <span class="ordinal">Meta · Atlas Tree</span>
+                </div>
+                <div class="storyline-body">
+                    <h3>The Fortress</h3>
+                    <p>The first time you visit a tower in the new Atlas, the earth shakes and a gigantic <span class="tag hub">Fortress</span> rises — a remnant of the precursor civilisation. The corruption from the cataclysm has triggered an <em>ancient protocol</em>: scour and purge the world.</p>
+                    <p>Your job is to enter the Fortress, activate its gates, gain the keys to its precursor weapons, and disarm them.</p>
+
+                    <h3>Inside the Fortress</h3>
+                    <p>The Fortress contains many sub-areas, each with unique mechanics or rewards:</p>
+                    <ul>
+                        <li>A map where every rare is sealed inside an <strong>essence crystal</strong>.</li>
+                        <li>A map where every monster pack is replaced with a <strong>strongbox</strong>.</li>
+                        <li>A map where rares always flee after one kill, letting you chase them across the entire layout.</li>
+                    </ul>
+                    <p>You must defeat the map boss of each Fortress map. Unlike normal maps, each Fortress map contains <em>precursor nodes</em> after the boss — each node grants a point on the new Atlas passive tree.</p>
+
+                    <h3>The Pinnacle <span class="tag pinnacle">New Top Boss</span></h3>
+                    <p>At the very centre of the Fortress sits the new top boss of Path of Exile 2 — the <strong>Arbiter of Ash is no longer the pinnacle</strong>. After the storyline you can re-fight all pinnacles in the standard "find keys, unlock fight" loop, but the Fortress version of each is harder and drops new uniques.</p>
+
+                    <div class="callout tip">
+                        <span class="callout-label">Skip-route option</span>
+                        Don't want to clear every Fortress room? Each pinnacle re-kill lets you <em>activate one section</em> of the Fortress, auto-completing any maps you skipped and granting the Atlas points. Race out into the infinite Atlas and collect later.
+                    </div>
+
+                    <h3>Quest hand-in: <span class="tag boss">Arbiter of Ash</span></h3>
+                    <p>One of the bigger structural changes — every endgame boss is now reachable through a questline. To fight Arbiter of Ash for the first time you no longer need lucky key drops; the keys are at fixed locations and the quest tells you where.</p>
+                </div>
+            </section>
+
+            <!-- MASTERS OF THE ATLAS -->
+            <section class="storyline lg-meta" id="masters-atlas">
+                <div class="storyline-header">
+                    <div>
+                        <h2>Masters of the Atlas</h2>
+                        <div class="storyline-tagline">"An ascendancy class for your Atlas tree."</div>
+                    </div>
+                    <span class="ordinal">Meta-progression</span>
+                </div>
+                <div class="storyline-body">
+                    <p>Multi-choice nodes on the new Atlas tree weren't enough for endgame build identity. Atlas Masters let you specialise further — train under them, complete missions, gain access to powerful trees of bonuses you can <strong>swap between maps</strong>.</p>
+
+                    <div class="card-grid">
+                        <div class="card">
+                            <h4>Jado</h4>
+                            <div class="role">Order of the Jinn · artifact recovery</div>
+                            <p>Sends you to investigate strange Atlas occurrences and recover artifacts.</p>
+                            <p><strong>Lvl 1 picks:</strong> massive rare/unique chest chance, all map bosses drop +1 unique, or corrupted waystones get an extra modifier (cost: sent to a totally unknown location).</p>
+                        </div>
+                        <div class="card">
+                            <h4>Hilda</h4>
+                            <div class="role">Monster Hunters Guild · assassinations</div>
+                            <p>Sends you to kill specific deadly creatures and harvest parts.</p>
+                            <p><strong>Sample picks:</strong> 25% chance to upgrade map bosses to powerful versions; Azmerian spirits skip rares and target unique bosses instead; pinnacles get one attempt only but always drop two uniques.</p>
+                        </div>
+                        <div class="card">
+                            <h4>(More Masters)</h4>
+                            <div class="role">Found across Wraeclast</div>
+                            <p>Throughout the world are other masters willing to train those who can help. Each unlocks a separate row of abilities and a new point with each completed mission.</p>
+                        </div>
+                    </div>
+
+                    <h3>The hot-swap UI</h3>
+                    <p>Each unlocked master appears on the side of the Atlas screen. Click whichever one you want active, run the map, all of <em>that master's</em> selected bonuses turn on. Multiple strategies, instant pick.</p>
+                </div>
+            </section>
+
+            <!-- ATLAS TREE -->
+            <section class="storyline lg-meta" id="atlas-tree">
+                <div class="storyline-header">
+                    <div>
+                        <h2>The New Atlas Tree</h2>
+                        <div class="storyline-tagline">"Yes — this whole tree can be yours."</div>
+                    </div>
+                    <span class="ordinal">System</span>
+                </div>
+                <div class="storyline-body">
+                    <h3>Full allocation</h3>
+                    <p>You earn points from every Fortress map and every storyline questline. Unlike before, you can eventually <strong>allocate the entire tree</strong>. This unlocks design space that wasn't possible when nodes had to be respec'd in/out per map type.</p>
+                    <ul>
+                        <li>Example: a node giving cities a chance to be invaded by another faction, with two faction leaders → two Crisis Fragments. Useless on non-city maps in the old tree (would need to spec out), now just a passive bonus.</li>
+                        <li>Example: a node where rogue exiles flee to an adjacent map after being engaged, then return with upgraded gear and a grudge.</li>
+                        <li>Example: Azmeri spirits possess strongboxes — regular monsters out of the box are touched, all rares possessed, huge loot potential.</li>
+                    </ul>
+
+                    <h3>MultiChoice nodes</h3>
+                    <p>Build identity is preserved through <strong>MultiChoice</strong> nodes. Everyone gets the node; you pick which bonus is active. Examples:</p>
+                    <ul>
+                        <li>Boss maps contain extra essences <em>or</em> summoning circles <em>or</em> rogue exiles.</li>
+                        <li>Shrines instead given to the map boss (harder fight, special loot) <em>or</em> shrine buff before entering boss arenas (easier fight).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ATLAS LAYOUT -->
+            <section class="storyline lg-meta" id="atlas-changes">
+                <div class="storyline-header">
+                    <div>
+                        <h2>Atlas Layout &amp; Map Mechanics</h2>
+                        <div class="storyline-tagline">"Fixed points of interest. Obvious goals. No more random wandering."</div>
+                    </div>
+                    <span class="ordinal">System</span>
+                </div>
+                <div class="storyline-body">
+                    <h3>Fixed points of interest</h3>
+                    <ul>
+                        <li><strong>West</strong> — the strange forest (Wildwood / Ritual).</li>
+                        <li><strong>East</strong> — cracks in the earth (Abyss).</li>
+                        <li><strong>North</strong> — ruins of a Vaal city. The Fortress also rises here.</li>
+                        <li><strong>South</strong> — Kingsmarch coastline + Ocean Expedition.</li>
+                    </ul>
+
+                    <h3>League content has homes too</h3>
+                    <p>This applies even to the leagues that didn't get full overhauls. Example: <strong>Abyss</strong> — first endgame encounter gives you a quest east, where mega abyss cracks lead away from the Well of Souls. Map along the cracks, close Atlas-scale abysses for tree points, fight the Abyssal faction bosses, and after all three you get a key for the <strong>Vessel of Kulemak</strong> (Well of Souls pinnacle).</p>
+
+                    <h3>Wilderness map mechanics</h3>
+                    <p>Maps in the wilderness can spawn with new mechanics — examples:</p>
+                    <ul>
+                        <li><strong>Rogue exile hunting ground</strong> — multiple rogue exiles hunting rare beasts; walk in mid-fight and clean up both sides.</li>
+                        <li><strong>Champions map</strong> — all natural inhabitants become magic monsters.</li>
+                        <li><strong>Shrines release Azmeri spirits</strong> when used.</li>
+                    </ul>
+
+                    <h3>Endgame quest pop-out</h3>
+                    <p>Each endgame questline has a progress bar you can pop out from the side of the Atlas screen at any time, showing your current depth into each storyline plus quick-jump buttons to each hub.</p>
+                </div>
+            </section>
+
+            <!-- BOSSES SUMMARY -->
+            <section class="storyline lg-meta" id="bosses">
+                <div class="storyline-header">
+                    <div>
+                        <h2>Pinnacle Bosses (quick reference)</h2>
+                        <div class="storyline-tagline">"All endgame bosses are now quest-accessible — no more lucky-key gating."</div>
+                    </div>
+                    <span class="ordinal">Reference</span>
+                </div>
+                <div class="storyline-body">
+                    <div class="card-grid">
+                        <div class="card">
+                            <h4>The Pinnacle (Fortress core)</h4>
+                            <div class="role">New top boss · unspoiled</div>
+                            <p>Centre of the Fortress, post-Origins of Divinity questline.</p>
+                        </div>
+                        <div class="card">
+                            <h4>Tangmazu the Raven Trickster</h4>
+                            <div class="role">Delirium pinnacle</div>
+                            <p>Withered Willow, post fruit-trip + simulacrum.</p>
+                        </div>
+                        <div class="card">
+                            <h4>Tul &amp; Esh</h4>
+                            <div class="role">Breach lords</div>
+                            <p>Inside the central Sky Hive, post Hive Blood / Genesis Tree path.</p>
+                        </div>
+                        <div class="card">
+                            <h4>Xesht</h4>
+                            <div class="role">Existing breach pinnacle</div>
+                            <p>Re-fight via Dreamer commune at the monastery, post-Tul &amp; Esh.</p>
+                        </div>
+                        <div class="card">
+                            <h4>The Bodach</h4>
+                            <div class="role">Ritual pinnacle (within prison)</div>
+                            <p>End of the 5-map Rite of the Nameless chain.</p>
+                        </div>
+                        <div class="card">
+                            <h4>The Eldritch Meristem-bound</h4>
+                            <div class="role">Expedition pinnacle</div>
+                            <p>Inside the giant ocean meteor, post Olroth + Triskelion Flame.</p>
+                        </div>
+                        <div class="card">
+                            <h4>Vessel of Kulemak</h4>
+                            <div class="role">Abyss pinnacle (Well of Souls)</div>
+                            <p>Reachable via three Atlas Abyss faction bosses.</p>
+                        </div>
+                        <div class="card">
+                            <h4>Arbiter of Ash</h4>
+                            <div class="role">No longer top — first quest boss</div>
+                            <p>Now reachable via questline at fixed key locations. Demoted from pinnacle to mid-tier.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RUNIC WARD + ALDUR LEAGUE TIE-INS -->
+            <section class="storyline lg-meta" id="runic-ward">
+                <div class="storyline-header">
+                    <div>
+                        <h2>Runic Ward &amp; Kalguuran Skills</h2>
+                        <div class="storyline-tagline">"An extra life pool — and a whole new skill economy that bypasses gem colour and weapon class."</div>
+                    </div>
+                    <span class="ordinal">System · League tie-in</span>
+                </div>
+                <div class="storyline-body">
+                    <h3>Runic Ward (defensive)</h3>
+                    <ul>
+                        <li>Granted by <strong>rune-forging</strong> any armor (campaign Act 4 reward; Farrow + Dannig at Kingsmarch).</li>
+                        <li>Acts as an extra life pool — kicks in when life runs out, dies if depleted.</li>
+                        <li>Every armour piece in the game is forge-eligible, including uniques — some are strict upgrades, some sacrifice defenses for much larger ward, some add entirely new modifiers to uniques.</li>
+                    </ul>
+
+                    <h3>Runic Ward (offensive)</h3>
+                    <p>Ward also fuels new <strong>Kalguuran skills</strong> via Runes of Power — unlocked through remnant crafting in the campaign.</p>
+                    <ul>
+                        <li><em>Triskelion Cascade</em> — your next spell triggers multiple times in a triskelion pattern. Works with Ice Nova, Comet, anything castable.</li>
+                        <li><em>Frostflame Nova</em> — converts ignites into Frostfire, simultaneously burning + building freeze.</li>
+                        <li><em>Hollow Shell</em> — buffs all nearby allies.</li>
+                        <li><em>Mark of Repulsion</em> — pushes nearby enemies away.</li>
+                    </ul>
+                    <p>These skills <strong>spend Runic Ward instead of mana</strong>, have no colour requirement, no attribute requirement, and don't care about your weapon. Designed to interact with mechanics that span all classes.</p>
+
+                    <h3>Runic supports</h3>
+                    <ul>
+                        <li><em>Concussive Runes</em> — adds shockwaves to any stunning skill.</li>
+                        <li><em>Runic Infusion</em> — spend ward to directly empower any skill's damage.</li>
+                    </ul>
+
+                    <h3>Crafting overlap into endgame</h3>
+                    <ul>
+                        <li>100+ new runes, dozens of new currency items (alloys, meta-runes).</li>
+                        <li><em>Elemental conversion rune</em> — converts existing weapon mods from one element to another (combine all three element mods → mono-element with massive damage).</li>
+                        <li><em>Rune of Chronomancy</em> (boots) — unlocks time-related mods like cooldown speed and skill effect duration.</li>
+                        <li><em>Imbued alloy</em> — directly craft mods like ailment damage onto items.</li>
+                        <li><strong>Rune-forge unique weapons</strong> at Kingsmarch (post-Mystic Refuge in Act 3) — many low-level uniques become endgame viable. Every Kalguuran unique is forge-eligible. <em>Serle's Grit</em> example: rune-forge for one of several different outcomes.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- QOL -->
+            <section class="storyline lg-meta" id="qol">
+                <div class="storyline-header">
+                    <div>
+                        <h2>QoL &amp; New Tools</h2>
+                        <div class="storyline-tagline">"All the small things."</div>
+                    </div>
+                    <span class="ordinal">System</span>
+                </div>
+                <div class="storyline-body">
+                    <h3>Atlas search box</h3>
+                    <p>Live-updates as you type. Enter cycles between matches when multiple maps share the name.</p>
+
+                    <h3>In-client build guide system</h3>
+                    <p>Community creators can now publish a standardised <strong>.build file</strong>. Once downloaded, builds appear in the in-game client. Selecting one shows passives to allocate, ascendancy points, gems and supports to take, uniques per slot or slot-notes for what kind of item to find. Creators can attach contextual notes anywhere and provide level-range recommendations so the build evolves as you level.</p>
+
+                    <h3>Trade price-check</h3>
+                    <p><strong>Ctrl+Alt</strong> click an item now searches it on the trade market. Toggle individual mods on/off to see how each one affects the price.</p>
+
+                    <h3>Fragment Stash Tab</h3>
+                    <p>Finally arrives in PoE2 — and with tab-ception. Inside one tab:</p>
+                    <ul>
+                        <li>Boss key fragments tab.</li>
+                        <li>Precursor tablets — six tabs of storage per type.</li>
+                        <li>Djinn Baryas + Inscribed Ultimatums — six tabs each.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- CHALLENGES -->
+            <section class="storyline lg-meta" id="challenges">
+                <div class="storyline-header">
+                    <div>
+                        <h2>Challenge League</h2>
+                        <div class="storyline-tagline">"Where are all the challenges? Time to change that."</div>
+                    </div>
+                    <span class="ordinal">First time in PoE2</span>
+                </div>
+                <div class="storyline-body">
+                    <p>The first proper challenge set in Path of Exile 2.</p>
+                    <ul>
+                        <li><strong>8 challenges</strong> total.</li>
+                        <li>Visible in chat / forums when completed.</li>
+                        <li>Hideout statue tracks completed count for anyone you trade with.</li>
+                        <li>Reward armor: <strong>Knight of Aldur</strong> set.
+                            <ul>
+                                <li>First piece — 2 challenges complete.</li>
+                                <li>Full set — all 8 complete.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- CLOSING -->
+            <section class="storyline lg-meta" id="closing">
+                <div class="storyline-header">
+                    <div>
+                        <h2>Roadmap Note · 1.0 Year</h2>
+                        <div class="storyline-tagline">"This is the last full-sized league during Early Access."</div>
+                    </div>
+                    <span class="ordinal">Context</span>
+                </div>
+                <div class="storyline-body">
+                    <p>Per the reveal: 0.5.0 is the last big content drop before <strong>1.0</strong>. Patch 1.0 is bigger still, planned for sometime after <strong>ExileCon (weekend of November 7th, NZ)</strong>, where Acts 5 and 6 are slated for unveiling. Between now and then GGG plans polish + balance + smaller event-league remixes rather than further large content.</p>
+
+                    <p><strong>Patch 0.5.0 ships May 29th, 2026.</strong> Patch notes May 21st.</p>
+                </div>
+            </section>
+
+            <div class="footer-nav">
+                <a href="poe2_interludes_guide.html">← Interludes</a>
+                <a href="index.html">Index</a>
+                <a href="poe2_act1_guide.html">Acts 1–4 →</a>
+            </div>
+            <footer style="text-align:center; padding: 24px 16px; margin-top: 16px; font-size: 12px; color: var(--steel, #94a3b8); border-top: 1px solid var(--border, rgba(148,163,184,0.15));">
+                Made for the PoE2 community · AI-assisted, community-verified ·
+                <a href="https://github.com/domistae/poe2-leveling/issues/new" style="color: var(--gold, #c89860); text-decoration: none;">Suggestions</a> ·
+                <a href="https://github.com/domistae/poe2-leveling" style="color: var(--gold, #c89860); text-decoration: none;">GitHub</a><br>
+                <span style="font-size: 11px; opacity: 0.7;">Path of Exile 2 is © Grinding Gear Games. Unofficial fan-made content.</span>
+            </footer>
+        </main>
+    </div>
+    <script>
+        // Initialize button state from current theme
+        (function() {
+            var cur = document.documentElement.getAttribute('data-theme') || 'light';
+            var ic = document.getElementById('theme-icon');
+            var lb = document.getElementById('theme-label');
+            if (ic) ic.textContent = cur === 'light' ? '☀' : '☾';
+            if (lb) lb.textContent = cur === 'light' ? 'Light' : 'Dark';
+        })();
+        function toggleTheme() {
+            var html = document.documentElement;
+            var cur = html.getAttribute('data-theme') || 'light';
+            var next = cur === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', next);
+            try { localStorage.setItem('poe2-theme', next); } catch (e) {}
+            document.getElementById('theme-icon').textContent = next === 'light' ? '☀' : '☾';
+            document.getElementById('theme-label').textContent = next === 'light' ? 'Light' : 'Dark';
+        }
+    </script>
+</body>
+</html>
