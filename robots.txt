@@ -1,21 +1,17 @@
-# Allow search engines (Google, Bing, DuckDuckGo, etc.)
+# Allow search engines (Google, Bing, DuckDuckGo, etc.) and AI search fetchers
+# AI search fetchers like ChatGPT-User, Claude-Web, OAI-SearchBot, and PerplexityBot
+# fetch this site only when an end user asks a question — they typically cite sources.
+# These are NOT explicitly disallowed below, so they fall back to "User-agent: *" and are allowed.
 User-agent: *
 Allow: /
 
-# Block AI training crawlers
+# --- Block AI training crawlers ---
+# These bots scrape content to train future AI models without attribution or traffic in return.
+
 User-agent: GPTBot
 Disallow: /
 
-User-agent: ChatGPT-User
-Disallow: /
-
-User-agent: OAI-SearchBot
-Disallow: /
-
 User-agent: ClaudeBot
-Disallow: /
-
-User-agent: Claude-Web
 Disallow: /
 
 User-agent: anthropic-ai
@@ -27,22 +23,19 @@ Disallow: /
 User-agent: Google-Extended
 Disallow: /
 
-User-agent: PerplexityBot
+User-agent: Applebot-Extended
 Disallow: /
 
 User-agent: Bytespider
 Disallow: /
 
-User-agent: FacebookBot
-Disallow: /
-
 User-agent: Meta-ExternalAgent
 Disallow: /
 
-User-agent: cohere-ai
+User-agent: FacebookBot
 Disallow: /
 
-User-agent: Applebot-Extended
+User-agent: cohere-ai
 Disallow: /
 
 User-agent: Diffbot
@@ -53,5 +46,12 @@ Disallow: /
 
 User-agent: ImagesiftBot
 Disallow: /
+
+# --- Explicitly allowed (for clarity; not strictly required) ---
+# These AI search fetchers are user-triggered and typically cite sources:
+#   ChatGPT-User    — fetches when a ChatGPT user asks a question
+#   Claude-Web      — fetches when a Claude user asks a question
+#   OAI-SearchBot   — powers ChatGPT Search
+#   PerplexityBot   — powers Perplexity answers
 
 Sitemap: https://domistae.github.io/poe2-leveling/sitemap.xml
