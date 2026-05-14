@@ -296,17 +296,37 @@ body::before {
 .progress-text { font-size: 10.5px; color: var(--text-muted); text-align: right; font-family: 'IBM Plex Mono', monospace; }
 
 /* Sidebar buttons */
-.reset-btn, .export-btn, .import-btn {
-    width: 100%; background: var(--bg-elevated); border: 1px solid var(--border-subtle);
-    color: var(--text-muted); padding: 0.45rem; border-radius: 3px; cursor: pointer;
-    font-size: 11px; transition: all 0.15s; margin-top: 0.4rem;
-    font-family: 'Inter', sans-serif; letter-spacing: 0.3px;
+.btn {
+    width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-base) 100%);
+    border: 1px solid var(--border-subtle); border-top-color: rgba(255, 255, 255, 0.06);
+    color: var(--text-body); padding: 0.55rem 0.7rem; border-radius: 4px; cursor: pointer;
+    font-size: 11px; font-weight: 600; line-height: 1; margin-top: 0.45rem;
+    font-family: 'Cinzel', serif; letter-spacing: 1.2px; text-transform: uppercase;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 1px 2px rgba(0, 0, 0, 0.18);
+    transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+    position: relative; overflow: hidden;
 }
-.reset-btn:hover { background: var(--overlay-gold-soft); color: var(--text-primary); border-color: var(--gold); }
-.export-btn { color: var(--sage); }
-.export-btn:hover { background: var(--overlay-sage); border-color: var(--sage); }
-.import-btn { color: var(--steel); }
-.import-btn:hover { background: var(--overlay-steel); border-color: var(--steel); }
+.btn::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 45%);
+    pointer-events: none;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 10px rgba(0, 0, 0, 0.25); }
+.btn:active { transform: translateY(0); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3); }
+.btn:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
+
+/* Reset = warning tone */
+.btn { color: var(--burnt); border-color: rgba(200, 112, 96, 0.35); }
+.btn:hover { background: linear-gradient(180deg, var(--overlay-burnt) 0%, var(--bg-elevated) 100%); border-color: var(--burnt); color: var(--burnt); }
+
+/* Export = sage */
+.btn.export { color: var(--sage); border-color: rgba(155, 184, 122, 0.35); }
+.btn.export:hover { background: linear-gradient(180deg, var(--overlay-sage) 0%, var(--bg-elevated) 100%); border-color: var(--sage); color: var(--sage); }
+
+/* Import = steel */
+.btn.import { color: var(--steel); border-color: rgba(126, 158, 184, 0.35); }
+.btn.import:hover { background: linear-gradient(180deg, var(--overlay-steel) 0%, var(--bg-elevated) 100%); border-color: var(--steel); color: var(--steel); }
 .import-dialog { margin-top: 0.5rem; }
 .import-dialog textarea {
     width: 100%; height: 60px; background: var(--bg-base); border: 1px solid var(--border-subtle);
@@ -411,6 +431,17 @@ body::before {
 }
 .info-box .icon { color: var(--gold); font-size: 10px; line-height: 1.5; }
 .info-box strong { color: var(--text-primary); font-weight: 600; }
+/* Tip list — hanging indent for long wrapping bullets (overrides .info-box li flex) */
+.info-box ul.tip-list { list-style: none; padding: 0; margin: 0; }
+.info-box ul.tip-list li {
+    display: block; padding: 0.4rem 0 0.4rem 1.35rem; text-indent: -1.35rem;
+    font-size: 12px; line-height: 1.55; color: var(--text-body); gap: 0;
+}
+.info-box ul.tip-list li + li { border-top: 1px dashed var(--border-subtle); }
+.info-box ul.tip-list li .icon {
+    display: inline-block; width: 0.9rem; margin-right: 0.45rem; text-indent: 0;
+    font-size: 11px; line-height: inherit; vertical-align: baseline;
+}
 
 /* Zone header */
 .zone-header {
@@ -1013,18 +1044,29 @@ body::before {
                 <a href="poe2_act2_guide.html" class="sidebar-link">← Act II</a>
                 <a href="poe2_act3_guide.html" class="sidebar-link">← Act III</a>
                 <a href="poe2_act4_guide.html" class="sidebar-link">← Act IV</a>
+                <a href="poe2_endgame_guide.html" class="sidebar-link perm">★ Endgame Guide</a>
             </div>
         </aside>
 
         <main class="main">
             <header class="header">
                 <h1>Interludes — Permanent Rewards</h1>
-                <span class="patch">Patch 0.5 · Lvl 52–58 · All classes · Endgame unlock</span>
+                <span class="patch">Pre-patch 0.5 · Lvl 52–58 · All classes · Endgame unlock (0.4 live)</span>
             </header>
             <div class="endgame-banner">
-                <span class="label">Patch 0.5 · Return of the Ancients</span>
+                <span class="label">Pre-patch 0.5 · Return of the Ancients</span>
                 Ships <strong>May 29, 2026</strong>. Seven endgame headings (Breach · Expedition · Abyss · Ritual · Delirium · Vaal Temple · Fortress) + Masters of the Atlas —
                 <a href="poe2_endgame_guide.html">read the endgame guide →</a>
+            </div>
+
+            <!-- SPEEDRUN TIPS — Community -->
+            <div class="info-box" style="border-left: 3px solid var(--steel); margin-bottom: 1.5rem;">
+                <h3 style="color: var(--steel);">⚡ Tips before Maps</h3>
+                <ul class="tip-list">
+                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Don't over-craft in Interludes.</strong> The next gear bracket is Tier 1 maps — save exalts for endgame.</li>
+                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Confirm Ascendancy is finalized</strong> before the +2 SP completion turn-in — leveling Ascendancies (Smith of Kitava, Demon Form, Sorcery Ward) can be re-specced into specialized endgame Ascendancies later.</li>
+                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>0.5 reminder:</strong> Arbiter of Ash is no longer the top of the mountain — see endgame guide for the six new storylines + The Fortress.</li>
+                </ul>
             </div>
 
 
@@ -1153,7 +1195,8 @@ body::before {
             const allData = {};
             ALL_STORAGE_KEYS.forEach(key => {
                 const saved = localStorage.getItem(key);
-                if (saved) allData[key] = JSON.parse(saved);
+                if (!saved) return;
+                try { allData[key] = JSON.parse(saved); } catch (e) { /* skip corrupted entry */ }
             });
             if (Object.keys(allData).length === 0) {
                 showToast('No progress to export!', true);
@@ -1215,10 +1258,14 @@ body::before {
         function loadProgress() {
             const saved = localStorage.getItem(STORAGE_KEY);
             if (saved) {
-                JSON.parse(saved).forEach(step => {
-                    const el = document.querySelector(`[data-step="${step}"]`);
-                    if (el) el.classList.add('completed');
-                });
+                let steps = [];
+                try { steps = JSON.parse(saved); } catch (e) { steps = []; }
+                if (Array.isArray(steps)) {
+                    steps.forEach(step => {
+                        const el = document.querySelector(`[data-step="${step}"]`);
+                        if (el) el.classList.add('completed');
+                    });
+                }
             }
             updateProgressBar();
         }

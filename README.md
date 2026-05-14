@@ -3,7 +3,7 @@
 Complete Path of Exile 2 campaign walkthrough with all permanent rewards, skill points, and optimal pathing for Acts 1–4, the Interludes (Acts 5.1–5.3), and Endgame.
 
 **Live site:** [domistae.github.io/poe2-leveling](https://domistae.github.io/poe2-leveling/)
-**Target patch:** PoE2 patch 0.5 (Return of the Ancients)
+**Target patch:** PoE2 patch 0.5 (Return of the Ancients) — currently pre-patch, 0.4 is live. Updates will follow on/after 29 May 2026.
 
 ## Features
 

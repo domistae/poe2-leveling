@@ -1,0 +1,73 @@
+# =============================================================================
+# poe2-leveling — .gitignore
+#
+# Goal: keep the repo clean for multi-person collaboration. Track only the
+# site source (HTML, README, assets). Ignore OS junk, editor preferences,
+# local-only tooling, secrets, and scratch work.
+# =============================================================================
+
+# --- OS junk -----------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# --- Editor / IDE preferences (each contributor keeps their own) -------------
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+.project
+.settings/
+.sublime-project
+.sublime-workspace
+nbproject/
+
+# --- Local working / scratch files -------------------------------------------
+tmp/
+temp/
+scratch/
+*.log
+*.bak
+*.orig
+*.rej
+
+# --- Environment & secrets ---------------------------------------------------
+.env
+.env.*
+!.env.example
+*.secret
+*.key
+*.pem
+
+# --- Node / build tooling (in case a build step is added later) --------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log
+dist/
+build/
+.cache/
+.parcel-cache/
+
+# --- Test / coverage output --------------------------------------------------
+coverage/
+*.lcov
+.nyc_output/
+
+# --- AI assistant local state ------------------------------------------------
+# Each contributor's per-session/cache files. Project-level prompts that you
+# want to share (e.g. a CLAUDE.md) should live at the repo root, not under
+# .claude/, so they remain tracked.
+.claude/
+.cursor/
+.aider*
+.continue/

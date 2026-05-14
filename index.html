@@ -986,8 +986,31 @@ body::before {
         <header class="header">
             <h1>POE2 Leveling Codex</h1>
             <div class="subtitle">Acts I–IV · Interludes · All Classes</div>
-            <div class="version">v0.5 · Return of the Ancients · Optimal Routing</div>
+            <div class="version">Pre-v0.5 · 0.4 live, awaiting Return of the Ancients</div>
         </header>
+
+        <!-- ╔══ PRE-PATCH 0.5 DISCLAIMER ══════════════════════════════════════ ╗ -->
+        <div class="endgame-banner" style="border-left-color: var(--burnt); background: linear-gradient(90deg, var(--overlay-burnt) 0%, var(--bg-elevated) 100%); margin-bottom: 0.75rem;">
+            <span class="label" style="color: var(--burnt);">⚠ Pre-patch 0.5 · Read me</span>
+            Everything on this site is currently based on the <strong>live 0.4 build</strong>.
+            Patch 0.5 (<em>Return of the Ancients</em>) ships <strong>29 May 2026</strong>;
+            patch notes drop <strong>21 May 2026</strong>. I will update each guide as fast as I can
+            once 0.5 is live and the changes are confirmed.
+        </div>
+        <div class="endgame-banner" style="border-left-color: var(--steel); background: linear-gradient(90deg, var(--overlay-steel) 0%, var(--bg-elevated) 100%); margin-bottom: 1.5rem;">
+            <span class="label" style="color: var(--steel);">★ How leveling changes in 0.5</span>
+            From 0.5 onward, navigation leans heavily on <strong>visual cues in the world</strong>
+            (glowing roots, signposts, locust trails, parchment markers) rather than zone
+            memorization. A summary of the previewed changes is in the next section — I'll fold
+            them into each act guide once the patch is live and verified.
+            <br><br>
+            <small style="opacity: 0.85;">
+                AI-assisted, community-verified ·
+                Found something wrong?
+                <a href="https://github.com/domistae/poe2-leveling/issues/new">open an issue</a>.
+            </small>
+        </div>
+        <!-- ╚═══════════════════════════════════════════════════════════════════ ╝ -->
 
         <div class="quest-log-title">Campaign Progress</div>
 
@@ -1074,7 +1097,7 @@ body::before {
                 <a href="poe2_endgame_guide.html" class="act-link">
                     <div class="act-header">
                         <span class="act-name">★ Endgame — Return of the Ancients</span>
-                        <span class="act-meta">Patch 0.5 · 7 Compass Headings</span>
+                        <span class="act-meta">Pre-patch 0.5 · 7 Compass Headings</span>
                     </div>
                     <div class="act-rewards">
                         <span class="reward new">Breach</span>
@@ -1091,12 +1114,93 @@ body::before {
 
         </div>
 
+        <!-- ╔══ 0.5 STREAMLINING PREVIEW ══════════════════════════════════════ ╗ -->
+        <div class="quest-log-title" style="margin-top: 2.5rem;">0.5 — Streamlining Preview</div>
+        <p style="font-size: 12.5px; color: var(--text-body); margin: 0 0 1rem; line-height: 1.55; max-width: 72ch;">
+            GGG previewed these campaign changes for <em>Return of the Ancients</em>
+            (Mark Roberts, May 2026). Most are <strong>navigational visual cues</strong> rather than
+            layout overhauls — the campaign reads easier at a glance, not shorter. Per a GGG level
+            designer (Sunna), <strong>don't study layouts</strong> in the leadup to 0.5; too much is
+            being reworked.
+        </p>
+
+        <div class="preview-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.85rem; margin-bottom: 1rem;">
+
+            <!-- Act I card -->
+            <article style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--gold); border-radius: 4px; padding: 0.95rem 1.05rem; box-shadow: var(--shadow-sm);">
+                <header style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.85rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--border-subtle);">
+                    <h3 style="font-family: 'Cinzel', serif; color: var(--gold); font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 0; font-weight: 600;">Act I — Clearfell</h3>
+                    <span style="font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">Lvl 1–14</span>
+                </header>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <li>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Glowing Roots</div>
+                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">In <strong>Grelwood</strong>, glowing roots lead to the <strong>Tree of Souls</strong>; follow the river upstream to reach <strong>Red Vale</strong>; mushrooms mark the <strong>Grim Tangle</strong>.</div>
+                    </li>
+                    <li>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Signposts &amp; Bovines</div>
+                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">A signpost in <strong>Hunting Grounds</strong> points to <strong>Ogham Farmlands</strong>; a "farm-to-table" trail of pecked bovines leads to <strong>Crowbell</strong>.</div>
+                    </li>
+                    <li>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Locust Trail</div>
+                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">Finishing a ritual spawns locusts pointing to <strong>Freythorn</strong>; ritual chains route to the next-closest one. (Endgame rituals too.)</div>
+                    </li>
+                </ul>
+            </article>
+
+            <!-- Act II card -->
+            <article style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--burnt); border-radius: 4px; padding: 0.95rem 1.05rem; box-shadow: var(--shadow-sm);">
+                <header style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.85rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--border-subtle);">
+                    <h3 style="font-family: 'Cinzel', serif; color: var(--burnt); font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 0; font-weight: 600;">Act II — Vastiri</h3>
+                    <span style="font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">Lvl 14–29</span>
+                </header>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <li>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--burnt); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Maraketh Parchment</div>
+                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;"><strong>Traitor's Passage</strong> gains a guaranteed intersection. Follow the parchment (used to bind djinns) to find <strong>Balbala</strong> — the other path is the exit.</div>
+                    </li>
+                    <li>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--burnt); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Titan Heads</div>
+                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;"><strong>Valley of Titans</strong> now shows the giant heads from the start; each leads to a linear canyon with end-seal and a portal back.</div>
+                    </li>
+                </ul>
+            </article>
+
+            <!-- Act III card -->
+            <article style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--sage); border-radius: 4px; padding: 0.95rem 1.05rem; box-shadow: var(--shadow-sm);">
+                <header style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.85rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--border-subtle);">
+                    <h3 style="font-family: 'Cinzel', serif; color: var(--sage); font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 0; font-weight: 600;">Act III — Jungle</h3>
+                    <span style="font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">Lvl 30–42</span>
+                </header>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <li>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--sage); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Explorer Camps</div>
+                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">Talk to jungle explorers — they point toward the next area and the destination appears on the mini-map.</div>
+                    </li>
+                    <li>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--sage); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Waterways Relocated</div>
+                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">Entrance moved from <strong>Infested Barrens</strong> to <strong>Jungle Ruins</strong>; <strong>Azak Bog</strong> now lives inside the Waterways.</div>
+                    </li>
+                    <li>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--sage); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Crypts Escape</div>
+                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">New alternate route out of <strong>Venom Crypts</strong> back through the Jungle.</div>
+                    </li>
+                </ul>
+            </article>
+
+        </div>
+
+        <p style="font-size: 11px; color: var(--text-muted); margin: 0 0 2rem; font-style: italic; letter-spacing: 0.2px;">
+            GGG note this is "just a few examples" — expect more streamlining throughout the game in 0.5 and continuing patches.
+        </p>
+        <!-- ╚═══════════════════════════════════════════════════════════════════ ╝ -->
+
         <div class="features">
             <div class="features-title">Codex Features</div>
             <div class="features-list">
                 <span class="feature">Progress saves to browser</span>
                 <span class="feature">All waypoints marked</span>
-                <span class="feature">Patch 0.5 ready</span>
+                <span class="feature">Pre-patch 0.5 (0.4 live)</span>
                 <span class="feature">Mobile friendly</span>
                 <span class="feature">All classes</span>
                 <span class="feature">Recommended zone levels</span>
