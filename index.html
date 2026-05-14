@@ -555,6 +555,29 @@ body::before {
 .footer-nav a:hover { color: var(--gold-deep); }
 [data-theme="dark"] .footer-nav a:hover { color: var(--gold-bright); }
 
+/* Site footer (credits + GitHub links) */
+.site-footer {
+    text-align: center; padding: 1.75rem 1rem 1.25rem; margin-top: 2rem;
+    border-top: 1px solid var(--border-subtle); color: var(--text-muted);
+    font-size: 11.5px; line-height: 1.55;
+    display: flex; flex-direction: column; align-items: center; gap: 0.65rem;
+}
+.site-footer-tag { color: var(--text-muted); }
+.site-footer-links { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+.site-footer-link {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    color: var(--gold); text-decoration: none;
+    padding: 0.32rem 0.85rem; font-size: 10.5px; font-weight: 600;
+    font-family: 'Cinzel', serif; letter-spacing: 1px; text-transform: uppercase;
+    border: 1px solid var(--border-subtle); border-radius: 999px;
+    transition: color 0.15s, border-color 0.15s, background 0.15s, transform 0.15s;
+}
+.site-footer-link:hover {
+    color: var(--gold-bright); border-color: var(--gold);
+    background: var(--overlay-gold-soft); transform: translateY(-1px);
+}
+.site-footer-disclaimer { font-size: 10.5px; color: var(--text-dim); opacity: 0.85; max-width: 480px; }
+
 /* ─── ENDGAME STORYLINE BLOCKS ─────────────────────────────── */
 .storyline {
     background: var(--bg-surface);
@@ -1207,11 +1230,13 @@ body::before {
             </div>
         </div>
 
-        <footer class="footer">
-            Made for the PoE2 community · AI-assisted, community-verified ·
-            <a href="https://github.com/domistae/poe2-leveling/issues/new">Suggestions</a> ·
-            <a href="https://github.com/domistae/poe2-leveling">GitHub</a><br>
-            <small>Path of Exile 2 is © Grinding Gear Games. Unofficial fan-made content.</small>
+        <footer class="site-footer">
+            <div class="site-footer-tag">Made for the PoE2 community · AI-assisted, community-verified</div>
+            <div class="site-footer-links">
+                <a href="https://github.com/domistae/poe2-leveling/issues/new" class="site-footer-link">Suggestions</a>
+                <a href="https://github.com/domistae/poe2-leveling" class="site-footer-link">GitHub</a>
+            </div>
+            <div class="site-footer-disclaimer">Path of Exile 2 is © Grinding Gear Games. Unofficial fan-made content.</div>
         </footer>
     </div>
     <script>

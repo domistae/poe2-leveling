@@ -277,6 +277,31 @@ body::before {
 .sidebar-link.boss  { color: var(--burnt); }
 .sidebar-link.system{ color: var(--steel); }
 
+/* Zones dropdown (collapses on mobile, always open on desktop) */
+.zones-details { margin-bottom: 1.25rem; }
+.zones-details > summary.zones-summary {
+    cursor: pointer; list-style: none;
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+    margin-bottom: 0.75rem; padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-subtle); font-weight: 600;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.zones-details > summary.zones-summary::-webkit-details-marker { display: none; }
+.zones-details > summary.zones-summary::after {
+    content: "▸"; font-size: 9px; opacity: 0.6; margin-left: 0.5rem;
+}
+.zones-details[open] > summary.zones-summary::after { content: "▾"; }
+@media (min-width: 901px) {
+    /* Modern browsers: force content visible regardless of [open] state */
+    details.zones-details::details-content { content-visibility: visible !important; }
+    /* Only neuter the summary where we actually keep content open */
+    @supports selector(::details-content) {
+        .zones-details > summary.zones-summary { cursor: default; pointer-events: none; }
+        .zones-details > summary.zones-summary::after { display: none; }
+    }
+}
+
 /* Progress info panel */
 .progress-info {
     background: var(--bg-elevated);
@@ -582,6 +607,29 @@ body::before {
 .footer-nav a { color: var(--gold); text-decoration: none; text-transform: uppercase; transition: color 0.15s; font-weight: 600; }
 .footer-nav a:hover { color: var(--gold-deep); }
 [data-theme="dark"] .footer-nav a:hover { color: var(--gold-bright); }
+
+/* Site footer (credits + GitHub links) */
+.site-footer {
+    text-align: center; padding: 1.75rem 1rem 1.25rem; margin-top: 2rem;
+    border-top: 1px solid var(--border-subtle); color: var(--text-muted);
+    font-size: 11.5px; line-height: 1.55;
+    display: flex; flex-direction: column; align-items: center; gap: 0.65rem;
+}
+.site-footer-tag { color: var(--text-muted); }
+.site-footer-links { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+.site-footer-link {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    color: var(--gold); text-decoration: none;
+    padding: 0.32rem 0.85rem; font-size: 10.5px; font-weight: 600;
+    font-family: 'Cinzel', serif; letter-spacing: 1px; text-transform: uppercase;
+    border: 1px solid var(--border-subtle); border-radius: 999px;
+    transition: color 0.15s, border-color 0.15s, background 0.15s, transform 0.15s;
+}
+.site-footer-link:hover {
+    color: var(--gold-bright); border-color: var(--gold);
+    background: var(--overlay-gold-soft); transform: translateY(-1px);
+}
+.site-footer-disclaimer { font-size: 10.5px; color: var(--text-dim); opacity: 0.85; max-width: 480px; }
 
 /* ─── ENDGAME STORYLINE BLOCKS ─────────────────────────────── */
 .storyline {
@@ -991,12 +1039,35 @@ body::before {
 
 /* ─── MOBILE ───────────────────────────────────────────────── */
 @media (max-width: 900px) {
-    .sidebar {
-        position: relative; width: 100%; height: auto;
-        border-right: none; border-bottom: 1px solid var(--border-subtle);
+    /* Flatten sidebar so progress stays at top + actions go below the guide */
+    .sidebar { display: contents; }
+    .container { display: flex; flex-direction: column; }
+
+    .sidebar > * { order: 3; margin: 0.75rem 1rem 0; }
+    .progress-info { order: 1; }
+    .main { order: 4; margin-left: 0; padding: 1.25rem 1rem; max-width: 100%; }
+    .sidebar-actions {
+        order: 5; margin: 1.25rem 1rem 1rem;
+        padding-top: 1rem; border-top: 1px solid var(--border-subtle);
     }
-    .container { flex-direction: column; }
-    .main { margin-left: 0; padding: 1.25rem 1rem; max-width: 100%; }
+
+    /* Compact 2-column progress bars */
+    .progress-info {
+        margin: 0.75rem 1rem 0; padding: 0.55rem 0.7rem;
+        display: grid; grid-template-columns: 1fr 1fr;
+        column-gap: 0.85rem; row-gap: 0.15rem;
+    }
+    .progress-info > .progress-label { margin: 0; font-size: 8.5px; }
+    .progress-info > .progress-label.complete { margin-top: 0; }
+    .progress-info > .progress-bar-bg { height: 4px; margin: 0.05rem 0; }
+    .progress-info > .progress-text { font-size: 9.5px; }
+    .progress-info > *:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .progress-info > *:nth-child(2) { grid-column: 1; grid-row: 2; }
+    .progress-info > *:nth-child(3) { grid-column: 1; grid-row: 3; }
+    .progress-info > *:nth-child(4) { grid-column: 2; grid-row: 1; }
+    .progress-info > *:nth-child(5) { grid-column: 2; grid-row: 2; }
+    .progress-info > *:nth-child(6) { grid-column: 2; grid-row: 3; }
+
     .header h1 { font-size: 1.35rem; }
     .index-container { padding: 2rem 1rem; }
     .theme-toggle { top: 0.5rem; right: 0.5rem; padding: 0.4rem 0.7rem; font-size: 10.5px; }
@@ -1019,18 +1090,20 @@ body::before {
                 <div class="progress-bar-bg"><div class="progress-bar-fill complete" id="progressBarComplete"></div></div>
                 <div class="progress-text" id="progressTextComplete">0 / 0</div>
             </div>
-            <button class="btn" onclick="resetProgress()">Reset Progress</button>
-            <button class="btn export" onclick="exportAllProgress()">Export Progress</button>
-            <button class="btn import" onclick="showImportDialog()">Import Progress</button>
-            <div id="importDialog" class="import-dialog" style="display:none;">
-                <textarea id="importCode" placeholder="Paste progress code…"></textarea>
-                <div class="import-actions">
-                    <button class="btn" onclick="importAllProgress()">Import</button>
-                    <button class="btn" onclick="hideImportDialog()">Cancel</button>
+            <div class="sidebar-actions">
+                <button class="btn" onclick="resetProgress()">Reset Progress</button>
+                <button class="btn export" onclick="exportAllProgress()">Export Progress</button>
+                <button class="btn import" onclick="showImportDialog()">Import Progress</button>
+                <div id="importDialog" class="import-dialog" style="display:none;">
+                    <textarea id="importCode" placeholder="Paste progress code…"></textarea>
+                    <div class="import-actions">
+                        <button class="btn" onclick="importAllProgress()">Import</button>
+                        <button class="btn" onclick="hideImportDialog()">Cancel</button>
+                    </div>
                 </div>
             </div>
-            <div class="sidebar-section">
-                <h2>Zones</h2>
+            <details class="sidebar-section zones-details">
+                <summary class="zones-summary">Zones</summary>
                 <a href="#vastiri" class="sidebar-link">Vastiri Outskirts</a>
                 <a href="#caravan" class="sidebar-link">Ardura Caravan</a>
                 <a href="#mawdun" class="sidebar-link">Mawdun Quarry/Mine</a>
@@ -1045,7 +1118,7 @@ body::before {
                 <a href="#spires" class="sidebar-link perm">Spires of Deshar ◆</a>
                 <a href="#trial" class="sidebar-link quest">Trial of Sekhemas ⚡</a>
                 <a href="#dreadnought" class="sidebar-link">The Dreadnought</a>
-            </div>
+            </details>
             <div class="sidebar-section">
                 <h2>Navigation</h2>
                 <a href="index.html" class="sidebar-link">← Back to Index</a>
@@ -1079,14 +1152,14 @@ body::before {
                 </div>
             </div>
 
-            <div class="info-box">
-                <h3>Routing Notes</h3>
-                <ul>
-                    <li><span class="icon">◆</span> Run <strong>Mastodon Badlands BEFORE Keth</strong> → Kabala drops Lvl 7 gem (huge for all classes)</li>
-                    <li><span class="icon">◆</span> <strong>Skip Balbala</strong> in Traitor's Passage — kill 2 vultures in Deshar for backup Djinn Barya at Lvl 28</li>
-                    <li><span class="icon">◆</span> <strong>Ascend at Lvl 28</strong> — manually pick the Lvl 28 Barya in trial entry, not the Lvl 22 default</li>
-                    <li><span class="icon">◆</span> Trial preference: <strong>Ritual &gt; Chalice &gt; Hourglass &gt; Gauntlet</strong></li>
-                    <li><span class="icon">◆</span> Aim Lvl 29 for Jamanra; Lvl 30 entering Act III</li>
+            <div class="info-box" style="border-left: 3px solid var(--steel); margin-bottom: 1.5rem;">
+                <h3 style="color: var(--steel);">Routing Notes</h3>
+                <ul class="tip-list">
+                    <li><span class="icon" style="color: var(--steel);">◆</span> Run <strong>Mastodon Badlands BEFORE Keth</strong> → Kabala drops Lvl 7 gem (huge for all classes)</li>
+                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Skip Balbala</strong> in Traitor's Passage — kill 2 vultures in Deshar for backup Djinn Barya at Lvl 28</li>
+                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Ascend at Lvl 28</strong> — manually pick the Lvl 28 Barya in trial entry, not the Lvl 22 default</li>
+                    <li><span class="icon" style="color: var(--steel);">◆</span> Trial preference: <strong>Ritual &gt; Chalice &gt; Hourglass &gt; Gauntlet</strong></li>
+                    <li><span class="icon" style="color: var(--steel);">◆</span> Aim Lvl 29 for Jamanra; Lvl 30 entering Act III</li>
                 </ul>
             </div>
 
@@ -1362,15 +1435,18 @@ body::before {
                 <div class="step-content">Back → talk <span class="npc">Sekhema Asala</span> → "Travel to the Sandswept Marsh"</div></div>
             <div class="note success">Act II Complete — proceed to Act III</div>
 
-            <div class="nav-links">
-                <a href="poe2_act1_guide.html" class="nav-link">← Act I</a>
-                <a href="poe2_act3_guide.html" class="nav-link">Act III →</a>
+            <div class="footer-nav">
+                <a href="poe2_act1_guide.html">← Act I</a>
+                <a href="index.html">Index</a>
+                <a href="poe2_act3_guide.html">Act III →</a>
             </div>
-            <footer style="text-align:center; padding: 24px 16px; margin-top: 16px; font-size: 12px; color: var(--steel, #94a3b8); border-top: 1px solid var(--border, rgba(148,163,184,0.15));">
-                Made for the PoE2 community · AI-assisted, community-verified ·
-                <a href="https://github.com/domistae/poe2-leveling/issues/new" style="color: var(--gold, #c89860); text-decoration: none;">Suggestions</a> ·
-                <a href="https://github.com/domistae/poe2-leveling" style="color: var(--gold, #c89860); text-decoration: none;">GitHub</a><br>
-                <span style="font-size: 11px; opacity: 0.7;">Path of Exile 2 is © Grinding Gear Games. Unofficial fan-made content.</span>
+            <footer class="site-footer">
+                <div class="site-footer-tag">Made for the PoE2 community · AI-assisted, community-verified</div>
+                <div class="site-footer-links">
+                    <a href="https://github.com/domistae/poe2-leveling/issues/new" class="site-footer-link">Suggestions</a>
+                    <a href="https://github.com/domistae/poe2-leveling" class="site-footer-link">GitHub</a>
+                </div>
+                <div class="site-footer-disclaimer">Path of Exile 2 is © Grinding Gear Games. Unofficial fan-made content.</div>
             </footer>
         </main>
     </div>

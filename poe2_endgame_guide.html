@@ -280,6 +280,31 @@ body::before {
 .sidebar-link.boss  { color: var(--burnt); }
 .sidebar-link.system{ color: var(--steel); }
 
+/* Zones dropdown (collapses on mobile, always open on desktop) */
+.zones-details { margin-bottom: 1.25rem; }
+.zones-details > summary.zones-summary {
+    cursor: pointer; list-style: none;
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+    margin-bottom: 0.75rem; padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-subtle); font-weight: 600;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.zones-details > summary.zones-summary::-webkit-details-marker { display: none; }
+.zones-details > summary.zones-summary::after {
+    content: "▸"; font-size: 9px; opacity: 0.6; margin-left: 0.5rem;
+}
+.zones-details[open] > summary.zones-summary::after { content: "▾"; }
+@media (min-width: 901px) {
+    /* Modern browsers: force content visible regardless of [open] state */
+    details.zones-details::details-content { content-visibility: visible !important; }
+    /* Only neuter the summary where we actually keep content open */
+    @supports selector(::details-content) {
+        .zones-details > summary.zones-summary { cursor: default; pointer-events: none; }
+        .zones-details > summary.zones-summary::after { display: none; }
+    }
+}
+
 /* Progress info panel */
 .progress-info {
     background: var(--bg-elevated);
@@ -554,6 +579,29 @@ body::before {
 .footer-nav a { color: var(--gold); text-decoration: none; text-transform: uppercase; transition: color 0.15s; font-weight: 600; }
 .footer-nav a:hover { color: var(--gold-deep); }
 [data-theme="dark"] .footer-nav a:hover { color: var(--gold-bright); }
+
+/* Site footer (credits + GitHub links) */
+.site-footer {
+    text-align: center; padding: 1.75rem 1rem 1.25rem; margin-top: 2rem;
+    border-top: 1px solid var(--border-subtle); color: var(--text-muted);
+    font-size: 11.5px; line-height: 1.55;
+    display: flex; flex-direction: column; align-items: center; gap: 0.65rem;
+}
+.site-footer-tag { color: var(--text-muted); }
+.site-footer-links { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+.site-footer-link {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    color: var(--gold); text-decoration: none;
+    padding: 0.32rem 0.85rem; font-size: 10.5px; font-weight: 600;
+    font-family: 'Cinzel', serif; letter-spacing: 1px; text-transform: uppercase;
+    border: 1px solid var(--border-subtle); border-radius: 999px;
+    transition: color 0.15s, border-color 0.15s, background 0.15s, transform 0.15s;
+}
+.site-footer-link:hover {
+    color: var(--gold-bright); border-color: var(--gold);
+    background: var(--overlay-gold-soft); transform: translateY(-1px);
+}
+.site-footer-disclaimer { font-size: 10.5px; color: var(--text-dim); opacity: 0.85; max-width: 480px; }
 
 /* ─── ENDGAME STORYLINE BLOCKS ─────────────────────────────── */
 .storyline {
@@ -963,12 +1011,13 @@ body::before {
 
 /* ─── MOBILE ───────────────────────────────────────────────── */
 @media (max-width: 900px) {
-    .sidebar {
-        position: relative; width: 100%; height: auto;
-        border-right: none; border-bottom: 1px solid var(--border-subtle);
-    }
-    .container { flex-direction: column; }
-    .main { margin-left: 0; padding: 1.25rem 1rem; max-width: 100%; }
+    /* Flatten sidebar so sections collapse and content stays prominent */
+    .sidebar { display: contents; }
+    .container { display: flex; flex-direction: column; }
+
+    .sidebar > * { order: 3; margin: 0.75rem 1rem 0; }
+    .main { order: 4; margin-left: 0; padding: 1.25rem 1rem; max-width: 100%; }
+
     .header h1 { font-size: 1.35rem; }
     .index-container { padding: 2rem 1rem; }
     .theme-toggle { top: 0.5rem; right: 0.5rem; padding: 0.4rem 0.7rem; font-size: 10.5px; }
@@ -993,32 +1042,32 @@ body::before {
 
     <div class="container">
         <aside class="sidebar">
-            <div class="sidebar-section">
-                <h2>League Storylines</h2>
+            <details class="sidebar-section zones-details">
+                <summary class="zones-summary">League Storylines</summary>
                 <a href="#breach" class="sidebar-link story">I. Breach</a>
                 <a href="#expedition" class="sidebar-link story">II. Expedition</a>
                 <a href="#abyss" class="sidebar-link story">III. Abyss</a>
                 <a href="#ritual" class="sidebar-link story">IV. Ritual</a>
                 <a href="#delirium" class="sidebar-link story">V. Delirium</a>
                 <a href="#vaal-temple" class="sidebar-link story">VI. Vaal Temple</a>
-            </div>
-            <div class="sidebar-section">
-                <h2>Meta</h2>
+            </details>
+            <details class="sidebar-section zones-details">
+                <summary class="zones-summary">Meta</summary>
                 <a href="#fortress" class="sidebar-link story">The Fortress</a>
-            </div>
-            <div class="sidebar-section">
-                <h2>Atlas</h2>
+            </details>
+            <details class="sidebar-section zones-details">
+                <summary class="zones-summary">Atlas</summary>
                 <a href="#masters-atlas" class="sidebar-link system">Masters of the Atlas</a>
                 <a href="#atlas-tree" class="sidebar-link system">New Atlas Tree</a>
                 <a href="#atlas-changes" class="sidebar-link system">Atlas Layout</a>
-            </div>
-            <div class="sidebar-section">
-                <h2>Reference</h2>
+            </details>
+            <details class="sidebar-section zones-details">
+                <summary class="zones-summary">Reference</summary>
                 <a href="#bosses" class="sidebar-link boss">Pinnacle Bosses</a>
                 <a href="#runic-ward" class="sidebar-link system">Runic Ward</a>
                 <a href="#qol" class="sidebar-link system">QoL &amp; Tools</a>
                 <a href="#challenges" class="sidebar-link system">Challenge League</a>
-            </div>
+            </details>
             <div class="sidebar-section">
                 <h2>Navigation</h2>
                 <a href="index.html" class="sidebar-link">← Back to Index</a>
@@ -1775,11 +1824,13 @@ body::before {
                 <a href="index.html">Index</a>
                 <a href="poe2_act1_guide.html">Acts 1–4 →</a>
             </div>
-            <footer style="text-align:center; padding: 24px 16px; margin-top: 16px; font-size: 12px; color: var(--steel, #94a3b8); border-top: 1px solid var(--border, rgba(148,163,184,0.15));">
-                Made for the PoE2 community · AI-assisted, community-verified ·
-                <a href="https://github.com/domistae/poe2-leveling/issues/new" style="color: var(--gold, #c89860); text-decoration: none;">Suggestions</a> ·
-                <a href="https://github.com/domistae/poe2-leveling" style="color: var(--gold, #c89860); text-decoration: none;">GitHub</a><br>
-                <span style="font-size: 11px; opacity: 0.7;">Path of Exile 2 is © Grinding Gear Games. Unofficial fan-made content.</span>
+            <footer class="site-footer">
+                <div class="site-footer-tag">Made for the PoE2 community · AI-assisted, community-verified</div>
+                <div class="site-footer-links">
+                    <a href="https://github.com/domistae/poe2-leveling/issues/new" class="site-footer-link">Suggestions</a>
+                    <a href="https://github.com/domistae/poe2-leveling" class="site-footer-link">GitHub</a>
+                </div>
+                <div class="site-footer-disclaimer">Path of Exile 2 is © Grinding Gear Games. Unofficial fan-made content.</div>
             </footer>
         </main>
     </div>
