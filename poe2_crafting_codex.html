@@ -770,7 +770,35 @@ footer.site-footer a {
     .sidebar {
         position: relative; width: 100%; height: auto;
         border-right: none; border-bottom: 1px solid var(--border-subtle);
+        padding: 0.25rem 1rem 0.5rem;
+        overflow-y: visible;
     }
+
+    /* Collapsible zones — each .sidebar-section becomes a tap-to-toggle group */
+    .sidebar-section { margin-bottom: 0; }
+    .sidebar-section:not(:last-child) { border-bottom: 1px solid var(--border-subtle); }
+    .sidebar-section h2 {
+        cursor: pointer;
+        margin: 0;
+        padding: 0.75rem 0.25rem;
+        border-bottom: none;
+        display: flex; justify-content: space-between; align-items: center;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .sidebar-section h2::after {
+        content: '▾';
+        font-size: 11px;
+        color: var(--gold-deep);
+        transition: transform 0.2s ease;
+        opacity: 0.75;
+        margin-left: 0.5rem;
+    }
+    .sidebar-section.expanded h2::after { transform: rotate(180deg); }
+    .sidebar-section .sidebar-link { display: none; }
+    .sidebar-section.expanded .sidebar-link { display: block; }
+    .sidebar-section.expanded { padding-bottom: 0.5rem; }
+
     .main { padding: 1.25rem 1rem; }
     .header h1 { font-size: 1.4rem; }
     .theme-toggle { top: 0.5rem; right: 0.5rem; padding: 0.4rem 0.7rem; font-size: 10.5px; }
@@ -2054,6 +2082,25 @@ footer.site-footer a {
             if (label) label.textContent = dark ? 'Dark' : 'Light';
         }
         updateThemeToggle();
+
+        /* ─── Mobile sidebar zone collapse ─────────────────────── */
+        (function() {
+            function isMobile() { return window.innerWidth <= 900; }
+            document.querySelectorAll('.sidebar-section h2').forEach(function(h2) {
+                h2.addEventListener('click', function() {
+                    if (!isMobile()) return;
+                    this.parentElement.classList.toggle('expanded');
+                });
+            });
+            // Auto-collapse after tapping a link (so content area is maximised after navigation)
+            document.querySelectorAll('.sidebar-link').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (!isMobile()) return;
+                    var section = this.closest('.sidebar-section');
+                    if (section) section.classList.remove('expanded');
+                });
+            });
+        })();
     </script>
 </body>
 </html>
