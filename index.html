@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoE2 Guide 0.5 — Campaign Leveling, Endgame & Crafting</title>
-    <meta name="description" content="PoE2 Patch 0.5 (Return of the Ancients): free Path of Exile 2 guide — campaign leveling, Endgame Atlas, and Crafting Codex. By a player for the community.">
+    <meta name="description" content="PoE2 Patch 0.5 (Return of the Ancients): free Path of Exile 2 guide | PoE 2 campaign leveling, Endgame Atlas, and Crafting Codex. By a player for the community.">
     <meta name="author" content="domistae">
     <meta name="theme-color" content="#181410">
     <link rel="canonical" href="https://domistae.github.io/poe2-leveling/">
@@ -354,6 +354,101 @@ body::before {
 }
 .header .subtitle, .subtitle {
     color: var(--text-muted); font-size: 12.5px; font-style: italic;
+}
+
+/* ─── WHAT'S NEW · site update banner ─────────────────────── */
+/* Reusable changelog box — add new <li class="whats-new-item"> as the site evolves. */
+.whats-new {
+    position: relative;
+    background:
+        radial-gradient(ellipse at top left, var(--overlay-gold-strong) 0%, transparent 55%),
+        linear-gradient(135deg, var(--overlay-gold-soft) 0%, var(--bg-surface) 65%);
+    border: 1px solid var(--border-accent);
+    border-left: 4px solid var(--gold);
+    border-radius: 6px;
+    padding: 1rem 1.2rem 1.05rem;
+    margin: 0 0 0.85rem 0;
+    box-shadow: var(--shadow-md);
+}
+.whats-new-header {
+    display: flex; align-items: center; gap: 0.55rem;
+    margin-bottom: 0.65rem;
+}
+.whats-new-label {
+    font-family: 'Cinzel', serif;
+    color: var(--gold-deep);
+    font-size: 11.5px;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.whats-new-badge {
+    background: var(--overlay-plum);
+    color: var(--plum);
+    border: 1px solid rgba(124, 58, 237, 0.4);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+    padding: 0.18rem 0.5rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+[data-theme="dark"] .whats-new-badge { border-color: rgba(184, 138, 210, 0.45); }
+
+.whats-new-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+.whats-new-item {
+    font-size: 12.5px;
+    color: var(--text-body);
+    line-height: 1.55;
+    padding-left: 1.1rem;
+    position: relative;
+}
+.whats-new-item::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    top: 0.05rem;
+    color: var(--gold);
+    font-size: 10px;
+}
+.whats-new-date {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text-muted);
+    font-size: 10px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    margin-right: 0.45rem;
+    white-space: nowrap;
+}
+.whats-new-item strong { color: var(--text-primary); font-weight: 600; }
+.whats-new-item a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px dotted var(--gold);
+    transition: color 0.15s, border-color 0.15s;
+}
+.whats-new-item a:hover {
+    color: var(--gold-deep);
+    border-bottom-color: var(--gold-deep);
+}
+
+/* Subtle pulse on the NEW badge — disabled for reduced motion */
+@keyframes whats-new-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.35); }
+    50%      { box-shadow: 0 0 0 5px rgba(124, 58, 237, 0); }
+}
+.whats-new-badge { animation: whats-new-pulse 2.6s ease-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+    .whats-new-badge { animation: none; }
 }
 
 /* Endgame banner under header */
@@ -1056,26 +1151,49 @@ body::before {
             <div class="version">Pre-v0.5 · 0.4 live, awaiting Return of the Ancients</div>
         </header>
 
-        <!-- ╔══ PRE-PATCH 0.5 DISCLAIMER ══════════════════════════════════════ ╗ -->
-        <div class="endgame-banner" style="border-left-color: var(--burnt); background: linear-gradient(90deg, var(--overlay-burnt) 0%, var(--bg-elevated) 100%); margin-bottom: 0.75rem;">
-            <span class="label" style="color: var(--burnt);">⚠ Pre-patch 0.5 · Read me</span>
-            Everything on this site is currently based on the <strong>live 0.4 build</strong>.
-            Patch 0.5 (<em>Return of the Ancients</em>) ships <strong>29 May 2026</strong>;
-            patch notes drop <strong>21 May 2026</strong>. I will update each guide as fast as I can
-            once 0.5 is live and the changes are confirmed.
-        </div>
-        <div class="endgame-banner" style="border-left-color: var(--steel); background: linear-gradient(90deg, var(--overlay-steel) 0%, var(--bg-elevated) 100%); margin-bottom: 1.5rem;">
-            <span class="label" style="color: var(--steel);">★ How leveling changes in 0.5</span>
-            From 0.5 onward, navigation leans heavily on <strong>visual cues in the world</strong>
-            (glowing roots, signposts, locust trails, parchment markers) rather than zone
-            memorization. A summary of the previewed changes is in the next section — I'll fold
-            them into each act guide once the patch is live and verified.
-            <br><br>
-            <small style="opacity: 0.85;">
-                AI-assisted, community-verified ·
-                Found something wrong?
-                <a href="https://github.com/domistae/poe2-leveling/issues/new">open an issue</a>.
-            </small>
+        <!-- ╔══ WHAT'S NEW · site updates ═════════════════════════════════════ ╗ -->
+        <!-- Reusable changelog. Add new <li class="whats-new-item"> entries on top. -->
+        <aside class="whats-new" aria-label="What's new on this site">
+            <div class="whats-new-header">
+                <span class="whats-new-label">✦ What's New</span>
+                <span class="whats-new-badge">New</span>
+            </div>
+            <ul class="whats-new-list">
+                <li class="whats-new-item">
+                    <span class="whats-new-date">18 May 2026</span>
+                    <strong>Crafting Codex added</strong> — a full PoE 2 crafting
+                    reference covering currency tiers, the tag system, breakpoints,
+                    essences, omens, desecration, recombinators, fracturing, and the
+                    0.5 additions (Genesis Tree).
+                    <a href="poe2_crafting_codex.html">Open the Codex →</a>
+                </li>
+            </ul>
+        </aside>
+        <!-- ╚═══════════════════════════════════════════════════════════════════ ╝ -->
+
+        <!-- ╔══ PRE-PATCH 0.5 · COMBINED NOTICE ═══════════════════════════════ ╗ -->
+        <div class="endgame-banner" style="border-left-color: var(--burnt); background: linear-gradient(90deg, var(--overlay-burnt) 0%, var(--bg-elevated) 100%); margin-bottom: 1.5rem; padding-top: 0.85rem; padding-bottom: 0.85rem;">
+            <div>
+                <span class="label" style="color: var(--burnt);">⚠ Pre-patch 0.5 · Read me</span>
+                Everything on this site is currently based on the <strong>live 0.4 build</strong>.
+                Patch 0.5 (<em>Return of the Ancients</em>) ships <strong>29 May 2026</strong>;
+                patch notes drop <strong>21 May 2026</strong>. I will update each guide as fast as I can
+                once 0.5 is live and the changes are confirmed.
+            </div>
+            <div style="margin-top: 0.7rem; padding-top: 0.7rem; border-top: 1px solid var(--border-subtle);">
+                <span class="label" style="color: var(--steel);">★ How leveling changes in 0.5</span>
+                From 0.5 onward, navigation leans heavily on <strong>visual cues in the world</strong>
+                (glowing roots, signposts, locust trails, parchment markers) rather than zone
+                memorization. A summary of the previewed changes is in the next section — I'll fold
+                them into each act guide once the patch is live and verified.
+            </div>
+            <div style="margin-top: 0.65rem; padding-top: 0.55rem; border-top: 1px dotted var(--border-subtle);">
+                <small style="opacity: 0.85; font-size: 11px; color: var(--text-muted);">
+                    AI-assisted, community-verified ·
+                    Found something wrong?
+                    <a href="https://github.com/domistae/poe2-leveling/issues/new">open an issue</a>.
+                </small>
+            </div>
         </div>
         <!-- ╚═══════════════════════════════════════════════════════════════════ ╝ -->
 
