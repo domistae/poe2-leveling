@@ -14,16 +14,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoE2 Leveling Campaign & Endgame Guide — Interactive Checklist (Patch 0.5)</title>
-    <meta name="description" content="PoE2 Patch 0.5 (Return of the Ancients): free interactive Path of Exile 2 campaign leveling guide with progress tracking. All skill points, permanent rewards, and optimal routing for Acts I–IV, Interludes, and Endgame.">
+    <title>PoE2 Guide 0.5 — Campaign Leveling, Endgame & Crafting</title>
+    <meta name="description" content="PoE2 Patch 0.5 (Return of the Ancients): free Path of Exile 2 guide — campaign leveling, Endgame Atlas, and Crafting Codex. By a player for the community.">
     <meta name="author" content="domistae">
     <meta name="theme-color" content="#181410">
     <link rel="canonical" href="https://domistae.github.io/poe2-leveling/">
 
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PoE2 Leveling Guide">
-    <meta property="og:title" content="PoE2 Leveling Campaign & Endgame Guide — Interactive Checklist (Patch 0.5)">
-    <meta property="og:description" content="PoE2 Patch 0.5 (Return of the Ancients): free interactive campaign leveling guide with progress tracking. Acts I–IV, Interludes, and Endgame routing for all classes.">
+    <meta property="og:title" content="PoE2 Guide 0.5 — Campaign Leveling, Endgame & Crafting">
+    <meta property="og:description" content="PoE2 Patch 0.5 (Return of the Ancients): a free interactive Path of Exile 2 guide covering campaign leveling with progress tracking, Endgame Atlas progression, and the full Crafting Codex. Made by a player, for the community.">
     <meta property="og:url" content="https://domistae.github.io/poe2-leveling/">
     <meta property="og:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
     <meta property="og:image:width" content="1200">
@@ -31,8 +31,8 @@
     <meta property="og:image:alt" content="Path of Exile 2 Leveling Guide — Interactive checklist for Patch 0.5 Return of the Ancients">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="PoE2 Leveling Campaign & Endgame Guide — Interactive Checklist (Patch 0.5)">
-    <meta name="twitter:description" content="PoE2 Patch 0.5 (Return of the Ancients): free interactive campaign leveling guide with progress tracking. Acts I–IV, Interludes, and Endgame.">
+    <meta name="twitter:title" content="PoE2 Guide 0.5 — Campaign Leveling, Endgame & Crafting">
+    <meta name="twitter:description" content="PoE2 Patch 0.5 (Return of the Ancients): a free interactive Path of Exile 2 guide covering campaign leveling with progress tracking, Endgame Atlas progression, and the full Crafting Codex. Made by a player, for the community.">
     <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
 
     <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM" />
@@ -997,6 +997,50 @@ body::before {
     .theme-toggle { top: 0.5rem; right: 0.5rem; padding: 0.4rem 0.7rem; font-size: 10.5px; }
 }
 
+    
+/* ── 3-zone landing additions ─────────────────────────────── */
+.act-entry.crafting::before {
+    background: linear-gradient(180deg, var(--burnt) 0%, var(--gold) 100%);
+}
+.act-entry.crafting .act-link {
+    background: linear-gradient(135deg, var(--bg-surface) 0%, var(--overlay-burnt) 100%);
+    border-color: rgba(196, 116, 71, 0.3);
+}
+.act-entry.crafting .act-link:hover { border-color: var(--burnt); }
+.act-entry.crafting .act-name { color: var(--burnt); }
+.quest-log-title.zone-endgame { color: var(--plum); }
+.quest-log-title.zone-crafting { color: var(--burnt); }
+.quest-log-title.zone-spacer { margin-top: 2rem; }
+
+/* ── Disclaimer block ─────────────────────────────────────── */
+.disclaimer-block {
+    margin: 3rem 0 1.5rem;
+    padding: 1.5rem 0 0;
+    border-top: 1px solid var(--border-subtle);
+}
+.disclaimer-block h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--text-primary);
+    font-size: 11.5px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 0 0 0.55rem;
+    font-weight: 600;
+    text-align: center;
+}
+.disclaimer-block h3:not(:first-child) { margin-top: 1.4rem; }
+.disclaimer-block p {
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0 0 0.55rem;
+    /* no max-width — fill the container, no false right indent */
+}
+.disclaimer-block p:last-child { margin-bottom: 0; }
+.disclaimer-block strong { color: var(--text-body); font-weight: 600; }
+.disclaimer-block a { color: var(--gold); text-decoration: underline; }
+.disclaimer-block a:hover { color: var(--gold-deep); }
+
     </style>
 </head>
 <body>
@@ -1007,8 +1051,8 @@ body::before {
 
     <div class="index-container">
         <header class="header">
-            <h1>POE2 Leveling Codex</h1>
-            <div class="subtitle">Acts I–IV · Interludes · All Classes</div>
+            <h1>POE 2 Codex</h1>
+            <div class="subtitle">Campaign · Endgame · Crafting</div>
             <div class="version">Pre-v0.5 · 0.4 live, awaiting Return of the Ancients</div>
         </header>
 
@@ -1035,6 +1079,7 @@ body::before {
         </div>
         <!-- ╚═══════════════════════════════════════════════════════════════════ ╝ -->
 
+        <!-- ╔══ CAMPAIGN ════════════════════════════════════════════════ ╗ -->
         <div class="quest-log-title">Campaign Progress</div>
 
         <div class="journey">
@@ -1116,6 +1161,12 @@ body::before {
                     </div>
                 </a>
             </div>
+        </div>
+
+        <!-- ╔══ ENDGAME ═════════════════════════════════════════════════ ╗ -->
+        <div class="quest-log-title zone-endgame zone-spacer">Endgame Atlas</div>
+
+        <div class="journey">
             <div class="act-entry endgame">
                 <a href="poe2_endgame_guide.html" class="act-link">
                     <div class="act-header">
@@ -1134,7 +1185,31 @@ body::before {
                     </div>
                 </a>
             </div>
+        </div>
 
+        <!-- ╔══ CRAFTING ════════════════════════════════════════════════ ╗ -->
+        <div class="quest-log-title zone-crafting zone-spacer">Crafting Codex</div>
+
+        <div class="journey">
+            <div class="act-entry crafting">
+                <a href="poe2_crafting_codex.html" class="act-link">
+                    <div class="act-header">
+                        <span class="act-name">⚒ The Crafting Codex</span>
+                        <span class="act-meta">18 Sections · Patch 0.4 → 0.5</span>
+                    </div>
+                    <div class="act-rewards">
+                        <span class="reward special">Tag System</span>
+                        <span class="reward special">Breakpoints</span>
+                        <span class="reward">Currency Tiers</span>
+                        <span class="reward">Essences</span>
+                        <span class="reward">Omens</span>
+                        <span class="reward">Desecration</span>
+                        <span class="reward">Recombinators</span>
+                        <span class="reward">Fracturing</span>
+                        <span class="reward new">0.5 Additions</span>
+                    </div>
+                </a>
+            </div>
         </div>
 
         <!-- ╔══ 0.5 STREAMLINING PREVIEW ══════════════════════════════════════ ╗ -->
@@ -1230,8 +1305,46 @@ body::before {
             </div>
         </div>
 
+        
+        <!-- ╔══ DISCLAIMER ════════════════════════════════════════════ ╗ -->
+        <section class="disclaimer-block" aria-label="Disclaimer and sources">
+            <h3>This Codex is a Community Summary, Not Ground Truth</h3>
+            <p>
+                This site is a <strong>community-driven summary</strong> compiled from multiple sources —
+                the live in-game systems, datamined references (PoE2DB), guide sites (Maxroll, Mobalytics, Vulkk),
+                official PoE2 communications and reveal streams, and crafting demonstrations shared by community
+                streamers. Sources sometimes disagree, the game changes every patch, and even the best community
+                datamining lags real in-game behaviour by hours-to-days. <strong>Treat this codex as a quick reference,
+                not as authoritative documentation.</strong> Before any expensive or high-stakes craft, cross-check
+                against PoE2DB and the live in-game tooltips.
+            </p>
+
+            <h3>Disclaimer</h3>
+            <p>
+                This is a free, unofficial, fan-made site maintained by a single person as a hobby. It is not
+                affiliated with, endorsed by, or sponsored by Grinding Gear Games. Path of Exile and Path of Exile 2
+                are © Grinding Gear Games. All trademarks, product names, screenshots, in-game terminology and
+                game content are the property of their respective owners.
+            </p>
+            <p>
+                Content here is shared <strong>as-is, without warranty of any kind</strong>. It may be incomplete,
+                out of date, or simply wrong. No liability is accepted for any in-game decisions made on the basis
+                of this material — including crafts that brick, currency spent on misinterpreted breakpoints, or
+                any other outcome of using this information. If you rely on a number here for an expensive craft
+                and the number turns out to be stale, that's on the patch cycle, not on a contract. Use your own
+                judgement and verify with the in-game tooltips and PoE2DB.
+            </p>
+            <p>
+                If you are the author of a guide, video, dataset, or other resource referenced (directly or
+                indirectly) by this site, and you would prefer not to be cited, summarised, or linked —
+                please <a href="https://github.com/domistae/poe2-leveling/issues/new" target="_blank" rel="noopener">open
+                an issue on GitHub</a> and the reference will be removed promptly. The same channel handles
+                factual corrections, broken links, and patch updates.
+            </p>
+        </section>
+
         <footer class="site-footer">
-            <div class="site-footer-tag">Made for the PoE2 community · AI-assisted, community-verified</div>
+            <div class="site-footer-tag">Made for the PoE2 community · A community-driven summary, AI-assisted</div>
             <div class="site-footer-links">
                 <a href="https://github.com/domistae/poe2-leveling/issues/new" class="site-footer-link">Suggestions</a>
                 <a href="https://github.com/domistae/poe2-leveling" class="site-footer-link">GitHub</a>

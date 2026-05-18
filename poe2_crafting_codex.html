@@ -1,0 +1,2059 @@
+<!--
+  PoE2 Leveling Campaign & Endgame Guide — Crafting Codex
+  Copyright (c) 2026 domistae
+  Licensed under the MIT License — see LICENSE for the full text.
+  Source: https://github.com/domistae/poe2-leveling
+  Live site: https://domistae.github.io/poe2-leveling/
+
+  You are free to use, modify, and redistribute this code, including for commercial purposes.
+  You MUST preserve this notice and provide attribution to the original source.
+  See README.md for full attribution requirements.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoE2 Crafting Codex — Currencies, Omens, Desecration & 0.5 Runeforging</title>
+    <meta name="description" content="Path of Exile 2 crafting codex: every currency, omen, essence, abyssal bone, catalyst, recombinator interaction, fracturing strategy, the tag system, and Patch 0.5 Runes of Aldur additions (Verisium, Runeforging, Genesis Tree, liquid emotions, wombgifts).">
+    <meta name="author" content="domistae">
+    <meta name="theme-color" content="#181410">
+    <link rel="canonical" href="https://domistae.github.io/poe2-leveling/poe2_crafting_codex.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PoE2 Leveling Guide">
+    <meta property="og:title" content="PoE2 Crafting Codex — Patch 0.5 Reference">
+    <meta property="og:description" content="Every currency, every omen, every trick — a community-driven summary covering the live patch and the 0.5 Runes of Aldur additions.">
+    <meta property="og:url" content="https://domistae.github.io/poe2-leveling/poe2_crafting_codex.html">
+    <meta property="og:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PoE2 Crafting Codex — Patch 0.5 Reference">
+    <meta name="twitter:description" content="Every currency, every omen, every trick. Patch 0.5 ready.">
+    <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('poe2-theme');
+                if (saved === 'light' || saved === 'dark') {
+                    document.documentElement.setAttribute('data-theme', saved);
+                } else {
+                    var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+                }
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <style>
+/* ─────────────────────────────────────────────────────────────
+   POE2 v0.5 — Unified theme (light default + dark via [data-theme="dark"])
+   Crafting Codex variant — same tokens, additional codex-specific
+   components (rarity chips, currency tiers, trick cards, workflow pills,
+   tag-system gem ladder, league-tagged sections for 0.5).
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+    /* Surfaces */
+    --bg-base: #f4f6fa;
+    --bg-surface: #ffffff;
+    --bg-elevated: #eef2f7;
+    --bg-step: #f8fafc;
+    --border-subtle: #dfe4ec;
+    --border-accent: #c4cbd6;
+
+    /* Text */
+    --text-primary: #0f172a;
+    --text-body: #334155;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --parchment: #0f172a;
+
+    /* Gold accents */
+    --gold: #b08537;
+    --gold-bright: #d4a258;
+    --gold-deep: #8a6a2c;
+
+    /* Semantic */
+    --sage:    #16a34a;
+    --burnt:   #dc2626;
+    --steel:   #1d4ed8;
+    --tan:     #b45309;
+    --plum:    #7c3aed;
+    --crimson: #b91c1c;
+
+    /* PoE rarity colors (canonical) */
+    --r-normal:  #c8c8c8;
+    --r-magic:   #8888ff;
+    --r-rare:    #ffff77;
+    --r-unique:  #af6025;
+    --r-fract:   #b8a374;
+    --r-corrupt: #d20000;
+    --r-desec:   #4ade80;
+
+    /* Per-league solid colors (used in 0.5 sections) */
+    --c-fortress:   #b45309;
+    --c-vaal:       #991b1b;
+    --c-abyss:      #047857;
+    --c-expedition: #d97706;
+    --c-breach:     #7c3aed;
+    --c-delirium:   #64748b;
+    --c-ritual:     #be185d;
+    --c-aldur:      #c89860;   /* new — Runes of Aldur (rune-gold) */
+
+    /* Shadow stack */
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.08);
+    --shadow-lg: 0 12px 30px rgba(15, 23, 42, 0.12);
+
+    /* Overlays */
+    --overlay-gold-soft: rgba(176, 133, 55, 0.07);
+    --overlay-gold-strong: rgba(176, 133, 55, 0.14);
+    --overlay-sage: rgba(22, 163, 74, 0.08);
+    --overlay-burnt: rgba(220, 38, 38, 0.08);
+    --overlay-steel: rgba(29, 78, 216, 0.08);
+    --overlay-tan: rgba(180, 83, 9, 0.08);
+    --overlay-plum: rgba(124, 58, 237, 0.08);
+    --overlay-aldur: rgba(200, 152, 96, 0.10);
+
+    --body-weight: 400;
+}
+
+[data-theme="dark"] {
+    --bg-base: #181410;
+    --bg-surface: #221c15;
+    --bg-elevated: #2a2218;
+    --bg-step: #1f1a13;
+    --border-subtle: #3a2f20;
+    --border-accent: #5a4830;
+
+    --text-primary: #e8d8a8;
+    --text-body: #b8a888;
+    --text-muted: #8a7c64;
+    --text-dim: #5a4f3e;
+    --parchment: #e8d8a8;
+
+    --gold: #c89860;
+    --gold-bright: #e8b878;
+    --gold-deep: #a07840;
+
+    --sage:    #9bb87a;
+    --burnt:   #c87060;
+    --steel:   #7e9eb8;
+    --tan:     #c4a47e;
+    --plum:    #b88aa0;
+    --crimson: #c84a4a;
+
+    --r-normal:  #d8d8d8;
+    --r-magic:   #a0a0ff;
+    --r-rare:    #ffff99;
+    --r-unique:  #c87a3a;
+    --r-fract:   #d4b878;
+    --r-corrupt: #ff5050;
+    --r-desec:   #5fdf80;
+
+    --c-fortress:   #d97706;
+    --c-vaal:       #dc2626;
+    --c-abyss:      #10b981;
+    --c-expedition: #fbbf24;
+    --c-breach:     #a78bfa;
+    --c-delirium:   #94a3b8;
+    --c-ritual:     #ec4899;
+    --c-aldur:      #e8b878;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.55);
+
+    --overlay-gold-soft: rgba(200, 152, 96, 0.06);
+    --overlay-gold-strong: rgba(200, 152, 96, 0.12);
+    --overlay-sage: rgba(155, 184, 122, 0.08);
+    --overlay-burnt: rgba(200, 112, 96, 0.08);
+    --overlay-steel: rgba(126, 158, 184, 0.08);
+    --overlay-tan: rgba(196, 164, 126, 0.08);
+    --overlay-plum: rgba(184, 138, 160, 0.08);
+    --overlay-aldur: rgba(232, 184, 120, 0.10);
+
+    --body-weight: 300;
+}
+
+/* ─── BASE ─────────────────────────────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Inter', 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--bg-base);
+    color: var(--text-body);
+    font-size: 13.5px;
+    line-height: 1.6;
+    min-height: 100vh;
+    font-weight: var(--body-weight);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+[data-theme="dark"] body {
+    background: radial-gradient(ellipse at top left, rgba(200, 152, 96, 0.05) 0%, transparent 50%), var(--bg-base);
+}
+
+/* ─── THEME TOGGLE ────────────────────────────────────────── */
+.theme-toggle {
+    position: fixed;
+    top: 1rem; right: 1rem;
+    z-index: 1000;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-accent);
+    color: var(--text-body);
+    padding: 0.5rem 0.9rem;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    display: flex; align-items: center; gap: 0.45rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s;
+}
+.theme-toggle:hover { background: var(--bg-elevated); border-color: var(--gold); }
+
+/* ─── LAYOUT ──────────────────────────────────────────────── */
+.container { display: flex; min-height: 100vh; }
+.sidebar {
+    position: sticky; top: 0; align-self: flex-start;
+    width: 240px; height: 100vh; overflow-y: auto;
+    background: var(--bg-surface);
+    border-right: 1px solid var(--border-subtle);
+    padding: 1.5rem 1rem;
+    flex-shrink: 0;
+}
+.sidebar-section { margin-bottom: 1.5rem; }
+.sidebar-section h2 {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 0.6rem; font-weight: 600;
+    padding-bottom: 0.3rem; border-bottom: 1px solid var(--border-subtle);
+}
+.sidebar-link {
+    display: block; padding: 0.35rem 0.5rem;
+    color: var(--text-body); text-decoration: none;
+    font-size: 12px; border-radius: 3px;
+    transition: all 0.15s;
+}
+.sidebar-link:hover { background: var(--overlay-gold-soft); color: var(--gold); }
+.sidebar-link .marker {
+    display: inline-block; width: 10px; color: var(--gold-deep);
+    font-family: 'Cinzel', serif; font-size: 10px; margin-right: 0.35rem;
+}
+
+.main {
+    flex: 1; max-width: 1080px;
+    margin: 0 auto; padding: 2rem 2rem 4rem;
+}
+
+/* ─── HEADER ──────────────────────────────────────────────── */
+.header { margin-bottom: 1.5rem; }
+.header .eyebrow {
+    font-family: 'Cinzel', serif; color: var(--gold-deep);
+    font-size: 10px; letter-spacing: 3.5px; text-transform: uppercase;
+    margin-bottom: 0.4rem;
+}
+.header h1 {
+    font-family: 'Cinzel', serif; color: var(--text-primary);
+    font-size: 1.85rem; font-weight: 600; letter-spacing: 0.8px;
+    margin-bottom: 0.4rem; line-height: 1.2;
+}
+.header .patch {
+    color: var(--text-muted); font-size: 11.5px;
+    font-family: 'IBM Plex Mono', monospace;
+}
+.header .subtitle {
+    color: var(--text-muted); font-size: 13px; font-style: italic;
+    margin-top: 0.4rem; max-width: 720px;
+}
+
+.banner-05 {
+    background: linear-gradient(90deg, var(--overlay-plum) 0%, var(--bg-elevated) 100%);
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid var(--plum);
+    padding: 0.7rem 1rem; margin: 0 0 1.5rem 0; border-radius: 4px;
+    font-size: 12px; color: var(--text-body);
+}
+.banner-05 .label {
+    font-family: 'Cinzel', serif; color: var(--plum); font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase; margin-right: 0.5rem; font-weight: 600;
+}
+
+/* ─── INTRO BLOCK ─────────────────────────────────────────── */
+.intro-block {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid var(--gold);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem; border-radius: 6px;
+    box-shadow: var(--shadow-sm);
+}
+.intro-block p { color: var(--text-body); margin-bottom: 0.6rem; font-size: 13.5px; }
+.intro-block p:last-child { margin-bottom: 0; }
+.intro-block strong { color: var(--text-primary); font-weight: 600; }
+
+/* ─── TOC ─────────────────────────────────────────────────── */
+.toc {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2rem; border-radius: 6px;
+    box-shadow: var(--shadow-sm);
+}
+.toc-title {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    margin-bottom: 0.85rem; font-weight: 600;
+}
+.toc ol {
+    list-style: none; counter-reset: codex;
+    padding: 0; display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.1rem 1rem;
+}
+.toc ol li {
+    counter-increment: codex; padding: 0.35rem 0;
+}
+.toc ol li::before {
+    content: counter(codex, upper-roman) ".";
+    font-family: 'Cinzel', serif; color: var(--gold-deep);
+    font-size: 11px; letter-spacing: 1px; margin-right: 0.7rem;
+    display: inline-block; width: 1.7rem; font-weight: 600;
+}
+.toc a {
+    color: var(--text-body); text-decoration: none;
+    font-size: 12.5px; transition: color 0.15s; font-weight: 500;
+}
+.toc a:hover { color: var(--gold); }
+
+/* ─── SECTION ─────────────────────────────────────────────── */
+section.codex-section {
+    margin-bottom: 2.5rem;
+    scroll-margin-top: 1rem;
+}
+.section-title {
+    font-family: 'Cinzel', serif;
+    color: var(--text-primary);
+    font-size: 1.35rem; font-weight: 700; letter-spacing: 1px;
+    padding-bottom: 0.6rem; margin-bottom: 1.2rem;
+    border-bottom: 1px solid var(--border-subtle);
+    position: relative;
+}
+.section-title::after {
+    content: ''; position: absolute; left: 0; bottom: -1px;
+    height: 2px; width: 60px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+}
+.section-title .num {
+    font-family: 'Cinzel', serif; color: var(--gold-deep);
+    font-size: 0.65em; letter-spacing: 2.5px;
+    text-transform: uppercase; margin-right: 0.7rem;
+    vertical-align: 2px; font-weight: 600;
+}
+.section-title.aldur { color: var(--c-aldur); }
+.section-title.aldur::after {
+    background: linear-gradient(90deg, var(--c-aldur), transparent);
+}
+
+h3.sub-title {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 13px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; margin: 1.4rem 0 0.7rem;
+}
+h4.minor-title {
+    font-family: 'Cinzel', serif; color: var(--gold-deep);
+    font-size: 11.5px; font-weight: 600; letter-spacing: 1.2px;
+    text-transform: uppercase; margin: 1rem 0 0.5rem;
+}
+
+p { margin-bottom: 0.8rem; }
+strong { color: var(--text-primary); font-weight: 600; }
+em { color: var(--text-muted); font-style: italic; }
+a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
+a:hover { color: var(--gold-deep); }
+[data-theme="dark"] a:hover { color: var(--gold-bright); }
+ul, ol { padding-left: 1.4rem; margin-bottom: 0.8rem; }
+li { margin-bottom: 0.3rem; }
+li::marker { color: var(--gold); }
+
+code, kbd {
+    font-family: 'IBM Plex Mono', monospace;
+    background: var(--overlay-gold-soft);
+    border: 1px solid var(--border-subtle);
+    color: var(--gold-deep);
+    padding: 0.05rem 0.4rem;
+    font-size: 11.5px;
+    border-radius: 3px;
+}
+[data-theme="dark"] code, [data-theme="dark"] kbd { color: var(--gold-bright); }
+
+/* ─── RARITY CHIPS ────────────────────────────────────────── */
+.rarity-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 0.6rem; margin: 0.8rem 0 1.2rem;
+}
+.chip {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 0.7rem 0.85rem; border-radius: 4px;
+    display: flex; align-items: center; gap: 0.6rem;
+    font-family: 'Inter', sans-serif; font-size: 12px;
+    box-shadow: var(--shadow-sm);
+}
+.chip .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    box-shadow: 0 0 6px currentColor;
+}
+.chip .label { color: var(--text-primary); font-weight: 600; line-height: 1.2; }
+.chip .label small {
+    display: block; color: var(--text-muted); font-size: 10.5px;
+    letter-spacing: 0.5px; font-weight: 400; margin-top: 0.15rem;
+}
+.c-normal  .dot, .c-normal  .dot { color: var(--r-normal);  background: var(--r-normal); }
+.c-magic   .dot { color: var(--r-magic);   background: var(--r-magic); }
+.c-rare    .dot { color: var(--r-rare);    background: var(--r-rare); }
+.c-unique  .dot { color: var(--r-unique);  background: var(--r-unique); }
+.c-fract   .dot { color: var(--r-fract);   background: var(--r-fract); }
+.c-desec   .dot { color: var(--r-desec);   background: var(--r-desec); }
+.c-corrupt .dot { color: var(--r-corrupt); background: var(--r-corrupt); }
+
+/* ─── TABLES ──────────────────────────────────────────────── */
+.tbl-wrap {
+    overflow-x: auto; margin: 0.8rem 0 1.4rem;
+    border: 1px solid var(--border-subtle); border-radius: 6px;
+    box-shadow: var(--shadow-sm);
+}
+table {
+    width: 100%; border-collapse: collapse;
+    background: var(--bg-surface); font-size: 12.5px;
+}
+table caption {
+    text-align: left; padding: 0.7rem 1rem;
+    font-family: 'Cinzel', serif; font-weight: 600;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold);
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-subtle);
+}
+th, td {
+    text-align: left; padding: 0.55rem 0.85rem;
+    border-bottom: 1px solid var(--border-subtle);
+    vertical-align: top;
+}
+th {
+    font-family: 'Cinzel', serif; font-weight: 600;
+    color: var(--gold-deep); font-size: 10.5px;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    background: var(--bg-elevated);
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--overlay-gold-soft); }
+td strong { color: var(--text-primary); font-weight: 600; }
+td .tag-pill {
+    display: inline-block; padding: 0.05rem 0.4rem;
+    border-radius: 3px; font-size: 10px; font-weight: 600;
+    font-family: 'IBM Plex Mono', monospace;
+    margin: 0 0.15rem 0.15rem 0;
+    background: var(--overlay-gold-soft); color: var(--gold);
+    border: 1px solid var(--border-subtle);
+}
+
+/* Currency tier tags */
+.tier-pill {
+    display: inline-block; padding: 0.05rem 0.5rem;
+    border-radius: 100px; font-size: 9.5px; font-weight: 600;
+    font-family: 'Cinzel', serif; letter-spacing: 1px;
+    text-transform: uppercase; margin-left: 0.3rem;
+    vertical-align: 1px;
+}
+.tier-pill.lesser  { background: var(--bg-elevated); color: var(--text-muted); border: 1px solid var(--border-subtle); }
+.tier-pill.greater { background: var(--overlay-gold-soft); color: var(--gold); border: 1px solid var(--gold-deep); }
+.tier-pill.perfect { background: var(--overlay-plum); color: var(--plum); border: 1px solid var(--plum); }
+.tier-pill.normal  { background: var(--overlay-steel); color: var(--steel); border: 1px solid var(--steel); }
+
+/* ─── CALLOUTS ────────────────────────────────────────────── */
+.callout {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid var(--gold);
+    padding: 0.85rem 1.1rem; margin: 1rem 0;
+    font-size: 12.5px; border-radius: 0 4px 4px 0;
+    color: var(--text-body);
+}
+.callout.warn { border-left-color: var(--burnt); background: var(--overlay-burnt); }
+.callout.tip  { border-left-color: var(--steel); background: var(--overlay-steel); }
+.callout.new  { border-left-color: var(--plum);  background: var(--overlay-plum); }
+.callout.aldur{ border-left-color: var(--c-aldur); background: var(--overlay-aldur); }
+.callout .label {
+    display: block; font-family: 'Cinzel', serif;
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.3rem; font-weight: 600;
+}
+.callout.warn .label { color: var(--burnt); }
+.callout.tip  .label { color: var(--steel); }
+.callout.new  .label { color: var(--plum); }
+.callout.aldur .label { color: var(--c-aldur); }
+.callout strong { color: var(--text-primary); }
+
+/* ─── CARD GRIDS ──────────────────────────────────────────── */
+.card-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0.75rem; margin: 1rem 0 1.2rem;
+}
+.card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 5px; padding: 0.95rem 1.1rem;
+    box-shadow: var(--shadow-sm);
+}
+.card h4 {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 12.5px; font-weight: 600;
+    margin-bottom: 0.35rem; letter-spacing: 0.5px;
+}
+.card .role {
+    font-family: 'IBM Plex Mono', monospace; color: var(--text-muted);
+    font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+.card p { color: var(--text-body); font-size: 12px; margin-bottom: 0.35rem; }
+.card p:last-child { margin-bottom: 0; }
+.card ul { margin: 0.3rem 0 0; padding-left: 1.2rem; }
+.card li { font-size: 11.5px; margin-bottom: 0.15rem; color: var(--text-body); }
+
+/* ─── TRICK CARDS (the showpieces) ────────────────────────── */
+.tricks {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 1rem; margin: 1.2rem 0;
+}
+.trick {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid var(--gold);
+    padding: 1.1rem 1.2rem 1rem;
+    border-radius: 0 5px 5px 0;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+}
+.trick .tag {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold-deep); margin-bottom: 0.4rem; font-weight: 600;
+}
+.trick h4 {
+    font-family: 'Cinzel', serif; color: var(--text-primary);
+    font-size: 14px; font-weight: 700; letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+.trick p {
+    font-size: 12.5px; color: var(--text-body); margin-bottom: 0.6rem;
+}
+.trick .how {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 3px;
+    padding: 0.7rem 0.9rem;
+    margin: 0.6rem 0;
+    font-size: 12px;
+}
+.trick .how strong {
+    display: block; font-family: 'Cinzel', serif;
+    color: var(--gold-deep); font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 0.4rem; font-weight: 600;
+}
+.trick .how ol { margin: 0; padding-left: 1.2rem; }
+.trick .how li { margin-bottom: 0.2rem; font-size: 11.5px; }
+.trick .why {
+    margin-top: 0.6rem; padding-top: 0.5rem;
+    border-top: 1px dashed var(--border-subtle);
+    font-style: italic; color: var(--text-muted); font-size: 12px;
+}
+.trick .why::before {
+    content: 'Why ';
+    font-style: normal; font-family: 'Cinzel', serif;
+    color: var(--gold-deep); font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-right: 0.3rem; font-weight: 600;
+}
+
+/* ─── WORKFLOW STEPS ──────────────────────────────────────── */
+.canonical {
+    background: var(--bg-surface);
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    padding: 1.2rem 1.4rem;
+    margin: 1rem 0 1.4rem;
+    box-shadow: var(--shadow-md);
+    position: relative;
+}
+.canonical .can-title {
+    font-family: 'Cinzel', serif;
+    color: var(--gold); font-size: 11px;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    text-align: center; margin-bottom: 0.9rem; font-weight: 600;
+}
+.flow {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    align-items: center; justify-content: center;
+    margin-bottom: 0.7rem;
+}
+.pill {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.45rem 0.85rem;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    font-family: 'Cinzel', serif;
+    font-size: 11px; letter-spacing: 0.5px;
+    color: var(--text-body); white-space: nowrap;
+    border-radius: 3px;
+}
+.pill .n {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 10.5px; font-weight: 700;
+}
+.pill.final {
+    border-color: var(--burnt);
+    background: var(--overlay-burnt);
+    color: var(--text-primary);
+}
+.pill.final .n { color: var(--burnt); }
+.arrow { color: var(--gold-deep); font-size: 10px; opacity: 0.7; }
+.canonical .rule {
+    text-align: center; font-style: italic;
+    color: var(--text-muted); font-size: 12px;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 0.7rem; margin-top: 0.4rem;
+}
+.canonical .rule strong { color: var(--gold-deep); font-style: normal; }
+
+.steps {
+    counter-reset: step; list-style: none; padding: 0;
+    margin: 1rem 0; display: grid; gap: 0.7rem;
+}
+.steps > li {
+    counter-increment: step;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 0.95rem 1.1rem 0.95rem 3.6rem;
+    border-radius: 4px;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    font-size: 12.5px;
+}
+.steps > li::before {
+    content: counter(step, upper-roman);
+    position: absolute; left: 0.9rem; top: 0.95rem;
+    font-family: 'Cinzel', serif;
+    color: var(--gold); font-size: 16px;
+    font-weight: 700; width: 2.2rem; text-align: center;
+}
+.steps > li b {
+    display: block; font-family: 'Cinzel', serif;
+    color: var(--text-primary); font-size: 12px;
+    letter-spacing: 0.6px; text-transform: uppercase;
+    font-weight: 600; margin-bottom: 0.3rem;
+}
+.steps .why {
+    display: block; margin-top: 0.5rem;
+    padding-top: 0.45rem;
+    border-top: 1px dashed var(--border-subtle);
+    font-style: italic; color: var(--text-muted); font-size: 11.5px;
+}
+.steps .why::before {
+    content: 'Why ';
+    font-style: normal; font-family: 'Cinzel', serif;
+    color: var(--gold-deep); font-size: 9.5px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-right: 0.3rem; font-weight: 600;
+}
+
+/* ─── TAG-SYSTEM LADDER ───────────────────────────────────── */
+.tag-ladder {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin: 0.7rem 0 1rem;
+}
+.tag-chip {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.35rem 0.7rem;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 3px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; color: var(--text-body);
+}
+.tag-chip .mark {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold);
+}
+.tag-chip.life       .mark { background: var(--burnt); }
+.tag-chip.mana       .mark { background: var(--steel); }
+.tag-chip.defence    .mark { background: var(--steel); }
+.tag-chip.minion     .mark { background: var(--plum); }
+.tag-chip.gem        .mark { background: var(--gold-bright); }
+.tag-chip.attack     .mark { background: var(--tan); }
+.tag-chip.caster     .mark { background: var(--c-breach); }
+.tag-chip.fire       .mark { background: var(--burnt); }
+.tag-chip.cold       .mark { background: var(--steel); }
+.tag-chip.lightning  .mark { background: var(--c-expedition); }
+.tag-chip.chaos      .mark { background: var(--c-ritual); }
+.tag-chip.elemental  .mark { background: var(--gold); }
+.tag-chip.resist     .mark { background: var(--sage); }
+.tag-chip.damage     .mark { background: var(--burnt); }
+
+/* ─── BONE GRID (Abyss) ──────────────────────────────────── */
+.bone-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem; margin: 0.8rem 0 1.2rem;
+}
+.bone {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px; padding: 0.7rem 0.6rem;
+    text-align: center; font-size: 11.5px;
+    box-shadow: var(--shadow-sm);
+}
+.bone .name {
+    font-family: 'Cinzel', serif; color: var(--text-primary);
+    font-weight: 600; font-size: 12px; letter-spacing: 0.3px;
+    margin-bottom: 0.2rem;
+}
+.bone .target {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--gold); font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+}
+@media (max-width: 720px) {
+    .bone-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ─── FOOTER NAV ──────────────────────────────────────────── */
+.footer-nav {
+    margin-top: 2rem; padding-top: 1rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex; justify-content: space-between;
+    font-size: 12px; font-family: 'Cinzel', serif; letter-spacing: 1px;
+}
+.footer-nav a {
+    color: var(--gold); text-decoration: none;
+    text-transform: uppercase; transition: color 0.15s; font-weight: 600;
+    border-bottom: none;
+}
+.footer-nav a:hover { color: var(--gold-deep); }
+[data-theme="dark"] .footer-nav a:hover { color: var(--gold-bright); }
+
+footer.site-footer {
+    text-align: center; padding: 1.5rem 1rem;
+    margin-top: 1.5rem; font-size: 12px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-subtle);
+}
+footer.site-footer a {
+    color: var(--gold); text-decoration: none; border-bottom: none;
+}
+
+/* ─── MOBILE ──────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .container { flex-direction: column; }
+    .sidebar {
+        position: relative; width: 100%; height: auto;
+        border-right: none; border-bottom: 1px solid var(--border-subtle);
+    }
+    .main { padding: 1.25rem 1rem; }
+    .header h1 { font-size: 1.4rem; }
+    .theme-toggle { top: 0.5rem; right: 0.5rem; padding: 0.4rem 0.7rem; font-size: 10.5px; }
+    .bone-grid { grid-template-columns: repeat(2, 1fr); }
+    .toc ol { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 520px) {
+    .tricks { grid-template-columns: 1fr; }
+    .rarity-grid { grid-template-columns: repeat(2, 1fr); }
+    .card-grid { grid-template-columns: 1fr; }
+}
+
+:target { animation: highlight 1.4s ease-out; }
+@keyframes highlight {
+    0%   { box-shadow: 0 0 0 3px var(--gold); }
+    100% { box-shadow: 0 0 0 0 transparent; }
+}
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span class="icon" id="theme-icon">☀</span>
+        <span id="theme-label">Light</span>
+    </button>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h2>The Codex</h2>
+                <a href="#anatomy"      class="sidebar-link"><span class="marker">I</span>Item Anatomy</a>
+                <a href="#breakpoints"  class="sidebar-link"><span class="marker">II</span>Item Level &amp; Breakpoints</a>
+                <a href="#tiers"        class="sidebar-link"><span class="marker">III</span>Currency Tiers</a>
+                <a href="#currencies"   class="sidebar-link"><span class="marker">IV</span>The Currency Index</a>
+                <a href="#essences"     class="sidebar-link"><span class="marker">V</span>Essences</a>
+                <a href="#omens"        class="sidebar-link"><span class="marker">VI</span>Omens</a>
+                <a href="#tags"         class="sidebar-link"><span class="marker">VII</span>The Tag System</a>
+                <a href="#abyss"        class="sidebar-link"><span class="marker">VIII</span>Desecration / Abyss</a>
+                <a href="#recomb"       class="sidebar-link"><span class="marker">IX</span>Recombinators</a>
+                <a href="#fracture"     class="sidebar-link"><span class="marker">X</span>Fracturing Orbs</a>
+                <a href="#quality"      class="sidebar-link"><span class="marker">XI</span>Quality &amp; Catalysts</a>
+                <a href="#sockets"      class="sidebar-link"><span class="marker">XII</span>Sockets, Runes &amp; Soul Cores</a>
+                <a href="#vaal"         class="sidebar-link"><span class="marker">XIII</span>Corruption</a>
+                <a href="#tricks"       class="sidebar-link"><span class="marker">XIV</span>The Adept's Tricks</a>
+                <a href="#workflow"     class="sidebar-link"><span class="marker">XV</span>Master Workflow</a>
+                <a href="#aldur"        class="sidebar-link"><span class="marker">XVI</span>Patch 0.5 Additions</a>
+                <a href="#tools"        class="sidebar-link"><span class="marker">XVII</span>Tools &amp; Resources</a>
+                <a href="#caveats"      class="sidebar-link"><span class="marker">XVIII</span>Caveats &amp; Sources</a>
+            </div>
+
+            <div class="sidebar-section">
+                <h2>Navigation</h2>
+                <a href="index.html"               class="sidebar-link">← Index</a>
+                <a href="poe2_act1_guide.html"     class="sidebar-link">Act I</a>
+                <a href="poe2_act2_guide.html"     class="sidebar-link">Act II</a>
+                <a href="poe2_act3_guide.html"     class="sidebar-link">Act III</a>
+                <a href="poe2_act4_guide.html"     class="sidebar-link">Act IV</a>
+                <a href="poe2_interludes_guide.html" class="sidebar-link">Interludes</a>
+                <a href="poe2_endgame_guide.html"  class="sidebar-link">Endgame</a>
+            </div>
+        </aside>
+
+        <main class="main">
+            <header class="header">
+                <div class="eyebrow">Path of Exile 2 · Workbench Reference</div>
+                <h1>The Crafting Codex</h1>
+                <span class="patch">Patch 0.4 (current) → 0.5 (May 29, 2026) · Every currency · Every omen · Every trick</span>
+                <p class="subtitle">A practitioner's reference for turning every white drop into something a build can use. Every currency, every omen, every meta-mod, and the tricks that turn a 1-mod base into a 6-mod finished piece without bricking it — a community-driven summary, compiled from multiple sources, covering the live patch and the 0.5 reveal. <strong>Treat as a quick reference, not as ground truth.</strong> See <a href="#caveats">§XVIII</a>.</p>
+            </header>
+
+            <div class="banner-05">
+                <span class="label">Patch 0.5 · Return of the Ancients</span>
+                Ships <strong>May 29, 2026</strong>. The Runes of Aldur league adds <strong>Verisium</strong>, <strong>Runeforging</strong>, <strong>Runic Alloys</strong>, a <strong>Genesis Tree</strong> crafting bench under Breach, and <strong>liquid emotion</strong> jewel crafts under Delirium. All flagged inline; full coverage in <a href="#aldur">§XVI</a>.
+            </div>
+
+            <div class="intro-block">
+                <p><strong>How to read this codex.</strong> Sections I–IV are the foundation — what an item <em>is</em>, the orb hierarchy, the essence types. V–IX are the precision tools, where most of the actual craft happens. X–XII are the finishing layers. XIII is the showpiece: the tricks streamers actually use to deterministically craft endgame pieces. XIV is the canonical order in which to apply everything. XV is what changes on May 29.</p>
+                <p>You do not need to read it linearly. Each section is self-contained and cross-links to the others when relevant. If you want one place to start: <a href="#tags">the tag system</a> is the single most important concept in PoE2 crafting, and it is poorly documented in-game.</p>
+                <p><em>A community-driven summary compiled from multiple sources: Patch 0.4 (The Last of the Druids) in-game systems, the 0.5 reveal stream, Maxroll, Mobalytics, Vulkk, PoE2DB, the official site, and community streamer crafting demonstrations. This codex acts as a quick reference, not as authoritative documentation — cross-check with PoE2DB and in-game tooltips before any expensive craft. The full disclaimer is on the <a href="index.html">index page</a>.</em></p>
+            </div>
+
+            <nav class="toc">
+                <div class="toc-title">Table of Workings</div>
+                <ol>
+                    <li><a href="#anatomy">Item Anatomy</a></li>
+                    <li><a href="#breakpoints">Item Level &amp; Tier Breakpoints</a></li>
+                    <li><a href="#tiers">Currency Tiers (Lesser · Greater · Perfect)</a></li>
+                    <li><a href="#currencies">The Currency Index</a></li>
+                    <li><a href="#essences">Essences</a></li>
+                    <li><a href="#omens">Omens</a></li>
+                    <li><a href="#tags">The Tag System</a></li>
+                    <li><a href="#abyss">Desecration / Abyss</a></li>
+                    <li><a href="#recomb">Recombinators</a></li>
+                    <li><a href="#fracture">Fracturing Orbs</a></li>
+                    <li><a href="#quality">Quality &amp; Catalysts</a></li>
+                    <li><a href="#sockets">Sockets · Runes · Soul Cores</a></li>
+                    <li><a href="#vaal">Corruption</a></li>
+                    <li><a href="#tricks">The Adept's Tricks</a></li>
+                    <li><a href="#workflow">Master Workflow</a></li>
+                    <li><a href="#aldur">Patch 0.5 Additions</a></li>
+                    <li><a href="#tools">Tools &amp; Resources</a></li>
+                    <li><a href="#caveats">Caveats &amp; Sources</a></li>
+                </ol>
+            </nav>
+
+            <!-- ───────────────────────────────────────────────
+                 I. ITEM ANATOMY
+                 ─────────────────────────────────────────────── -->
+            <section id="anatomy" class="codex-section">
+                <h2 class="section-title"><span class="num">I</span>Item Anatomy</h2>
+
+                <p>Every craft starts with an item. Every item is a <em>base</em> (its physical class — Rattling Sceptre, Science Scale Gloves, Gemini Bow) at a particular <em>item level</em> (ilvl), with a particular <em>rarity</em> that gates how many modifiers it can carry, and those modifiers split into <em>prefixes</em> and <em>suffixes</em>.</p>
+
+                <h3 class="sub-title">Rarity Ladder</h3>
+                <div class="rarity-grid">
+                    <div class="chip c-normal"><span class="dot"></span><span class="label">Normal<small>White · 0 mods</small></span></div>
+                    <div class="chip c-magic"><span class="dot"></span><span class="label">Magic<small>Blue · up to 2 mods</small></span></div>
+                    <div class="chip c-rare"><span class="dot"></span><span class="label">Rare<small>Yellow · up to 6 mods</small></span></div>
+                    <div class="chip c-unique"><span class="dot"></span><span class="label">Unique<small>Orange · fixed mod pool</small></span></div>
+                    <div class="chip c-fract"><span class="dot"></span><span class="label">Fractured<small>One mod locked</small></span></div>
+                    <div class="chip c-desec"><span class="dot"></span><span class="label">Desecrated<small>Hidden mod · reveal at Well</small></span></div>
+                    <div class="chip c-corrupt"><span class="dot"></span><span class="label">Corrupted<small>No further changes</small></span></div>
+                </div>
+
+                <h3 class="sub-title">Prefixes &amp; Suffixes</h3>
+                <p>A <strong>Magic</strong> item can have up to <strong>1 prefix and 1 suffix</strong> (2 total). A <strong>Rare</strong> item can have up to <strong>3 prefixes and 3 suffixes</strong> (6 total). The two sides are functionally independent: a slam that targets prefixes never touches suffixes, and vice versa. Most "deterministic" crafting in PoE2 boils down to <em>controlling which side an orb hits</em>.</p>
+                <p>As a rough rule of thumb (always cross-check against PoE2DB before any real craft): <strong>damage-shaped modifiers tend to be prefixes</strong> (flat damage, % damage, +levels, life, energy shield, mana), while <strong>stats-shaped modifiers tend to be suffixes</strong> (resistances, attributes, attack speed, cast speed, crit chance, recovery rates). There are exceptions — e.g. spirit on a sceptre is a prefix; movement speed on boots is a suffix — and you should not memorise the layout. The reflex you want is "before I slam this, I check the mod pool on PoE2DB."</p>
+
+                <h3 class="sub-title">Item Level &amp; Modifier Tier Gates</h3>
+                <p>Every modifier has a <strong>minimum item level</strong> at which it can roll, and the <em>tier</em> of that modifier scales with item level. T1 modifiers (the highest tier) almost always require ilvl 80+; many need ilvl 82. T2 is typically ilvl 75. Lower tiers roll at lower ilvls. Below the minimum, that modifier <em>cannot appear</em> on the item at all.</p>
+                <p>This matters for two reasons. First, when buying a base, you usually want <strong>ilvl 81 or 82</strong> — the cheapest items that can still roll T1 on the modifiers you care about. Second, the <em>Greater</em> and <em>Perfect</em> tiers of basic currency orbs guarantee a <strong>minimum modifier level</strong> (Greater = ilvl 35; Perfect = ilvl 50), which removes the lowest-tier garbage from the result pool. See <a href="#tiers">§III</a>.</p>
+
+                <h3 class="sub-title">Implicit vs. Explicit Modifiers</h3>
+                <p><strong>Implicit</strong> modifiers are tied to the base type itself (e.g. <em>"+25 to maximum Mana"</em> on a Synthesised Amethyst Ring). They do not count towards the 6-modifier limit and cannot be modified by ordinary currency. <strong>Explicit</strong> modifiers are the ones you craft — the prefixes and suffixes you see in the upper block of an item's tooltip. Fracturing, annulment, divine, chaos, exalted, regal — all operate on explicits.</p>
+
+                <div class="callout">
+                    <span class="label">The 6-modifier rule</span>
+                    The defining structural fact of PoE2 crafting: a Rare item caps at 6 modifiers, split 3/3 between prefixes and suffixes. Everything else in this codex is a tool for filling that 3+3 grid with mods you want.
+                </div>
+            </section>
+
+            <!-- ───────────────────────────────────────────────
+                 II. CURRENCY TIERS
+                 ─────────────────────────────────────────────── -->
+            <!-- ───────────────────────────────────────────────
+                 II. ITEM LEVEL & TIER BREAKPOINTS
+                 ─────────────────────────────────────────────── -->
+            <section id="breakpoints" class="codex-section">
+                <h2 class="section-title"><span class="num">II</span>Item Level &amp; Tier Breakpoints</h2>
+
+                <p>A <strong>breakpoint</strong> is the <em>item level</em> at which a higher tier of a given modifier becomes possible to roll. This is the foundation that informs every later choice in this codex — which base to keep, which essence to use, when to corrupt, when to stop. The concept does double duty: there are <strong>leveling breakpoints</strong> (gear refresh cadence during the campaign) and <strong>crafting breakpoints</strong> (mod-tier thresholds you target during endgame crafts). They use the same underlying mechanic, so they're treated together here.</p>
+
+                <h3 class="sub-title">Two Item-Level Numbers, Kept Separate</h3>
+                <p>Every item carries an <strong>Item Level (ilvl)</strong>, fixed when it drops, equal to the level of the area it came from. Every <em>tier</em> of every <em>modifier</em> carries an internal <strong>Mod Level</strong> (also called drop level). The rule is one line:</p>
+                <div class="callout">
+                    <span class="label">The breakpoint rule</span>
+                    A tier is eligible to roll on an item only if <code>mod_level ≤ item_level</code>. A T1 mod with mod level 82 cannot appear on an ilvl 75 item — not with essences, not with omens, not by luck. The higher tiers are simply absent from that item's mod pool.
+                </div>
+
+                <h3 class="sub-title">How to Read Tiers In-Game and Out</h3>
+                <p>In-game, enable <strong>Advanced Mod Descriptions</strong> in <em>UI Settings</em>, then hold <kbd>Alt</kbd> over an item: the tier (T1, T2, …) and roll range appear in grey text next to each modifier. T1 is always the highest tier. What is <em>not</em> shown in-game is the modifier's <em>tags</em> (life, attack, elemental, minion, etc.) or the modifier's <em>mod level</em> — for those, you go to the database.</p>
+
+                <div class="callout">
+                    <span class="label">PoE2DB — the database to keep open</span>
+                    <a href="https://poe2db.tw/us/" target="_blank" rel="noopener">poe2db.tw</a> is the datamined reference for every base, every modifier, every tier, every tag, every ilvl gate, and every weight. It is the single most important external resource for crafting in PoE2. Open the <em>Item Modifiers per Base Type</em> page for whatever you're crafting on — the page lists each mod as e.g. <code>"#% increased Maximum Life · life · defence · T1 · ilvl 81 · weight 600"</code>. The tags are in brackets, the tier is T1, the ilvl is the mod level gate, the weight is the relative probability among eligible mods.
+                </div>
+
+                <h3 class="sub-title">Two Kinds of Breakpoints</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>Leveling Breakpoints</h4>
+                        <div class="role">When new gear unlocks during the campaign</div>
+                        <p>Character-level milestones at which a new <em>base type</em>, vendor stock tier, or movement-speed boot tier becomes available. These are about <strong>upgrade cadence</strong> — what to look for, when. Maxroll's leveling guide is built around these.</p>
+                        <p>Examples gathered from the live patch: Act 1 vendors cap at ilvl 15, so Grand Life/Mana Flasks won't appear there. Movement-speed boot tiers shifted in patch 0.4 to align with Act starts (one upgrade per Act). Weapon base type unlocks (e.g. Bombard Crossbow at character level 33) are build-specific — keep a personal note per build.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Crafting Breakpoints</h4>
+                        <div class="role">When a top mod tier unlocks on a base</div>
+                        <p>Item-level thresholds at which the strongest tiers of specific modifiers become eligible. These are about <strong>base selection</strong> for a craft — picking a base of the right ilvl to unlock the T1s you need, sometimes deliberately staying lower to thin the pool.</p>
+                        <p>Examples covered below: movement speed T1 at ilvl 82, elemental resistance T1 at ilvl 82, chaos resistance on body armour T1 at ilvl 81, and a handful of niche named mods (additional arrows, +levels of skill gem groups) at ilvl 81–82.</p>
+                    </div>
+                </div>
+
+                <h3 class="sub-title">Important Crafting Breakpoints (Reference)</h3>
+                <p>The table below summarises commonly cited mod-tier breakpoints. These are <em>indicative</em> values compiled from multiple community sources; the source-of-truth for any specific craft is PoE2DB's per-base modifier page.</p>
+                <table>
+                    <thead>
+                        <tr><th>Modifier</th><th>Slot</th><th>Top-tier ilvl</th><th>Notes</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>% Increased Movement Speed</strong></td><td>Boots</td><td>T1 ≥ 82 · T2 ≥ 70</td><td>Same gates regardless of boot base. The most-targeted breakpoint in the game.</td></tr>
+                        <tr><td><strong>Elemental Resistance</strong> (Fire / Cold / Lightning)</td><td>All slots that can roll it</td><td>T1 ≥ 82</td><td>Top tier is +41–45%. Same gate across resistance types.</td></tr>
+                        <tr><td><strong>Chaos Resistance</strong></td><td>Body Armour</td><td>T1 ≥ 81</td><td>Asymmetric with elemental res — one ilvl lower.</td></tr>
+                        <tr><td><strong>+# to Maximum Life</strong></td><td>Body Armour / Belt / Jewellery</td><td>T1 at high ilvl (varies)</td><td>Life has many tiers (often 10+). Look up the exact gate for your base on PoE2DB.</td></tr>
+                        <tr><td><strong>+# to Level of all Lightning Spell Skills</strong></td><td>Wand</td><td>≥ 81</td><td>Carries the <span class="tag-pill">lightning</span> tag — relevant for homogenising slams.</td></tr>
+                        <tr><td><strong>Bow Attacks fire +# additional Arrows</strong></td><td>Bow</td><td>≥ 82 (subject to patch changes)</td><td>The classic chase mod for bow builds.</td></tr>
+                    </tbody>
+                </table>
+
+                <h3 class="sub-title">The Strategic Tradeoff: High ilvl vs Narrow Pool</h3>
+                <p>The naive instinct is to always craft on the highest-ilvl base possible. That maximises the <em>ceiling</em>, but it also widens the <em>pool</em> of mods that can roll — every lower tier of every mod is still eligible. A deliberately lower-ilvl base excludes the top tiers entirely but also excludes a great many other competing mods, making each slam much more likely to land what you want.</p>
+                <p>The community heuristic for budget movement-speed boot crafting illustrates this: an ilvl 82 base is needed for 35% movement speed and T1 resistances, but ilvl 82 two-socket bases are rare and expensive. A base in the <strong>ilvl 75–80</strong> range gives access to most desirable rolls with a much thinner pool — often a better expected-value craft. The exception is when you're going for a true endgame mirror-tier item, where the ceiling matters and the cost of additional slams is acceptable.</p>
+
+                <h3 class="sub-title">Where Breakpoints Resurface in This Codex</h3>
+                <p>Every later section assumes you know which breakpoint you're aiming for. Specifically:</p>
+                <ul>
+                    <li><strong>Currency Tiers (§III)</strong> — Greater Exalts require ilvl ≥ 35, Perfect Exalts require ilvl ≥ 50. These are <em>currency-side</em> ilvl gates that interact with the mod-side gates above.</li>
+                    <li><strong>Essences (§V)</strong> — the essence forces its guaranteed modifier, but the <em>tier</em> of that modifier is still bounded by your base's ilvl. A Perfect Essence on an ilvl 70 base will roll the highest tier available <em>at ilvl 70</em>, not the absolute top tier.</li>
+                    <li><strong>Desecration / Abyss (§VIII)</strong> — Ancient bones require mod level ≥ 40; Preserved bones work at any ilvl; Gnawed bones cap at mod level 64. These are bone-side gates that stack with your base's ilvl gate.</li>
+                    <li><strong>Quality &amp; Catalysts (§XI)</strong> — catalysts amplify whichever mods carry their tag, regardless of tier — but they amplify a T1 mod much more than a T6 mod, so the base ilvl gating the tier still dominates the outcome.</li>
+                </ul>
+
+                <div class="callout">
+                    <span class="label">Practical workflow</span>
+                    Before starting any non-trivial craft: <strong>(1)</strong> decide which tier-1 mods you want; <strong>(2)</strong> open PoE2DB on the target base type and find the highest ilvl gate among them; <strong>(3)</strong> pick a base at exactly that ilvl (or 1–2 above, never below) unless you specifically want a narrower pool; <strong>(4)</strong> then proceed with the omen / essence / exalt sequence in §XV.
+                </div>
+            </section>
+
+            <section id="tiers" class="codex-section">
+                <h2 class="section-title"><span class="num">III</span>Currency Tiers — Lesser · Greater · Perfect</h2>
+
+                <p>Five of the basic crafting currencies exist in <strong>three tiers</strong>. Higher-tier orbs do the same action, but enforce a <strong>minimum modifier level</strong>, cutting the lowest-tier garbage results from the random pool. This is the single biggest determinism win available to the league-start crafter.</p>
+
+                <div class="tbl-wrap">
+                    <table>
+                        <caption>Tiered orb minimum-modifier-level gates</caption>
+                        <thead>
+                            <tr><th>Tier</th><th>Min mod level</th><th>Effect</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Lesser / Normal</strong> <span class="tier-pill normal">Tier 1</span></td><td>No floor</td><td>Can roll any tier. Cheap. Use freely on low-ilvl bases or when you don't care about result quality.</td></tr>
+                            <tr><td><strong>Greater</strong> <span class="tier-pill greater">Tier 2</span></td><td>ilvl ≥ 35</td><td>Cuts roughly the bottom third of tiers. Cheap relative to Perfect. The workhorse for endgame crafting where you don't need T1 specifically.</td></tr>
+                            <tr><td><strong>Perfect</strong> <span class="tier-pill perfect">Tier 3</span></td><td>ilvl ≥ 50</td><td>Cuts the bottom two thirds. Used for the final slam where you want T1/T2 guaranteed. Perfect Exalts run several Divines each in the early league.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p>The five tiered orbs are: <strong>Orb of Transmutation</strong>, <strong>Orb of Augmentation</strong>, <strong>Regal Orb</strong>, <strong>Chaos Orb</strong>, and <strong>Exalted Orb</strong>. Each exists as Normal / Greater / Perfect.</p>
+
+                <div class="callout tip">
+                    <span class="label">Practical rule</span>
+                    Buy <strong>Greater Exalts</strong> in stacks. Use Greater for routine work; save your Perfect Exalts for the final 1–2 slams on a real endgame item, where the cost is justified by the modifier-tier floor.
+                </div>
+            </section>
+
+            <!-- ───────────────────────────────────────────────
+                 III. THE CURRENCY INDEX
+                 ─────────────────────────────────────────────── -->
+            <section id="currencies" class="codex-section">
+                <h2 class="section-title"><span class="num">IV</span>The Currency Index</h2>
+
+                <p>The complete crafting orb stack, in the order you typically encounter them. Each entry covers what the orb <em>does</em>, what <em>state</em> of item it acts on, and the strategic note worth keeping in mind.</p>
+
+                <h3 class="sub-title">Rarity-Changing Orbs</h3>
+                <div class="tbl-wrap">
+                    <table>
+                        <thead>
+                            <tr><th>Orb</th><th>Acts on</th><th>Effect</th><th>Strategic note</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Orb of Transmutation</strong></td>
+                                <td>Normal</td>
+                                <td>Upgrades to Magic with 1 mod.</td>
+                                <td>Always step 1. Perfect Transmutes are cheap; use them by default for the ilvl ≥ 50 floor.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Orb of Augmentation</strong></td>
+                                <td>Magic with 1 mod</td>
+                                <td>Adds the second mod (other side from existing).</td>
+                                <td>Cheap. Greater Augs are the standard for filling a magic item before regalling.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Regal Orb</strong></td>
+                                <td>Magic</td>
+                                <td>Upgrades to Rare and adds a third random mod.</td>
+                                <td>Pure gambling unless paired with an essence in the alt-regal sequence. Greater Regals can be paired with <em>Crystallisation</em> omens for some control.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Orb of Alchemy</strong></td>
+                                <td>Normal</td>
+                                <td>Upgrades directly to Rare with random mods (typically 4).</td>
+                                <td>Mostly used on Waystones for endgame mapping, not on gear.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="sub-title">Modifier-Manipulating Orbs</h3>
+                <div class="tbl-wrap">
+                    <table>
+                        <thead>
+                            <tr><th>Orb</th><th>Acts on</th><th>Effect</th><th>Strategic note</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Chaos Orb</strong></td>
+                                <td>Rare</td>
+                                <td>Removes one random mod, adds one new random mod.</td>
+                                <td>More surgical than the PoE 1 version. Pair with Omen of Whittling to target the lowest-tier mod, or Erasure omens to target a side.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Exalted Orb</strong></td>
+                                <td>Rare with open slot(s)</td>
+                                <td>Adds one new random mod to an open slot.</td>
+                                <td>The finishing orb. Greater for routine. Perfect when the slam matters. Paired with omens for almost every endgame craft.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Orb of Annulment</strong></td>
+                                <td>Rare</td>
+                                <td>Removes one random mod.</td>
+                                <td>Paired with Sinistral/Dextral Annulment omens to target a side. The standard "clean up an unwanted mod" tool. Hoard — they get more expensive deeper into a league.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Divine Orb</strong></td>
+                                <td>Magic or Rare</td>
+                                <td>Rerolls the <em>numeric values</em> of all existing mods within their ranges (not the mod types).</td>
+                                <td>Final polish. Don't divine until you've decided this is the item — repeated divining can shift good rolls down.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fracturing Orb</strong></td>
+                                <td>Rare with ≥ 4 mods</td>
+                                <td>Locks one random existing mod permanently — it cannot be removed or changed.</td>
+                                <td>The cornerstone of high-end crafting. See <a href="#fracture">§X</a> for the isolation principle.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vaal Orb</strong></td>
+                                <td>Any rarity</td>
+                                <td>Corrupts the item. Random outcome: implicit, socket, modifier change, becomes Rare, or "nothing" (cosmetic). Item is locked from further modification.</td>
+                                <td>Always the <em>final</em> step. See <a href="#vaal">§XIII</a>.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mirror of Kalandra</strong></td>
+                                <td>Any non-corrupted item</td>
+                                <td>Creates a mirrored copy of the item. The copy is itself uncraftable.</td>
+                                <td>Trade currency. You will not personally use one for years, but mirror-tier crafts are sold via this orb.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="sub-title">Shards &amp; Fragments</h3>
+                <p>Most basic orbs have <strong>shards</strong> that combine 1-for-X into the full orb (Transmutation Shards, Regal Shards, Chaos Shards, etc.). You acquire shards from salvage and vendor recipes — they aggregate into orbs over time without you needing to think about them. The Currency Exchange tab handles conversions automatically.</p>
+            </section>
+
+            <!-- ───────────────────────────────────────────────
+                 IV. ESSENCES
+                 ─────────────────────────────────────────────── -->
+            <section id="essences" class="codex-section">
+                <h2 class="section-title"><span class="num">V</span>Essences</h2>
+
+                <p>Essences guarantee a specific modifier when used. They come in <strong>four tiers</strong>: Lesser, Greater, Grand (sometimes called Normal), and Perfect.</p>
+
+                <div class="callout">
+                    <span class="label">Where to get them</span>
+                    Essences drop from <strong>imprisoned essence monsters</strong> — monsters trapped in crystal monoliths that appear in both campaign zones and maps. Click the monolith three times to release the monster, then kill it; it drops the essence(s) it was empowered by. Essences also appear at the <strong>Currency Exchange</strong> (Alva's Hideout, unlocked after Act 3 on Cruel difficulty). For dedicated farming, the <strong>Silent Cave</strong> unique map contains multiple guaranteed essence monsters and is the community-standard essence farm. The Atlas passive tree has nodes that increase essence monster frequency and the <em>Merging Worlds</em> node, which can produce a single monster affected by 4+ essences.
+                </div>
+
+                <div class="callout">
+                    <span class="label">Corrupting an essence monster — the Remnant of Corruption</span>
+                    Before releasing the imprisoned monster, you can apply a <strong>Remnant of Corruption</strong> to the monolith. This can upgrade every essence by one tier, change the essence type, or trigger one of four <em>corrupted essence</em> drops: Essence of Hysteria, Delirium, Insanity, or Horror — each with unique effects (e.g. Essence of Horror can be used on equipment that already has six modifiers, the only such currency in the game). Remnants drop from monsters and chests.
+                </div>
+
+                <div class="tbl-wrap">
+                    <table>
+                        <caption>How each essence tier behaves</caption>
+                        <thead>
+                            <tr><th>Tier</th><th>Acts on</th><th>Effect</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Lesser</strong> <span class="tier-pill lesser">Campaign</span></td><td>Magic</td><td>Upgrades to Rare with one guaranteed mod (low tier). Mostly leveling-phase use.</td></tr>
+                            <tr><td><strong>Greater</strong> <span class="tier-pill greater">Workhorse</span></td><td>Magic</td><td>Upgrades to Rare with one guaranteed mod at a higher tier. The standard endgame use.</td></tr>
+                            <tr><td><strong>Grand / Normal</strong> <span class="tier-pill normal">Mid</span></td><td>Magic</td><td>Same idea as Greater, intermediate tier band. Less commonly named in some 0.4+ lists.</td></tr>
+                            <tr><td><strong>Perfect</strong> <span class="tier-pill perfect">Endgame</span></td><td>Rare</td><td>Removes one random mod and adds one specific powerful mod. Used with Crystallisation omens to control which side gets removed.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="sub-title">Essence Catalogue</h3>
+                <p>The named essences and the modifier each guarantees, grouped by what they do. The exact magnitudes vary by tier and item type; the table below is the <em>kind</em> of effect.</p>
+
+                <div class="tbl-wrap">
+                    <table>
+                        <thead>
+                            <tr><th>Essence</th><th>Adds (Greater/Perfect kind)</th><th>Best used on</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>of the Body</strong></td><td>Maximum life (% for Perfect)</td><td>Body armour, belts, jewellery</td></tr>
+                            <tr><td><strong>of the Mind</strong></td><td>Maximum mana</td><td>Caster gear, focus, off-hand</td></tr>
+                            <tr><td><strong>of Enhancement</strong></td><td>Armour / Evasion / Energy Shield %</td><td>Armour pieces — the universal defence essence</td></tr>
+                            <tr><td><strong>of Flames</strong></td><td>Fire damage (flat add or extra)</td><td>Martial weapons, attack gear</td></tr>
+                            <tr><td><strong>of Ice</strong></td><td>Cold damage</td><td>Martial weapons</td></tr>
+                            <tr><td><strong>of Electricity</strong></td><td>Lightning damage</td><td>Martial weapons</td></tr>
+                            <tr><td><strong>of Abrasion</strong></td><td>Flat physical damage to attacks</td><td>Martial weapons — the standard phys craft</td></tr>
+                            <tr><td><strong>of Sorcery</strong></td><td>% increased spell damage / +to spell levels (Perfect)</td><td>Wands, staves</td></tr>
+                            <tr><td><strong>of Haste</strong></td><td>Attack speed (Greater); Onslaught on kill chance (Perfect)</td><td>Martial weapons</td></tr>
+                            <tr><td><strong>of Alacrity</strong></td><td>Cast speed</td><td>Wands, staves, focus</td></tr>
+                            <tr><td><strong>of Battle</strong></td><td>+# to all attack skill gems (Perfect)</td><td>Two-hand weapons especially — the spec craft for high-end martial wpns</td></tr>
+                            <tr><td><strong>of Seeking</strong></td><td>Critical hit chance</td><td>Crit-scaling builds, any weapon</td></tr>
+                            <tr><td><strong>of Ruin</strong></td><td>Chaos resistance</td><td>Armour, belts, jewellery — cheap chaos res fix</td></tr>
+                            <tr><td><strong>of Command</strong></td><td>Minion damage / minion mods</td><td>Sceptres, minion gear</td></tr>
+                            <tr><td><strong>of Insulation</strong></td><td>Cold resistance</td><td>Defensive pieces</td></tr>
+                            <tr><td><strong>of Thawing</strong></td><td>Fire resistance</td><td>Defensive pieces</td></tr>
+                            <tr><td><strong>of Grounding</strong></td><td>Lightning resistance</td><td>Defensive pieces</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="sub-title">Premium / Endgame Essences</h3>
+                <p>A handful of essences add notable-passive-like modifiers or roll on specific slots only:</p>
+                <ul>
+                    <li><strong>Essence of Delirium</strong> — adds a notable-passive style modifier to body armour. Run-defining when it lands well.</li>
+                    <li><strong>Essence of Hysteria</strong> — used on quivers for build-specific mods.</li>
+                    <li><strong>Essence of Horror</strong> — gloves / boots; can roll <em>"100% increased Effect of Socketed Gems"</em>, a top-end damage roll for socketed setups.</li>
+                    <li><strong>Essence of Insanity</strong> — corrupted-essence variant; behaves like a Vaal Orb but with paired corrupted mods. Trial of Chaos drop.</li>
+                    <li><strong>Essence of the Abyss</strong> — added with Abyss league. Removes one mod from a Rare and imprints a <em>Mark of the Abyss</em> meta-mod that gets replaced by a Desecrated modifier when next desecrated. See <a href="#abyss">§VIII</a>.</li>
+                </ul>
+
+                <div class="callout">
+                    <span class="label">The alt-regal sequence with essences</span>
+                    The cleanest mid-tier flow: <code>Transmute → Augment</code> until you have the suffix or prefix you want on a magic base, then use a <strong>Greater Essence</strong> targeting the missing side. Result: a Rare with one guaranteed essence mod, one rolled mod from the augment, and one new mod from the regal-like upgrade. Two thirds of the item is already deterministic before you've spent an exalt.
+                </div>
+            </section>
+
+            <!-- ───────────────────────────────────────────────
+                 V. OMENS
+                 ─────────────────────────────────────────────── -->
+            <section id="omens" class="codex-section">
+                <h2 class="section-title"><span class="num">VI</span>Omens</h2>
+
+                <p>Omens are <strong>meta-modifiers</strong>. You activate one by right-clicking it in your inventory; the next time you use the relevant currency, the omen alters its behaviour. Only one omen of a given kind applies per craft, but you can stack different kinds — e.g. Greater Exaltation <em>and</em> Homogenising Exaltation on the same Exalted Orb. They are <strong>consumed</strong> on the next applicable craft.</p>
+
+                <div class="callout">
+                    <span class="label">Where to get them</span>
+                    Omens are the primary reward of <strong>Ritual</strong> encounters. In a Ritual you sacrifice slain monsters in a circle and collect tributes, which you spend in the Ritual reward window to buy omens (and other items). The Ritual Atlas passive tree increases reward quantity and reroll options. As of <strong>Patch 0.5</strong>, every reward in the Ritual window is a Unique or an Omen — so Ritual specialists see a major efficiency lift on omen acquisition. Omens are also tradeable on the Currency Exchange, which is usually the fastest way to obtain a specific named omen mid-league.
+                </div>
+
+                <h3 class="sub-title">Side-Targeting Omens</h3>
+                <p>The bread-and-butter omens. Every endgame craft uses these. They tell a currency to only hit prefixes (Sinistral) or only suffixes (Dextral).</p>
+
+                <div class="tbl-wrap">
+                    <table>
+                        <thead>
+                            <tr><th>Omen</th><th>Pairs with</th><th>Effect</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Omen of Sinistral Exaltation</strong></td><td>Exalted Orb</td><td>Next Exalt only adds a <em>prefix</em>.</td></tr>
+                            <tr><td><strong>Omen of Dextral Exaltation</strong></td><td>Exalted Orb</td><td>Next Exalt only adds a <em>suffix</em>.</td></tr>
+                            <tr><td><strong>Omen of Sinistral Annulment</strong></td><td>Orb of Annulment</td><td>Next Annul only removes a <em>prefix</em>.</td></tr>
+                            <tr><td><strong>Omen of Dextral Annulment</strong></td><td>Orb of Annulment</td><td>Next Annul only removes a <em>suffix</em>.</td></tr>
+                            <tr><td><strong>Omen of Sinistral Erasure</strong></td><td>Chaos Orb</td><td>Next Chaos only replaces a <em>prefix</em>.</td></tr>
+                            <tr><td><strong>Omen of Dextral Erasure</strong></td><td>Chaos Orb</td><td>Next Chaos only replaces a <em>suffix</em>.</td></tr>
+                            <tr><td><strong>Omen of Sinistral Crystallisation</strong></td><td>Perfect / Corrupted Essence</td><td>Next Perfect Essence only removes a <em>prefix</em> (before adding its guaranteed mod).</td></tr>
+                            <tr><td><strong>Omen of Dextral Crystallisation</strong></td><td>Perfect / Corrupted Essence</td><td>Next Perfect Essence only removes a <em>suffix</em>.</td></tr>
+                            <tr><td><strong>Omen of Sinistral Coronation</strong></td><td>Regal Orb</td><td>Next Regal only adds a <em>prefix</em>.</td></tr>
+                            <tr><td><strong>Omen of Dextral Coronation</strong></td><td>Regal Orb</td><td>Next Regal only adds a <em>suffix</em>.</td></tr>
+                            <tr><td><strong>Omen of Sinistral Necromancy</strong></td><td>Abyssal Bone</td><td>Next desecration only adds a <em>prefix</em>.</td></tr>
+                            <tr><td><strong>Omen of Dextral Necromancy</strong></td><td>Abyssal Bone</td><td>Next desecration only adds a <em>suffix</em>.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="sub-title">Quantity-Modifying Omens</h3>
+                <div class="tbl-wrap">
+                    <table>
+                        <thead><tr><th>Omen</th><th>Pairs with</th><th>Effect</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Omen of Greater Exaltation</strong></td><td>Exalted Orb</td><td>Next Exalt adds <em>two</em> random mods instead of one.</td></tr>
+                            <tr><td><strong>Omen of Greater Annulment</strong></td><td>Orb of Annulment</td><td>Next Annul removes <em>two</em> mods.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="sub-title">Mod-Pool-Modifying Omens — The Heavy Hitters</h3>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>Omen of Homogenising Exaltation</h4>
+                        <div class="role">Pairs with Exalted Orb</div>
+                        <p>The single most powerful omen in PoE2. The next Exalt can <strong>only add a modifier that shares a <em>tag</em> with an existing modifier</strong> on the item. See <a href="#tags">§VII</a> — this is the entire reason the tag system matters.</p>
+                        <p>Combined with Greater Exaltation (two slams), this is how plus-three / plus-four level-of-skill weapons get deterministically crafted: start with one tag-matched modifier, slam, get only mods from the same tag pool — usually a narrow list of 1–3 candidates.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Omen of Whittling</h4>
+                        <div class="role">Pairs with Chaos Orb</div>
+                        <p>The next Chaos Orb replaces <strong>the modifier with the lowest item-level requirement</strong> on the item. Not the lowest tier — the lowest level gate. Hovering an item with the Chaos Orb highlights which mod will be replaced.</p>
+                        <p>The standard cleanup tool when an item has T1/T1/T1/T1/<em>garbage low-level mod</em>. Very expensive — drops in T11+ maps only.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Omen of Catalysing Exaltation</h4>
+                        <div class="role">Pairs with Exalted Orb (jewellery)</div>
+                        <p>The next Exalt is <strong>biased</strong> toward modifiers sharing a tag with the catalyst quality already applied to the ring or amulet. The magnitude of the bias isn't fully documented.</p>
+                        <p>Practical use: catalyse a ring with Flesh Catalyst (Life), then Exalt with this omen → much higher chance of slamming Life. Not deterministic, but a meaningful tilt.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Omen of Recombination</h4>
+                        <div class="role">Pairs with Recombinator</div>
+                        <p>The next Recombination is <strong>lucky</strong> — the success chance is rolled twice, and the better outcome is used. Effectively converts a 50% craft into a ~75% craft.</p>
+                        <p>Cheap (relative to recombination cost) and almost always worth it for non-trivial combinations.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Omen of Corruption</h4>
+                        <div class="role">Pairs with Vaal Orb</div>
+                        <p>The next Vaal Orb cannot produce the "nothing happens" cosmetic outcome. One of the three meaningful outcomes is guaranteed.</p>
+                        <p>Worth it for any high-stakes corruption where you can stomach a brick but not a wasted Vaal.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Omen of Sanctification</h4>
+                        <div class="role">Pairs with Vaal Orb</div>
+                        <p>The next Vaal Orb cannot brick the item — destructive corrupt outcomes are excluded. The item still becomes Corrupted and can no longer be modified, but the result is guaranteed positive.</p>
+                        <p>Extraordinarily expensive. Used on mirror-tier items where the only acceptable corrupt outcome is an upside.</p>
+                    </div>
+                </div>
+
+                <h3 class="sub-title">Abyss-Specific Omens</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>Omen of Abyssal Echoes</h4>
+                        <div class="role">Pairs with Well of Souls reveal</div>
+                        <p>When revealing a Desecrated modifier, the three offered options can be <strong>rerolled once</strong> to a new set of three. Effectively doubles your chances of finding a target lich modifier.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Omen of Light</h4>
+                        <div class="role">Pairs with Orb of Annulment</div>
+                        <p>The next Annul only removes a <strong>Desecrated</strong> modifier. The standard "I didn't like the desecrate, let me reroll" tool — use it, anul off the bad desecrated mod, apply a new bone.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Omens of the Blackblooded / Liege / Sovereign</h4>
+                        <div class="role">Pairs with Desecration</div>
+                        <p>Each biases the revealed pool toward a specific <strong>lich's</strong> modifier family — Amanamu (Blackblooded), Ulaman (Liege), Kurgal (Sovereign). When you know the exact desecrated mod you want, this is the targeting layer on top of the side-targeting Necromancy omens.</p>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <span class="label">The omen activation rule</span>
+                    Omens must be <strong>right-clicked to activate</strong> in your inventory before using the currency. An inactive omen in your inventory does nothing. Multiple compatible omens can be active simultaneously and all apply to the next craft.
+                </div>
+            </section>
+
+            <!-- ───────────────────────────────────────────────
+                 VI. TAG SYSTEM
+                 ─────────────────────────────────────────────── -->
+            <section id="tags" class="codex-section">
+                <h2 class="section-title"><span class="num">VII</span>The Tag System — The Single Most Important Concept</h2>
+
+                <p>Every modifier in the game carries one or more <strong>tags</strong>. Tags are how PoE2 categorises mods, and almost every powerful deterministic craft works by <em>exploiting which mods do or don't share a tag</em>.</p>
+
+                <h3 class="sub-title">Common Tags You'll See</h3>
+                <div class="tag-ladder">
+                    <span class="tag-chip life"><span class="mark"></span>life</span>
+                    <span class="tag-chip mana"><span class="mark"></span>mana</span>
+                    <span class="tag-chip defence"><span class="mark"></span>defence</span>
+                    <span class="tag-chip damage"><span class="mark"></span>damage</span>
+                    <span class="tag-chip attack"><span class="mark"></span>attack</span>
+                    <span class="tag-chip caster"><span class="mark"></span>caster</span>
+                    <span class="tag-chip fire"><span class="mark"></span>fire</span>
+                    <span class="tag-chip cold"><span class="mark"></span>cold</span>
+                    <span class="tag-chip lightning"><span class="mark"></span>lightning</span>
+                    <span class="tag-chip chaos"><span class="mark"></span>chaos</span>
+                    <span class="tag-chip elemental"><span class="mark"></span>elemental</span>
+                    <span class="tag-chip resist"><span class="mark"></span>resistance</span>
+                    <span class="tag-chip minion"><span class="mark"></span>minion</span>
+                    <span class="tag-chip gem"><span class="mark"></span>gem</span>
+                </div>
+
+                <p><strong>Tags are not shown on items in-game.</strong> This is a known UX gap: Alt-hover reveals the tier and roll range but not the tag list. To see a modifier's tags you go to <a href="https://poe2db.tw/us/" target="_blank" rel="noopener">PoE2DB</a> and look up the modifier on the relevant base-type page — the tags appear as small bracketed labels next to each line. Mods often carry <em>multiple</em> tags: e.g. <em>"+# to Level of all Minion Skill Gems"</em> on a sceptre carries both the <code>minion</code> tag and the <code>gem</code> tag, allowing it to be targeted by either.</p>
+
+                <h3 class="sub-title">The Core Move: Homogenising Exaltation</h3>
+                <p>An Exalted Orb under <strong>Omen of Homogenising Exaltation</strong> can only add a modifier that shares <em>at least one tag</em> with a modifier already on the item.</p>
+
+                <p>This is enormous. Most modifier pools are large (50+ mods). Most tag pools are tiny (3–8 mods). If you can land on an item with one mod that shares a tag <em>only with mods you want</em>, the next homogenising exalt is functionally guaranteed.</p>
+
+                <div class="callout tip">
+                    <span class="label">Worked example — the +level minion sceptre</span>
+                    <p>You want <em>+# to Level of all Minion Skill Gems</em> on a Rattling Sceptre. That mod has tags <code>minion · gem</code>. PoE2DB shows that the <em>only</em> suffix with a matching tag (on sceptres) is <em>"Allies in your Presence have increased Life Regeneration."</em></p>
+                    <p>You buy a low-tier Magic sceptre with <em>"Allies in your Presence have increased Maximum Life"</em> (life + minion tags). Regal to Rare. Activate <strong>Homogenising Exaltation</strong>. Slam a Greater Exalt. The only suffix mods that share tags with what's on the item are: life-tagged minion suffixes (a tiny pool) <em>or</em> minion/gem-tagged suffixes — and one of those is <em>+# Level of all Minion Skill Gems</em>. You roll either life-regen-allies (also acceptable) or the +levels (the target). Both are useful.</p>
+                </div>
+
+                <p>The same logic powers <strong>+# to Level of all Spell Skill Gems</strong> crafts on wands and staves (gem tag), <strong>+# to Level of all Projectile Skill Gems</strong> on bows, and most "level of all X" crafts. The pattern is: <em>find a low-weight mod with the right tag</em>, then homogenise.</p>
+
+                <h3 class="sub-title">When to NOT Use Tags</h3>
+                <p>Tag-based crafting fails when the relevant tag pool is large or contaminated. <em>Damage</em> is too broad a tag to be useful for homogenising on most items. <em>Elemental</em> is similarly broad. If a tag has 15+ mods that share it, you are not really being deterministic — you're just biased.</p>
+
+                <div class="callout warn">
+                    <span class="label">Cross-check with PoE2DB</span>
+                    Tag pools change between patches and item types. Before any tag-based craft, open the item's mod list on PoE2DB and confirm exactly which mods share the tag you intend to target. The list of "what can roll" beats memorisation every time.
+                </div>
+            </section>
+
+            <!-- ───────────────────────────────────────────────
+                 VII. DESECRATION / ABYSS
+                 ─────────────────────────────────────────────── -->
+            <section id="abyss" class="codex-section">
+                <h2 class="section-title"><span class="num">VIII</span>Desecration / Abyss — The Well of Souls</h2>
+
+                <p>Added in patch 0.3.0 (Rise of the Abyssal). Lets you <strong>pick a modifier from three offered options</strong>, including exclusive Lich-pool modifiers unavailable through ordinary crafting.</p>
+
+                <div class="callout">
+                    <span class="label">Where to get Abyssal Bones</span>
+                    Bones drop from <strong>Abyss</strong> content on the Atlas. The chain is: an Abyss fissure opens in a map, you defeat the swarms of monsters streaming from it to seal it, and an <strong>Abyssal Trove</strong> spawns with the bones. Going deeper, the fissure can open into an <strong>Abyssal Depths</strong> instance with more troves and a chance at a portal to the <strong>Dark Domain</strong> (pinnacle area with the Liches). The Abyss Atlas tree increases fissure frequency and trove rewards. Bones are tradeable on the Currency Exchange, but the Ancient variants (with mod-level-40 floor) tend to be expensive when supply is thin.
+                </div>
+
+                <h3 class="sub-title">The Mechanic</h3>
+                <ol>
+                    <li>Acquire an <strong>Abyssal Bone</strong> from Abyss content (Abyssal Troves dropping after sealing a fissure, Abyssal Depths, the Dark Domain, or trade).</li>
+                    <li>Apply the bone to a Rare item of the matching class. A green glyph (Desecrated modifier) is added. <em>If the item already has 6 mods, a random mod is removed first.</em></li>
+                    <li>Travel to the <strong>Well of Souls</strong> in Act 2 (through the Lightless Passage off Mastodon Badlands — has its own waypoint after first visit).</li>
+                    <li>Insert the item. Three modifier options appear. Pick one. The item is no longer desecrated; the chosen modifier is permanent.</li>
+                </ol>
+
+                <h3 class="sub-title">Abyssal Bones — The Matrix</h3>
+
+                <p>Bones split on two axes: <strong>body part</strong> (what they desecrate) and <strong>quality</strong> (what ilvl restrictions apply).</p>
+
+                <div class="bone-grid">
+                    <div class="bone"><div class="name">Jawbone</div><div class="target">Weapon · Quiver</div></div>
+                    <div class="bone"><div class="name">Rib</div><div class="target">Armour</div></div>
+                    <div class="bone"><div class="name">Collarbone</div><div class="target">Jewellery</div></div>
+                    <div class="bone"><div class="name">Cranium</div><div class="target">Helmet (endgame)</div></div>
+                    <div class="bone"><div class="name">Vertebrae</div><div class="target">Body Armour (endgame)</div></div>
+                </div>
+
+                <div class="tbl-wrap">
+                    <table>
+                        <caption>Bone quality tiers</caption>
+                        <thead>
+                            <tr><th>Quality</th><th>Item-level rule</th><th>Mod-level rule</th><th>Use case</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Gnawed</strong></td><td>Item ilvl ≤ 64</td><td>None</td><td>Campaign only. Cannot be used on map drops.</td></tr>
+                            <tr><td><strong>Preserved</strong></td><td>Any ilvl</td><td>None</td><td>The workhorse. Used for all standard desecration.</td></tr>
+                            <tr><td><strong>Ancient</strong></td><td>Any ilvl</td><td>Min mod level ≥ 40</td><td>Endgame. Guarantees no garbage low-tier options. Expensive — reserve for items worth finishing.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="sub-title">Lich Modifiers — The Exclusive Pool</h3>
+                <p>Desecration is the only way to obtain modifiers from the three Lich families. Each lich's mods are powerful, build-defining, and unavailable through any other crafting path:</p>
+
+                <ul>
+                    <li><strong>Amanamu</strong> — chaos / disease / decay-shaped mods. Forced via <em>Omen of the Blackblooded</em>.</li>
+                    <li><strong>Ulaman</strong> — physical / brutal mods. Forced via <em>Omen of the Liege</em>.</li>
+                    <li><strong>Kurgal</strong> — elemental / penetration mods. Forced via <em>Omen of the Sovereign</em>.</li>
+                </ul>
+
+                <p>Specific Lich modifiers vary by item type. The standard discovery flow is to check PoE2DB's Desecrated Modifiers list for the item class you're crafting, identify which liches have mods you want, and stack the appropriate Sovereign/Liege/Blackblooded omen on top of your side-targeting omen before applying the bone.</p>
+
+                <h3 class="sub-title">The Standard Desecration Flow</h3>
+                <ol>
+                    <li>Item is Rare with 4–5 mods (an open slot on the side you want).</li>
+                    <li>Activate <strong>Omen of Sinistral Necromancy</strong> (or Dextral) to force the side.</li>
+                    <li>If you want a specific Lich's mod, also activate the Lich omen.</li>
+                    <li>Apply the Bone. Item now has a hidden Desecrated mod.</li>
+                    <li>If you want a second chance at the three options, activate <strong>Omen of Abyssal Echoes</strong>.</li>
+                    <li>Travel to Well of Souls. Reveal. Pick from up to 6 mods (3 + 3 rerolled).</li>
+                </ol>
+
+                <h3 class="sub-title">Failed Desecrate? Use Omen of Light</h3>
+                <p>If the reveal gave you nothing usable, you have an unwanted Desecrated mod on the item. <strong>Omen of Light</strong> + an Orb of Annulment removes <em>only</em> the desecrated mod. Then apply a new bone and try again. This is the chase loop — most endgame desecration crafts involve 3–8 cycles.</p>
+
+                <div class="callout">
+                    <span class="label">Essence of the Abyss synergy</span>
+                    Essence of the Abyss removes a random mod from a Rare and adds a "Mark of the Abyss" meta-modifier. The Mark is replaced by the Desecrated mod when next desecrated, and the resulting Desecrated mod tends to be higher tier than what was removed. Used to launder a low-tier mod into a high-tier Lich mod in one move.
+                </div>
+            </section>
+
+            <!-- ───────────────────────────────────────────────
+                 VIII. RECOMBINATORS
+                 ─────────────────────────────────────────────── -->
+            <section id="recomb" class="codex-section">
+                <h2 class="section-title"><span class="num">IX</span>Recombinators</h2>
+
+                <p>The Recombinator combines <strong>two items of the same class</strong> (both Rare or both Magic, neither Corrupted) into a single output, keeping a subset of modifiers from both. Unlocked after your first Expedition. Fuelled by Expedition <em>artifacts</em>.</p>
+
+                <div class="callout">
+                    <span class="label">Where to get Expedition artifacts</span>
+                    Artifacts drop from <strong>Expedition Remnants</strong> — the monsters excavated when you place explosives on an Expedition site in a map. There are four artifact types: <strong>Broken Circle</strong>, <strong>Black Scythe</strong>, <strong>Order</strong>, and <strong>Sun</strong>. Each type is the local currency for one of the four Kalguuran vendors (Dannig, Tujen, Gwennen, Rog) — but the recombinator bench at Dannig itself accepts a mix. For sustained crafting, the most efficient method is running <strong>Logbooks</strong> (large dedicated Expedition maps that drop more remnants per zone). The Expedition Atlas tree increases remnant density and artifact drops.
+                </div>
+
+                <h3 class="sub-title">The Cost Side</h3>
+                <p>The recombinator lives at one of the Expedition vendors (community sources name Gwennen and Tujen variously — the bench is shared). Artifacts cost depends on item class:</p>
+                <ul>
+                    <li><strong>Weapons</strong> — Broken Circle Artifacts</li>
+                    <li><strong>Armour</strong> — Order Artifacts</li>
+                    <li><strong>Jewellery</strong> — Black Scythe Artifacts</li>
+                </ul>
+                <p>Item level affects cost — combining two ilvl 85 items costs more than two ilvl 65 items.</p>
+
+                <h3 class="sub-title">The Mechanic</h3>
+                <ol>
+                    <li>Place two items of the same class.</li>
+                    <li>Select 1+ modifiers from each (at least one from each side).</li>
+                    <li>The interface shows a <strong>Chance for Success</strong> percentage. The chance falls as you select more mods, and falls steeply for low-weight (rare) mods.</li>
+                    <li>One of three outcomes: <strong>success</strong> with left base, <strong>success</strong> with right base, or <strong>both items destroyed</strong>. Item level of the output is between the inputs.</li>
+                </ol>
+
+                <h3 class="sub-title">Why It's Powerful</h3>
+                <p>Recombination shines when you need to consolidate <strong>two specific low-weight modifiers</strong> onto one item — modifiers that are individually hard to roll. Buying two cheap bases that each have one of the mods, then recombining, is often dramatically cheaper than rolling either mod from scratch on a single base.</p>
+
+                <p><strong>Fractured modifiers are preserved.</strong> If the chosen output base has a fractured mod, that fracture survives the recombination — opening the door to crafting on a deterministically fractured output.</p>
+
+                <div class="callout tip">
+                    <span class="label">Omen of Recombination — the always-worth-it omen</span>
+                    Makes the next recombination <strong>lucky</strong> (success roll twice, take the better outcome). On a 50% craft, this jumps to ~75%. On a 20% craft, to ~36%. Cheap relative to the artifact cost. Use one every time.
+                </div>
+
+                <h3 class="sub-title">Lower-Tier Mods = Higher Success</h3>
+                <p>Counterintuitive but true: the recombinator's success rate is <strong>higher with lower-tier modifiers</strong>. If you need a T1 % phys damage on a weapon and you're combining bases, find one base with T4–T5 % phys (cheap) and the other with the rare secondary you want (a high-tier suffix). The T4 phys will end up on the output as the prefix anchor, and you build T1 from there with later crafts.</p>
+            </section>
+
+            <!-- ───────────────────────────────────────────────
+                 IX. FRACTURING ORBS
+                 ─────────────────────────────────────────────── -->
+            <section id="fracture" class="codex-section">
+                <h2 class="section-title"><span class="num">X</span>Fracturing Orbs</h2>
+
+                <p>A Fracturing Orb <strong>permanently locks one random explicit modifier</strong> on a Rare item with 4 or more modifiers. The locked mod cannot be changed by Chaos, Annulment, Divine, or Vaal Orbs.</p>
+
+                <p>You acquire Fracturing Orbs primarily from <strong>Cleansed Maps</strong> (the cleansed-Corrupted-Nexus variant introduced in 0.2.0) and from the Currency Exchange.</p>
+
+                <h3 class="sub-title">The Constraint</h3>
+                <p>The locked mod is <strong>chosen at random</strong>. You have no control over which one fractures. On a 4-mod item, that's a 25% chance the locking lands on the mod you wanted. On a 5-mod item, 20%. <strong>Never fracture an item where most of the mods are unacceptable</strong> — you'll lock the wrong one.</p>
+
+                <h3 class="sub-title">The Isolation Principle — Why Fracture Is So Powerful</h3>
+                <p>The real power of fracturing is not the lock itself — it's that the locked mod <strong>cannot be selected by an Annulment Orb</strong>. Pair that with a side-targeting Annulment omen and you achieve <em>isolation</em>:</p>
+
+                <div class="callout tip">
+                    <span class="label">The 5-mod isolation move</span>
+                    <p>Item: 2 prefixes, 3 suffixes. You want to remove a specific bad prefix. Procedure:</p>
+                    <ol>
+                        <li>Fracture the <strong>good prefix</strong> (lucky 50%).</li>
+                        <li>Activate <strong>Omen of Sinistral Annulment</strong> (prefix-only).</li>
+                        <li>Use Orb of Annulment.</li>
+                    </ol>
+                    <p>The Annul can only hit prefixes (omen). It can't hit the fractured prefix (locked). There's only one prefix left. <strong>It must hit the bad one.</strong> Deterministic deletion.</p>
+                </div>
+
+                <p>Most mirror-tier crafts use this principle repeatedly to scrub away unwanted mods while keeping the good ones safe.</p>
+
+                <h3 class="sub-title">When to Fracture</h3>
+                <ul>
+                    <li><strong>Yes</strong> — item has one exceptional mod and 3 acceptable-to-good mods. Worst-case (fracture lands on a non-target), the item is still usable.</li>
+                    <li><strong>Yes</strong> — preparing a base for an isolation chain (you have many Annulment omens lined up).</li>
+                    <li><strong>No</strong> — item has one good mod and 3 garbage. 75% you fracture garbage and turn a salvageable item into wreckage.</li>
+                    <li><strong>No</strong> — mid-progression. Fracture Orbs are 9+ exalts each; do not burn them until the item is otherwise a clear win.</li>
+                </ul>
+            </section>
+
+            <!-- ───────────────────────────────────────────────
+                 X. QUALITY / CATALYSTS
+                 ─────────────────────────────────────────────── -->
+            <section id="quality" class="codex-section">
+                <h2 class="section-title"><span class="num">XI</span>Quality &amp; Catalysts</h2>
+
+                <p>Quality is a multiplicative bonus applied to an item's modifiers. It does not add mods; it makes the existing mods stronger by a percentage. Different item types use different quality currencies.</p>
+
+                <div class="tbl-wrap">
+                    <table>
+                        <thead><tr><th>Currency</th><th>Acts on</th><th>Effect</th><th>Cap</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Blacksmith's Whetstone</strong></td><td>Martial weapons, quivers</td><td>+5% quality (Greater: +10%) — boosts physical damage and accuracy</td><td>20%</td></tr>
+                            <tr><td><strong>Armourer's Scrap</strong></td><td>Armour</td><td>+5% quality — boosts armour / evasion / ES base values</td><td>20%</td></tr>
+                            <tr><td><strong>Glassblower's Bauble</strong></td><td>Flasks</td><td>+5% quality — boosts flask charges / effect</td><td>20%</td></tr>
+                            <tr><td><strong>Arcanist's Etcher</strong></td><td>Caster weapons (wands, staves, sceptres)</td><td>+5% quality — boosts spell damage</td><td>20%</td></tr>
+                            <tr><td><strong>Artificer's Orb</strong></td><td>Any equipment</td><td>Adds a Rune/Soul Core socket</td><td>Item-dependent</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="sub-title">Catalysts — Quality for Jewellery</h3>
+                <p>Catalysts are jewellery-specific quality currency. Unlike whetstones (which uniformly boost all stats), each catalyst type only boosts modifiers <strong>matching a specific tag</strong>. Applying a new catalyst <em>replaces</em> any existing catalyst quality on the item — they don't stack across types.</p>
+
+                <div class="callout">
+                    <span class="label">Where to get them</span>
+                    Catalysts are <strong>Breach-exclusive drops</strong>. They drop from monsters spawned by Breach fissures and from the <strong>Clasped Hands</strong> chests that appear as the Breach ring expands. The Breach Atlas tree's <em>Rising Danger</em> and <em>Twin Threats</em> nodes increase the rate; <em>Xesht's Madness</em> gives rare Breach mobs a chance to drop catalysts in stacks of 10 (with a Soul Eater rare-monster modifier as the tradeoff). Catalysts are also tradeable on the Currency Exchange — the simplest sourcing method for a specific named catalyst. With <strong>Patch 0.5</strong>, catalysts will also work on Jewels (previously rings and amulets only).
+                </div>
+
+                <div class="tbl-wrap">
+                    <table>
+                        <caption>Catalyst index — drops from Breach</caption>
+                        <thead><tr><th>Catalyst</th><th>Boosts mods with tag</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Flesh Catalyst</strong></td><td><span class="tag-pill">life</span></td></tr>
+                            <tr><td><strong>Skittering Catalyst</strong></td><td><span class="tag-pill">speed</span> (attack / cast / movement)</td></tr>
+                            <tr><td><strong>Sibilant Catalyst</strong></td><td><span class="tag-pill">caster</span> spell damage / cast</td></tr>
+                            <tr><td><strong>Reaver Catalyst</strong></td><td><span class="tag-pill">attack</span></td></tr>
+                            <tr><td><strong>Xoph's Catalyst</strong></td><td><span class="tag-pill">fire</span></td></tr>
+                            <tr><td><strong>Tul's Catalyst</strong></td><td><span class="tag-pill">cold</span></td></tr>
+                            <tr><td><strong>Esh's Catalyst</strong></td><td><span class="tag-pill">lightning</span></td></tr>
+                            <tr><td><strong>Chayula's Catalyst</strong></td><td><span class="tag-pill">chaos</span></td></tr>
+                            <tr><td><strong>Uul-Netol's Catalyst</strong></td><td><span class="tag-pill">attack</span> (alternate weighting)</td></tr>
+                            <tr><td><strong>Adaptive Catalyst</strong></td><td><span class="tag-pill">attribute</span> Str/Dex/Int</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="sub-title">Breach Rings — The 50% Cap Exception</h3>
+                <p>Standard rings and amulets cap at <strong>20% catalyst quality</strong>. Breach Rings (the unique base type that drops from Breach) cap at <strong>50%</strong>, making them by far the strongest jewellery base in the game when correctly catalysed. Save the rarer catalysts (Sibilant, Skittering, Xoph's) for Breach Ring finishers — the 50% multiplier is where you get your value.</p>
+
+                <div class="callout tip">
+                    <span class="label">Workflow note</span>
+                    Apply <strong>catalysts before the final Exalt</strong>, then use <em>Omen of Catalysing Exaltation</em>. The catalyst's tag biases the slam toward modifiers sharing that tag — a way to convert quality currency into a slam-targeting tool.
+                </div>
+            </section>
+
+            <!-- ───────────────────────────────────────────────
+                 XI. SOCKETS / RUNES / SOUL CORES
+                 ─────────────────────────────────────────────── -->
+            <section id="sockets" class="codex-section">
+                <h2 class="section-title"><span class="num">XII</span>Sockets · Runes · Soul Cores · Talismans</h2>
+
+                <p>Sockets in PoE2 hold <strong>Runes</strong>, <strong>Soul Cores</strong>, or <strong>Talismans</strong> — three different families of socketable items. They are mechanically distinct from skill / support gems (which have their own dedicated gem sockets in the gem panel).</p>
+
+                <h3 class="sub-title">Adding Sockets</h3>
+                <p><strong>Artificer's Orbs</strong> add a socket to an item that has fewer than its maximum. Acquired by salvaging socketed items (10 Artificer's Shards = 1 Orb) or as drops. A second socket on a body armour or 2H weapon is added with a second Artificer's. Vaal Orbs can sometimes add sockets beyond the natural maximum (along with a corruption).</p>
+
+                <p>Once a Rune / Soul Core / Talisman is placed in a socket, it is <strong>permanent</strong> — you cannot retrieve it. You <em>can</em> overwrite it by placing a new socketable, destroying the old one. Plan socket choices late, after the item is otherwise finished.</p>
+
+                <h3 class="sub-title">Runes — The Reliable Workhorse</h3>
+                <p>Runes drop from monsters in three rarity tiers: <strong>Lesser → Normal → Greater</strong>. Three Lessers consolidate into one Normal at the vendor; three Normals into one Greater (introduced in 0.2.0).</p>
+                <div class="tbl-wrap">
+                    <table>
+                        <thead><tr><th>Rune</th><th>Effect on weapon</th><th>Effect on armour</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Iron Rune</strong></td><td>+20% increased physical damage</td><td>+20% armour</td></tr>
+                            <tr><td><strong>Body Rune</strong></td><td>+# life on kill</td><td>+# maximum life</td></tr>
+                            <tr><td><strong>Storm Rune</strong></td><td>+# flat lightning damage</td><td>+# lightning resistance</td></tr>
+                            <tr><td><strong>Glacial Rune</strong></td><td>+# flat cold damage</td><td>+# cold resistance</td></tr>
+                            <tr><td><strong>Inferno Rune</strong></td><td>+# flat fire damage</td><td>+# fire resistance</td></tr>
+                            <tr><td><strong>Vision Rune</strong></td><td>+# accuracy</td><td>+# accuracy</td></tr>
+                            <tr><td><strong>Mind Rune</strong></td><td>+# mana on kill</td><td>+# max mana</td></tr>
+                            <tr><td><strong>Stone Rune</strong></td><td>—</td><td>+# Strength</td></tr>
+                            <tr><td><strong>Soul Rune</strong></td><td>—</td><td>+# Intelligence</td></tr>
+                            <tr><td><strong>Desert Rune</strong></td><td>—</td><td>+# Dexterity</td></tr>
+                            <tr><td><strong>Rebirth Rune</strong></td><td>—</td><td>+# life regeneration / on kill</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="sub-title">Soul Cores — Trial of Chaos Drops</h3>
+                <p>Soul Cores are <strong>only obtained from the Trial of Chaos</strong> (Vaal Ultimatum-style rooms). They carry effects unobtainable on Runes. Examples:</p>
+                <ul>
+                    <li><strong>Soul Core of Azcapa</strong> — Weapons: attacks penetrate 15% Elemental Resistance · Armour: 15% increased Ailment Threshold.</li>
+                    <li><strong>Soul Core of Zalatl</strong> — Weapons: +15 Spirit · Armour: 10% increased Rarity of Items found.</li>
+                    <li><strong>Soul Core of Tzamoto</strong> — Weapons: +12% Crit Damage Bonus · Armour: hits against you have 10% reduced Crit Damage Bonus.</li>
+                    <li><strong>Soul Core of Puhuarte</strong> — Ignite-related buildup.</li>
+                </ul>
+                <p>Rounds 4, 7, and 10 of the Trial each guarantee one Soul Core. The 10-round variant is the most efficient farm.</p>
+
+                <h3 class="sub-title">Talismans — Azmerian-Wisp Sockets</h3>
+                <p>Added with the Druid league (0.4 The Last of the Druids). Drop from Azmerian Wisp challenges. Each Talisman provides stats for <em>one specific gear slot only</em>, so they require slot-aware planning. Mechanically socketed the same as Runes and Soul Cores.</p>
+
+                <div class="callout warn">
+                    <span class="label">Socket finality</span>
+                    Sockets and their contents cannot be undone short of overwriting. Always finish all affix crafting <em>before</em> socketing — once a socket is filled, your only way to change the rune is to destroy the current one with a new placement.
+                </div>
+            </section>
+
+            <!-- ───────────────────────────────────────────────
+                 XII. CORRUPTION
+                 ─────────────────────────────────────────────── -->
+            <section id="vaal" class="codex-section">
+                <h2 class="section-title"><span class="num">XIII</span>Corruption — Vaal Orbs &amp; The Temple</h2>
+
+                <p>A Vaal Orb applies one of several random outcomes to the item and renders it <strong>Corrupted</strong> — no further modification is possible. Vaal is always the <em>last</em> step.</p>
+
+                <h3 class="sub-title">Vaal Orb Outcomes</h3>
+                <ul>
+                    <li><strong>Cosmetic / "nothing"</strong> — colour change only. Avoidable with Omen of Corruption.</li>
+                    <li><strong>Implicit added</strong> — a corrupted implicit appears (e.g. +1 to gem level on a wand, +1 to a particular skill on an amulet).</li>
+                    <li><strong>Socket added</strong> — sockets can exceed natural maximums via corruption (a body armour can gain extra sockets this way).</li>
+                    <li><strong>Modifier change</strong> — affix rerolling occurs.</li>
+                    <li><strong>Rare → Magic</strong> (rare items only) — can become Magic with similar mod values. Sometimes useful for body armour where the Magic state allows wider implicit-style mods, usually a brick.</li>
+                </ul>
+
+                <p>On <strong>unique items</strong>, Vaal can add powerful corrupted implicits (often +1 to specific gem level) or brick the item by rolling it into a different rare. Never Vaal a build-defining unique without a backup.</p>
+
+                <h3 class="sub-title">The Temple of Chayula &amp; Vaal Infusers</h3>
+                <p>The Temple of Chayula (Vaal endgame content) hosts Vaal Infusers, which can add quality beyond 20% to martial weapons (with corruption risk). Used for top-end weapon corruption attempts. Twin-corruption (Vaal twice) is possible through specific temple mechanics.</p>
+
+                <h3 class="sub-title">Corrupting Omens</h3>
+                <ul>
+                    <li><strong>Omen of Corruption</strong> — eliminates the "nothing" outcome. Every Vaal does something.</li>
+                    <li><strong>Omen of Sanctification</strong> — eliminates negative outcomes entirely. Only positive (sockets, implicits, modifier improvements) can occur. Extraordinarily rare and expensive.</li>
+                </ul>
+
+                <div class="callout warn">
+                    <span class="label">Once corrupted, the item is final</span>
+                    No further omens, essences, exalts, divines, or anything else will touch a corrupted item (the exception is the Vaal Infuser path on weapons). Socket first, fracture first, finish all affixes first, then corrupt.
+                </div>
+            </section>
+
+            <!-- ───────────────────────────────────────────────
+                 XIII. THE ADEPT'S TRICKS
+                 ─────────────────────────────────────────────── -->
+            <section id="tricks" class="codex-section">
+                <h2 class="section-title"><span class="num">XIV</span>The Adept's Tricks</h2>
+
+                <p>Every section above describes a tool. This section describes how the tools combine — the moves that turn a 1-mod base into a 6-mod finished piece without bricking. Each trick is named for easy recall; each cites the omens or currencies that drive it.</p>
+
+                <div class="tricks">
+
+                    <!-- TRICK I -->
+                    <div class="trick">
+                        <span class="tag">Trick I · Tag Lock</span>
+                        <h4>Homogenising Exaltation for +Levels-of-Skill</h4>
+                        <p>The canonical move for deterministically crafting <em>+# to Level of all [type] Skills</em>. Find a low-weight prefix or suffix on the base that shares tags only with mods you want.</p>
+                        <div class="how">
+                            <strong>How</strong>
+                            <ol>
+                                <li>Start with a Rare base carrying one tag-anchor mod (e.g. <em>Minion Life</em> on a sceptre — life · minion tags).</li>
+                                <li>Activate <strong>Homogenising Exaltation</strong> + <strong>Greater Exaltation</strong> (double slam).</li>
+                                <li>Slam a Greater Exalted Orb.</li>
+                                <li>Result: two mods sharing tags with the anchor. The target +Levels mod is one of two-to-three candidates.</li>
+                            </ol>
+                        </div>
+                        <p class="why">Tag pools are tiny relative to total mod pools. A homogenising exalt on a tag-anchored base is functionally targeted.</p>
+                    </div>
+
+                    <!-- TRICK II -->
+                    <div class="trick">
+                        <span class="tag">Trick II · Isolation</span>
+                        <h4>Fracture + Sinistral/Dextral Annul</h4>
+                        <p>Deterministically delete a specific unwanted modifier. The classic mirror-tier crafting move.</p>
+                        <div class="how">
+                            <strong>How</strong>
+                            <ol>
+                                <li>Item: 5 mods (e.g. 2 prefixes, 3 suffixes), one unwanted.</li>
+                                <li>Fracture a <em>good mod on the opposite side</em> from the unwanted one.</li>
+                                <li>Activate <strong>Sinistral Annulment</strong> (or Dextral, matching the unwanted's side).</li>
+                                <li>Use Orb of Annulment. The annul can only hit the targeted side; the fractured mod (other side) is safe; only one mod fits both constraints.</li>
+                            </ol>
+                        </div>
+                        <p class="why">Fracture removes one option from the Annul's pool; the side-omen removes the other side entirely. With only one mod fitting both constraints, the result is deterministic.</p>
+                    </div>
+
+                    <!-- TRICK III -->
+                    <div class="trick">
+                        <span class="tag">Trick III · Cheap Base</span>
+                        <h4>Recombinate for a Two-Mod Starter</h4>
+                        <p>Need a base with two specific low-weight mods that are individually annoying to roll? Buy two cheap bases, each with one of them, and recombine.</p>
+                        <div class="how">
+                            <strong>How</strong>
+                            <ol>
+                                <li>Buy base A with mod X at any tier (cheap = better).</li>
+                                <li>Buy base B with mod Y at any tier (cheap = better).</li>
+                                <li>Activate <strong>Omen of Recombination</strong> (lucky).</li>
+                                <li>Recombinate, selecting X and Y. ~50–60% success on simple combinations.</li>
+                            </ol>
+                        </div>
+                        <p class="why">Two cheap one-mod bases are dramatically cheaper than a single two-mod base. Lower-tier mods give <em>higher</em> recombinator success — counterintuitive but real.</p>
+                    </div>
+
+                    <!-- TRICK IV -->
+                    <div class="trick">
+                        <span class="tag">Trick IV · Desecrate Loop</span>
+                        <h4>Chase a Lich Mod with Light + Echoes</h4>
+                        <p>You want a specific Kurgal / Ulaman / Amanamu modifier. The reveal can give one of dozens of options. Loop until you hit.</p>
+                        <div class="how">
+                            <strong>How</strong>
+                            <ol>
+                                <li>Activate <strong>Sinistral/Dextral Necromancy</strong> + the relevant Lich omen (Sovereign / Liege / Blackblooded).</li>
+                                <li>Activate <strong>Abyssal Echoes</strong>.</li>
+                                <li>Apply Preserved or Ancient Bone. Reveal at Well of Souls (3 + 3 = 6 options).</li>
+                                <li>If miss: activate <strong>Omen of Light</strong>, annul the bad desecrated mod, repeat from step 1.</li>
+                            </ol>
+                        </div>
+                        <p class="why">Each cycle costs one bone, one Light, and several omens. Each cycle gives six shots at the target. Three to five cycles typically lands the mod.</p>
+                    </div>
+
+                    <!-- TRICK V -->
+                    <div class="trick">
+                        <span class="tag">Trick V · Targeted Replace</span>
+                        <h4>Perfect Essence + Sinistral/Dextral Crystallisation</h4>
+                        <p>You have a finished Rare with one filler mod you'd like to upgrade to a specific Perfect Essence modifier. Crystallisation omens control which side the Perfect Essence removes.</p>
+                        <div class="how">
+                            <strong>How</strong>
+                            <ol>
+                                <li>Identify the side of the filler you want to replace.</li>
+                                <li>Activate <strong>Dextral Crystallisation</strong> (suffix removal) or <strong>Sinistral Crystallisation</strong> (prefix removal).</li>
+                                <li>Apply the Perfect Essence (e.g. Perfect Essence of Battle for +5 levels of attack skills on a 2H weapon).</li>
+                                <li>Filler mod is removed; essence's powerful guaranteed mod takes its slot.</li>
+                            </ol>
+                        </div>
+                        <p class="why">Perfect Essences are guaranteed-mod but uncontrolled-removal. Crystallisation omens turn that removal deterministic, so the worst-case is no longer "lost a T1 prefix" — it's "lost a known filler."</p>
+                    </div>
+
+                    <!-- TRICK VI -->
+                    <div class="trick">
+                        <span class="tag">Trick VI · Catalyst Bias</span>
+                        <h4>Catalyst-Then-Exalt for Jewellery</h4>
+                        <p>Use catalyst quality not for its damage bonus, but as a tag-bias tool for the next Exalt.</p>
+                        <div class="how">
+                            <strong>How</strong>
+                            <ol>
+                                <li>Apply 5–10 catalysts of your target tag to the jewellery (Flesh for life, Tul's for cold, etc.).</li>
+                                <li>Activate <strong>Omen of Catalysing Exaltation</strong>.</li>
+                                <li>Use Greater Exalted Orb. Result is biased toward the catalyst's tag.</li>
+                            </ol>
+                        </div>
+                        <p class="why">Not as deterministic as homogenising (the bias magnitude isn't documented), but a meaningful tilt — and catalyst quality is cheap relative to omen costs.</p>
+                    </div>
+
+                    <!-- TRICK VII -->
+                    <div class="trick">
+                        <span class="tag">Trick VII · Cheap Cleanup</span>
+                        <h4>Whittling Chaos for Tier-Floor Polish</h4>
+                        <p>Finished item has one T9 garbage mod alongside several T1s? Don't annul (50/50 on side). Whittle.</p>
+                        <div class="how">
+                            <strong>How</strong>
+                            <ol>
+                                <li>Activate <strong>Omen of Whittling</strong>.</li>
+                                <li>Hover Chaos Orb over the item — the mod with the <em>lowest item-level requirement</em> is highlighted.</li>
+                                <li>If that's the garbage mod, use the Chaos. It's replaced with a new random mod (which is at least equal to its replacement target's ilvl).</li>
+                            </ol>
+                        </div>
+                        <p class="why">Whittling deterministically picks the lowest-level mod (not lowest-tier). Garbage T9 mods almost always have the lowest ilvl requirement on an otherwise high-tier item. The omen is expensive but the cleanup is surgical.</p>
+                    </div>
+
+                    <!-- TRICK VIII -->
+                    <div class="trick">
+                        <span class="tag">Trick VIII · Sandbox First</span>
+                        <h4>Plan with Craft of Exile Before Spending</h4>
+                        <p>Not a craft trick — a discipline trick. Use the <a href="https://www.craftofexile.com/?b=poe2" target="_blank" rel="noopener">Craft of Exile emulator</a> to test the exact sequence before you spend in-game currency.</p>
+                        <div class="how">
+                            <strong>How</strong>
+                            <ol>
+                                <li>Go to <code>craftofexile.com</code>, switch to PoE2.</li>
+                                <li>Pick your base. Open the emulator (not the calculator).</li>
+                                <li>Drag the exact omens and currencies you plan to use. Step through.</li>
+                                <li>Use the calculator side-by-side to verify the mod pool, weights, and tag overlaps.</li>
+                                <li>If the simulated outcome is acceptable 80% of the time, run it in-game.</li>
+                            </ol>
+                        </div>
+                        <p class="why">Real currency is expensive. Sandbox time is free. Two iterations in the sandbox before a real craft will save more divines than any other single habit.</p>
+                    </div>
+
+                </div>
+
+                <div class="callout">
+                    <span class="label">The thread that runs through all of these</span>
+                    The currency in PoE2 has random outcomes. The omens narrow those outcomes. The fractures lock the bad outcomes out. The tag system lets you bias the random pool toward what you want. Real crafting is <em>stacking constraints</em> until the random outcome <em>has to be</em> what you wanted. When you find yourself slamming and hoping, you've skipped a constraint layer.
+                </div>
+            </section>
+
+            <!-- ───────────────────────────────────────────────
+                 XIV. MASTER WORKFLOW
+                 ─────────────────────────────────────────────── -->
+            <section id="workflow" class="codex-section">
+                <h2 class="section-title"><span class="num">XV</span>Master Workflow</h2>
+
+                <p>The canonical order in which to apply everything, from a fresh base to a finished, corrupted piece. The order is governed by a single principle: <strong>cheap and reversible operations first, expensive and irreversible operations last.</strong></p>
+
+                <div class="canonical">
+                    <div class="can-title">The Canonical Order</div>
+                    <div class="flow">
+                        <span class="pill"><span class="n">I</span> Base</span><span class="arrow">▸</span>
+                        <span class="pill"><span class="n">II</span> Essence</span><span class="arrow">▸</span>
+                        <span class="pill"><span class="n">III</span> Tag-Anchor</span><span class="arrow">▸</span>
+                        <span class="pill"><span class="n">IV</span> Homogenising Exalt</span><span class="arrow">▸</span>
+                        <span class="pill"><span class="n">V</span> Desecrate</span><span class="arrow">▸</span>
+                        <span class="pill"><span class="n">VI</span> Annul / Clean</span><span class="arrow">▸</span>
+                        <span class="pill"><span class="n">VII</span> Fracture (opt.)</span><span class="arrow">▸</span>
+                        <span class="pill"><span class="n">VIII</span> Final Slams</span><span class="arrow">▸</span>
+                        <span class="pill"><span class="n">IX</span> Quality / Catalyst</span><span class="arrow">▸</span>
+                        <span class="pill"><span class="n">X</span> Divine</span><span class="arrow">▸</span>
+                        <span class="pill"><span class="n">XI</span> Sockets + Runes</span><span class="arrow">▸</span>
+                        <span class="pill final"><span class="n">XII</span> Corrupt</span>
+                    </div>
+                    <p class="rule"><strong>The governing principle:</strong> every step constrains the next. Skipping a step or reversing the order risks bricking with no recovery.</p>
+                </div>
+
+                <ol class="steps">
+                    <li><b>Acquire a base</b>Buy or find an ilvl 81–82 base of the class you want. Verify the implicit suits the build. Verify with PoE2DB which mods can roll on this base before committing.
+                        <span class="why">Item level gates which modifier tiers can ever roll. A T1 mod that requires ilvl 82 cannot appear on an ilvl 78 base — no amount of currency fixes that.</span>
+                    </li>
+                    <li><b>Essence to Rare (with tag awareness)</b>Use a <em>Greater Essence</em> targeting the modifier whose <strong>tags align with what you'll homogenise toward next</strong>. This is the most-skipped step — most crafters just essence whatever feels strong. Think about tags first.
+                        <span class="why">The essence anchors a tag. The next homogenising exalt only adds mods sharing tags with what's already on the item. Wrong essence → wrong tag pool → wrong homogenising outcome.</span>
+                    </li>
+                    <li><b>Establish your tag anchor</b>If the essence didn't give a usable tag, do an alt-aug cycle on the magic state, or recombinate for a fractured tag anchor. The base must have at least one mod with a tag in the family of mods you want before the next step.
+                        <span class="why">Homogenising fails without an anchor. Without an anchor, you'd just be exalt-slamming — every random mod is possible.</span>
+                    </li>
+                    <li><b>Homogenising Exaltation (the big slam)</b>Activate Homogenising + Greater Exaltation + (optional) Dextral/Sinistral Exaltation. Slam a Greater (cheaper) or Perfect (final-tier guarantee) Exalt. Two new modifiers, both tag-matched.
+                        <span class="why">The core deterministic move. Done correctly, this turns an open random slam into a 2-of-3 selection from a tiny mod pool.</span>
+                    </li>
+                    <li><b>Desecrate for the exclusive mod</b>If a Lich modifier helps the build (chaos res, penetration, spirit), apply a Preserved or Ancient Bone (with Sinistral/Dextral Necromancy omen). Reveal with Abyssal Echoes active. Use Light + Annul to retry if needed.
+                        <span class="why">Lich modifiers are unavailable through ordinary crafting and often build-defining. Desecrate-loop until landed; the cost-per-attempt is modest.</span>
+                    </li>
+                    <li><b>Clean up with targeted annul or chaos</b>Item now has 5 mods, possibly with one underperforming. Use side-targeted Annulment or Erasure omens to remove the weak link. If you have an Omen of Whittling and the weak mod is the lowest-level, that's even cleaner.
+                        <span class="why">The annul reopens a slot for one final premium slam. Doing it before fracturing keeps options open; doing it after fracturing risks locking the wrong mod.</span>
+                    </li>
+                    <li><b>Fracture (optional, high-end only)</b>If the item now has 4+ excellent mods and you intend to push toward a 6-mod perfect roll, fracture. Pray the fracture lands on a high-value mod. If it does, proceed; if not, evaluate whether the fracture-on-this-mod is still acceptable.
+                        <span class="why">Fracture is the gateway to the isolation trick (Trick II) and to safely-corrupting an item without losing the most valuable mod. Skip on items below mirror tier.</span>
+                    </li>
+                    <li><b>Final slams — Perfect Exalt / Perfect Essence</b>Open slots get filled with Perfect-tier currency under appropriate omens. Crystallisation omens if replacing a filler with a Perfect Essence. Sinistral/Dextral Exaltation if just adding a missing-side mod.
+                        <span class="why">Perfect tiers cost a lot but lift the modifier-tier floor. Doing this last means you only spend Perfect-currency once the item is otherwise final.</span>
+                    </li>
+                    <li><b>Apply quality / catalysts</b>20% Whetstone / Scrap on weapons / armour. Targeted catalysts on jewellery (50% on Breach Rings). Apply <em>before</em> divining, so you're divining the post-quality numbers.
+                        <span class="why">Quality is a flat multiplier on existing mod magnitudes. Cheap. No downside. Easy to forget — many otherwise-good items go to market un-quality'd.</span>
+                    </li>
+                    <li><b>Divine for value rolls</b>Repeated Divine Orbs reroll the numeric values of all mods within their ranges. Stop when the rolls are good enough — never chase further than you can afford to repeat.
+                        <span class="why">Numeric optimisation. Single-digit-percent gains. Do it only on items you're keeping.</span>
+                    </li>
+                    <li><b>Sockets and runes / soul cores</b>Use Artificer's Orbs to add sockets to maximum. Insert your chosen Rune, Soul Core, or Talisman. Once placed, the socket is filled forever (overwriting destroys the contents).
+                        <span class="why">Sockets cannot be added after corruption (except via Vaal). Doing this now keeps the corruption-step door open for a socket-adding implicit.</span>
+                    </li>
+                    <li><b>Corrupt — last, and only when finished</b>Vaal Orb. The item is locked from all further modification, but gains a corrupted implicit, an extra socket, or another effect (or rerolls — be ready to brick). Omen of Corruption removes the "nothing" outcome; Omen of Sanctification removes negative outcomes entirely (at extreme cost).
+                        <span class="why">Corruption is irreversible. Every prior step's flexibility is consumed here. Doing it before any prior step is over throws away every later constraint.</span>
+                    </li>
+                </ol>
+
+                <div class="callout">
+                    <span class="label">The order is not arbitrary</span>
+                    Each step constrains the next. Quality lifts the values that Divine then re-rolls within. Fracture locks a mod that Annul then can't touch. Annul opens a slot the final Exalt then fills. Sockets must exist before corruption locks them. The whole chain is one carefully-ordered narrowing of randomness.
+                </div>
+            </section>
+
+            <!-- ───────────────────────────────────────────────
+                 XV. PATCH 0.5 ADDITIONS
+                 ─────────────────────────────────────────────── -->
+            <section id="aldur" class="codex-section">
+                <h2 class="section-title aldur"><span class="num">XVI</span>Patch 0.5 — Runes of Aldur Additions</h2>
+
+                <div class="callout aldur">
+                    <span class="label">Live on May 29, 2026</span>
+                    Patch 0.5 ("Return of the Ancients") ships May 29, 2026. The crafting changes below are described from GGG's reveal stream and pre-release coverage. Full patch notes are expected ~one week before launch. Treat magnitudes and exact omen names as <em>indicative</em> until the patch notes confirm — this section will be updated post-launch.
+                </div>
+
+                <h3 class="sub-title">Ezomyte Remnants &amp; the Runebook</h3>
+                <p>Throughout the campaign and endgame, you encounter <strong>Ezomyte Remnants</strong> — stone monuments with pre-inscribed runes and empty slots. The campaign NPC <strong>Farrow</strong> teaches you to inscribe additional runes to complete recipes. Each completed recipe is permanently recorded in your <strong>Runebook</strong>, available at any future Remnant.</p>
+                <p>Inscribing runes <strong>resurrects nearby corpses</strong> as undead, empowered with modifiers matching the runes used (a fire rune empowers the wave with fire, an oath rune nominates an invincible leader, and so on). Defeat the wave; the inscribed item appears at the Remnant.</p>
+                <p>Larger Remnants in higher-level areas have more rune slots — up to 6, 7, or 8 — yielding rarer crafting currencies but also stacking more monster empowerment.</p>
+
+                <h3 class="sub-title">Verisium &amp; Runic Ward</h3>
+                <p><strong>Verisium</strong> is the new core resource of the 0.5 league. It drops from Remnants, Expedition encounters, and ocean exploration. It powers:</p>
+                <ul>
+                    <li><strong>Runic Ward</strong> — a new defensive layer that activates when life drops to zero. Acts as an additional health pool that sustains the character for a short window. Crafted onto any armour piece (uniques included) via the <strong>Verisium Anvil</strong>, unlocked after an early-game vault encounter.</li>
+                    <li><strong>Kalguuran skills</strong> — new active abilities that spend Runic Ward instead of mana. Class-agnostic, weapon-agnostic. Examples: <em>Triskelion Cascade</em> (triggers next spell in a triskelion pattern), <em>Frostflame Nova</em> (converts ignites to frost-fire), <em>Hollow Shell</em> (ally guard), <em>Mark of Repulsion</em> (push-away curse).</li>
+                </ul>
+
+                <h3 class="sub-title">Runeforging — Upgrading Uniques</h3>
+                <p>At the Mystic Refuge in Act 3, Farrow learns to <strong>Runeforge unique weapons</strong>. Many low-level uniques can be upgraded with Verisium to do significantly more damage, bringing them into endgame viability. A subset of Kalguuran uniques (e.g. the new <em>Serle's Grit</em>) have multiple possible Runeforge outcomes — gamble-style upgrades with build-defining effects.</p>
+
+                <div class="callout aldur">
+                    <span class="label">Why Runeforging matters</span>
+                    GGG has explicitly stated this is to rescue low-level uniques with "interesting modifiers" that were not endgame-viable. Expect a meaningful list of previously-vendor-trash uniques to become competitive league-start choices.
+                </div>
+
+                <h3 class="sub-title">Runic Alloys — New Mod Pools</h3>
+                <p>A new currency class. Alloys add modifiers <strong>not normally craftable</strong> to items. Verisium combined with other materials produces different alloy types:</p>
+                <ul>
+                    <li><strong>Imbued Alloy</strong> — ailment damage modifiers</li>
+                    <li><strong>Expansive Alloy</strong> — area of effect modifiers</li>
+                    <li><strong>Mystic Alloy</strong> — caster-pool modifiers</li>
+                    <li><strong>Swift Alloy</strong> — speed-pool modifiers</li>
+                    <li><strong>Runic Alloy</strong> — broader Aldur-themed mods</li>
+                </ul>
+                <p>A subset of Runes are <strong>meta-crafting runes</strong>: applied to a socket, they <em>unlock</em> a new mod pool on the item that subsequent ordinary orb crafting can roll. The reveal demonstrated a <em>Rune of Chronomancy</em> on boots that unlocked time-related mods (cooldown speed, skill effect duration).</p>
+
+                <h3 class="sub-title">Elemental Conversion Runes</h3>
+                <p>Specific Runes can <strong>convert all existing elemental damage modifiers on a non-unique weapon from one element to another</strong>. Used to consolidate three elemental damage rolls into one element — turning a multi-element weapon into a single-element powerhouse.</p>
+
+                <h3 class="sub-title">Jewel Socket Conversion</h3>
+                <p>A Rune that <strong>destroys the rune sockets on an item to convert them into a Jewel socket</strong>. Applies to items with existing rune sockets — converts socket count into a jewel slot.</p>
+
+                <h3 class="sub-title">Genesis Tree — Breach Crafting Overhaul</h3>
+                <p>The Breach league rework introduces the <strong>Genesis Tree</strong> inside the Keepers of the Flame monastery. After stabilising Breaches into a new phase and defeating Marshals of Xesht to drop <strong>Hive Blood</strong> and <strong>Wombgifts</strong>, you bring them to the tree:</p>
+                <ul>
+                    <li><strong>Wombgifts</strong> are placed into the tree and fertilised with Hive Blood, birthing a specific class of jewellery (amulets, rings, belts).</li>
+                    <li>The tree has <strong>15 allocatable nodes</strong>, free-to-respec at any time, controlling: base type selection, modifier pool, tier floors, guaranteed mods, and <em>new base types unavailable elsewhere</em> (e.g. an amulet with a spirit skill built in, or one with a rune socket).</li>
+                    <li>Specific tree branches add entire new mod classes: a <em>caster mod set</em> for rings (spell damage, seal generation for Unleash), a <em>minion mod set</em> for rings, a new amulet mod pool for ailments.</li>
+                    <li>Additional branches handle belts and currency crafting, including new Catalyst variants for jewels.</li>
+                </ul>
+
+                <h3 class="sub-title">Liquid Emotions — Delirium Jewel Crafting</h3>
+                <p>The Delirium rework expands the use of <strong>liquid emotions</strong>. Beyond their existing role (instilling amulets with notable passives), emotions can now <strong>add crafted modifiers to jewels</strong>:</p>
+                <ul>
+                    <li><strong>Liquid Despair</strong> → critical hit chance on jewels</li>
+                    <li><strong>Liquid Suffering</strong> → movement speed or area of effect on jewels</li>
+                    <li><strong>Potent Liquid Melancholy</strong> → on-hit effect mods (only from human map bosses)</li>
+                    <li><strong>Potent Liquid Paranoia</strong> → effects unavailable elsewhere</li>
+                    <li><strong>Concentrated Liquid Isolation</strong> → late-game variants</li>
+                </ul>
+                <p>Some emotions drop only from specific delirium-affected boss types, making strategic Atlas planning a precondition for some jewel crafts. Time Lost Jewel crafting also expands via specific simulacrum encounters.</p>
+
+                <h3 class="sub-title">Ritual — Unique-or-Omen Rewards</h3>
+                <p>Rituals no longer offer junk rewards. Every item in the Ritual reward window is now a <strong>Unique or an Omen</strong>. Crafters who farmed Rituals primarily for Omens see a major efficiency lift. New Omens may appear; verify the omen list post-launch.</p>
+
+                <h3 class="sub-title">Atlas Master Crafting Effects</h3>
+                <p>The new Masters of the Atlas (Jado, Hilda, and others) include nodes affecting <strong>map currency and corruption outcomes</strong> — for example, "corrupted Waystones gain an additional modifier (but send you to an unknown location)". These don't change the crafting bench, but they alter the rate at which you acquire crafting-relevant materials.</p>
+
+                <div class="callout aldur">
+                    <span class="label">0.5 quick-reference</span>
+                    Five new league hubs (Fortress, Delirium, Breach/Genesis, Ritual, Expedition); the Aldur core mechanic with Remnants, Verisium, Runic Ward, Runeforging, and 100+ new runes; Genesis Tree jewel crafting; expanded liquid emotion jewel crafts; Ritual unique-only rewards; ocean Expedition with Grand Expeditions and new pinnacle. Full coverage of the endgame side of these changes is in <a href="poe2_endgame_guide.html">the Endgame Guide</a>.
+                </div>
+            </section>
+
+            <!-- ───────────────────────────────────────────────
+                 XVI. TOOLS / RESOURCES
+                 ─────────────────────────────────────────────── -->
+            <section id="tools" class="codex-section">
+                <h2 class="section-title"><span class="num">XVII</span>Tools &amp; Resources</h2>
+
+                <p>A short list of external references this codex draws on. There are many other excellent community resources for PoE2 — the omissions here aren't editorial judgements, just an attempt to keep the list short.</p>
+
+                <ul>
+                    <li><strong><a href="https://poe2db.tw/us/" target="_blank" rel="noopener">poe2db.tw</a></strong> — datamined database. Every base, every modifier, every tier, every tag, every ilvl gate, every weight.</li>
+                    <li><strong><a href="https://www.craftofexile.com/" target="_blank" rel="noopener">craftofexile.com</a></strong> — calculator and emulator. Test a craft sequence before spending currency on it.</li>
+                    <li><strong><a href="https://maxroll.gg/poe2" target="_blank" rel="noopener">maxroll.gg/poe2</a></strong> — guide site.</li>
+                    <li><strong><a href="https://mobalytics.gg/poe-2" target="_blank" rel="noopener">mobalytics.gg/poe-2</a></strong> — guide site.</li>
+                    <li><strong><a href="https://www.vulkk.com/" target="_blank" rel="noopener">vulkk.com</a></strong> — guide site.</li>
+                    <li><strong><a href="https://poe.ninja/poe2" target="_blank" rel="noopener">poe.ninja/poe2</a></strong> — currency price tracking. The in-game Currency Exchange (talk to Alva in your hideout) is the live trading interface.</li>
+                </ul>
+
+                <h3 class="sub-title">Reading a Modifier on PoE2DB</h3>
+                <p>The typical line looks like: <code>"#% increased Maximum Life [life · defence] Tier 1 · ilvl 81 · weight 600"</code>. The bracketed terms are the tags. The Tier and ilvl gate when it can roll. The weight is the relative probability of that specific mod among all mods that could possibly roll at that point in the craft. Heavier weight = more likely. Some elite-tier mods carry very low weights (e.g. weight 100 vs the standard 600–1000), and those are the ones that homogenising omens and recombinator manipulation are designed to fish out.</p>
+            </section>
+
+            <!-- ───────────────────────────────────────────────
+                 XVII. CAVEATS / SOURCES
+                 ─────────────────────────────────────────────── -->
+            <section id="caveats" class="codex-section">
+                <h2 class="section-title"><span class="num">XVIII</span>Caveats &amp; Sources</h2>
+
+                <h3 class="sub-title">Known Areas of Uncertainty</h3>
+                <ul>
+                    <li><strong>Omen of Catalysing Exaltation magnitude</strong> — the bias toward the catalyst tag is real but the exact percentage shift is not documented in-game; community testing suggests it is meaningful but not deterministic.</li>
+                    <li><strong>Recombinator success math</strong> — the exact weight contribution of individual modifiers to success chance is not officially published.</li>
+                    <li><strong>Patch 0.5 Runic Alloy mod pools</strong> — Imbued / Expansive / Mystic / Swift names and effects are from the reveal stream; the full list of new modifiers each unlocks is not yet public.</li>
+                    <li><strong>Genesis Tree node count</strong> — the reveal showed 15 allocatable nodes, but the exact branches and their gating may shift in the patch notes.</li>
+                    <li><strong>Soul Core list</strong> — only a subset of named Soul Cores are reliably documented externally; the full list is in-game and on PoE2DB once you encounter them.</li>
+                    <li><strong>Specific mod-tier ilvl gates</strong> — the breakpoint table in §II is compiled from community sources and is illustrative. The source-of-truth for any specific base is PoE2DB's per-base modifier page.</li>
+                </ul>
+
+                <h3 class="sub-title">What Changes Between Patches</h3>
+                <ul>
+                    <li><strong>Omen list</strong> — new omens have been added across 0.2, 0.3, and 0.4. The Homogenising Coronation omen was removed in 0.4; Crystallisation omens were retuned in 0.3.</li>
+                    <li><strong>Essence list</strong> — Essence of the Abyss and several others were added in 0.3.0. Perfect Essence of Sorcery can no longer be used on Focus (0.4 change).</li>
+                    <li><strong>Drop rates &amp; costs</strong> — these shift every patch and every week of a league. Currency Exchange prices are the live source-of-truth, not codex values.</li>
+                </ul>
+
+                <h3 class="sub-title">Patch 0.5 Status</h3>
+                <p>The 0.5 patch content (§XVI) is compiled from the <strong>Return of the Ancients reveal livestream</strong> (May 13, 2026) and accompanying official posts. <strong>The full patch notes are released approximately one week before launch (on or after May 22, 2026)</strong>; any specific magnitudes, exact omen names, or numeric ranges in §XVI are <em>indicative</em> and will be reconciled with the patch notes on release.</p>
+
+                <h3 class="sub-title">A Last Word</h3>
+                <p>PoE2 crafting is a system of <em>narrowing constraints</em>. The cheapest crafts you'll do use one constraint at a time; the most expensive use eight stacked. The most-asked-for thing in this game's crafting Discord is "what's the deterministic version of this craft?" — and the answer is almost always "stack one more omen on top of what you're already doing." That's the whole game, and once you see it the rest is just remembering which omens exist.</p>
+
+                <p>If you spot a factual error in this codex — a stale omen name, a re-balanced tier, a missed patch note — <a href="https://github.com/domistae/poe2-leveling/issues/new" target="_blank" rel="noopener">open an issue on GitHub</a>. Crafting changes every patch; this page changes with it. Corrections, additions, and feedback from fellow players are very welcome.</p>
+            </section>
+
+            <!-- ───────────────────────────────────────────────
+                 NAV / FOOTER
+                 ─────────────────────────────────────────────── -->
+            <div class="footer-nav">
+                <a href="poe2_endgame_guide.html">← Endgame</a>
+                <a href="index.html">Index</a>
+            </div>
+            <footer class="site-footer">
+                Made for the PoE2 community · A community-driven summary, AI-assisted ·
+                <a href="https://github.com/domistae/poe2-leveling/issues/new">Suggestions</a> ·
+                <a href="https://github.com/domistae/poe2-leveling">GitHub</a><br>
+                <span style="font-size: 11px; opacity: 0.7;">Path of Exile 2 is © Grinding Gear Games. Unofficial fan-made content.</span>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            var root = document.documentElement;
+            var current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+            var next = current === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', next);
+            try { localStorage.setItem('poe2-theme', next); } catch (e) {}
+            updateThemeToggle();
+        }
+        function updateThemeToggle() {
+            var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+            var icon = document.getElementById('theme-icon');
+            var label = document.getElementById('theme-label');
+            if (icon) icon.textContent = dark ? '☾' : '☀';
+            if (label) label.textContent = dark ? 'Dark' : 'Light';
+        }
+        updateThemeToggle();
+    </script>
+</body>
+</html>
