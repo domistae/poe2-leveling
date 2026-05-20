@@ -52,43 +52,10 @@
             }
         })();
     </script>
+    <link rel="stylesheet" href="assets/base.css">
     <style>
-/* ─────────────────────────────────────────────────────────────
-   POE2 v0.5 — Unified theme (light default + dark via [data-theme="dark"])
-   Crafting Codex variant — same tokens, additional codex-specific
-   components (rarity chips, currency tiers, trick cards, workflow pills,
-   tag-system gem ladder, league-tagged sections for 0.5).
-   ───────────────────────────────────────────────────────────── */
-
+/* Crafting-specific extras layered on top of assets/base.css */
 :root {
-    /* Surfaces */
-    --bg-base: #f4f6fa;
-    --bg-surface: #ffffff;
-    --bg-elevated: #eef2f7;
-    --bg-step: #f8fafc;
-    --border-subtle: #dfe4ec;
-    --border-accent: #c4cbd6;
-
-    /* Text */
-    --text-primary: #0f172a;
-    --text-body: #334155;
-    --text-muted: #64748b;
-    --text-dim: #94a3b8;
-    --parchment: #0f172a;
-
-    /* Gold accents */
-    --gold: #b08537;
-    --gold-bright: #d4a258;
-    --gold-deep: #8a6a2c;
-
-    /* Semantic */
-    --sage:    #16a34a;
-    --burnt:   #dc2626;
-    --steel:   #1d4ed8;
-    --tan:     #b45309;
-    --plum:    #7c3aed;
-    --crimson: #b91c1c;
-
     /* PoE rarity colors (canonical) */
     --r-normal:  #c8c8c8;
     --r-magic:   #8888ff;
@@ -97,60 +64,11 @@
     --r-fract:   #b8a374;
     --r-corrupt: #d20000;
     --r-desec:   #4ade80;
-
-    /* Per-league solid colors (used in 0.5 sections) */
-    --c-fortress:   #b45309;
-    --c-vaal:       #991b1b;
-    --c-abyss:      #047857;
-    --c-expedition: #d97706;
-    --c-breach:     #7c3aed;
-    --c-delirium:   #64748b;
-    --c-ritual:     #be185d;
-    --c-aldur:      #c89860;   /* new — Runes of Aldur (rune-gold) */
-
-    /* Shadow stack */
-    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
-    --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.08);
-    --shadow-lg: 0 12px 30px rgba(15, 23, 42, 0.12);
-
-    /* Overlays */
-    --overlay-gold-soft: rgba(176, 133, 55, 0.07);
-    --overlay-gold-strong: rgba(176, 133, 55, 0.14);
-    --overlay-sage: rgba(22, 163, 74, 0.08);
-    --overlay-burnt: rgba(220, 38, 38, 0.08);
-    --overlay-steel: rgba(29, 78, 216, 0.08);
-    --overlay-tan: rgba(180, 83, 9, 0.08);
-    --overlay-plum: rgba(124, 58, 237, 0.08);
+    /* Runes of Aldur (0.5) */
+    --c-aldur:      #c89860;
     --overlay-aldur: rgba(200, 152, 96, 0.10);
-
-    --body-weight: 400;
 }
-
 [data-theme="dark"] {
-    --bg-base: #181410;
-    --bg-surface: #221c15;
-    --bg-elevated: #2a2218;
-    --bg-step: #1f1a13;
-    --border-subtle: #3a2f20;
-    --border-accent: #5a4830;
-
-    --text-primary: #e8d8a8;
-    --text-body: #b8a888;
-    --text-muted: #8a7c64;
-    --text-dim: #5a4f3e;
-    --parchment: #e8d8a8;
-
-    --gold: #c89860;
-    --gold-bright: #e8b878;
-    --gold-deep: #a07840;
-
-    --sage:    #9bb87a;
-    --burnt:   #c87060;
-    --steel:   #7e9eb8;
-    --tan:     #c4a47e;
-    --plum:    #b88aa0;
-    --crimson: #c84a4a;
-
     --r-normal:  #d8d8d8;
     --r-magic:   #a0a0ff;
     --r-rare:    #ffff99;
@@ -158,69 +76,9 @@
     --r-fract:   #d4b878;
     --r-corrupt: #ff5050;
     --r-desec:   #5fdf80;
-
-    --c-fortress:   #d97706;
-    --c-vaal:       #dc2626;
-    --c-abyss:      #10b981;
-    --c-expedition: #fbbf24;
-    --c-breach:     #a78bfa;
-    --c-delirium:   #94a3b8;
-    --c-ritual:     #ec4899;
     --c-aldur:      #e8b878;
-
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.55);
-
-    --overlay-gold-soft: rgba(200, 152, 96, 0.06);
-    --overlay-gold-strong: rgba(200, 152, 96, 0.12);
-    --overlay-sage: rgba(155, 184, 122, 0.08);
-    --overlay-burnt: rgba(200, 112, 96, 0.08);
-    --overlay-steel: rgba(126, 158, 184, 0.08);
-    --overlay-tan: rgba(196, 164, 126, 0.08);
-    --overlay-plum: rgba(184, 138, 160, 0.08);
     --overlay-aldur: rgba(232, 184, 120, 0.10);
-
-    --body-weight: 300;
 }
-
-/* ─── BASE ─────────────────────────────────────────────────── */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-    font-family: 'Inter', 'IBM Plex Sans', system-ui, sans-serif;
-    background: var(--bg-base);
-    color: var(--text-body);
-    font-size: 13.5px;
-    line-height: 1.6;
-    min-height: 100vh;
-    font-weight: var(--body-weight);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-[data-theme="dark"] body {
-    background: radial-gradient(ellipse at top left, rgba(200, 152, 96, 0.05) 0%, transparent 50%), var(--bg-base);
-}
-
-/* ─── THEME TOGGLE ────────────────────────────────────────── */
-.theme-toggle {
-    position: fixed;
-    top: 1rem; right: 1rem;
-    z-index: 1000;
-    background: var(--bg-surface);
-    border: 1px solid var(--border-accent);
-    color: var(--text-body);
-    padding: 0.5rem 0.9rem;
-    border-radius: 100px;
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    font-size: 11.5px;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-    display: flex; align-items: center; gap: 0.45rem;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.2s;
-}
-.theme-toggle:hover { background: var(--bg-elevated); border-color: var(--gold); }
 
 /* ─── LAYOUT ──────────────────────────────────────────────── */
 .container { display: flex; min-height: 100vh; }
@@ -231,7 +89,19 @@ body {
     border-right: 1px solid var(--border-subtle);
     padding: 1.5rem 1rem;
     flex-shrink: 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-accent) transparent;
 }
+.sidebar::-webkit-scrollbar { width: 7px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--border-accent);
+    border-radius: 4px;
+    border: 1px solid transparent;
+    background-clip: content-box;
+}
+.sidebar::-webkit-scrollbar-thumb:hover { background: var(--gold-deep); background-clip: content-box; }
+
 .sidebar-section { margin-bottom: 1.5rem; }
 .sidebar-section h2 {
     font-family: 'Cinzel', serif; color: var(--gold);
@@ -825,6 +695,15 @@ footer.site-footer a {
         <span id="theme-label">Light</span>
     </button>
 
+    <nav class="top-nav" aria-label="Main navigation">
+        <a href="index.html" class="top-nav-home">← Home</a>
+        <div class="top-nav-links">
+            <a href="poe2_leveling_guide.html" class="top-nav-link">Leveling</a>
+            <a href="poe2_endgame_guide.html" class="top-nav-link">Endgame</a>
+            <a href="poe2_crafting_codex.html" class="top-nav-link current" aria-current="page">Crafting</a>
+        </div>
+    </nav>
+
     <div class="container">
         <aside class="sidebar">
             <div class="sidebar-section">
@@ -849,16 +728,6 @@ footer.site-footer a {
                 <a href="#caveats"      class="sidebar-link"><span class="marker">XVIII</span>Caveats &amp; Sources</a>
             </div>
 
-            <div class="sidebar-section">
-                <h2>Navigation</h2>
-                <a href="index.html"               class="sidebar-link">← Index</a>
-                <a href="poe2_act1_guide.html"     class="sidebar-link">Act I</a>
-                <a href="poe2_act2_guide.html"     class="sidebar-link">Act II</a>
-                <a href="poe2_act3_guide.html"     class="sidebar-link">Act III</a>
-                <a href="poe2_act4_guide.html"     class="sidebar-link">Act IV</a>
-                <a href="poe2_interludes_guide.html" class="sidebar-link">Interludes</a>
-                <a href="poe2_endgame_guide.html"  class="sidebar-link">Endgame</a>
-            </div>
         </aside>
 
         <main class="main">
@@ -877,6 +746,7 @@ footer.site-footer a {
             <div class="intro-block">
                 <p><strong>How to read this codex.</strong> Sections I–IV are the foundation — what an item <em>is</em>, the orb hierarchy, the essence types. V–IX are the precision tools, where most of the actual craft happens. X–XII are the finishing layers. XIII is the showpiece: the tricks streamers actually use to deterministically craft endgame pieces. XIV is the canonical order in which to apply everything. XV is what changes on May 29.</p>
                 <p>You do not need to read it linearly. Each section is self-contained and cross-links to the others when relevant. If you want one place to start: <a href="#tags">the tag system</a> is the single most important concept in PoE2 crafting, and it is poorly documented in-game.</p>
+                <p><strong>A note on scope.</strong> This codex is intended to be <em>as complete as possible</em> — every currency, every omen, every interaction the community has surfaced. That's a lot to take in at once, and yes, it's probably more than most readers want to scroll through in a single sitting. I've kept it long on purpose so the full reference lives in one place. <strong>Condensed diagrams and quick-reference summaries are planned for a separate page</strong> later — for now, treat this as the deep dive and use Ctrl+F or the sidebar to jump to what you need.</p>
                 <p><em>A community-driven summary compiled from multiple sources: Patch 0.4 (The Last of the Druids) in-game systems, the 0.5 reveal stream, Maxroll, Mobalytics, Vulkk, PoE2DB, the official site, and community streamer crafting demonstrations. This codex acts as a quick reference, not as authoritative documentation — cross-check with PoE2DB and in-game tooltips before any expensive craft. The full disclaimer is on the <a href="index.html">index page</a>.</em></p>
             </div>
 
@@ -2086,39 +1956,22 @@ footer.site-footer a {
         </main>
     </div>
 
+    <script src="assets/theme.js" defer></script>
     <script>
-        function toggleTheme() {
-            var root = document.documentElement;
-            var current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-            var next = current === 'dark' ? 'light' : 'dark';
-            root.setAttribute('data-theme', next);
-            try { localStorage.setItem('poe2-theme', next); } catch (e) {}
-            updateThemeToggle();
-        }
-        function updateThemeToggle() {
-            var dark = document.documentElement.getAttribute('data-theme') === 'dark';
-            var icon = document.getElementById('theme-icon');
-            var label = document.getElementById('theme-label');
-            if (icon) icon.textContent = dark ? '☾' : '☀';
-            if (label) label.textContent = dark ? 'Dark' : 'Light';
-        }
-        updateThemeToggle();
-
-        /* ─── Mobile sidebar zone collapse ─────────────────────── */
+        /* Mobile sidebar zone collapse */
         (function() {
             function isMobile() { return window.innerWidth <= 900; }
-            document.querySelectorAll('.sidebar-section h2').forEach(function(h2) {
-                h2.addEventListener('click', function() {
+            document.querySelectorAll(".sidebar-section h2").forEach(function(h2) {
+                h2.addEventListener("click", function() {
                     if (!isMobile()) return;
-                    this.parentElement.classList.toggle('expanded');
+                    this.parentElement.classList.toggle("expanded");
                 });
             });
-            // Auto-collapse after tapping a link (so content area is maximised after navigation)
-            document.querySelectorAll('.sidebar-link').forEach(function(link) {
-                link.addEventListener('click', function() {
+            document.querySelectorAll(".sidebar-link").forEach(function(link) {
+                link.addEventListener("click", function() {
                     if (!isMobile()) return;
-                    var section = this.closest('.sidebar-section');
-                    if (section) section.classList.remove('expanded');
+                    var section = this.closest(".sidebar-section");
+                    if (section) section.classList.remove("expanded");
                 });
             });
         })();

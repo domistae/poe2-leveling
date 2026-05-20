@@ -64,172 +64,8 @@
             }
         })();
     </script>
+    <link rel="stylesheet" href="assets/base.css">
     <style>
-/* ─────────────────────────────────────────────────────────────
-   POE2 v0.5 — Unified theme (light default + dark via [data-theme="dark"])
-   League colors tuned to canonical PoE iconography, bright for light mode.
-   ───────────────────────────────────────────────────────────── */
-
-:root {
-    /* Surfaces */
-    --bg-base: #f4f6fa;          /* cool off-white */
-    --bg-surface: #ffffff;
-    --bg-elevated: #eef2f7;
-    --bg-step: #f8fafc;
-    --border-subtle: #dfe4ec;
-    --border-accent: #c4cbd6;
-
-    /* Text */
-    --text-primary: #0f172a;     /* near-black, slate undertone */
-    --text-body: #334155;
-    --text-muted: #64748b;
-    --text-dim: #94a3b8;
-    --parchment: #0f172a;        /* now means "darkest text" for headings */
-
-    /* Gold accents (PoE2 native) */
-    --gold: #b08537;
-    --gold-bright: #d4a258;
-    --gold-deep: #8a6a2c;
-
-    /* Semantic colors — bright, canonical PoE league hues */
-    --sage:    #16a34a;          /* tip / success / ritual / wildwood */
-    --burnt:   #dc2626;          /* warning / vaal */
-    --steel:   #1d4ed8;          /* loc / abyss */
-    --tan:     #b45309;          /* npc / fortress bronze */
-    --plum:    #7c3aed;          /* new pathing notes / breach */
-    --crimson: #b91c1c;          /* pinnacle threats */
-
-    /* Per-league solid colors (used in endgame zone cards + diagram) */
-    --c-fortress:   #b45309;     /* NW · precursor bronze */
-    --c-vaal:       #991b1b;     /* N  · vaal crimson */
-    --c-abyss:      #047857;     /* E  · deep green (per user) */
-    --c-expedition: #d97706;     /* SE · Kalguuran gold */
-    --c-breach:     #7c3aed;     /* S  · breach purple */
-    --c-delirium:   #64748b;     /* SW · silver chrome (mid-stop) */
-    --c-delirium-a: #e2e8f0;     /* light end of silver gradient */
-    --c-delirium-b: #64748b;     /* dark end of silver gradient */
-    --c-ritual:     #be185d;     /* W  · rose-wine (blood ritual) */
-
-    /* Shadow stack */
-    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
-    --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.08);
-    --shadow-lg: 0 12px 30px rgba(15, 23, 42, 0.12);
-
-    /* Overlays (theme-aware) */
-    --overlay-gold-soft: rgba(176, 133, 55, 0.07);
-    --overlay-gold-strong: rgba(176, 133, 55, 0.14);
-    --overlay-sage: rgba(22, 163, 74, 0.08);
-    --overlay-burnt: rgba(220, 38, 38, 0.08);
-    --overlay-steel: rgba(29, 78, 216, 0.08);
-    --overlay-tan: rgba(180, 83, 9, 0.08);
-    --overlay-plum: rgba(124, 58, 237, 0.08);
-
-    /* Body font weight feels lighter on cream — use normal */
-    --body-weight: 400;
-}
-
-[data-theme="dark"] {
-    --bg-base: #181410;
-    --bg-surface: #221c15;
-    --bg-elevated: #2a2218;
-    --bg-step: #1f1a13;
-    --border-subtle: #3a2f20;
-    --border-accent: #5a4830;
-
-    --text-primary: #d8cab0;
-    --text-body: #b8a888;
-    --text-muted: #8a7c64;
-    --text-dim: #5a4f3e;
-    --parchment: #e8d8a8;
-
-    --gold: #c89860;
-    --gold-bright: #e8b878;
-    --gold-deep: #a07840;
-
-    --sage:    #9bb87a;
-    --burnt:   #c87060;
-    --steel:   #7e9eb8;
-    --tan:     #c4a47e;
-    --plum:    #b88aa0;
-    --crimson: #c84a4a;
-
-    /* Per-league colors — slightly desaturated for dark mode */
-    --c-fortress:   #d97706;
-    --c-vaal:       #dc2626;
-    --c-abyss:      #10b981;     /* brighter green for dark */
-    --c-expedition: #fbbf24;
-    --c-breach:     #a78bfa;
-    --c-delirium:   #94a3b8;
-    --c-delirium-a: #cbd5e1;
-    --c-delirium-b: #475569;
-    --c-ritual:     #ec4899;     /* brighter rose for dark */
-
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.55);
-
-    --overlay-gold-soft: rgba(200, 152, 96, 0.06);
-    --overlay-gold-strong: rgba(200, 152, 96, 0.12);
-    --overlay-sage: rgba(155, 184, 122, 0.08);
-    --overlay-burnt: rgba(200, 112, 96, 0.08);
-    --overlay-steel: rgba(126, 158, 184, 0.08);
-    --overlay-tan: rgba(196, 164, 126, 0.08);
-    --overlay-plum: rgba(184, 138, 160, 0.08);
-
-    --body-weight: 300;
-}
-
-/* ─── BASE ─────────────────────────────────────────────────── */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-    font-family: 'Inter', 'IBM Plex Sans', system-ui, sans-serif;
-    background: var(--bg-base);
-    color: var(--text-body);
-    font-size: 13.5px;
-    line-height: 1.6;
-    min-height: 100vh;
-    font-weight: var(--body-weight);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: none;
-    pointer-events: none;
-    z-index: 0;
-}
-[data-theme="dark"] body { background: radial-gradient(ellipse at top left, rgba(200, 152, 96, 0.05) 0%, transparent 50%), var(--bg-base); }
-
-/* ─── THEME TOGGLE (top-right floating) ────────────────────── */
-.theme-toggle {
-    position: fixed;
-    top: 1rem; right: 1rem;
-    z-index: 1000;
-    background: var(--bg-surface);
-    border: 1px solid var(--border-accent);
-    color: var(--text-body);
-    padding: 0.5rem 0.9rem;
-    border-radius: 100px;
-    cursor: pointer;
-    font-family: 'Inter', 'IBM Plex Sans', sans-serif;
-    font-size: 11.5px;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-    display: flex; align-items: center; gap: 0.45rem;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.2s;
-}
-.theme-toggle:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-}
-.theme-toggle .icon { font-size: 13px; }
-
-/* ─── CONTAINER ────────────────────────────────────────────── */
-.container { display: flex; max-width: 1240px; margin: 0 auto; position: relative; z-index: 1; }
 
 /* ─── SIDEBAR ──────────────────────────────────────────────── */
 .sidebar {
@@ -237,12 +73,26 @@ body::before {
     background: var(--bg-surface);
     border-right: 1px solid var(--border-subtle);
     padding: 1.25rem 1rem;
-    position: fixed;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
     height: 100vh;
     overflow-y: auto;
     box-shadow: var(--shadow-sm);
     transition: background-color 0.3s, border-color 0.3s;
+    flex-shrink: 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-accent) transparent;
 }
+.sidebar::-webkit-scrollbar { width: 7px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--border-accent);
+    border-radius: 4px;
+    border: 1px solid transparent;
+    background-clip: content-box;
+}
+.sidebar::-webkit-scrollbar-thumb:hover { background: var(--gold-deep); background-clip: content-box; }
 [data-theme="dark"] .sidebar {
     background: linear-gradient(180deg, rgba(34, 28, 21, 0.95) 0%, rgba(24, 20, 16, 0.95) 100%);
     box-shadow: none;
@@ -362,7 +212,7 @@ body::before {
 }
 
 /* ─── MAIN ─────────────────────────────────────────────────── */
-.main { margin-left: 240px; flex: 1; padding: 1.75rem 2.25rem; max-width: 940px; }
+.main { flex: 1; max-width: 1080px; margin: 0 auto; padding: 1.75rem 2.25rem; }
 
 .header { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); }
 .header .eyebrow {
@@ -397,6 +247,20 @@ body::before {
     color: var(--gold); text-decoration: none; font-weight: 600;
 }
 .endgame-banner a:hover, .banner-05 a:hover { text-decoration: underline; color: var(--gold-deep); }
+
+/* Unclassed in-body anchors — fortress, index, issue refs */
+.storyline-body a:not([class]):not([style]),
+.intro-block a:not([class]):not([style]) {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--gold-deep);
+    transition: color 0.15s, border-color 0.15s;
+}
+.storyline-body a:not([class]):not([style]):hover,
+.intro-block a:not([class]):not([style]):hover {
+    color: var(--gold-bright);
+    border-bottom-color: var(--gold);
+}
 
 /* Summary box (permanent rewards) */
 .summary-box {
@@ -1040,6 +904,15 @@ body::before {
         <span id="theme-label">Light</span>
     </button>
 
+    <nav class="top-nav" aria-label="Main navigation">
+        <a href="index.html" class="top-nav-home">← Home</a>
+        <div class="top-nav-links">
+            <a href="poe2_leveling_guide.html" class="top-nav-link">Leveling</a>
+            <a href="poe2_endgame_guide.html" class="top-nav-link current" aria-current="page">Endgame</a>
+            <a href="poe2_crafting_codex.html" class="top-nav-link">Crafting</a>
+        </div>
+    </nav>
+
     <div class="container">
         <aside class="sidebar">
             <details class="sidebar-section zones-details">
@@ -1072,12 +945,6 @@ body::before {
             <div class="sidebar-section">
                 <h2>Roadmap</h2>
                 <a href="#farming-priority" class="sidebar-link system">Farming Priority</a>
-            </div>
-            <div class="sidebar-section">
-                <h2>Navigation</h2>
-                <a href="index.html" class="sidebar-link">← Back to Index</a>
-                <a href="poe2_act4_guide.html" class="sidebar-link">Act IV (campaign)</a>
-                <a href="poe2_interludes_guide.html" class="sidebar-link">Interludes 5.x</a>
             </div>
         </aside>
 
@@ -1981,24 +1848,6 @@ body::before {
             </footer>
         </main>
     </div>
-    <script>
-        // Initialize button state from current theme
-        (function() {
-            var cur = document.documentElement.getAttribute('data-theme') || 'light';
-            var ic = document.getElementById('theme-icon');
-            var lb = document.getElementById('theme-label');
-            if (ic) ic.textContent = cur === 'light' ? '☀' : '☾';
-            if (lb) lb.textContent = cur === 'light' ? 'Light' : 'Dark';
-        })();
-        function toggleTheme() {
-            var html = document.documentElement;
-            var cur = html.getAttribute('data-theme') || 'light';
-            var next = cur === 'light' ? 'dark' : 'light';
-            html.setAttribute('data-theme', next);
-            try { localStorage.setItem('poe2-theme', next); } catch (e) {}
-            document.getElementById('theme-icon').textContent = next === 'light' ? '☀' : '☾';
-            document.getElementById('theme-label').textContent = next === 'light' ? 'Light' : 'Dark';
-        }
-    </script>
+    <script src="assets/theme.js" defer></script>
 </body>
 </html>

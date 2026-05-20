@@ -65,137 +65,20 @@
         })();
     </script>
 
+    <link rel="stylesheet" href="assets/base.css">
     <style>
-    /* ─────────────────────────────────────────────────────────────
-       POE2 v0.5 — Unified theme (canonical tokens from themed.css)
-       Light = cool slate + gold accents (no beige)
-       Dark  = warm bronze night
-       ───────────────────────────────────────────────────────────── */
-    :root {
-        --bg-base: #f4f6fa;
-        --bg-surface: #ffffff;
-        --bg-elevated: #eef2f7;
-        --bg-step: #f8fafc;
-        --border-subtle: #dfe4ec;
-        --border-accent: #c4cbd6;
+/* Index-specific extras layered on top of assets/base.css */
+:root {
+    --hero-ember:  radial-gradient(ellipse 65% 70% at bottom left,  rgba(217, 119, 6, 0.13) 0%, rgba(217, 119, 6, 0.04) 30%, transparent 60%);
+    --hero-aether: radial-gradient(ellipse 65% 70% at bottom right, rgba(29, 78, 216, 0.10) 0%, rgba(29, 78, 216, 0.03) 30%, transparent 60%);
+}
+[data-theme="dark"] {
+    --hero-ember:  radial-gradient(ellipse 70% 80% at bottom left,  rgba(217, 119, 6, 0.32) 0%, rgba(180, 70, 20, 0.14) 28%, transparent 62%);
+    --hero-aether: radial-gradient(ellipse 70% 80% at bottom right, rgba(56, 92, 158, 0.34) 0%, rgba(30, 50, 100, 0.16) 28%, transparent 62%);
+}
+body { overflow-x: hidden; }
+a { color: inherit; }
 
-        --text-primary: #0f172a;
-        --text-body: #334155;
-        --text-muted: #64748b;
-        --text-dim: #94a3b8;
-        --parchment: #0f172a;
-
-        --gold: #b08537;
-        --gold-bright: #d4a258;
-        --gold-deep: #8a6a2c;
-
-        --sage:    #16a34a;
-        --burnt:   #dc2626;
-        --steel:   #1d4ed8;
-        --tan:     #b45309;
-        --plum:    #7c3aed;
-        --crimson: #b91c1c;
-
-        --c-fortress:   #b45309;
-        --c-vaal:       #991b1b;
-        --c-abyss:      #047857;
-        --c-expedition: #d97706;
-        --c-breach:     #7c3aed;
-        --c-delirium:   #64748b;
-        --c-delirium-a: #e2e8f0;
-        --c-delirium-b: #64748b;
-        --c-ritual:     #be185d;
-
-        --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
-        --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.08);
-        --shadow-lg: 0 12px 30px rgba(15, 23, 42, 0.12);
-
-        --overlay-gold-soft: rgba(176, 133, 55, 0.07);
-        --overlay-gold-strong: rgba(176, 133, 55, 0.14);
-        --overlay-sage: rgba(22, 163, 74, 0.08);
-        --overlay-burnt: rgba(220, 38, 38, 0.08);
-        --overlay-steel: rgba(29, 78, 216, 0.08);
-        --overlay-tan: rgba(180, 83, 9, 0.08);
-        --overlay-plum: rgba(124, 58, 237, 0.08);
-
-        --body-weight: 400;
-
-        /* Hero-only atmospheric gradients (kept very soft in light mode) */
-        --hero-ember:  radial-gradient(ellipse 65% 70% at bottom left,  rgba(217, 119, 6, 0.13) 0%, rgba(217, 119, 6, 0.04) 30%, transparent 60%);
-        --hero-aether: radial-gradient(ellipse 65% 70% at bottom right, rgba(29, 78, 216, 0.10) 0%, rgba(29, 78, 216, 0.03) 30%, transparent 60%);
-    }
-
-    [data-theme="dark"] {
-        --bg-base: #181410;
-        --bg-surface: #221c15;
-        --bg-elevated: #2a2218;
-        --bg-step: #1f1a13;
-        --border-subtle: #3a2f20;
-        --border-accent: #5a4830;
-
-        --text-primary: #d8cab0;
-        --text-body: #b8a888;
-        --text-muted: #8a7c64;
-        --text-dim: #5a4f3e;
-        --parchment: #e8d8a8;
-
-        --gold: #c89860;
-        --gold-bright: #e8b878;
-        --gold-deep: #a07840;
-
-        --sage:    #9bb87a;
-        --burnt:   #c87060;
-        --steel:   #7e9eb8;
-        --tan:     #c4a47e;
-        --plum:    #b88aa0;
-        --crimson: #c84a4a;
-
-        --c-fortress:   #d97706;
-        --c-vaal:       #dc2626;
-        --c-abyss:      #10b981;
-        --c-expedition: #fbbf24;
-        --c-breach:     #a78bfa;
-        --c-delirium:   #94a3b8;
-        --c-delirium-a: #cbd5e1;
-        --c-delirium-b: #475569;
-        --c-ritual:     #ec4899;
-
-        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-        --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.55);
-
-        --overlay-gold-soft: rgba(200, 152, 96, 0.06);
-        --overlay-gold-strong: rgba(200, 152, 96, 0.12);
-        --overlay-sage: rgba(155, 184, 122, 0.08);
-        --overlay-burnt: rgba(200, 112, 96, 0.08);
-        --overlay-steel: rgba(126, 158, 184, 0.08);
-        --overlay-tan: rgba(196, 164, 126, 0.08);
-        --overlay-plum: rgba(184, 138, 160, 0.08);
-
-        --body-weight: 300;
-
-        --hero-ember:  radial-gradient(ellipse 70% 80% at bottom left,  rgba(217, 119, 6, 0.32) 0%, rgba(180, 70, 20, 0.14) 28%, transparent 62%);
-        --hero-aether: radial-gradient(ellipse 70% 80% at bottom right, rgba(56, 92, 158, 0.34) 0%, rgba(30, 50, 100, 0.16) 28%, transparent 62%);
-    }
-
-    /* ─── BASE ──────────────────────────────────────────────────── */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-        font-family: 'Inter', 'IBM Plex Sans', system-ui, sans-serif;
-        background: var(--bg-base);
-        color: var(--text-body);
-        font-size: 13.5px;
-        line-height: 1.6;
-        min-height: 100vh;
-        font-weight: var(--body-weight);
-        transition: background-color 0.3s ease, color 0.3s ease;
-        overflow-x: hidden;
-    }
-    a { color: inherit; }
-    [data-theme="dark"] body {
-        background: radial-gradient(ellipse at top left, rgba(200, 152, 96, 0.05) 0%, transparent 50%), var(--bg-base);
-    }
 
     /* ─── DUAL-MOOD ATMOSPHERIC BACKGROUND ──────────────────────── */
     .codex-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
@@ -233,32 +116,6 @@
         background: radial-gradient(ellipse 120% 80% at center, transparent 60%, rgba(15, 23, 42, 0.06) 100%);
     }
 
-    /* ─── THEME TOGGLE ──────────────────────────────────────────── */
-    .theme-toggle {
-        position: fixed;
-        top: 1rem; right: 1rem;
-        z-index: 1000;
-        background: var(--bg-surface);
-        border: 1px solid var(--border-accent);
-        color: var(--text-body);
-        padding: 0.5rem 0.9rem;
-        border-radius: 100px;
-        cursor: pointer;
-        font-family: 'Inter', sans-serif;
-        font-size: 11.5px;
-        font-weight: 500;
-        letter-spacing: 0.3px;
-        display: flex; align-items: center; gap: 0.45rem;
-        box-shadow: var(--shadow-sm);
-        transition: all 0.2s;
-    }
-    .theme-toggle:hover {
-        border-color: var(--gold);
-        color: var(--gold);
-        transform: translateY(-1px);
-        box-shadow: var(--shadow-md);
-    }
-    .theme-toggle .icon { font-size: 13px; }
 
     /* ─── PAGE CONTAINER ────────────────────────────────────────── */
     .codex-page {
@@ -712,6 +569,16 @@
             <ul class="whats-new-list">
                 <li class="whats-new-item">
                     <span class="whats-new-date">20 May 2026</span>
+                    <strong>Better navigation &amp; checklist polish</strong> — added a
+                    top nav bar across every page for quick jumps between Leveling,
+                    Endgame, and Crafting; per-zone <em>“mark required”</em> checkboxes
+                    on the act guides that tick every mandatory step in one click;
+                    full step rows are now clickable, not just the tiny checkbox.
+                    Under the hood: shared CSS/JS extracted so pages load faster on
+                    repeat visits.
+                </li>
+                <li class="whats-new-item">
+                    <span class="whats-new-date">20 May 2026</span>
                     <strong>Landing page redesigned</strong> — new hero-card layout
                     with three focused entry points (Leveling, Endgame, Crafting Codex),
                     refined editorial heading, and a cleaner cool-slate light theme.
@@ -842,24 +709,6 @@
         <div class="site-footer-disclaimer">Path of Exile 2 is © Grinding Gear Games. Unofficial fan-made content.</div>
     </footer>
 
-    <script>
-        // Theme toggle (same contract as the rest of the site)
-        (function() {
-            var cur = document.documentElement.getAttribute('data-theme') || 'dark';
-            var ic = document.getElementById('theme-icon');
-            var lb = document.getElementById('theme-label');
-            if (ic) ic.textContent = cur === 'light' ? '☀' : '☾';
-            if (lb) lb.textContent = cur === 'light' ? 'Light' : 'Dark';
-        })();
-        function toggleTheme() {
-            var html = document.documentElement;
-            var cur = html.getAttribute('data-theme') || 'dark';
-            var next = cur === 'light' ? 'dark' : 'light';
-            html.setAttribute('data-theme', next);
-            try { localStorage.setItem('poe2-theme', next); } catch (e) {}
-            document.getElementById('theme-icon').textContent = next === 'light' ? '☀' : '☾';
-            document.getElementById('theme-label').textContent = next === 'light' ? 'Light' : 'Dark';
-        }
-    </script>
+    <script src="assets/theme.js" defer></script>
 </body>
 </html>
