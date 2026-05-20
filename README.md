@@ -15,9 +15,11 @@ A free, interactive Path of Exile 2 guide covering campaign leveling (Acts I–I
 
 ## Features
 
-- ✓ **Checkbox Progress Tracking** — Click to mark steps complete (campaign guides)
+- ✓ **Checkbox Progress Tracking** — Click anywhere on a step row to mark it complete (campaign guides)
+- ⚡ **Per-zone "mark required"** — One checkbox next to each zone heading ticks every mandatory step in that zone
 - 💾 **Auto-Save** — Progress saves to browser localStorage
 - 📤 **Export/Import** — Transfer progress between devices with shareable codes
+- 🧭 **Top navigation bar** — Quick jumps between Leveling, Endgame, and Crafting from every page; tabbed act/interlude switcher on the campaign guides
 - 🎯 **Permanent Rewards** — All skill points, spirit bonuses, and unlocks highlighted
 - ⚡ **Optimal Pathing** — Efficient waypoint routing
 - 🌓 **Light & Dark Themes** — Respects your OS preference, defaults to dark
@@ -27,6 +29,7 @@ A free, interactive Path of Exile 2 guide covering campaign leveling (Acts I–I
 
 ```
 index.html                   Landing page — Leveling / Endgame / Crafting hub
+poe2_leveling_guide.html     Leveling hub — Acts I–IV + Interludes overview
 poe2_act1_guide.html         Act I:    Clearfell → Ogham Manor
 poe2_act2_guide.html         Act II:   Vastiri Desert → Dreadnought
 poe2_act3_guide.html         Act III:  Utzaal → Ziggurat
@@ -34,6 +37,12 @@ poe2_act4_guide.html         Act IV:   Keth → Nightmare of the King
 poe2_interludes_guide.html   Acts 5.1–5.3 (post-campaign Interludes)
 poe2_endgame_guide.html      Endgame / Atlas progression
 poe2_crafting_codex.html     Crafting Codex (currencies, omens, breakpoints, tags, 0.5 additions)
+assets/
+  base.css                   Shared theme tokens, base resets, theme-toggle, top-nav
+  checklist.css              Sidebar + step/zone/progress styles for the act guides
+  theme.js                   Theme toggle + persistence
+  progress.js                Step tracking, zone marking, export/import (loaded by act guides)
+img/                         Card images and OG/social previews
 og-image.png                 Social media preview image (1200×630)
 robots.txt                   Search-engine + AI-crawler policy
 sitemap.xml                  SEO sitemap
