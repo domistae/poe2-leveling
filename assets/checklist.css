@@ -5,9 +5,10 @@
     border-right: 1px solid var(--border-subtle);
     padding: 1.25rem 1rem;
     position: sticky;
-    top: 0;
+    /* Sits below the sticky .top-nav (≈42px tall on desktop) */
+    top: 42px;
     align-self: flex-start;
-    height: 100vh;
+    height: calc(100vh - 42px);
     overflow-y: auto;
     box-shadow: var(--shadow-sm);
     transition: background-color 0.3s, border-color 0.3s;
@@ -308,7 +309,6 @@
 
 /* Zone "mark required" toggle */
 .zone-mark {
-    margin-left: auto;
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
@@ -324,11 +324,42 @@
     transition: all 0.15s;
     user-select: none;
 }
+/* If a .lvl / .frag / .map is present, it already has margin-left: auto and
+   pushes the right-side group. The .zone-mark then sits next to it via the
+   parent's gap. If none of those exist, the mark itself takes the auto margin
+   so it still anchors to the right. */
+.zone-header:not(:has(.lvl)):not(:has(.frag)):not(:has(.map)) .zone-mark {
+    margin-left: auto;
+}
 .zone-mark:hover { color: var(--gold); background: var(--overlay-gold-soft); }
 .zone-mark input[type="checkbox"] {
-    width: 13px; height: 13px;
-    margin: 0; cursor: pointer; accent-color: var(--gold);
+    appearance: none;
+    -webkit-appearance: none;
+    width: 14px; height: 14px;
+    margin: 0; cursor: pointer;
+    border: 1.5px solid var(--border-accent);
+    border-radius: 3px;
+    background: var(--bg-base);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: all 0.15s;
 }
+.zone-mark:hover input[type="checkbox"] { border-color: var(--gold); }
+.zone-mark input[type="checkbox"]:checked {
+    background: var(--gold);
+    border-color: var(--gold);
+}
+.zone-mark input[type="checkbox"]:checked::after {
+    content: '✓';
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 1;
+}
+[data-theme="dark"] .zone-mark input[type="checkbox"]:checked::after { color: var(--bg-base); }
 .step.completed { opacity: 0.45; }
 .step.completed .step-content { text-decoration: line-through; text-decoration-color: var(--text-dim); }
 .step-check { width: 36px; display: flex; align-items: flex-start; justify-content: center; padding-top: 0.5rem; cursor: pointer; }

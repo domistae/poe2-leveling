@@ -170,8 +170,9 @@ body::before {
     justify-content: space-between;
     gap: 1rem;
     box-shadow: var(--shadow-sm);
-    position: relative;
-    z-index: 20;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 .top-nav-home {
     font-family: 'Cinzel', serif;
@@ -217,7 +218,8 @@ body::before {
     background: var(--overlay-gold-strong);
 }
 @media (max-width: 700px) {
-    .top-nav { padding: 0.5rem 0.75rem; flex-wrap: wrap; }
+    /* Reserve right padding so the fixed theme-toggle doesn't sit on top of nav links */
+    .top-nav { padding: 0.5rem 5.25rem 0.5rem 0.75rem; flex-wrap: wrap; }
     .top-nav-links { gap: 0.3rem; }
     .top-nav-link { padding: 0.25rem 0.55rem; font-size: 9.5px; letter-spacing: 1px; }
 }
