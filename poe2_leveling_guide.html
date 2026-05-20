@@ -1,0 +1,1435 @@
+<!--
+  PoE2 Leveling Campaign & Endgame Guide — Landing page
+  Copyright (c) 2026 domistae
+  Licensed under the MIT License — see LICENSE for the full text.
+  Source: https://github.com/domistae/poe2-leveling
+  Live site: https://domistae.github.io/poe2-leveling/
+
+  You are free to use, modify, and redistribute this code, including for commercial purposes.
+  You MUST preserve this notice and provide attribution to the original source.
+  See README.md for full attribution requirements.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoE2 Leveling Guide 0.5 — Campaign Acts I–IV Interactive Checklist</title>
+    <meta name="description" content="PoE2 Patch 0.5 (Return of the Ancients): free interactive Path of Exile 2 leveling guide for Acts I–IV and the Interludes. Waypoints, skill points, rewards, and optimal pathing for every class.">
+    <meta name="author" content="domistae">
+    <meta name="theme-color" content="#181410">
+    <link rel="canonical" href="https://domistae.github.io/poe2-leveling/poe2_leveling_guide.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PoE2 Leveling Guide">
+    <meta property="og:title" content="PoE2 Leveling Guide 0.5 — Campaign Acts I–IV Interactive Checklist">
+    <meta property="og:description" content="PoE2 Patch 0.5 (Return of the Ancients): free interactive Path of Exile 2 leveling guide for Acts I–IV and the Interludes. Waypoints, skill points, rewards, and optimal pathing for every class.">
+    <meta property="og:url" content="https://domistae.github.io/poe2-leveling/poe2_leveling_guide.html">
+    <meta property="og:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Path of Exile 2 Leveling Guide — Interactive checklist for Patch 0.5 Return of the Ancients">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PoE2 Leveling Guide 0.5 — Campaign Acts I–IV Interactive Checklist">
+    <meta name="twitter:description" content="PoE2 Patch 0.5 (Return of the Ancients): free interactive Path of Exile 2 leveling guide for Acts I–IV and the Interludes. Waypoints, skill points, rewards, and optimal pathing for every class.">
+    <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
+
+    <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM" />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7N3S1HHM51"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7N3S1HHM51');
+    </script>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('poe2-theme');
+                if (saved === 'light' || saved === 'dark') {
+                    document.documentElement.setAttribute('data-theme', saved);
+                } else {
+                    var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+                }
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <style>
+/* ─────────────────────────────────────────────────────────────
+   POE2 v0.5 — Unified theme (light default + dark via [data-theme="dark"])
+   League colors tuned to canonical PoE iconography, bright for light mode.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+    /* Surfaces */
+    --bg-base: #f4f6fa;          /* cool off-white */
+    --bg-surface: #ffffff;
+    --bg-elevated: #eef2f7;
+    --bg-step: #f8fafc;
+    --border-subtle: #dfe4ec;
+    --border-accent: #c4cbd6;
+
+    /* Text */
+    --text-primary: #0f172a;     /* near-black, slate undertone */
+    --text-body: #334155;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --parchment: #0f172a;        /* now means "darkest text" for headings */
+
+    /* Gold accents (PoE2 native) */
+    --gold: #b08537;
+    --gold-bright: #d4a258;
+    --gold-deep: #8a6a2c;
+
+    /* Semantic colors — bright, canonical PoE league hues */
+    --sage:    #16a34a;          /* tip / success / ritual / wildwood */
+    --burnt:   #dc2626;          /* warning / vaal */
+    --steel:   #1d4ed8;          /* loc / abyss */
+    --tan:     #b45309;          /* npc / fortress bronze */
+    --plum:    #7c3aed;          /* new pathing notes / breach */
+    --crimson: #b91c1c;          /* pinnacle threats */
+
+    /* Per-league solid colors (used in endgame zone cards + diagram) */
+    --c-fortress:   #b45309;     /* NW · precursor bronze */
+    --c-vaal:       #991b1b;     /* N  · vaal crimson */
+    --c-abyss:      #047857;     /* E  · deep green (per user) */
+    --c-expedition: #d97706;     /* SE · Kalguuran gold */
+    --c-breach:     #7c3aed;     /* S  · breach purple */
+    --c-delirium:   #64748b;     /* SW · silver chrome (mid-stop) */
+    --c-delirium-a: #e2e8f0;     /* light end of silver gradient */
+    --c-delirium-b: #64748b;     /* dark end of silver gradient */
+    --c-ritual:     #be185d;     /* W  · rose-wine (blood ritual) */
+
+    /* Shadow stack */
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.08);
+    --shadow-lg: 0 12px 30px rgba(15, 23, 42, 0.12);
+
+    /* Overlays (theme-aware) */
+    --overlay-gold-soft: rgba(176, 133, 55, 0.07);
+    --overlay-gold-strong: rgba(176, 133, 55, 0.14);
+    --overlay-sage: rgba(22, 163, 74, 0.08);
+    --overlay-burnt: rgba(220, 38, 38, 0.08);
+    --overlay-steel: rgba(29, 78, 216, 0.08);
+    --overlay-tan: rgba(180, 83, 9, 0.08);
+    --overlay-plum: rgba(124, 58, 237, 0.08);
+
+    /* Body font weight feels lighter on cream — use normal */
+    --body-weight: 400;
+}
+
+[data-theme="dark"] {
+    --bg-base: #181410;
+    --bg-surface: #221c15;
+    --bg-elevated: #2a2218;
+    --bg-step: #1f1a13;
+    --border-subtle: #3a2f20;
+    --border-accent: #5a4830;
+
+    --text-primary: #d8cab0;
+    --text-body: #b8a888;
+    --text-muted: #8a7c64;
+    --text-dim: #5a4f3e;
+    --parchment: #e8d8a8;
+
+    --gold: #c89860;
+    --gold-bright: #e8b878;
+    --gold-deep: #a07840;
+
+    --sage:    #9bb87a;
+    --burnt:   #c87060;
+    --steel:   #7e9eb8;
+    --tan:     #c4a47e;
+    --plum:    #b88aa0;
+    --crimson: #c84a4a;
+
+    /* Per-league colors — slightly desaturated for dark mode */
+    --c-fortress:   #d97706;
+    --c-vaal:       #dc2626;
+    --c-abyss:      #10b981;     /* brighter green for dark */
+    --c-expedition: #fbbf24;
+    --c-breach:     #a78bfa;
+    --c-delirium:   #94a3b8;
+    --c-delirium-a: #cbd5e1;
+    --c-delirium-b: #475569;
+    --c-ritual:     #ec4899;     /* brighter rose for dark */
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.55);
+
+    --overlay-gold-soft: rgba(200, 152, 96, 0.06);
+    --overlay-gold-strong: rgba(200, 152, 96, 0.12);
+    --overlay-sage: rgba(155, 184, 122, 0.08);
+    --overlay-burnt: rgba(200, 112, 96, 0.08);
+    --overlay-steel: rgba(126, 158, 184, 0.08);
+    --overlay-tan: rgba(196, 164, 126, 0.08);
+    --overlay-plum: rgba(184, 138, 160, 0.08);
+
+    --body-weight: 300;
+}
+
+/* ─── BASE ─────────────────────────────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Inter', 'IBM Plex Sans', system-ui, sans-serif;
+    background: var(--bg-base);
+    color: var(--text-body);
+    font-size: 13.5px;
+    line-height: 1.6;
+    min-height: 100vh;
+    font-weight: var(--body-weight);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: none;
+    pointer-events: none;
+    z-index: 0;
+}
+[data-theme="dark"] body { background: radial-gradient(ellipse at top left, rgba(200, 152, 96, 0.05) 0%, transparent 50%), var(--bg-base); }
+
+/* ─── THEME TOGGLE (top-right floating) ────────────────────── */
+.theme-toggle {
+    position: fixed;
+    top: 1rem; right: 1rem;
+    z-index: 1000;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-accent);
+    color: var(--text-body);
+    padding: 0.5rem 0.9rem;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: 'Inter', 'IBM Plex Sans', sans-serif;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    display: flex; align-items: center; gap: 0.45rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s;
+}
+.theme-toggle:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+.theme-toggle .icon { font-size: 13px; }
+
+/* ─── CONTAINER ────────────────────────────────────────────── */
+.container { display: flex; max-width: 1240px; margin: 0 auto; position: relative; z-index: 1; }
+
+/* ─── SIDEBAR ──────────────────────────────────────────────── */
+.sidebar {
+    width: 240px;
+    background: var(--bg-surface);
+    border-right: 1px solid var(--border-subtle);
+    padding: 1.25rem 1rem;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-sm);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+[data-theme="dark"] .sidebar {
+    background: linear-gradient(180deg, rgba(34, 28, 21, 0.95) 0%, rgba(24, 20, 16, 0.95) 100%);
+    box-shadow: none;
+}
+.sidebar h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    font-weight: 600;
+}
+.sidebar-section { margin-bottom: 1.25rem; }
+.sidebar-link {
+    display: block;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.35rem 0.5rem;
+    font-size: 11.5px;
+    border-radius: 3px;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+}
+.sidebar-link:hover {
+    background: var(--overlay-gold-soft);
+    color: var(--text-primary);
+    border-left-color: var(--gold);
+}
+.sidebar-link.perm  { color: var(--sage); }
+.sidebar-link.quest { color: var(--tan); }
+.sidebar-link.story { color: var(--tan); }
+.sidebar-link.boss  { color: var(--burnt); }
+.sidebar-link.system{ color: var(--steel); }
+
+/* Progress info panel */
+.progress-info {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+}
+.progress-bar-bg { height: 5px; background: var(--bg-base); border-radius: 3px; overflow: hidden; margin-bottom: 0.4rem; }
+.progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright)); width: 0%; transition: width 0.3s; }
+.progress-bar-fill.complete { background: linear-gradient(90deg, #4a7a2a, var(--sage)); }
+.progress-label {
+    font-size: 9.5px; color: var(--gold); margin-bottom: 0.2rem; font-weight: 600;
+    font-family: 'Cinzel', serif; letter-spacing: 1.5px; text-transform: uppercase;
+}
+.progress-label.complete { color: var(--sage); margin-top: 0.5rem; }
+.progress-text { font-size: 10.5px; color: var(--text-muted); text-align: right; font-family: 'IBM Plex Mono', monospace; }
+
+/* Sidebar buttons */
+.reset-btn, .export-btn, .import-btn {
+    width: 100%; background: var(--bg-elevated); border: 1px solid var(--border-subtle);
+    color: var(--text-muted); padding: 0.45rem; border-radius: 3px; cursor: pointer;
+    font-size: 11px; transition: all 0.15s; margin-top: 0.4rem;
+    font-family: 'Inter', sans-serif; letter-spacing: 0.3px;
+}
+.reset-btn:hover { background: var(--overlay-gold-soft); color: var(--text-primary); border-color: var(--gold); }
+.export-btn { color: var(--sage); }
+.export-btn:hover { background: var(--overlay-sage); border-color: var(--sage); }
+.import-btn { color: var(--steel); }
+.import-btn:hover { background: var(--overlay-steel); border-color: var(--steel); }
+.import-dialog { margin-top: 0.5rem; }
+.import-dialog textarea {
+    width: 100%; height: 60px; background: var(--bg-base); border: 1px solid var(--border-subtle);
+    color: var(--text-body); padding: 0.4rem; border-radius: 3px; font-size: 10.5px; resize: none;
+    font-family: 'IBM Plex Mono', monospace;
+}
+.import-actions { display: flex; gap: 0.4rem; margin-top: 0.4rem; }
+.import-actions button { flex: 1; padding: 0.35rem; background: var(--bg-elevated); border: 1px solid var(--border-subtle); color: var(--text-body); border-radius: 3px; cursor: pointer; font-size: 10.5px; }
+.import-actions button:first-child { background: var(--overlay-sage); border-color: var(--sage); color: var(--sage); }
+.import-actions button:hover { opacity: 0.85; }
+
+.toast {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background: var(--bg-surface); border: 1px solid var(--sage); color: var(--sage);
+    padding: 0.7rem 1.5rem; border-radius: 3px; font-size: 12.5px; z-index: 1001;
+    animation: fadeInOut 3s forwards; font-family: 'Cinzel', serif; letter-spacing: 0.5px;
+    box-shadow: var(--shadow-md);
+}
+.toast.error { border-color: var(--burnt); color: var(--burnt); }
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* ─── MAIN ─────────────────────────────────────────────────── */
+.main { margin-left: 240px; flex: 1; padding: 1.75rem 2.25rem; max-width: 940px; }
+
+.header { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); }
+.header .eyebrow {
+    font-family: 'Cinzel', serif; color: var(--gold-deep);
+    font-size: 10px; letter-spacing: 3.5px; text-transform: uppercase; margin-bottom: 0.4rem;
+}
+.header h1 {
+    font-family: 'Cinzel', serif; color: var(--text-primary);
+    font-size: 1.75rem; font-weight: 600; letter-spacing: 0.8px; margin-bottom: 0.3rem; line-height: 1.2;
+}
+.header .patch {
+    color: var(--text-muted); font-size: 11.5px;
+    font-family: 'IBM Plex Mono', monospace;
+}
+.header .subtitle, .subtitle {
+    color: var(--text-muted); font-size: 12.5px; font-style: italic;
+}
+
+/* ─── WHAT'S NEW · site update banner ─────────────────────── */
+/* Reusable changelog box — add new <li class="whats-new-item"> as the site evolves. */
+.whats-new {
+    position: relative;
+    background:
+        radial-gradient(ellipse at top left, var(--overlay-gold-strong) 0%, transparent 55%),
+        linear-gradient(135deg, var(--overlay-gold-soft) 0%, var(--bg-surface) 65%);
+    border: 1px solid var(--border-accent);
+    border-left: 4px solid var(--gold);
+    border-radius: 6px;
+    padding: 1rem 1.2rem 1.05rem;
+    margin: 0 0 0.85rem 0;
+    box-shadow: var(--shadow-md);
+}
+.whats-new-header {
+    display: flex; align-items: center; gap: 0.55rem;
+    margin-bottom: 0.65rem;
+}
+.whats-new-label {
+    font-family: 'Cinzel', serif;
+    color: var(--gold-deep);
+    font-size: 11.5px;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.whats-new-badge {
+    background: var(--overlay-plum);
+    color: var(--plum);
+    border: 1px solid rgba(124, 58, 237, 0.4);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+    padding: 0.18rem 0.5rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+[data-theme="dark"] .whats-new-badge { border-color: rgba(184, 138, 210, 0.45); }
+
+.whats-new-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+.whats-new-item {
+    font-size: 12.5px;
+    color: var(--text-body);
+    line-height: 1.55;
+    padding-left: 1.1rem;
+    position: relative;
+}
+.whats-new-item::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    top: 0.05rem;
+    color: var(--gold);
+    font-size: 10px;
+}
+.whats-new-date {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text-muted);
+    font-size: 10px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    margin-right: 0.45rem;
+    white-space: nowrap;
+}
+.whats-new-item strong { color: var(--text-primary); font-weight: 600; }
+.whats-new-item a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px dotted var(--gold);
+    transition: color 0.15s, border-color 0.15s;
+}
+.whats-new-item a:hover {
+    color: var(--gold-deep);
+    border-bottom-color: var(--gold-deep);
+}
+
+/* Subtle pulse on the NEW badge — disabled for reduced motion */
+@keyframes whats-new-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.35); }
+    50%      { box-shadow: 0 0 0 5px rgba(124, 58, 237, 0); }
+}
+.whats-new-badge { animation: whats-new-pulse 2.6s ease-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+    .whats-new-badge { animation: none; }
+}
+
+/* Endgame banner under header */
+.endgame-banner, .banner-05 {
+    background: linear-gradient(90deg, var(--overlay-plum) 0%, var(--bg-elevated) 100%);
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid var(--plum);
+    padding: 0.7rem 1rem; margin: 0 0 1.5rem 0; border-radius: 4px;
+    font-size: 12px; color: var(--text-body);
+}
+.endgame-banner .label, .banner-05 .label {
+    font-family: 'Cinzel', serif; color: var(--plum); font-size: 10px;
+    letter-spacing: 1.5px; text-transform: uppercase; margin-right: 0.5rem; font-weight: 600;
+}
+.endgame-banner a, .banner-05 a {
+    color: var(--gold); text-decoration: none; font-weight: 600;
+}
+.endgame-banner a:hover, .banner-05 a:hover { text-decoration: underline; color: var(--gold-deep); }
+
+/* Summary box (permanent rewards) */
+.summary-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 1rem 1.25rem; margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+.summary-box h3 {
+    font-family: 'Cinzel', serif; color: var(--gold); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.6rem; font-weight: 600;
+}
+.summary-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.4rem;
+}
+.summary-item {
+    background: var(--overlay-sage); border: 1px solid rgba(22, 163, 74, 0.3);
+    color: var(--sage); padding: 0.35rem 0.55rem; border-radius: 3px; font-size: 10.5px; font-weight: 500;
+}
+[data-theme="dark"] .summary-item { color: var(--sage); border-color: rgba(155, 184, 122, 0.25); }
+
+/* Info box (routing notes) */
+.info-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 1rem 1.25rem; margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+.info-box h3 {
+    font-family: 'Cinzel', serif; color: var(--gold); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.6rem; font-weight: 600;
+}
+.info-box ul { list-style: none; padding: 0; }
+.info-box li {
+    padding: 0.3rem 0; font-size: 12px; color: var(--text-body);
+    display: flex; align-items: flex-start; gap: 0.5rem;
+}
+.info-box .icon { color: var(--gold); font-size: 10px; line-height: 1.5; }
+.info-box strong { color: var(--text-primary); font-weight: 600; }
+
+/* Zone header */
+.zone-header {
+    background: linear-gradient(90deg, var(--overlay-gold-strong) 0%, transparent 100%);
+    border-left: 3px solid var(--gold);
+    padding: 0.55rem 1rem;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--gold-deep);
+    font-size: 13px; font-weight: 600;
+    font-family: 'Cinzel', serif; letter-spacing: 0.8px;
+    display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+    border-radius: 0 3px 3px 0;
+}
+[data-theme="dark"] .zone-header { color: var(--gold-bright); }
+.zone-header .wp {
+    background: var(--overlay-steel); color: var(--steel);
+    padding: 0.13rem 0.4rem; border-radius: 3px; font-size: 9.5px; font-weight: 600;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.5px;
+    border: 1px solid rgba(29, 78, 216, 0.3);
+}
+[data-theme="dark"] .zone-header .wp { border-color: rgba(126, 158, 184, 0.25); }
+.zone-header .town {
+    background: var(--overlay-plum); color: var(--plum);
+    border-color: rgba(124, 58, 237, 0.3);
+}
+[data-theme="dark"] .zone-header .town { border-color: rgba(184, 138, 160, 0.25); }
+.zone-header .lvl, .zone-header .frag, .zone-header .map {
+    background: var(--overlay-gold-strong); color: var(--gold);
+    padding: 0.13rem 0.4rem; border-radius: 3px; font-size: 9.5px;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.5px;
+    border: 1px solid rgba(168, 115, 40, 0.3);
+    margin-left: auto;
+}
+[data-theme="dark"] .zone-header .lvl { border-color: rgba(200, 152, 96, 0.25); }
+
+/* Phase header */
+.phase-header {
+    font-family: 'Cinzel', serif; color: var(--gold); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; margin: 1rem 0 0.3rem; font-weight: 600;
+    display: flex; align-items: center; gap: 0.4rem;
+}
+.phase-header::before { content: '◆'; color: var(--gold); font-size: 9px; }
+
+/* Steps */
+.step {
+    display: flex;
+    background: var(--bg-surface);
+    margin-bottom: 1px;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+    border-radius: 0 3px 3px 0;
+}
+.step:hover { background: var(--overlay-gold-soft); }
+.step.completed { opacity: 0.45; }
+.step.completed .step-content { text-decoration: line-through; text-decoration-color: var(--text-dim); }
+.step-check { width: 36px; display: flex; align-items: flex-start; justify-content: center; padding-top: 0.5rem; cursor: pointer; }
+.checkbox {
+    width: 14px; height: 14px;
+    border: 1.5px solid var(--border-accent); border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s; background: var(--bg-base);
+}
+.step:hover .checkbox { border-color: var(--gold); }
+.step.completed .checkbox { background: var(--gold); border-color: var(--gold); }
+.step.completed .checkbox::after { content: '✓'; color: white; font-size: 10px; font-weight: bold; }
+[data-theme="dark"] .step.completed .checkbox::after { color: var(--bg-base); }
+.step-content {
+    flex: 1; padding: 0.45rem 0.75rem 0.45rem 0; font-size: 12.5px; color: var(--text-body);
+}
+.step-content .action { color: var(--text-primary); font-weight: 500; }
+.step-content .npc { color: var(--tan); font-weight: 500; }
+.step-content .boss { color: var(--burnt); font-weight: 600; }
+.step-content .item { color: var(--steel); font-weight: 500; }
+.step-content .loc { color: var(--gold); font-weight: 500; }
+.step-content .skip { color: var(--text-dim); font-style: italic; }
+.step-content strong { color: var(--text-primary); font-weight: 600; }
+[data-theme="dark"] .step-content .item { color: var(--gold-bright); }
+[data-theme="dark"] .step-content .loc { color: var(--steel); }
+
+/* Reward tags */
+.reward-tag {
+    display: inline-block;
+    background: var(--overlay-sage); border: 1px solid rgba(22, 163, 74, 0.35);
+    color: var(--sage); padding: 0.1rem 0.4rem; border-radius: 3px;
+    font-size: 9.5px; margin-left: 0.4rem;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.3px; font-weight: 600;
+}
+[data-theme="dark"] .reward-tag { border-color: rgba(155, 184, 122, 0.3); }
+.reward-tag.craft { background: var(--overlay-gold-strong); border-color: rgba(168, 115, 40, 0.35); color: var(--gold); }
+.reward-tag.gem   { background: var(--overlay-steel); border-color: rgba(29, 78, 216, 0.35); color: var(--steel); }
+.reward-tag.optional { background: var(--overlay-plum); border-color: rgba(124, 58, 237, 0.35); color: var(--plum); }
+.reward-tag.perm  { background: var(--overlay-sage); border-color: rgba(22, 163, 74, 0.45); color: var(--sage); font-weight: 700; }
+.reward-tag.quest { background: var(--overlay-gold-strong); border-color: rgba(168, 115, 40, 0.4); color: var(--gold); }
+
+/* Notes */
+.note {
+    background: var(--bg-elevated);
+    border-left: 2px solid var(--border-accent);
+    padding: 0.5rem 0.8rem; margin: 0.3rem 0 0.3rem 38px;
+    font-size: 11.5px; color: var(--text-muted); font-style: italic;
+    border-radius: 0 3px 3px 0;
+}
+.note.warning, .note.warn {
+    background: var(--overlay-burnt); border-left-color: var(--burnt);
+    color: var(--burnt); font-style: normal;
+}
+.note.tip {
+    background: var(--overlay-steel); border-left-color: var(--steel);
+    color: var(--steel); font-style: normal;
+}
+.note.success {
+    background: var(--overlay-sage); border-left-color: var(--sage);
+    color: var(--sage); font-style: normal;
+}
+.note.new {
+    background: var(--overlay-plum); border-left-color: var(--plum);
+    color: var(--text-body); font-style: normal;
+}
+.note .label {
+    font-family: 'Cinzel', serif; font-size: 9.5px; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-right: 0.5rem; font-weight: 600;
+    color: var(--gold);
+}
+.note.warning .label, .note.warn .label { color: var(--burnt); }
+.note.tip .label { color: var(--steel); }
+.note.success .label { color: var(--sage); }
+.note.new .label { color: var(--plum); }
+.note.new strong { color: var(--text-primary); font-weight: 600; }
+.note.new .loc { color: var(--gold); font-weight: 500; }
+
+/* Footer nav */
+.footer-nav {
+    margin-top: 2rem; padding-top: 1rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex; justify-content: space-between;
+    font-size: 12px; font-family: 'Cinzel', serif; letter-spacing: 1px;
+}
+.footer-nav a { color: var(--gold); text-decoration: none; text-transform: uppercase; transition: color 0.15s; font-weight: 600; }
+.footer-nav a:hover { color: var(--gold-deep); }
+[data-theme="dark"] .footer-nav a:hover { color: var(--gold-bright); }
+
+/* Site footer (credits + GitHub links) */
+.site-footer {
+    text-align: center; padding: 1.75rem 1rem 1.25rem; margin-top: 2rem;
+    border-top: 1px solid var(--border-subtle); color: var(--text-muted);
+    font-size: 11.5px; line-height: 1.55;
+    display: flex; flex-direction: column; align-items: center; gap: 0.65rem;
+}
+.site-footer-tag { color: var(--text-muted); }
+.site-footer-links { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+.site-footer-link {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    color: var(--gold); text-decoration: none;
+    padding: 0.32rem 0.85rem; font-size: 10.5px; font-weight: 600;
+    font-family: 'Cinzel', serif; letter-spacing: 1px; text-transform: uppercase;
+    border: 1px solid var(--border-subtle); border-radius: 999px;
+    transition: color 0.15s, border-color 0.15s, background 0.15s, transform 0.15s;
+}
+.site-footer-link:hover {
+    color: var(--gold-bright); border-color: var(--gold);
+    background: var(--overlay-gold-soft); transform: translateY(-1px);
+}
+.site-footer-disclaimer { font-size: 10.5px; color: var(--text-dim); opacity: 0.85; max-width: 480px; }
+
+/* ─── ENDGAME STORYLINE BLOCKS ─────────────────────────────── */
+.storyline {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    margin-bottom: 1.75rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+.storyline-header {
+    padding: 1rem 1.5rem;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex; align-items: baseline; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.6rem;
+}
+.storyline-header h2 {
+    font-family: 'Cinzel', serif; color: var(--text-primary);
+    font-size: 1.2rem; font-weight: 700; letter-spacing: 1px;
+}
+.storyline-header .ordinal {
+    font-family: 'Cinzel', serif; color: var(--gold-deep);
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600;
+}
+.storyline-tagline {
+    color: var(--text-muted); font-style: italic; font-size: 12px;
+    margin-top: 0.35rem;
+}
+.storyline-body { padding: 1.5rem; }
+.storyline-body h3 {
+    font-family: 'Cinzel', serif; color: var(--text-primary);
+    font-size: 14px; font-weight: 600; letter-spacing: 0.8px;
+    margin-top: 1.25rem; margin-bottom: 0.5rem; text-transform: uppercase;
+}
+.storyline-body h3:first-child { margin-top: 0; }
+.storyline-body p { color: var(--text-body); margin-bottom: 0.6rem; }
+.storyline-body ul { list-style: none; padding-left: 0; margin-bottom: 0.6rem; }
+.storyline-body li {
+    color: var(--text-body); padding: 0.25rem 0 0.25rem 1.4rem;
+    position: relative; line-height: 1.55;
+}
+.storyline-body li::before {
+    content: '◆'; position: absolute; left: 0.2rem;
+    color: var(--gold-deep); font-size: 8px; top: 0.6rem;
+}
+.storyline-body strong { color: var(--text-primary); font-weight: 600; }
+.storyline-body em { color: var(--gold); font-style: normal; font-weight: 500; }
+
+/* Storyline accent stripes — one per league */
+.storyline.lg-breach     { border-top: 3px solid var(--c-breach); }
+.storyline.lg-expedition { border-top: 3px solid var(--c-expedition); }
+.storyline.lg-abyss      { border-top: 3px solid var(--c-abyss); }
+.storyline.lg-ritual     { border-top: 3px solid var(--c-ritual); }
+.storyline.lg-delirium   { border-top: 3px solid var(--c-delirium); }
+.storyline.lg-fortress   { border-top: 3px solid var(--c-fortress); }
+.storyline.lg-vaal       { border-top: 3px solid var(--c-vaal); }
+.storyline.lg-meta       { border-top: 3px solid var(--gold); }
+
+/* Tags inside storyline body */
+.tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px; font-weight: 600;
+    padding: 0.13rem 0.45rem; border-radius: 3px;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    margin: 0 0.15rem; white-space: nowrap; vertical-align: 1px;
+}
+.tag.hub      { background: var(--overlay-sage); color: var(--sage); border: 1px solid rgba(22, 163, 74, 0.35); }
+.tag.boss     { background: var(--overlay-burnt); color: var(--burnt); border: 1px solid rgba(220, 38, 38, 0.4); }
+.tag.pinnacle { background: rgba(185, 28, 28, 0.12); color: var(--crimson); border: 1px solid rgba(185, 28, 28, 0.45); font-weight: 700; }
+.tag.craft    { background: var(--overlay-steel); color: var(--steel); border: 1px solid rgba(29, 78, 216, 0.35); }
+.tag.atlas    { background: var(--overlay-plum); color: var(--plum); border: 1px solid rgba(124, 58, 237, 0.35); }
+.tag.npc      { background: var(--overlay-tan); color: var(--tan); border: 1px solid rgba(180, 83, 9, 0.35); }
+[data-theme="dark"] .tag.hub { border-color: rgba(155, 184, 122, 0.3); }
+[data-theme="dark"] .tag.boss { border-color: rgba(200, 112, 96, 0.35); }
+[data-theme="dark"] .tag.pinnacle { background: rgba(200, 74, 74, 0.15); border-color: rgba(200, 74, 74, 0.4); }
+[data-theme="dark"] .tag.craft { border-color: rgba(126, 158, 184, 0.35); }
+[data-theme="dark"] .tag.atlas { border-color: rgba(184, 138, 160, 0.35); }
+[data-theme="dark"] .tag.npc   { border-color: rgba(196, 164, 126, 0.35); }
+
+/* Callouts */
+.callout {
+    background: var(--bg-elevated);
+    border-left: 2px solid var(--gold);
+    padding: 0.8rem 1rem; margin: 0.9rem 0;
+    font-size: 12.5px; border-radius: 0 3px 3px 0;
+    color: var(--text-body);
+}
+.callout.warn { border-left-color: var(--burnt); }
+.callout.tip  { border-left-color: var(--sage); }
+.callout-label {
+    display: block; font-family: 'Cinzel', serif;
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.3rem; font-weight: 600;
+}
+.callout.warn .callout-label { color: var(--burnt); }
+.callout.tip  .callout-label { color: var(--sage); }
+
+/* Card grids inside storylines */
+.card-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0.8rem; margin: 1rem 0;
+}
+.card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px; padding: 0.85rem 1rem;
+}
+.card h4 {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 13px; font-weight: 600; margin-bottom: 0.35rem; letter-spacing: 0.5px;
+}
+.card .role {
+    font-family: 'IBM Plex Mono', monospace; color: var(--text-muted);
+    font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.card p { color: var(--text-body); font-size: 12px; margin-bottom: 0.35rem; }
+
+/* TOC */
+.toc {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 6px;
+    box-shadow: var(--shadow-sm);
+}
+.toc-title {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    margin-bottom: 0.85rem; font-weight: 600;
+}
+.toc ol { list-style: none; counter-reset: storyline; padding: 0; }
+.toc ol li {
+    counter-increment: storyline; padding: 0.4rem 0;
+    border-bottom: 1px dotted var(--border-subtle);
+}
+.toc ol li:last-child { border-bottom: none; }
+.toc ol li::before {
+    content: counter(storyline, upper-roman) ".";
+    font-family: 'Cinzel', serif; color: var(--gold-deep);
+    font-size: 11px; letter-spacing: 1px; margin-right: 0.7rem;
+    display: inline-block; width: 2rem; font-weight: 600;
+}
+.toc a {
+    color: var(--text-body); text-decoration: none;
+    font-size: 12.5px; transition: color 0.15s; font-weight: 500;
+}
+.toc a:hover { color: var(--gold); }
+.toc-meta {
+    color: var(--text-muted); font-size: 11px; font-style: italic;
+    display: block; margin-left: 2.7rem; margin-top: 0.15rem;
+}
+
+/* Intro block (endgame guide) */
+.intro-block {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid var(--gold);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem; border-radius: 6px;
+    box-shadow: var(--shadow-sm);
+}
+.intro-block p { color: var(--text-body); margin-bottom: 0.6rem; }
+.intro-block p:last-child { margin-bottom: 0; }
+.intro-block strong { color: var(--text-primary); font-weight: 600; }
+
+/* ─── INDEX-SPECIFIC ───────────────────────────────────────── */
+.index-container {
+    max-width: 980px; margin: 0 auto;
+    padding: 3rem 1.5rem 4rem; position: relative; z-index: 1;
+}
+.quest-log-title {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    text-align: center; margin-bottom: 1.25rem; font-weight: 600;
+}
+.journey { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2.5rem; }
+.act-entry { position: relative; }
+.act-entry::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: linear-gradient(180deg, var(--gold-deep), var(--gold));
+    border-radius: 3px 0 0 3px;
+}
+.act-entry.final::before { background: linear-gradient(180deg, var(--gold), var(--gold-bright)); }
+.act-entry.endgame::before { background: linear-gradient(180deg, var(--plum) 0%, var(--c-fortress) 100%); }
+
+.act-link {
+    display: block; background: var(--bg-surface);
+    border: 1px solid var(--border-subtle); border-left: none;
+    border-radius: 0 6px 6px 0;
+    padding: 1rem 1.25rem; padding-left: 1.5rem;
+    text-decoration: none; color: var(--text-body);
+    transition: all 0.2s; box-shadow: var(--shadow-sm);
+}
+.act-link:hover {
+    background: var(--overlay-gold-soft);
+    border-color: var(--gold); transform: translateX(2px);
+    box-shadow: var(--shadow-md);
+}
+.act-entry.endgame .act-link {
+    background: linear-gradient(135deg, var(--bg-surface) 0%, var(--overlay-plum) 100%);
+    border-color: rgba(124, 58, 237, 0.3);
+}
+.act-entry.endgame .act-link:hover {
+    border-color: var(--plum);
+}
+.act-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; gap: 1rem; flex-wrap: wrap; }
+.act-name {
+    font-family: 'Cinzel', serif; color: var(--text-primary);
+    font-size: 15px; font-weight: 600; letter-spacing: 0.5px;
+}
+.act-entry.endgame .act-name { color: var(--plum); }
+.act-meta {
+    font-family: 'IBM Plex Mono', monospace; color: var(--text-muted);
+    font-size: 11px; letter-spacing: 0.3px;
+}
+.act-rewards { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.reward {
+    background: var(--overlay-gold-soft); border: 1px solid rgba(168, 115, 40, 0.3);
+    color: var(--gold); padding: 0.2rem 0.55rem; border-radius: 3px;
+    font-size: 10.5px; font-weight: 500;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.3px;
+}
+.reward.res {
+    background: var(--overlay-steel); border-color: rgba(29, 78, 216, 0.3); color: var(--steel);
+}
+.reward.special {
+    background: var(--overlay-sage); border-color: rgba(22, 163, 74, 0.35); color: var(--sage); font-weight: 600;
+}
+.reward.warn {
+    background: var(--overlay-burnt); border-color: rgba(220, 38, 38, 0.35); color: var(--burnt);
+}
+.reward.new {
+    background: var(--overlay-plum); border-color: rgba(124, 58, 237, 0.4); color: var(--plum); font-weight: 600;
+}
+[data-theme="dark"] .reward { border-color: rgba(200, 152, 96, 0.3); }
+[data-theme="dark"] .reward.res { border-color: rgba(126, 158, 184, 0.3); }
+[data-theme="dark"] .reward.special { border-color: rgba(155, 184, 122, 0.35); }
+[data-theme="dark"] .reward.warn { border-color: rgba(200, 112, 96, 0.35); }
+[data-theme="dark"] .reward.new { border-color: rgba(184, 138, 160, 0.4); }
+
+.features {
+    background: var(--bg-surface); border: 1px solid var(--border-subtle);
+    border-radius: 6px; padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+.features-title {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    text-align: center; margin-bottom: 1rem; font-weight: 600;
+}
+.features-list {
+    display: flex; flex-wrap: wrap; gap: 1rem 1.5rem;
+    justify-content: center;
+}
+.feature {
+    color: var(--text-muted); font-size: 11.5px;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.3px;
+}
+.header .version {
+    font-family: 'IBM Plex Mono', monospace; color: var(--text-muted);
+    font-size: 11px; letter-spacing: 0.5px;
+}
+
+/* ─── ENDGAME DIAGRAM (emblem grid — minimal, compact) ────── */
+.diagram-wrap {
+    margin: 0 auto 2rem;
+    max-width: 540px;
+}
+.diagram-title {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    color: var(--text-primary);
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.85rem;
+}
+.atlas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    max-width: 480px;
+    margin: 0 auto;
+}
+.atlas-tile {
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0.55rem 0.6rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+[data-theme="dark"] .atlas-tile { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); }
+.atlas-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+}
+[data-theme="dark"] .atlas-tile:hover { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.55); }
+
+.atlas-tile .compass-tag {
+    position: absolute; top: 0.45rem; right: 0.55rem;
+    font: 600 7px 'Cinzel', serif;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    opacity: 0.6; z-index: 3;
+}
+.atlas-tile .name {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    line-height: 1.1;
+    z-index: 2;
+    margin-top: auto;
+}
+.atlas-tile .pinnacle {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 0.2px;
+    font-weight: 400;
+    text-transform: none;
+    opacity: 0.7;
+    margin-top: 0.12rem;
+}
+.atlas-tile .symbol {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+    padding-top: 4px;
+}
+.atlas-tile .symbol svg { width: 56%; height: 56%; }
+
+/* League tile color treatments */
+.atlas-tile.fortress    { background: var(--c-fortress); color: #fef3c7; }
+.atlas-tile.vaal        { background: var(--c-vaal);     color: #fee2e2; }
+.atlas-tile.abyss       { background: var(--c-abyss);    color: #d1fae5; }
+.atlas-tile.expedition  { background: var(--c-expedition); color: #fef3c7; }
+.atlas-tile.breach      { background: var(--c-breach);   color: #ede9fe; }
+.atlas-tile.ritual      { background: var(--c-ritual);   color: #fce7f3; }
+.atlas-tile.fortress    .symbol svg { stroke: #fef3c7; }
+.atlas-tile.vaal        .symbol svg { stroke: #fee2e2; }
+.atlas-tile.abyss       .symbol svg { stroke: #d1fae5; }
+.atlas-tile.expedition  .symbol svg { stroke: #fef3c7; }
+.atlas-tile.breach      .symbol svg { stroke: #ede9fe; }
+.atlas-tile.ritual      .symbol svg { stroke: #fce7f3; }
+
+/* Delirium — metallic silver gradient */
+.atlas-tile.delirium {
+    background: linear-gradient(135deg,
+        var(--c-delirium-a) 0%, var(--c-delirium-b) 45%,
+        var(--c-delirium-a) 75%, var(--c-delirium-b) 100%);
+    color: #1e293b;
+}
+[data-theme="dark"] .atlas-tile.delirium { color: #f8fafc; }
+.atlas-tile.delirium .symbol svg { stroke: #1e293b; }
+[data-theme="dark"] .atlas-tile.delirium .symbol svg { stroke: #f8fafc; }
+.atlas-tile.delirium .compass-tag { color: #1e293b; }
+[data-theme="dark"] .atlas-tile.delirium .compass-tag { color: #f8fafc; }
+
+/* Spawn + compass tiles — neutral */
+.atlas-tile.center, .atlas-tile.compass {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    box-shadow: none;
+}
+.atlas-tile.center .symbol svg, .atlas-tile.compass .symbol svg {
+    stroke: var(--text-primary);
+}
+.atlas-tile.center .name, .atlas-tile.compass .name {
+    text-align: center; align-self: center; margin-top: auto;
+}
+
+/* Subtle inner vignette on league tiles */
+.atlas-tile.fortress::before, .atlas-tile.vaal::before, .atlas-tile.abyss::before,
+.atlas-tile.expedition::before, .atlas-tile.breach::before, .atlas-tile.delirium::before,
+.atlas-tile.ritual::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.10) 0%, transparent 55%),
+                radial-gradient(circle at 70% 90%, rgba(0,0,0,0.16) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.diagram-caption {
+    text-align: center; color: var(--text-muted);
+    font-size: 11.5px; font-style: italic; margin-top: 0.9rem;
+    max-width: 480px; margin-left: auto; margin-right: auto;
+}
+.diagram-caption strong { color: var(--text-body); font-style: normal; font-weight: 600; }
+
+@media (max-width: 520px) {
+    .atlas-grid { gap: 6px; }
+    .atlas-tile { padding: 0.35rem 0.45rem; }
+    .atlas-tile .name { font-size: 8.5px; letter-spacing: 0.4px; }
+    .atlas-tile .pinnacle { font-size: 6.5px; }
+    .atlas-tile .compass-tag { font-size: 6px; }
+}
+
+/* ─── MOBILE ───────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .sidebar {
+        position: relative; width: 100%; height: auto;
+        border-right: none; border-bottom: 1px solid var(--border-subtle);
+    }
+    .container { flex-direction: column; }
+    .main { margin-left: 0; padding: 1.25rem 1rem; max-width: 100%; }
+    .header h1 { font-size: 1.35rem; }
+    .index-container { padding: 2rem 1rem; }
+    .theme-toggle { top: 0.5rem; right: 0.5rem; padding: 0.4rem 0.7rem; font-size: 10.5px; }
+}
+
+    
+/* ── 3-zone landing additions ─────────────────────────────── */
+.act-entry.crafting::before {
+    background: linear-gradient(180deg, var(--burnt) 0%, var(--gold) 100%);
+}
+.act-entry.crafting .act-link {
+    background: linear-gradient(135deg, var(--bg-surface) 0%, var(--overlay-burnt) 100%);
+    border-color: rgba(196, 116, 71, 0.3);
+}
+.act-entry.crafting .act-link:hover { border-color: var(--burnt); }
+.act-entry.crafting .act-name { color: var(--burnt); }
+.quest-log-title.zone-endgame { color: var(--plum); }
+.quest-log-title.zone-crafting { color: var(--burnt); }
+.quest-log-title.zone-spacer { margin-top: 2rem; }
+
+/* ── Disclaimer block ─────────────────────────────────────── */
+.disclaimer-block {
+    margin: 3rem 0 1.5rem;
+    padding: 1.5rem 0 0;
+    border-top: 1px solid var(--border-subtle);
+}
+.disclaimer-block h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--text-primary);
+    font-size: 11.5px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 0 0 0.55rem;
+    font-weight: 600;
+    text-align: center;
+}
+.disclaimer-block h3:not(:first-child) { margin-top: 1.4rem; }
+.disclaimer-block p {
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0 0 0.55rem;
+    /* no max-width — fill the container, no false right indent */
+}
+.disclaimer-block p:last-child { margin-bottom: 0; }
+.disclaimer-block strong { color: var(--text-body); font-weight: 600; }
+.disclaimer-block a { color: var(--gold); text-decoration: underline; }
+.disclaimer-block a:hover { color: var(--gold-deep); }
+
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span class="icon" id="theme-icon">☀</span>
+        <span id="theme-label">Light</span>
+    </button>
+
+    <div class="index-container">
+        <header class="header">
+            <h1>POE 2 Leveling Guide</h1>
+            <div class="subtitle">Acts I–IV · Interludes · All Classes</div>
+            <div class="version">Pre-v0.5 · 0.4 live, awaiting Return of the Ancients</div>
+        </header>
+
+        <!-- ╔══ PRE-PATCH 0.5 · COMBINED NOTICE ═══════════════════════════════ ╗ -->
+        <div class="endgame-banner" style="border-left-color: var(--burnt); background: linear-gradient(90deg, var(--overlay-burnt) 0%, var(--bg-elevated) 100%); margin-bottom: 1.5rem; padding-top: 0.85rem; padding-bottom: 0.85rem;">
+            <div>
+                <span class="label" style="color: var(--burnt);">⚠ Pre-patch 0.5 · Read me</span>
+                Everything on this site is currently based on the <strong>live 0.4 build</strong>.
+                Patch 0.5 (<em>Return of the Ancients</em>) ships <strong>29 May 2026</strong>;
+                patch notes drop <strong>21 May 2026</strong>. I will update each guide as fast as I can
+                once 0.5 is live and the changes are confirmed.
+            </div>
+            <div style="margin-top: 0.7rem; padding-top: 0.7rem; border-top: 1px solid var(--border-subtle);">
+                <span class="label" style="color: var(--steel);">★ How leveling changes in 0.5</span>
+                From 0.5 onward, navigation leans heavily on <strong>visual cues in the world</strong>
+                (glowing roots, signposts, locust trails, parchment markers) rather than zone
+                memorization. A summary of the previewed changes is in the next section — I'll fold
+                them into each act guide once the patch is live and verified.
+            </div>
+            <div style="margin-top: 0.65rem; padding-top: 0.55rem; border-top: 1px dotted var(--border-subtle);">
+                <small style="opacity: 0.85; font-size: 11px; color: var(--text-muted);">
+                    AI-assisted, community-verified ·
+                    Found something wrong?
+                    <a href="https://github.com/domistae/poe2-leveling/issues/new">open an issue</a>.
+                </small>
+            </div>
+        </div>
+        <!-- ╚═══════════════════════════════════════════════════════════════════ ╝ -->
+
+        <!-- ╔══ CAMPAIGN ════════════════════════════════════════════════ ╗ -->
+        <div class="quest-log-title">Campaign Progress</div>
+
+        <div class="journey">
+            <div class="act-entry">
+                <a href="poe2_act1_guide.html" class="act-link">
+                    <div class="act-header">
+                        <span class="act-name">Act I — Clearfell to Ogham</span>
+                        <span class="act-meta">Lvl 1–14 · ~62 steps</span>
+                    </div>
+                    <div class="act-rewards">
+                        <span class="reward">+4 Skill Points</span>
+                        <span class="reward">+30 Spirit</span>
+                        <span class="reward">+20 Life</span>
+                        <span class="reward res">+10% Cold Res</span>
+                        <span class="reward special">Salvage Bench</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="act-entry">
+                <a href="poe2_act2_guide.html" class="act-link">
+                    <div class="act-header">
+                        <span class="act-name">Act II — Vastiri to Dreadnought</span>
+                        <span class="act-meta">Lvl 14–29 · ~74 steps</span>
+                    </div>
+                    <div class="act-rewards">
+                        <span class="reward">+4 Skill Points</span>
+                        <span class="reward res">+10% Lightning Res</span>
+                        <span class="reward special">1st Ascendancy</span>
+                        <span class="reward special">Charm/Mana Choice</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="act-entry">
+                <a href="poe2_act3_guide.html" class="act-link">
+                    <div class="act-header">
+                        <span class="act-name">Act III — Sandswept to Ziggurat</span>
+                        <span class="act-meta">Lvl 30–42 · ~70 steps</span>
+                    </div>
+                    <div class="act-rewards">
+                        <span class="reward">+4 Skill Points</span>
+                        <span class="reward">+30 Spirit</span>
+                        <span class="reward res">+10% Fire Res</span>
+                        <span class="reward special">2nd Ascendancy</span>
+                        <span class="reward warn">Permanent Choice</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="act-entry">
+                <a href="poe2_act4_guide.html" class="act-link">
+                    <div class="act-header">
+                        <span class="act-name">Act IV — Karui Archipelago</span>
+                        <span class="act-meta">Lvl 42–52 · ~60 steps</span>
+                    </div>
+                    <div class="act-rewards">
+                        <span class="reward">+4 Skill Points</span>
+                        <span class="reward">+5% Max Mana</span>
+                        <span class="reward special">Tattoo Choice</span>
+                        <span class="reward special">Hideout</span>
+                        <span class="reward warn">0.4: Kedge Bay</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="act-entry final">
+                <a href="poe2_interludes_guide.html" class="act-link">
+                    <div class="act-header">
+                        <span class="act-name">Interludes — V.1, V.2, V.3</span>
+                        <span class="act-meta">Lvl 52–59 · Reward Ref</span>
+                    </div>
+                    <div class="act-rewards">
+                        <span class="reward">+8 Skill Points</span>
+                        <span class="reward">+5% Max Life</span>
+                        <span class="reward">+40 Spirit</span>
+                        <span class="reward special">Free Unique</span>
+                        <span class="reward special">7 Boons</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ╔══ ENDGAME ═════════════════════════════════════════════════ ╗ -->
+        <div class="quest-log-title zone-endgame zone-spacer">Endgame Atlas</div>
+
+        <div class="journey">
+            <div class="act-entry endgame">
+                <a href="poe2_endgame_guide.html" class="act-link">
+                    <div class="act-header">
+                        <span class="act-name">★ Endgame — Return of the Ancients</span>
+                        <span class="act-meta">Pre-patch 0.5 · 7 Compass Headings</span>
+                    </div>
+                    <div class="act-rewards">
+                        <span class="reward new">Breach</span>
+                        <span class="reward new">Expedition</span>
+                        <span class="reward new">Abyss</span>
+                        <span class="reward new">Ritual</span>
+                        <span class="reward new">Delirium</span>
+                        <span class="reward new">Vaal Temple</span>
+                        <span class="reward special">The Fortress</span>
+                        <span class="reward special">Masters of the Atlas</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ╔══ CRAFTING ════════════════════════════════════════════════ ╗ -->
+        <div class="quest-log-title zone-crafting zone-spacer">Crafting Codex</div>
+
+        <div class="journey">
+            <div class="act-entry crafting">
+                <a href="poe2_crafting_codex.html" class="act-link">
+                    <div class="act-header">
+                        <span class="act-name">⚒ The Crafting Codex</span>
+                        <span class="act-meta">18 Sections · Patch 0.4 → 0.5</span>
+                    </div>
+                    <div class="act-rewards">
+                        <span class="reward special">Tag System</span>
+                        <span class="reward special">Breakpoints</span>
+                        <span class="reward">Currency Tiers</span>
+                        <span class="reward">Essences</span>
+                        <span class="reward">Omens</span>
+                        <span class="reward">Desecration</span>
+                        <span class="reward">Recombinators</span>
+                        <span class="reward">Fracturing</span>
+                        <span class="reward new">0.5 Additions</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ╔══ 0.5 STREAMLINING PREVIEW ══════════════════════════════════════ ╗ -->
+        <div class="quest-log-title" style="margin-top: 2.5rem;">0.5 — Streamlining Preview</div>
+        <p style="font-size: 12.5px; color: var(--text-body); margin: 0 0 1rem; line-height: 1.55; max-width: 72ch;">
+            GGG previewed these campaign changes for <em>Return of the Ancients</em>
+            (Mark Roberts, May 2026). Most are <strong>navigational visual cues</strong> rather than
+            layout overhauls — the campaign reads easier at a glance, not shorter. Per a GGG level
+            designer (Sunna), <strong>don't study layouts</strong> in the leadup to 0.5; too much is
+            being reworked.
+        </p>
+
+        <div class="preview-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.85rem; margin-bottom: 1rem;">
+
+            <!-- Act I card -->
+            <article style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--gold); border-radius: 4px; padding: 0.95rem 1.05rem; box-shadow: var(--shadow-sm);">
+                <header style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.85rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--border-subtle);">
+                    <h3 style="font-family: 'Cinzel', serif; color: var(--gold); font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 0; font-weight: 600;">Act I — Clearfell</h3>
+                    <span style="font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">Lvl 1–14</span>
+                </header>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <li>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Glowing Roots</div>
+                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">In <strong>Grelwood</strong>, glowing roots lead to the <strong>Tree of Souls</strong>; follow the river upstream to reach <strong>Red Vale</strong>; mushrooms mark the <strong>Grim Tangle</strong>.</div>
+                    </li>
+                    <li>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Signposts &amp; Bovines</div>
+                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">A signpost in <strong>Hunting Grounds</strong> points to <strong>Ogham Farmlands</strong>; a "farm-to-table" trail of pecked bovines leads to <strong>Crowbell</strong>.</div>
+                    </li>
+                    <li>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Locust Trail</div>
+                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">Finishing a ritual spawns locusts pointing to <strong>Freythorn</strong>; ritual chains route to the next-closest one. (Endgame rituals too.)</div>
+                    </li>
+                </ul>
+            </article>
+
+            <!-- Act II card -->
+            <article style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--burnt); border-radius: 4px; padding: 0.95rem 1.05rem; box-shadow: var(--shadow-sm);">
+                <header style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.85rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--border-subtle);">
+                    <h3 style="font-family: 'Cinzel', serif; color: var(--burnt); font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 0; font-weight: 600;">Act II — Vastiri</h3>
+                    <span style="font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">Lvl 14–29</span>
+                </header>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <li>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--burnt); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Maraketh Parchment</div>
+                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;"><strong>Traitor's Passage</strong> gains a guaranteed intersection. Follow the parchment (used to bind djinns) to find <strong>Balbala</strong> — the other path is the exit.</div>
+                    </li>
+                    <li>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--burnt); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Titan Heads</div>
+                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;"><strong>Valley of Titans</strong> now shows the giant heads from the start; each leads to a linear canyon with end-seal and a portal back.</div>
+                    </li>
+                </ul>
+            </article>
+
+            <!-- Act III card -->
+            <article style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--sage); border-radius: 4px; padding: 0.95rem 1.05rem; box-shadow: var(--shadow-sm);">
+                <header style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.85rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--border-subtle);">
+                    <h3 style="font-family: 'Cinzel', serif; color: var(--sage); font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 0; font-weight: 600;">Act III — Jungle</h3>
+                    <span style="font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">Lvl 30–42</span>
+                </header>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <li>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--sage); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Explorer Camps</div>
+                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">Talk to jungle explorers — they point toward the next area and the destination appears on the mini-map.</div>
+                    </li>
+                    <li>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--sage); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Waterways Relocated</div>
+                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">Entrance moved from <strong>Infested Barrens</strong> to <strong>Jungle Ruins</strong>; <strong>Azak Bog</strong> now lives inside the Waterways.</div>
+                    </li>
+                    <li>
+                        <div style="font-size: 11px; font-weight: 700; color: var(--sage); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Crypts Escape</div>
+                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">New alternate route out of <strong>Venom Crypts</strong> back through the Jungle.</div>
+                    </li>
+                </ul>
+            </article>
+
+        </div>
+
+        <p style="font-size: 11px; color: var(--text-muted); margin: 0 0 2rem; font-style: italic; letter-spacing: 0.2px;">
+            GGG note this is "just a few examples" — expect more streamlining throughout the game in 0.5 and continuing patches.
+        </p>
+        <!-- ╚═══════════════════════════════════════════════════════════════════ ╝ -->
+
+        <div class="features">
+            <div class="features-title">Codex Features</div>
+            <div class="features-list">
+                <span class="feature">Progress saves to browser</span>
+                <span class="feature">All waypoints marked</span>
+                <span class="feature">Pre-patch 0.5 (0.4 live)</span>
+                <span class="feature">Mobile friendly</span>
+                <span class="feature">All classes</span>
+                <span class="feature">Recommended zone levels</span>
+            </div>
+        </div>
+
+        <footer class="site-footer">
+            <div class="site-footer-tag">Made for the PoE2 community · A community-driven summary, AI-assisted</div>
+            <div class="site-footer-links">
+                <a href="https://github.com/domistae/poe2-leveling/issues/new" class="site-footer-link">Suggestions</a>
+                <a href="https://github.com/domistae/poe2-leveling" class="site-footer-link">GitHub</a>
+            </div>
+            <div class="site-footer-disclaimer">Path of Exile 2 is © Grinding Gear Games. Unofficial fan-made content.</div>
+        </footer>
+    </div>
+    <script>
+        // Initialize button state from current theme
+        (function() {
+            var cur = document.documentElement.getAttribute('data-theme') || 'light';
+            var ic = document.getElementById('theme-icon');
+            var lb = document.getElementById('theme-label');
+            if (ic) ic.textContent = cur === 'light' ? '☀' : '☾';
+            if (lb) lb.textContent = cur === 'light' ? 'Light' : 'Dark';
+        })();
+        function toggleTheme() {
+            var html = document.documentElement;
+            var cur = html.getAttribute('data-theme') || 'light';
+            var next = cur === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', next);
+            try { localStorage.setItem('poe2-theme', next); } catch (e) {}
+            document.getElementById('theme-icon').textContent = next === 'light' ? '☀' : '☾';
+            document.getElementById('theme-label').textContent = next === 'light' ? 'Light' : 'Dark';
+        }
+    </script>
+</body>
+</html>
