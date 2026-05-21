@@ -806,6 +806,25 @@
 }
 .atlas-tile .symbol svg { width: 56%; height: 56%; }
 
+/* Compass tile — label on top, rose beneath */
+.atlas-tile.compass {
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+.atlas-tile.compass .name {
+    margin-top: 0;          /* cancel the push-to-bottom */
+    text-align: center;
+}
+.atlas-tile.compass .symbol {
+    position: static;       /* drop out of the absolute fill */
+    inset: auto;
+    padding-top: 0;
+    width: 52%;
+    aspect-ratio: 1 / 1;
+}
+.atlas-tile.compass .symbol svg { width: 100%; height: 100%; }
+
 /* League tile color treatments */
 .atlas-tile.fortress    { background: var(--c-fortress); color: #fef3c7; }
 .atlas-tile.vaal        { background: var(--c-vaal);     color: #fee2e2; }
