@@ -745,7 +745,7 @@ footer.site-footer a {
 
             <div class="intro-block">
                 <p><strong>How to read this codex.</strong> Sections I–IV are the foundation — what an item <em>is</em>, the orb hierarchy, the essence types. V–IX are the precision tools, where most of the actual craft happens. X–XII are the finishing layers. XIII is the showpiece: the tricks streamers actually use to deterministically craft endgame pieces. XIV is the canonical order in which to apply everything. XV is what changes on May 29.</p>
-                <p>You do not need to read it linearly. Each section is self-contained and cross-links to the others when relevant. If you want one place to start: <a href="#tags">the tag system</a> is the single most important concept in PoE2 crafting, and it is poorly documented in-game.</p>
+                <p>You do not need to read it linearly. Each section is self-contained and cross-links to the others when relevant. If you want one place to start: <a href="#tags">the tag system</a> is one of the most useful concepts to understand early, and it is poorly documented in-game.</p>
                 <p><strong>A note on scope.</strong> This codex is intended to be <em>as complete as possible</em> — every currency, every omen, every interaction the community has surfaced. That's a lot to take in at once, and yes, it's probably more than most readers want to scroll through in a single sitting. I've kept it long on purpose so the full reference lives in one place. <strong>Condensed diagrams and quick-reference summaries are planned for a separate page</strong> later — for now, treat this as the deep dive and use Ctrl+F or the sidebar to jump to what you need.</p>
                 <p><em>A community-driven summary compiled from multiple sources: Patch 0.4 (The Last of the Druids) in-game systems, the 0.5 reveal stream, Maxroll, Mobalytics, Vulkk, PoE2DB, the official site, and community streamer crafting demonstrations. This codex acts as a quick reference, not as authoritative documentation — cross-check with PoE2DB and in-game tooltips before any expensive craft. The full disclaimer is on the <a href="index.html">index page</a>.</em></p>
             </div>
@@ -799,10 +799,27 @@ footer.site-footer a {
 
                 <h3 class="sub-title">Item Level &amp; Modifier Tier Gates</h3>
                 <p>Every modifier has a <strong>minimum item level</strong> at which it can roll, and the <em>tier</em> of that modifier scales with item level. T1 modifiers (the highest tier) almost always require ilvl 80+; many need ilvl 82. T2 is typically ilvl 75. Lower tiers roll at lower ilvls. Below the minimum, that modifier <em>cannot appear</em> on the item at all.</p>
-                <p>This matters for two reasons. First, when buying a base, you usually want <strong>ilvl 81 or 82</strong> — the cheapest items that can still roll T1 on the modifiers you care about. Second, the <em>Greater</em> and <em>Perfect</em> tiers of basic currency orbs guarantee a <strong>minimum modifier level</strong> (Greater = ilvl 35; Perfect = ilvl 50), which removes the lowest-tier garbage from the result pool. See <a href="#tiers">§III</a>.</p>
+                <p>This matters for two reasons. First, when buying a base, you usually want <strong>ilvl 81 or 82</strong> — the cheapest items that can still roll T1 on the modifiers you care about. Second, the <em>Greater</em> and <em>Perfect</em> tiers of basic currency orbs guarantee a <strong>minimum modifier level</strong> (Greater = mod level 35; Perfect = mod level 50 or 70, depending on the currency), which removes the lowest-tier garbage from the result pool. See <a href="#tiers">§III</a>.</p>
 
                 <h3 class="sub-title">Implicit vs. Explicit Modifiers</h3>
                 <p><strong>Implicit</strong> modifiers are tied to the base type itself (e.g. <em>"+25 to maximum Mana"</em> on a Synthesised Amethyst Ring). They do not count towards the 6-modifier limit and cannot be modified by ordinary currency. <strong>Explicit</strong> modifiers are the ones you craft — the prefixes and suffixes you see in the upper block of an item's tooltip. Fracturing, annulment, divine, chaos, exalted, regal — all operate on explicits.</p>
+
+                <h3 class="sub-title">Enchantments</h3>
+                <p>Above the implicit sits a third, less-common layer: the <strong>enchantment</strong>. Enchantments are not prefixes or suffixes, do not count towards the 6-modifier limit, and are not produced by ordinary crafting currency. They arrive by specific routes — most often a Vaal Orb corruption outcome, or a socketable augment that grants one. Treat an enchantment as a bonus line you occasionally inherit rather than something you craft toward; the bulk of this codex concerns explicit modifiers.</p>
+
+                <h3 class="sub-title">Attribute Base Types — Why Two Bases of the Same Slot Differ</h3>
+                <p>Before mod pools, tags, or breakpoints matter, the <em>base type</em> itself decides which modifiers are even eligible. PoE2's three attributes — Strength, Dexterity, Intelligence — each map to a defence and an attribute the base can carry, and a base draws only from the pools its attribute(s) permit. This is why two body armours of the same slot can have completely different mod pools.</p>
+                <ul>
+                    <li><strong>Pure Strength</strong> — provides Armour; can roll <code>armour</code> defence modifiers and Strength as its attribute. It cannot roll evasion or energy shield.</li>
+                    <li><strong>Pure Dexterity</strong> — provides Evasion; rolls <code>evasion</code> modifiers and Dexterity.</li>
+                    <li><strong>Pure Intelligence</strong> — provides Energy Shield; rolls <code>energy shield</code> modifiers and Intelligence.</li>
+                    <li><strong>Hybrid bases</strong> (Str/Int, Str/Dex, Dex/Int) — draw from <em>both</em> contributing pools. A Strength/Intelligence body armour can roll armour <em>and</em> energy shield, and both Strength and Intelligence.</li>
+                </ul>
+                <p>Weapons follow a softer version of the same rule. Attribute type does not gate damage the way it gates armour defences — a pure-Dexterity bow and a pure-Strength mace can both roll physical damage — but it does gate the <em>attribute</em> a weapon can carry, and ranged-vs-melee typing shifts other parts of the pool. The practical takeaway: a hybrid base trades a wider, more flexible mod pool for the cost and rarity of finding one, while a pure base gives a thinner, more predictable pool. Pick the base for the pool you actually need <em>before</em> worrying about its item level.</p>
+
+                <h3 class="sub-title">Modifier Groups</h3>
+                <p>Every modifier belongs to a <strong>modifier group</strong>, and an item can carry <em>only one modifier from a given group at a time</em>. This is the mechanism behind a behaviour every crafter eventually meets: an Essence of the Body that grants maximum life will simply <em>fail to apply</em> to an item that already has a maximum-life modifier — the game reports that the item already has a modifier of that type, and consumes nothing. The group rule, not bad luck, is the cause.</p>
+                <p>The same rule cuts the other way as a deliberate tool. Because a group can hold only one occupant, placing a cheap, unwanted modifier from a group can <strong>block</strong> a more dangerous modifier in that same group from ever rolling there. This is advanced and situational, but it explains why experienced crafters sometimes appear to add "bad" mods on purpose. For everyday crafting the rule you need is the simple one: one modifier per group, and a guaranteed-mod currency will fail rather than duplicate.</p>
 
                 <div class="callout">
                     <span class="label">The 6-modifier rule</span>
@@ -922,12 +939,35 @@ footer.site-footer a {
                         <tbody>
                             <tr><td><strong>Lesser / Normal</strong> <span class="tier-pill normal">Tier 1</span></td><td>No floor</td><td>Can roll any tier. Cheap. Use freely on low-ilvl bases or when you don't care about result quality.</td></tr>
                             <tr><td><strong>Greater</strong> <span class="tier-pill greater">Tier 2</span></td><td>ilvl ≥ 35</td><td>Cuts roughly the bottom third of tiers. Cheap relative to Perfect. The workhorse for endgame crafting where you don't need T1 specifically.</td></tr>
-                            <tr><td><strong>Perfect</strong> <span class="tier-pill perfect">Tier 3</span></td><td>ilvl ≥ 50</td><td>Cuts the bottom two thirds. Used for the final slam where you want T1/T2 guaranteed. Perfect Exalts run several Divines each in the early league.</td></tr>
+                            <tr><td><strong>Perfect</strong> <span class="tier-pill perfect">Tier 3</span></td><td>≥ 50 or ≥ 70 *</td><td>Cuts the bottom two thirds — or more. <strong>* The exact floor depends on the currency</strong> (see below). Used for the final slam where you want T1/T2 guaranteed, or for fishing top-end affixes early. Perfect Exalts run several Divines each in the early league.</td></tr>
                         </tbody>
                     </table>
                 </div>
 
                 <p>The five tiered orbs are: <strong>Orb of Transmutation</strong>, <strong>Orb of Augmentation</strong>, <strong>Regal Orb</strong>, <strong>Chaos Orb</strong>, and <strong>Exalted Orb</strong>. Each exists as Normal / Greater / Perfect.</p>
+
+                <h3 class="sub-title">Perfect Tier — Two Floors, Not One</h3>
+                <p>The Perfect tier does <em>not</em> share a universal modifier-level floor. The currencies split into two groups:</p>
+                <div class="tbl-wrap">
+                    <table>
+                        <caption>Perfect-tier minimum modifier levels</caption>
+                        <thead>
+                            <tr><th>Currency</th><th>Min mod level</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Perfect Orb of Transmutation</strong></td><td>70</td></tr>
+                            <tr><td><strong>Perfect Orb of Augmentation</strong></td><td>70</td></tr>
+                            <tr><td><strong>Perfect Exalted Orb</strong></td><td>50</td></tr>
+                            <tr><td><strong>Perfect Regal Orb</strong></td><td>50</td></tr>
+                            <tr><td><strong>Perfect Chaos Orb</strong></td><td>50</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>The difference is practical, not cosmetic. <strong>Perfect Transmute and Augment (floor 70)</strong> sit at the <em>start</em> of a craft chain and aggressively narrow the affix pool — they are fishing tools for top-end affixes. <strong>Perfect Exalt, Regal, and Chaos (floor 50)</strong> sit <em>later</em> in the process and need a broader viable pool, so their floor is lower. Reducing all of these to a flat "50" loses behaviour that materially affects crafting decisions.</p>
+                <div class="callout">
+                    <span class="label">The floor never deletes a family outright</span>
+                    A minimum modifier level does not remove a modifier family entirely if doing so would eliminate it from the pool. In that case the game still allows the highest tier available for that family. This is why a low-level family — Light Radius is the usual example — can still appear despite a Perfect currency: the floor thins the pool but cannot empty a family completely.
+                </div>
 
                 <div class="callout tip">
                     <span class="label">Practical rule</span>
@@ -954,7 +994,7 @@ footer.site-footer a {
                                 <td><strong>Orb of Transmutation</strong></td>
                                 <td>Normal</td>
                                 <td>Upgrades to Magic with 1 mod.</td>
-                                <td>Always step 1. Perfect Transmutes are cheap; use them by default for the ilvl ≥ 50 floor.</td>
+                                <td>Always step 1. Perfect Transmutes are cheap; use them by default for the high mod-level 70 floor — see <a href="#tiers">§III</a>.</td>
                             </tr>
                             <tr>
                                 <td><strong>Orb of Augmentation</strong></td>
@@ -1169,7 +1209,7 @@ footer.site-footer a {
                     <div class="card">
                         <h4>Omen of Homogenising Exaltation</h4>
                         <div class="role">Pairs with Exalted Orb</div>
-                        <p>The single most powerful omen in PoE2. The next Exalt can <strong>only add a modifier that shares a <em>tag</em> with an existing modifier</strong> on the item. See <a href="#tags">§VII</a> — this is the entire reason the tag system matters.</p>
+                        <p>One of the strongest omens for deterministic crafting. The next Exalt can <strong>only add a modifier that shares a <em>tag</em> with an existing modifier</strong> on the item. See <a href="#tags">§VII</a> — this is the entire reason the tag system matters.</p>
                         <p>Combined with Greater Exaltation (two slams), this is how plus-three / plus-four level-of-skill weapons get deterministically crafted: start with one tag-matched modifier, slam, get only mods from the same tag pool — usually a narrow list of 1–3 candidates.</p>
                     </div>
                     <div class="card">
@@ -1219,7 +1259,7 @@ footer.site-footer a {
                     <div class="card">
                         <h4>Omens of the Blackblooded / Liege / Sovereign</h4>
                         <div class="role">Pairs with Desecration</div>
-                        <p>Each biases the revealed pool toward a specific <strong>lich's</strong> modifier family — Amanamu (Blackblooded), Ulaman (Liege), Kurgal (Sovereign). When you know the exact desecrated mod you want, this is the targeting layer on top of the side-targeting Necromancy omens.</p>
+                        <p>Each <strong>guarantees</strong> the next desecration rolls from a specific <strong>lich's</strong> pool — <em>Blackblooded → Kurgal</em>, <em>Liege → Amanamu</em>, <em>Sovereign → Ulaman</em>. When you know which lich carries the desecrated mod you want, this is the targeting layer on top of the side-targeting Necromancy omens.</p>
                     </div>
                 </div>
 
@@ -1233,9 +1273,9 @@ footer.site-footer a {
                  VI. TAG SYSTEM
                  ─────────────────────────────────────────────── -->
             <section id="tags" class="codex-section">
-                <h2 class="section-title"><span class="num">VII</span>The Tag System — The Single Most Important Concept</h2>
+                <h2 class="section-title"><span class="num">VII</span>The Tag System</h2>
 
-                <p>Every modifier in the game carries one or more <strong>tags</strong>. Tags are how PoE2 categorises mods, and almost every powerful deterministic craft works by <em>exploiting which mods do or don't share a tag</em>.</p>
+                <p>Every modifier in the game carries one or more <strong>tags</strong>. Tags are how PoE2 categorises mods, and many powerful deterministic crafts work by <em>exploiting which mods do or don't share a tag</em>. How central tag-based crafting is in practice depends on which tag-manipulating currencies are live in the current patch — treat it as a strong tool to reach for when those are available, and confirm against the patch you're playing rather than assuming it dominates every craft.</p>
 
                 <h3 class="sub-title">Common Tags You'll See</h3>
                 <div class="tag-ladder">
@@ -1330,12 +1370,12 @@ footer.site-footer a {
                 <p>Desecration is the only way to obtain modifiers from the three Lich families. Each lich's mods are powerful, build-defining, and unavailable through any other crafting path:</p>
 
                 <ul>
-                    <li><strong>Amanamu</strong> — chaos / disease / decay-shaped mods. Forced via <em>Omen of the Blackblooded</em>.</li>
-                    <li><strong>Ulaman</strong> — physical / brutal mods. Forced via <em>Omen of the Liege</em>.</li>
-                    <li><strong>Kurgal</strong> — elemental / penetration mods. Forced via <em>Omen of the Sovereign</em>.</li>
+                    <li><strong>Kurgal</strong> — forced via <em>Omen of the Blackblooded</em>.</li>
+                    <li><strong>Amanamu</strong> — forced via <em>Omen of the Liege</em>.</li>
+                    <li><strong>Ulaman</strong> — forced via <em>Omen of the Sovereign</em>.</li>
                 </ul>
 
-                <p>Specific Lich modifiers vary by item type. The standard discovery flow is to check PoE2DB's Desecrated Modifiers list for the item class you're crafting, identify which liches have mods you want, and stack the appropriate Sovereign/Liege/Blackblooded omen on top of your side-targeting omen before applying the bone.</p>
+                <p>Each lich's pool is large — roughly 60–70 modifiers — and spans many archetypes rather than a single theme; all three mix damage, defence, ailment, minion, and utility mods. Do not rely on a one-word characterisation of a lich. The standard discovery flow is to check PoE2DB's Desecrated Modifiers list for the item class you're crafting, identify which lich carries the mod you want, and stack the appropriate Blackblooded / Liege / Sovereign omen on top of your side-targeting omen before applying the bone.</p>
 
                 <h3 class="sub-title">The Standard Desecration Flow</h3>
                 <ol>
