@@ -878,7 +878,7 @@ footer.site-footer a {
                         <tr><td><strong>Elemental Resistance</strong> (Fire / Cold / Lightning)</td><td>All slots that can roll it</td><td>T1 ≥ 82</td><td>Top tier is +41–45%. Same gate across resistance types.</td></tr>
                         <tr><td><strong>Chaos Resistance</strong></td><td>Body Armour</td><td>T1 ≥ 81</td><td>Asymmetric with elemental res — one ilvl lower.</td></tr>
                         <tr><td><strong>+# to Maximum Life</strong></td><td>Body Armour / Belt / Jewellery</td><td>T1 at high ilvl (varies)</td><td>Life has many tiers (often 10+). Look up the exact gate for your base on PoE2DB.</td></tr>
-                        <tr><td><strong>+# to Level of all Lightning Spell Skills</strong></td><td>Wand</td><td>≥ 81</td><td>Carries the <span class="tag-pill">lightning</span> tag — relevant for homogenising slams.</td></tr>
+                        <tr><td><strong>+# to Level of all Lightning Spell Skills</strong></td><td>Wand</td><td>≥ 81</td><td>Carries the <span class="tag-pill">lightning</span> tag — relevant for tag-based crafting.</td></tr>
                         <tr><td><strong>Bow Attacks fire +# additional Arrows</strong></td><td>Bow</td><td>≥ 82 (subject to patch changes)</td><td>The classic chase mod for bow builds.</td></tr>
                     </tbody>
                 </table>
@@ -1174,7 +1174,7 @@ footer.site-footer a {
             <section id="omens" class="codex-section">
                 <h2 class="section-title"><span class="num">VI</span>Omens</h2>
 
-                <p>Omens are <strong>meta-modifiers</strong>. You activate one by right-clicking it in your inventory; the next time you use the relevant currency, the omen alters its behaviour. Only one omen of a given kind applies per craft, but you can stack different kinds — e.g. Greater Exaltation <em>and</em> Homogenising Exaltation on the same Exalted Orb. They are <strong>consumed</strong> on the next applicable craft.</p>
+                <p>Omens are <strong>meta-modifiers</strong>. You activate one by right-clicking it in your inventory; the next time you use the relevant currency, the omen alters its behaviour. Only one omen of a given kind applies per craft, but you can stack different kinds — e.g. Greater Exaltation <em>and</em> Dextral Exaltation on the same Exalted Orb. They are <strong>consumed</strong> on the next applicable craft.</p>
 
                 <div class="callout">
                     <span class="label">Where to get them</span>
@@ -1221,12 +1221,6 @@ footer.site-footer a {
 
                 <div class="card-grid">
                     <div class="card">
-                        <h4>Omen of Homogenising Exaltation</h4>
-                        <div class="role">Pairs with Exalted Orb</div>
-                        <p>One of the strongest omens for deterministic crafting. The next Exalt can <strong>only add a modifier that shares a <em>tag</em> with an existing modifier</strong> on the item. See <a href="#tags">§VII</a> — this is the entire reason the tag system matters.</p>
-                        <p>Combined with Greater Exaltation (two slams), this is how plus-three / plus-four level-of-skill weapons get deterministically crafted: start with one tag-matched modifier, slam, get only mods from the same tag pool — usually a narrow list of 1–3 candidates.</p>
-                    </div>
-                    <div class="card">
                         <h4>Omen of Whittling</h4>
                         <div class="role">Pairs with Chaos Orb</div>
                         <p>The next Chaos Orb replaces <strong>the modifier with the lowest item-level requirement</strong> on the item. Not the lowest tier — the lowest level gate. Hovering an item with the Chaos Orb highlights which mod will be replaced.</p>
@@ -1237,6 +1231,7 @@ footer.site-footer a {
                         <div class="role">Pairs with Exalted Orb (jewellery)</div>
                         <p>The next Exalt is <strong>biased</strong> toward modifiers sharing a tag with the catalyst quality already applied to the ring or amulet. The magnitude of the bias isn't fully documented.</p>
                         <p>Practical use: catalyse a ring with Flesh Catalyst (Life), then Exalt with this omen → much higher chance of slamming Life. Not deterministic, but a meaningful tilt.</p>
+                        <p><em>0.5 added 12 new catalysts that apply quality modifiers to <strong>Jewels</strong> as well — see §X for the full catalyst index.</em></p>
                     </div>
 
                     <div class="card">
@@ -1306,21 +1301,26 @@ footer.site-footer a {
 
                 <p><strong>Tags are not shown on items in-game.</strong> This is a known UX gap: Alt-hover reveals the tier and roll range but not the tag list. To see a modifier's tags you go to <a href="https://poe2db.tw/us/" target="_blank" rel="noopener">PoE2DB</a> and look up the modifier on the relevant base-type page — the tags appear as small bracketed labels next to each line. Mods often carry <em>multiple</em> tags: e.g. <em>"+# to Level of all Minion Skill Gems"</em> on a sceptre carries both the <code>minion</code> tag and the <code>gem</code> tag, allowing it to be targeted by either.</p>
 
-                <h3 class="sub-title">The Core Move: Homogenising Exaltation</h3>
-                <p>An Exalted Orb under <strong>Omen of Homogenising Exaltation</strong> can only add a modifier that shares <em>at least one tag</em> with a modifier already on the item.</p>
+                <h3 class="sub-title">The Core Move: Tag-Anchored Crafting</h3>
+                <p>Tags matter because two currencies in the live patch read them: <strong>Omen of Catalysing Exaltation</strong> (the jewellery tag-bias tool — see §VI) and tag-aware <strong>essence selection</strong>. The general principle is the same in both cases: get a modifier carrying a useful tag onto the item first, then let a tag-reading currency lean the next outcome toward mods sharing it.</p>
 
-                <p>This is enormous. Most modifier pools are large (50+ mods). Most tag pools are tiny (3–8 mods). If you can land on an item with one mod that shares a tag <em>only with mods you want</em>, the next homogenising exalt is functionally guaranteed.</p>
+                <p>This works because most modifier pools are large (50+ mods) while most tag pools are tiny (3–8 mods). Biasing a slam toward a narrow tag pool is far stronger than slamming blind — even when the bias isn't fully deterministic.</p>
 
                 <div class="callout tip">
-                    <span class="label">Worked example — the +level minion sceptre</span>
-                    <p>You want <em>+# to Level of all Minion Skill Gems</em> on a Rattling Sceptre. That mod has tags <code>minion · gem</code>. PoE2DB shows that the <em>only</em> suffix with a matching tag (on sceptres) is <em>"Allies in your Presence have increased Life Regeneration."</em></p>
-                    <p>You buy a low-tier Magic sceptre with <em>"Allies in your Presence have increased Maximum Life"</em> (life + minion tags). Regal to Rare. Activate <strong>Homogenising Exaltation</strong>. Slam a Greater Exalt. The only suffix mods that share tags with what's on the item are: life-tagged minion suffixes (a tiny pool) <em>or</em> minion/gem-tagged suffixes — and one of those is <em>+# Level of all Minion Skill Gems</em>. You roll either life-regen-allies (also acceptable) or the +levels (the target). Both are useful.</p>
+                    <span class="label">Worked example — the catalyst-biased Life ring</span>
+                    <p>You want a high <em>+# to Maximum Life</em> roll on a ring alongside resistances. Life carries the <code>life</code> tag. You apply several <strong>Flesh Catalysts</strong> (which boost <code>life</code>-tagged mods) to the ring, then activate <strong>Omen of Catalysing Exaltation</strong> and slam a Greater Exalt.</p>
+                    <p>The Exalt is now biased toward <code>life</code>-tagged modifiers — a meaningful tilt toward the mod you want rather than an open roll across the ring's whole suffix pool. The catalyst quality is useful on its own, so even a "miss" still leaves value on the item.</p>
                 </div>
 
-                <p>The same logic powers <strong>+# to Level of all Spell Skill Gems</strong> crafts on wands and staves (gem tag), <strong>+# to Level of all Projectile Skill Gems</strong> on bows, and most "level of all X" crafts. The pattern is: <em>find a low-weight mod with the right tag</em>, then homogenise.</p>
+                <p>The same logic applies to essences: choosing an essence whose guaranteed modifier carries the tag family your build needs anchors the item before any later slam. The pattern is: <em>get the right tag onto the item early</em>, then use the tag-reading currency that fits the slot.</p>
+
+                <div class="callout warn">
+                    <span class="label">Note on Omen of Homogenising Exaltation</span>
+                    Older crafting guides lean heavily on this omen for tag-locked "+# to Level of all X Skills" slams. Its drops were disabled in 0.4, so it is <strong>not obtainable in the Runes of Aldur league</strong>; legacy copies remain functional and tradeable only in Standard. Treat tag-locked level-of-skill crafting as a Standard-only technique and rely on Catalysing Exaltation and tag-aware essences in league. See §XVII.
+                </div>
 
                 <h3 class="sub-title">When to NOT Use Tags</h3>
-                <p>Tag-based crafting fails when the relevant tag pool is large or contaminated. <em>Damage</em> is too broad a tag to be useful for homogenising on most items. <em>Elemental</em> is similarly broad. If a tag has 15+ mods that share it, you are not really being deterministic — you're just biased.</p>
+                <p>Tag-based crafting fails when the relevant tag pool is large or contaminated. <em>Damage</em> is too broad a tag to be useful for tag-biased crafting on most items. <em>Elemental</em> is similarly broad. If a tag has 15+ mods that share it, you are not really being deterministic — you're just biased.</p>
 
                 <div class="callout warn">
                     <span class="label">Cross-check with PoE2DB</span>
@@ -1385,6 +1385,11 @@ footer.site-footer a {
                 </ul>
 
                 <p>Each lich's pool is large — roughly 60–70 modifiers — and spans many archetypes rather than a single theme; all three mix damage, defence, ailment, minion, and utility mods. Do not rely on a one-word characterisation of a lich. The standard discovery flow is to check PoE2DB's Desecrated Modifiers list for the item class you're crafting, identify which lich carries the mod you want, and stack the appropriate Blackblooded / Liege / Sovereign omen on top of your side-targeting omen before applying the bone.</p>
+
+                <div class="callout aldur">
+                    <span class="label">0.5 change</span>
+                    Desecrated modifiers granting <strong>Instant Leech</strong> can no longer roll. Existing items already carrying one are unaffected, but you can no longer desecrate toward an Instant Leech outcome — plan leech around other sources.
+                </div>
 
                 <h3 class="sub-title">The Standard Desecration Flow</h3>
                 <ol>
@@ -1566,7 +1571,7 @@ footer.site-footer a {
                  XII. CORRUPTION
                  ─────────────────────────────────────────────── -->
             <section id="vaal" class="codex-section">
-                <h2 class="section-title"><span class="num">XII</span>Corruption — Vaal Orbs &amp; The Temple</h2>
+                <h2 class="section-title"><span class="num">XII</span>Corruption — Vaal Orbs &amp; Atziri's Temple</h2>
 
                 <p>A Vaal Orb applies one of several random outcomes to the item and renders it <strong>Corrupted</strong> — no further modification is possible. Vaal is always the <em>last</em> step.</p>
 
@@ -1581,8 +1586,15 @@ footer.site-footer a {
 
                 <p>On <strong>unique items</strong>, Vaal can add powerful corrupted implicits (often +1 to specific gem level) or brick the item by rolling it into a different rare. Never Vaal a build-defining unique without a backup.</p>
 
-                <h3 class="sub-title">The Temple of Chayula &amp; Vaal Infusers</h3>
-                <p>The Temple of Chayula (Vaal endgame content) hosts Vaal Infusers, which can add quality beyond 20% to martial weapons (with corruption risk). Used for top-end weapon corruption attempts. Twin-corruption (Vaal twice) is possible through specific temple mechanics.</p>
+                <h3 class="sub-title">Atziri's Temple &amp; Vaal Infusers</h3>
+                <p>Atziri's Temple — the Vaal endgame content, part of <strong>Fate of the Vaal</strong> now moved to core in 0.5 and reached through the city of Lira Vaal on the Atlas — is where Vaal Infusers are used. In 0.5 the single "Vaal Infuser" was split into <strong>four type-specific Infusers</strong>:</p>
+                <ul>
+                    <li><strong>Vaal Armourer's Infuser</strong> — applied to Armour. Existing pre-0.5 Vaal Infusers became this type.</li>
+                    <li><strong>Vaal Blacksmith's Infuser</strong> — applied to Martial Weapons.</li>
+                    <li><strong>Vaal Arcanist's Infuser</strong> — applied to Wands, Staves, and Sceptres.</li>
+                    <li><strong>Vaal Catalysing Infuser</strong> — applied to Jewellery.</li>
+                </ul>
+                <p>All four <strong>require the item to be at 20% Quality or above</strong> to use, and apply a corruption with the usual risk. They are the route to top-end quality corruption on a finished piece. Note the slot mapping: the old generic Infuser now lives on as the <em>Armourer's</em> (armour) — martial weapons need the <em>Blacksmith's</em> Infuser, not the legacy one. Twin-corruption (Vaal twice) remains possible through specific temple mechanics.
 
                 <h3 class="sub-title">Corrupting Omens</h3>
                 <ul>
@@ -1591,7 +1603,7 @@ footer.site-footer a {
 
                 <div class="callout warn">
                     <span class="label">Once corrupted, the item is final</span>
-                    No further omens, essences, exalts, divines, or anything else will touch a corrupted item (the exception is the Vaal Infuser path on weapons). Socket first, fracture first, finish all affixes first, then corrupt.
+                    No further omens, essences, exalts, divines, or anything else will touch a corrupted item (the exception is the Vaal Infuser path — Armourer's / Blacksmith's / Arcanist's / Catalysing, by slot). Socket first, fracture first, finish all affixes first, then corrupt.
                 </div>
             </section>
 
@@ -1607,24 +1619,7 @@ footer.site-footer a {
 
                     <!-- TRICK I -->
                     <div class="trick">
-                        <span class="tag">Trick I · Tag Lock</span>
-                        <h4>Homogenising Exaltation for +Levels-of-Skill</h4>
-                        <p>The canonical move for deterministically crafting <em>+# to Level of all [type] Skills</em>. Find a low-weight prefix or suffix on the base that shares tags only with mods you want.</p>
-                        <div class="how">
-                            <strong>How</strong>
-                            <ol>
-                                <li>Start with a Rare base carrying one tag-anchor mod (e.g. <em>Minion Life</em> on a sceptre — life · minion tags).</li>
-                                <li>Activate <strong>Homogenising Exaltation</strong> + <strong>Greater Exaltation</strong> (double slam).</li>
-                                <li>Slam a Greater Exalted Orb.</li>
-                                <li>Result: two mods sharing tags with the anchor. The target +Levels mod is one of two-to-three candidates.</li>
-                            </ol>
-                        </div>
-                        <p class="why">Tag pools are tiny relative to total mod pools. A homogenising exalt on a tag-anchored base is functionally targeted.</p>
-                    </div>
-
-                    <!-- TRICK II -->
-                    <div class="trick">
-                        <span class="tag">Trick II · Isolation</span>
+                        <span class="tag">Trick I · Isolation</span>
                         <h4>Fracture + Sinistral/Dextral Annul</h4>
                         <p>Deterministically delete a specific unwanted modifier. The classic mirror-tier crafting move.</p>
                         <div class="how">
@@ -1639,9 +1634,9 @@ footer.site-footer a {
                         <p class="why">Fracture removes one option from the Annul's pool; the side-omen removes the other side entirely. With only one mod fitting both constraints, the result is deterministic.</p>
                     </div>
 
-                    <!-- TRICK III -->
+                    <!-- TRICK II -->
                     <div class="trick">
-                        <span class="tag">Trick III · Desecrate Loop</span>
+                        <span class="tag">Trick II · Desecrate Loop</span>
                         <h4>Chase a Lich Mod with Light + Echoes</h4>
                         <p>You want a specific Kurgal / Ulaman / Amanamu modifier. The reveal can give one of dozens of options. Loop until you hit.</p>
                         <div class="how">
@@ -1656,9 +1651,9 @@ footer.site-footer a {
                         <p class="why">Each cycle costs one bone, one Light, and several omens. Each cycle gives six shots at the target. Three to five cycles typically lands the mod.</p>
                     </div>
 
-                    <!-- TRICK IV -->
+                    <!-- TRICK III -->
                     <div class="trick">
-                        <span class="tag">Trick IV · Targeted Replace</span>
+                        <span class="tag">Trick III · Targeted Replace</span>
                         <h4>Perfect Essence + Sinistral/Dextral Crystallisation</h4>
                         <p>You have a finished Rare with one filler mod you'd like to upgrade to a specific Perfect Essence modifier. Crystallisation omens control which side the Perfect Essence removes.</p>
                         <div class="how">
@@ -1673,9 +1668,9 @@ footer.site-footer a {
                         <p class="why">Perfect Essences are guaranteed-mod but uncontrolled-removal. Crystallisation omens turn that removal deterministic, so the worst-case is no longer "lost a T1 prefix" — it's "lost a known filler."</p>
                     </div>
 
-                    <!-- TRICK V -->
+                    <!-- TRICK IV -->
                     <div class="trick">
-                        <span class="tag">Trick V · Catalyst Bias</span>
+                        <span class="tag">Trick IV · Catalyst Bias</span>
                         <h4>Catalyst-Then-Exalt for Jewellery</h4>
                         <p>Use catalyst quality not for its damage bonus, but as a tag-bias tool for the next Exalt.</p>
                         <div class="how">
@@ -1686,12 +1681,12 @@ footer.site-footer a {
                                 <li>Use Greater Exalted Orb. Result is biased toward the catalyst's tag.</li>
                             </ol>
                         </div>
-                        <p class="why">Not as deterministic as homogenising (the bias magnitude isn't documented), but a meaningful tilt — and catalyst quality is cheap relative to omen costs.</p>
+                        <p class="why">Not fully deterministic (the bias magnitude isn't documented), but a meaningful tilt — and catalyst quality is cheap relative to omen costs.</p>
                     </div>
 
-                    <!-- TRICK VI -->
+                    <!-- TRICK V -->
                     <div class="trick">
-                        <span class="tag">Trick VI · Cheap Cleanup</span>
+                        <span class="tag">Trick V · Cheap Cleanup</span>
                         <h4>Whittling Chaos for Tier-Floor Polish</h4>
                         <p>Finished item has one T9 garbage mod alongside several T1s? Don't annul (50/50 on side). Whittle.</p>
                         <div class="how">
@@ -1705,9 +1700,9 @@ footer.site-footer a {
                         <p class="why">Whittling deterministically picks the lowest-level mod (not lowest-tier). Garbage T9 mods almost always have the lowest ilvl requirement on an otherwise high-tier item. The omen is expensive but the cleanup is surgical.</p>
                     </div>
 
-                    <!-- TRICK VII -->
+                    <!-- TRICK VI -->
                     <div class="trick">
-                        <span class="tag">Trick VII · Sandbox First</span>
+                        <span class="tag">Trick VI · Sandbox First</span>
                         <h4>Plan with Craft of Exile Before Spending</h4>
                         <p>Not a craft trick — a discipline trick. Use the <a href="https://www.craftofexile.com/?b=poe2" target="_blank" rel="noopener">Craft of Exile emulator</a> to test the exact sequence before you spend in-game currency.</p>
                         <div class="how">
@@ -1745,7 +1740,7 @@ footer.site-footer a {
                         <span class="pill"><span class="n">I</span> Base</span><span class="arrow">▸</span>
                         <span class="pill"><span class="n">II</span> Essence</span><span class="arrow">▸</span>
                         <span class="pill"><span class="n">III</span> Tag-Anchor</span><span class="arrow">▸</span>
-                        <span class="pill"><span class="n">IV</span> Homogenising Exalt</span><span class="arrow">▸</span>
+                        <span class="pill"><span class="n">IV</span> Exalt Slams</span><span class="arrow">▸</span>
                         <span class="pill"><span class="n">V</span> Desecrate</span><span class="arrow">▸</span>
                         <span class="pill"><span class="n">VI</span> Annul / Clean</span><span class="arrow">▸</span>
                         <span class="pill"><span class="n">VII</span> Fracture (opt.)</span><span class="arrow">▸</span>
@@ -1762,14 +1757,14 @@ footer.site-footer a {
                     <li><b>Acquire a base</b>Buy or find an ilvl 81–82 base of the class you want. Verify the implicit suits the build. Verify with PoE2DB which mods can roll on this base before committing.
                         <span class="why">Item level gates which modifier tiers can ever roll. A T1 mod that requires ilvl 82 cannot appear on an ilvl 78 base — no amount of currency fixes that.</span>
                     </li>
-                    <li><b>Essence to Rare (with tag awareness)</b>Use a <em>Greater Essence</em> targeting the modifier whose <strong>tags align with what you'll homogenise toward next</strong>. This is the most-skipped step — most crafters just essence whatever feels strong. Think about tags first.
-                        <span class="why">The essence anchors a tag. The next homogenising exalt only adds mods sharing tags with what's already on the item. Wrong essence → wrong tag pool → wrong homogenising outcome.</span>
+                    <li><b>Essence to Rare (with tag awareness)</b>Use a <em>Greater Essence</em> targeting a modifier the build needs, and prefer one whose <strong>tags align with the rest of the item</strong> — especially on jewellery, where the next step can read those tags. This is the most-skipped step — most crafters just essence whatever feels strong. Think about tags first.
+                        <span class="why">The essence both guarantees a useful mod and anchors a tag. On jewellery, the right tag here makes the later Catalysing Exaltation slam far stronger. Wrong essence → wrong tag pool → weaker downstream bias.</span>
                     </li>
-                    <li><b>Establish your tag anchor</b>If the essence didn't give a usable tag, do an alt-aug cycle on the magic state to introduce one. The base must have at least one mod with a tag in the family of mods you want before the next step.
-                        <span class="why">Homogenising fails without an anchor. Without an anchor, you'd just be exalt-slamming — every random mod is possible.</span>
+                    <li><b>Establish a tag anchor (jewellery)</b>For rings and amulets, make sure the item carries at least one mod in the tag family you want before the catalyst step. If the essence didn't supply it, an alt-aug cycle on the magic state can introduce one. For weapons and armour this step is optional — there is no in-league tag-locked exalt, so a clean essence-anchored base is enough.
+                        <span class="why">Catalysing Exaltation reads the catalyst tag, and catalysts amplify mods already carrying that tag. An on-tag anchor turns the catalyst-then-exalt sequence into a real bias rather than an open slam.</span>
                     </li>
-                    <li><b>Homogenising Exaltation (the big slam)</b>Activate Homogenising + Greater Exaltation + (optional) Dextral/Sinistral Exaltation. Slam a Greater (cheaper) or Perfect (final-tier guarantee) Exalt. Two new modifiers, both tag-matched.
-                        <span class="why">The core deterministic move. Done correctly, this turns an open random slam into a 2-of-3 selection from a tiny mod pool.</span>
+                    <li><b>Exalt slams to fill the open mods</b>Slam Greater (cheaper) or Perfect (final-tier guarantee) Exalts to fill empty prefix/suffix slots. Use <strong>Sinistral/Dextral Exaltation</strong> to target which side the mod lands on. On jewellery, apply catalysts first, then slam under <strong>Omen of Catalysing Exaltation</strong> for a tag-biased result.
+                        <span class="why">This is the main slot-filling move. Side-targeting omens keep slams from overfilling a side; on jewellery the catalyst bias narrows the pool toward what you want.</span>
                     </li>
                     <li><b>Desecrate for the exclusive mod</b>If a Lich modifier helps the build (chaos res, penetration, spirit), apply a Preserved or Ancient Bone (with Sinistral/Dextral Necromancy omen). Reveal with Abyssal Echoes active. Use Light + Annul to retry if needed.
                         <span class="why">Lich modifiers are unavailable through ordinary crafting and often build-defining. Desecrate-loop until landed; the cost-per-attempt is modest.</span>
@@ -1778,7 +1773,7 @@ footer.site-footer a {
                         <span class="why">The annul reopens a slot for one final premium slam. Doing it before fracturing keeps options open; doing it after fracturing risks locking the wrong mod.</span>
                     </li>
                     <li><b>Fracture (optional, high-end only)</b>If the item now has 4+ excellent mods and you intend to push toward a 6-mod perfect roll, fracture. Pray the fracture lands on a high-value mod. If it does, proceed; if not, evaluate whether the fracture-on-this-mod is still acceptable.
-                        <span class="why">Fracture is the gateway to the isolation trick (Trick II) and to safely-corrupting an item without losing the most valuable mod. Skip on items below mirror tier.</span>
+                        <span class="why">Fracture is the gateway to the isolation trick (Trick I) and to safely-corrupting an item without losing the most valuable mod. Skip on items below mirror tier.</span>
                     </li>
                     <li><b>Final slams — Perfect Exalt / Perfect Essence</b>Open slots get filled with Perfect-tier currency under appropriate omens. Crystallisation omens if replacing a filler with a Perfect Essence. Sinistral/Dextral Exaltation if just adding a missing-side mod.
                         <span class="why">Perfect tiers cost a lot but lift the modifier-tier floor. Doing this last means you only spend Perfect-currency once the item is otherwise final.</span>
@@ -1917,7 +1912,7 @@ footer.site-footer a {
                 </ul>
 
                 <h3 class="sub-title">Reading a Modifier on PoE2DB</h3>
-                <p>The typical line looks like: <code>"#% increased Maximum Life [life · defence] Tier 1 · ilvl 81 · weight 600"</code>. The bracketed terms are the tags. The Tier and ilvl gate when it can roll. The weight is the relative probability of that specific mod among all mods that could possibly roll at that point in the craft. Heavier weight = more likely. Some elite-tier mods carry very low weights (e.g. weight 100 vs the standard 600–1000), and those are the ones that homogenising omens and tag-based exalt manipulation are designed to fish out.</p>
+                <p>The typical line looks like: <code>"#% increased Maximum Life [life · defence] Tier 1 · ilvl 81 · weight 600"</code>. The bracketed terms are the tags. The Tier and ilvl gate when it can roll. The weight is the relative probability of that specific mod among all mods that could possibly roll at that point in the craft. Heavier weight = more likely. Some elite-tier mods carry very low weights (e.g. weight 100 vs the standard 600–1000), and those are the ones that tag-based exalt manipulation — Catalysing Exaltation and tag-aware essence choice — is designed to fish out.</p>
             </section>
 
             <!-- ───────────────────────────────────────────────
@@ -1937,7 +1932,7 @@ footer.site-footer a {
 
                 <h3 class="sub-title">What Changes Between Patches</h3>
                 <ul>
-                    <li><strong>Omen list</strong> — new omens have been added across 0.2, 0.3, and 0.4. The Homogenising Coronation omen was removed in 0.4; Crystallisation omens were retuned in 0.3.</li>
+                    <li><strong>Omen list</strong> — new omens have been added across 0.2, 0.3, and 0.4. The <strong>Omen of Homogenising Exaltation</strong> and <strong>Omen of Homogenising Coronation</strong> had their drops disabled in 0.4 (existing copies stay functional); Crystallisation omens were retuned in 0.3.</li>
                     <li><strong>Essence list</strong> — Essence of the Abyss and several others were added in 0.3.0. Perfect Essence of Sorcery can no longer be used on Focus (0.4 change).</li>
                     <li><strong>Drop rates &amp; costs</strong> — these shift every patch and every week of a league. Currency Exchange prices are the live source-of-truth, not codex values.</li>
                 </ul>
@@ -1945,8 +1940,9 @@ footer.site-footer a {
                 <h3 class="sub-title">Patch 0.5 Status</h3>
                 <p>The <strong>0.5.0 patch notes are released</strong> (21 May 2026). §XV has been <strong>reconciled against them</strong>; confirmed contradictions elsewhere in the codex (catalyst acquisition, Greater currency rarity, essence value changes, the value-randomisation corruption outcome) are folded in. Cross-check <a href="https://poe2db.tw/us/" target="_blank" rel="noopener">PoE2DB</a> and in-game tooltips before any expensive craft — datamining lags real in-game behaviour by hours-to-days, and the codex follows live-game truth, not the other way around.</p>
 
-                <h3 class="sub-title">Removed / disabled in 0.5 — for the record</h3>
+                <h3 class="sub-title">Removed, disabled &amp; unobtainable in-league — for the record</h3>
                 <ul>
+                    <li><strong>Omen of Homogenising Exaltation</strong> — the tag-locked Exalt that older guides treat as the core deterministic move for "+# to Level of all X Skills" crafts. Its drops were disabled back in <strong>0.4</strong>, so it is <strong>not obtainable in the Runes of Aldur league</strong>; legacy copies remain functional and tradeable only in <strong>Standard</strong>. Tag-locked level-of-skill crafting is therefore a Standard-only technique — in league, the live tag tools are Catalysing Exaltation and tag-aware essences (see §VI, §VII). This omen and its uses have been removed from the crafting body of this codex for that reason. <em>Mentioned here so the technique isn't forgotten if drops are ever re-enabled.</em></li>
                     <li><strong>Recombinators</strong> (formerly §IX) — the Expedition-fuelled bench that combined two items of the same class into a single output with a chosen mod subset. <strong>Disabled for the duration of The Runes of Aldur league</strong> alongside the rest of Expedition; expected to return when Expedition reintegrates into Standard. The deterministic two-mod-starter trick that lived in §XIII Tricks (formerly Trick III) and the recombinate-for-fractured-tag option in the §XIV workflow both relied on it — they're removed from this codex while the bench is offline. <em>Mentioned here so the mechanic isn't forgotten when it comes back.</em></li>
                     <li><strong>Omen of Recombination</strong> — paired with the Recombinator (rolled success chance twice, took the better outcome). Removed in 0.5; existing copies deleted on login.</li>
                     <li><strong>Omen of Corruption</strong> — could no longer be obtained as of 0.5 (the patch notes removed it from the drop / vendor pool). All references stripped from this codex.</li>
