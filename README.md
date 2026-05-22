@@ -3,15 +3,15 @@
 A free, interactive Path of Exile 2 guide covering campaign leveling (Acts I–IV plus Interludes), endgame Atlas progression, and a full crafting codex (currencies, omens, essences, breakpoints, the tag system, recombinators, and more).
 
 **Live site:** [domistae.github.io/poe2-leveling](https://domistae.github.io/poe2-leveling/)
-**Target patch:** PoE2 patch 0.5 (Return of the Ancients) — currently pre-patch, 0.4 is live. Updates will follow on/after 29 May 2026.
+**Target patch:** PoE2 patch 0.5 (Return of the Ancients) — patch notes released 21 May 2026; the guide is reconciled against them. Patch ships 29 May 2026.
 
 ## What's covered
 
 **Campaign Leveling** — Acts I–IV and the three Interludes. All permanent rewards, skill points, Ascendancy trial unlocks, and optimal pathing to minimise backtracking.
 
-**Endgame Atlas** — Mapping, the Atlas Passive Tree, league mechanics (Breach, Expedition, Abyss, Ritual, Delirium, Vaal Temple), the Fortress, Masters of the Atlas, and Pinnacle bosses, organised by compass heading.
+**Endgame Atlas** — Mapping, the new Atlas Passive Tree, the six 0.5 league storylines (Origins of Divinity / the Fortress, Delirium, Breach, Ritual, Fate of the Vaal, The Runes of Aldur), the revamped Abyss, Masters of the Atlas, and Pinnacle bosses (apex: Arbiter of Divinity), organised by compass heading.
 
-**Crafting Codex** — 18 sections covering item anatomy, ilvl & tier breakpoints, currency tiers (Lesser / Greater / Perfect), every essence, every omen, the tag system, desecration / abyss bones, recombinators, fracturing orbs, catalysts, sockets / runes / soul cores, corruption, deterministic crafting tricks, the master workflow, and the Patch 0.5 additions (Verisium, Runeforging, Genesis Tree, liquid emotions).
+**Crafting Codex** — 18 sections covering item anatomy, ilvl & tier breakpoints, currency tiers (Lesser / Greater / Perfect), every essence, every omen, the tag system, desecration / abyss bones, recombinators (currently disabled for the 0.5 league), fracturing orbs, catalysts, sockets / runes / soul cores, corruption, deterministic crafting tricks, the master workflow, and the Patch 0.5 additions (Verisium, Runeforging, Runic Ward, Runic Alloys, Ancient Runes, Genesis Tree, liquid emotions).
 
 ## Features
 
