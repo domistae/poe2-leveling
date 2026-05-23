@@ -1402,7 +1402,7 @@ footer.site-footer a {
                 </ol>
 
                 <h3 class="sub-title">Failed Desecrate? Use Omen of Light</h3>
-                <p>If the reveal gave you nothing usable, you have an unwanted Desecrated mod on the item. <strong>Omen of Light</strong> + an Orb of Annulment removes <em>only</em> the desecrated mod. Then apply a new bone and try again. This is the chase loop — most endgame desecration crafts involve 3–8 cycles.</p>
+                <p>If the reveal gave you nothing usable, you have an unwanted Desecrated mod on the item. <strong>Omen of Light</strong> + an Orb of Annulment removes <em>only</em> the desecrated mod. Then apply a new bone and try again. This is the chase loop — most endgame desecration crafts involve a variable number of cycles depending on the target mod's weight.</p>
 
                 <div class="callout">
                     <span class="label">Essence of the Abyss synergy</span>
@@ -1626,13 +1626,13 @@ footer.site-footer a {
                             <strong>How</strong>
                             <ol>
                                 <li>Item: 5 mods (e.g. 2 prefixes, 3 suffixes), one unwanted. Identify which side it lives on.</li>
-                                <li>Activate the side-omen that <em>keeps the unwanted mod targetable</em>: <strong>Sinistral Annulment</strong> if the unwanted is a prefix, <strong>Dextral Annulment</strong> if it is a suffix. This removes the entire opposite side from the annul's pool.</li>
+                                <li>Activate the side-omen for the unwanted mod's side: <strong>Sinistral Annulment</strong> if the unwanted is a prefix, <strong>Dextral Annulment</strong> if it is a suffix. The omen restricts the annul to that side only, removing the entire opposite side from the pool.</li>
                                 <li>Fracture a <em>good mod on the same side as the unwanted one</em>. A fractured mod cannot be annulled, so this removes another candidate from the legal pool.</li>
                                 <li>Repeat fractures on that side until exactly one un-fractured mod remains on the targetable side — the unwanted one.</li>
                                 <li>Use Orb of Annulment. With only one legal target left, the result is deterministic.</li>
                             </ol>
                         </div>
-                        <p class="why">The side-omen halves the pool; each fracture on the <em>targetable</em> side removes one more candidate. A 2-prefix item needs one fracture to isolate a bad prefix; a 3-suffix side needs two fractures to isolate a bad suffix. Plan the fracture budget against the side count before committing — and never fracture on the side the omen already excluded, since that side contributes nothing to the annul pool.</p>
+                        <p class="why">The side-omen halves the pool; each <em>successful</em> fracture on the targetable side removes one more candidate, so you need enough protected mods on that side that only the unwanted mod is left unprotected. Fracturing locks a random mod, so budget for missed fractures — a "one fracture" plan only works if the fracture actually lands on the mod you wanted to protect. Never fracture on the side the omen already excluded; that side contributes nothing to the annul pool.</p>
                     </div>
 
                     <!-- TRICK II -->
@@ -1649,24 +1649,24 @@ footer.site-footer a {
                                 <li>If miss: activate <strong>Omen of Light</strong>, annul the bad desecrated mod, repeat from step 1.</li>
                             </ol>
                         </div>
-                        <p class="why">Each cycle costs one bone, one Light, and several omens. Each cycle gives six shots at the target. Three to five cycles typically lands the mod.</p>
+                        <p class="why">Each cycle costs one bone, one Light, and several omens, and gives several shots at the target. Expected cycles vary substantially with the target modifier's weight and the size of the reveal pool — a low-weight mod can take many more attempts than a common one.</p>
                     </div>
 
                     <!-- TRICK III -->
                     <div class="trick">
                         <span class="tag">Trick III · Targeted Replace</span>
                         <h4>Perfect Essence + Sinistral/Dextral Crystallisation</h4>
-                        <p>You have a finished Rare with one filler mod you'd like to upgrade to a specific Perfect Essence modifier. Crystallisation omens control which side the Perfect Essence removes.</p>
+                        <p>You have a finished Rare with one filler mod you'd like to upgrade to a specific Perfect Essence modifier. Crystallisation omens control which <em>side</em> the Perfect Essence removes from — not which specific mod on that side.</p>
                         <div class="how">
                             <strong>How</strong>
                             <ol>
-                                <li>Identify the side of the filler you want to replace.</li>
+                                <li>Identify the side of the filler. This trick is only safe when that side has <strong>exactly one removable mod</strong> — i.e. every other mod on that side is fractured or also acceptable to lose. Otherwise the essence may remove a good mod instead of the filler.</li>
                                 <li>Activate <strong>Dextral Crystallisation</strong> (suffix removal) or <strong>Sinistral Crystallisation</strong> (prefix removal).</li>
                                 <li>Apply the Perfect Essence (e.g. Perfect Essence of Battle for +5 levels of attack skills on a 2H weapon).</li>
-                                <li>Filler mod is removed; essence's powerful guaranteed mod takes its slot.</li>
+                                <li>The Perfect Essence removes a random modifier from the chosen side, then adds its guaranteed mod. If you reduced the side to a single removable mod, that removal is the filler.</li>
                             </ol>
                         </div>
-                        <p class="why">Perfect Essences are guaranteed-mod but uncontrolled-removal. Crystallisation omens turn that removal deterministic, so the worst-case is no longer "lost a T1 prefix" — it's "lost a known filler."</p>
+                        <p class="why">Perfect Essences are guaranteed-mod but uncontrolled-removal. Crystallisation omens constrain the removal to one side, which halves the risk — but they do not make it deterministic. To make it deterministic, fracture the good mods on the chosen side first so only the filler remains removable.</p>
                     </div>
 
                     <!-- TRICK IV -->
@@ -1682,7 +1682,7 @@ footer.site-footer a {
                                 <li>Use Greater Exalted Orb. Result is biased toward the catalyst's tag.</li>
                             </ol>
                         </div>
-                        <p class="why">Not fully deterministic (the bias magnitude isn't documented), but a meaningful tilt — and catalyst quality is cheap relative to omen costs.</p>
+                        <p class="why">Not fully deterministic, but a substantial tilt: the omen multiplies the weight of catalyst-tagged modifiers by roughly 5× at 20% catalyst quality and 7.5× at 40% (e.g. a Breach Ring). Weight is not the same as probability — an off-tag result is still possible, since the final odds depend on the rest of the mod pool — but catalyst quality is cheap relative to omen costs, so the tilt is worth taking.</p>
                     </div>
 
                     <!-- TRICK V -->
@@ -1695,10 +1695,10 @@ footer.site-footer a {
                             <ol>
                                 <li>Activate <strong>Omen of Whittling</strong>.</li>
                                 <li>Hover Chaos Orb over the item — the mod with the <em>lowest item-level requirement</em> is highlighted.</li>
-                                <li>If that's the garbage mod, use the Chaos. It's replaced with a new random mod (which is at least equal to its replacement target's ilvl).</li>
+                                <li>Confirm the highlighted mod is the one you want gone <em>before</em> committing — the lowest item-level mod is not always the garbage mod. If it is, use the Chaos; it's replaced with a new random mod.</li>
                             </ol>
                         </div>
-                        <p class="why">Whittling deterministically picks the lowest-level mod (not lowest-tier). Garbage T9 mods almost always have the lowest ilvl requirement on an otherwise high-tier item. The omen is expensive but the cleanup is surgical.</p>
+                        <p class="why">Whittling deterministically picks the mod with the lowest item-level requirement — which is <em>not</em> the same as the lowest tier. A high-tier mod can have a low level requirement, and a low-tier mod a high one. Never assume the target: hover-check the highlight every time before committing the Chaos.</p>
                     </div>
 
                     <!-- TRICK VI -->
@@ -1713,7 +1713,7 @@ footer.site-footer a {
                                 <li>Pick your base. Open the emulator (not the calculator).</li>
                                 <li>Drag the exact omens and currencies you plan to use. Step through.</li>
                                 <li>Use the calculator side-by-side to verify the mod pool, weights, and tag overlaps.</li>
-                                <li>If the simulated outcome is acceptable 80% of the time, run it in-game.</li>
+                                <li>Compare the simulated expected cost against your budget and risk tolerance — a cheap craft can be worth running at 40–50% acceptable, a mirror-tier craft may need &gt;90%. There is no single threshold.</li>
                             </ol>
                         </div>
                         <p class="why">Real currency is expensive. Sandbox time is free. Two iterations in the sandbox before a real craft will save more divines than any other single habit.</p>
