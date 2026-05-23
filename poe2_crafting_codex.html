@@ -1656,17 +1656,17 @@ footer.site-footer a {
                     <div class="trick">
                         <span class="tag">Trick III · Targeted Replace</span>
                         <h4>Perfect Essence + Sinistral/Dextral Crystallisation</h4>
-                        <p>You have a finished Rare with one filler mod you'd like to upgrade to a specific Perfect Essence modifier. Crystallisation omens control which <em>side</em> the Perfect Essence removes from — not which specific mod on that side.</p>
+                        <p>You have a finished Rare with one filler mod you'd like to upgrade to a specific Perfect Essence modifier. The essence removes one existing modifier and adds its guaranteed mod; Crystallisation omens control which <em>side</em> the removal comes from — not which specific mod, and not where the new mod lands (the essence's mod has a fixed side of its own).</p>
                         <div class="how">
                             <strong>How</strong>
                             <ol>
-                                <li>Identify the side of the filler. This trick is only safe when that side has <strong>exactly one removable mod</strong> — i.e. every other mod on that side is fractured or also acceptable to lose. Otherwise the essence may remove a good mod instead of the filler.</li>
-                                <li>Activate <strong>Dextral Crystallisation</strong> (suffix removal) or <strong>Sinistral Crystallisation</strong> (prefix removal).</li>
-                                <li>Apply the Perfect Essence (e.g. Perfect Essence of Battle for +5 levels of attack skills on a 2H weapon).</li>
-                                <li>The Perfect Essence removes a random modifier from the chosen side, then adds its guaranteed mod. If you reduced the side to a single removable mod, that removal is the filler.</li>
+                                <li>Check which side the essence's guaranteed mod belongs to — e.g. Perfect Essence of Battle adds +levels of attack skills, a <strong>prefix</strong>; Perfect Essence of Haste adds attack speed, a <strong>suffix</strong>. The new mod lands on that side, so that side needs an open slot.</li>
+                                <li>Pick the Crystallisation omen for the side you want the <em>removal</em> taken from. If the essence's side already has an open slot, remove from the <strong>opposite</strong> side to clear a filler there. If the essence's side is full, you must remove from <strong>that</strong> side (matching omen) to free the slot — an omen cannot break the 3-prefix / 3-suffix cap.</li>
+                                <li>For a deterministic result, the side being removed from should hold <strong>exactly one removable mod</strong> — fracture or accept every other mod on it, so only the filler can be hit.</li>
+                                <li>Apply the Perfect (or Corrupted) Essence. It removes one mod from the omen-chosen side and places its guaranteed mod on its own fixed side.</li>
                             </ol>
                         </div>
-                        <p class="why">Perfect Essences are guaranteed-mod but uncontrolled-removal. Crystallisation omens constrain the removal to one side, which halves the risk — but they do not make it deterministic. To make it deterministic, fracture the good mods on the chosen side first so only the filler remains removable.</p>
+                        <p class="why">Perfect Essences are guaranteed-mod but uncontrolled-removal. Crystallisation omens constrain the removal to one side — they do not make it mod-specific. The removal is deterministic only when that side holds a single removable mod (e.g. the rest fractured). The common safe pattern: leave an open slot on the essence's side, then use the opposite-side omen to delete a known filler — your essence-side mods are never at risk.</p>
                     </div>
 
                     <!-- TRICK IV -->
@@ -1950,7 +1950,7 @@ footer.site-footer a {
                 </ul>
 
                 <h3 class="sub-title">A Last Word</h3>
-                <p>PoE2 crafting is a system of <em>narrowing constraints</em>. The cheapest crafts you'll do use one constraint at a time; the most expensive use eight stacked. The most-asked-for thing in this game's crafting Discord is "what's the deterministic version of this craft?" — and the answer is almost always "stack one more omen on top of what you're already doing." That's the whole game, and once you see it the rest is just remembering which omens exist.</p>
+                <p>PoE2 crafting is a system of <em>narrowing constraints</em>. The cheapest crafts you'll do use one constraint at a time; the most expensive use eight stacked. The most-asked-for thing in this game's crafting Discord is "what's the deterministic version of this craft?" — and the answer is almost always "stack one more omen on top of what you're already doing." That's the whole game, and once you see it the rest is just remembering which omens exist. One boundary is worth keeping in mind: an omen only changes the rules of the orb it pairs with — it never overrides the item's own rules, such as the cap of three prefixes and three suffixes. A craft that would require breaking that cap simply fails.</p>
 
                 <p>If you spot a factual error in this codex — a stale omen name, a re-balanced tier, a missed patch note — <a href="https://github.com/domistae/poe2-leveling/issues/new" target="_blank" rel="noopener">open an issue on GitHub</a>. Crafting changes every patch; this page changes with it. Corrections, additions, and feedback from fellow players are very welcome.</p>
             </section>
