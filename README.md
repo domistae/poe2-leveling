@@ -9,7 +9,7 @@ A free, interactive Path of Exile 2 guide covering campaign leveling (Acts I–I
 
 **Campaign Leveling** — Acts I–IV and the three Interludes. All permanent rewards, skill points, Ascendancy trial unlocks, and optimal pathing to minimise backtracking.
 
-**Endgame Atlas** — Mapping, the new Atlas Passive Tree, the six 0.5 league storylines (Origins of Divinity / the Fortress, Delirium, Breach, Ritual, Fate of the Vaal, The Runes of Aldur), the revamped Abyss, Masters of the Atlas, and Pinnacle bosses (apex: Arbiter of Divinity), organised by compass heading.
+**Endgame Atlas** — Mapping, the new Atlas Passive Tree, the **5 new endgame storylines** (Origins of Divinity / the Fortress, Delirium / Hare and Raven, Breach / Waking the Dreamer, Ritual / Rite of the Nameless, Masters of the Atlas), **2 core revamps** (Abyss, Fate of the Vaal), the new league **The Runes of Aldur**, and Pinnacle bosses (apex: Arbiter of Divinity), organised by compass heading.
 
 **Crafting Codex** — 18 sections covering item anatomy, ilvl & tier breakpoints, currency tiers (Lesser / Greater / Perfect), every essence, every omen, the tag system, desecration / abyss bones, recombinators (currently disabled for the 0.5 league), fracturing orbs, catalysts, sockets / runes / soul cores, corruption, deterministic crafting tricks, the master workflow, and the Patch 0.5 additions (Verisium, Runeforging, Runic Ward, Runic Alloys, Ancient Runes, Genesis Tree, liquid emotions).
 

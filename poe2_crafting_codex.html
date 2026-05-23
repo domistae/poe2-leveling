@@ -1345,7 +1345,7 @@ footer.site-footer a {
                 <ol>
                     <li>Acquire an <strong>Abyssal Bone</strong> from Abyss content (Abyssal Troves dropping after sealing a fissure, Abyssal Depths, the Dark Domain, or trade).</li>
                     <li>Apply the bone to a Rare item of the matching class. A green glyph (Desecrated modifier) is added. <em>If the item already has 6 mods, a random mod is removed first.</em></li>
-                    <li>Travel to the <strong>Well of Souls</strong> in Act 2 (through the Lightless Passage off Mastodon Badlands — has its own waypoint after first visit).</li>
+                    <li>Travel to the <strong>Well of Souls</strong> in Act 2 (through the Lightless Caverns off Mastodon Badlands — has its own waypoint after first visit).</li>
                     <li>Insert the item. Three modifier options appear. Pick one. The item is no longer desecrated; the chosen modifier is permanent.</li>
                 </ol>
 
@@ -1621,17 +1621,18 @@ footer.site-footer a {
                     <div class="trick">
                         <span class="tag">Trick I · Isolation</span>
                         <h4>Fracture + Sinistral/Dextral Annul</h4>
-                        <p>Deterministically delete a specific unwanted modifier. The classic mirror-tier crafting move.</p>
+                        <p>Deterministically delete a specific unwanted modifier. The goal is to shrink the Annulment's legal target pool — one constraint at a time — until only the unwanted mod remains as a legal hit.</p>
                         <div class="how">
                             <strong>How</strong>
                             <ol>
-                                <li>Item: 5 mods (e.g. 2 prefixes, 3 suffixes), one unwanted.</li>
-                                <li>Fracture a <em>good mod on the opposite side</em> from the unwanted one.</li>
-                                <li>Activate <strong>Sinistral Annulment</strong> (or Dextral, matching the unwanted's side).</li>
-                                <li>Use Orb of Annulment. The annul can only hit the targeted side; the fractured mod (other side) is safe; only one mod fits both constraints.</li>
+                                <li>Item: 5 mods (e.g. 2 prefixes, 3 suffixes), one unwanted. Identify which side it lives on.</li>
+                                <li>Activate the side-omen that <em>keeps the unwanted mod targetable</em>: <strong>Sinistral Annulment</strong> if the unwanted is a prefix, <strong>Dextral Annulment</strong> if it is a suffix. This removes the entire opposite side from the annul's pool.</li>
+                                <li>Fracture a <em>good mod on the same side as the unwanted one</em>. A fractured mod cannot be annulled, so this removes another candidate from the legal pool.</li>
+                                <li>Repeat fractures on that side until exactly one un-fractured mod remains on the targetable side — the unwanted one.</li>
+                                <li>Use Orb of Annulment. With only one legal target left, the result is deterministic.</li>
                             </ol>
                         </div>
-                        <p class="why">Fracture removes one option from the Annul's pool; the side-omen removes the other side entirely. With only one mod fitting both constraints, the result is deterministic.</p>
+                        <p class="why">The side-omen halves the pool; each fracture on the <em>targetable</em> side removes one more candidate. A 2-prefix item needs one fracture to isolate a bad prefix; a 3-suffix side needs two fractures to isolate a bad suffix. Plan the fracture budget against the side count before committing — and never fracture on the side the omen already excluded, since that side contributes nothing to the annul pool.</p>
                     </div>
 
                     <!-- TRICK II -->
@@ -1890,7 +1891,7 @@ footer.site-footer a {
 
                 <div class="callout aldur">
                     <span class="label">0.5 quick-reference</span>
-                    The endgame reorganises into <strong>5 new storylines</strong> (Fortress / Origins of Divinity, Delirium / Hare and Raven, Breach / Waking the Dreamer, Ritual / Rite of the Nameless, Masters of the Atlas), <strong>2 core revamps</strong> (Abyss and Vaal Temple / Fate of the Vaal — both already in PoE 2, both got Atlas placement + tree treatment in 0.5), and <strong>1 new league</strong> (The Runes of Aldur — "Explore the Uncharted Seas", with old Expedition disabled on Standard for the league's duration). Crafting-side: the Runes of Aldur core mechanic adds Remnants, Verisium, Runic Ward, Verisium Runeforging, Unique Verisium Runeforging, 13 Runic Alloys, 13 Ancient Runes, 13 Mythical runes, Fluxes, meta runes, and unique-destruction runes. Genesis Tree (under Breach) becomes the <em>sole</em> catalyst source. Liquid Emotion jewel crafts expand under Delirium. Ritual rewards are now unique-or-omen only. Ocean exploration via reworked Logbooks. Full endgame side in <a href="poe2_endgame_guide.html">the Endgame Guide</a>.
+                    The endgame reorganises into <strong>5 new storylines</strong> (Fortress / Origins of Divinity, Delirium / Hare and Raven, Breach / Waking the Dreamer, Ritual / Rite of the Nameless, Masters of the Atlas), <strong>2 core revamps</strong> (Abyss and Fate of the Vaal — both already in PoE 2, both got Atlas placement + tree treatment in 0.5), and <strong>1 new league</strong> (The Runes of Aldur — "Explore the Uncharted Seas", with old Expedition disabled on Standard for the league's duration). Crafting-side: the Runes of Aldur core mechanic adds Remnants, Verisium, Runic Ward, Verisium Runeforging, Unique Verisium Runeforging, 13 Runic Alloys, 13 Ancient Runes, 13 Mythical runes, Fluxes, meta runes, and unique-destruction runes. Genesis Tree (under Breach) becomes the <em>sole</em> catalyst source. Liquid Emotion jewel crafts expand under Delirium. Ritual rewards are now unique-or-omen only. Ocean exploration via reworked Logbooks. Full endgame side in <a href="poe2_endgame_guide.html">the Endgame Guide</a>.
                 </div>
             </section>
 
