@@ -62,6 +62,10 @@
             } catch (e) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
+            try {
+                var fs = parseFloat(localStorage.getItem('poe2-font-scale'));
+                if (fs >= 0.85 && fs <= 1.30) document.documentElement.style.setProperty('--user-font-scale', fs);
+            } catch (e) {}
         })();
     </script>
     <link rel="stylesheet" href="assets/base.css">
@@ -228,7 +232,7 @@
     font-family: 'IBM Plex Mono', monospace;
 }
 .header .subtitle, .subtitle {
-    color: var(--text-muted); font-size: 12.5px; font-style: italic;
+    color: var(--text-muted); font-size: 0.78125rem; font-style: italic;
 }
 
 /* Endgame banner under header */
@@ -237,7 +241,7 @@
     border: 1px solid var(--border-subtle);
     border-left: 3px solid var(--plum);
     padding: 0.7rem 1rem; margin: 0 0 1.5rem 0; border-radius: 4px;
-    font-size: 12px; color: var(--text-body);
+    font-size: 0.75rem; color: var(--text-body);
 }
 .endgame-banner .label, .banner-05 .label {
     font-family: 'Cinzel', serif; color: var(--plum); font-size: 10px;
@@ -298,7 +302,7 @@
 }
 .info-box ul { list-style: none; padding: 0; }
 .info-box li {
-    padding: 0.3rem 0; font-size: 12px; color: var(--text-body);
+    padding: 0.3rem 0; font-size: 0.75rem; color: var(--text-body);
     display: flex; align-items: flex-start; gap: 0.5rem;
 }
 .info-box .icon { color: var(--gold); font-size: 10px; line-height: 1.5; }
@@ -311,7 +315,7 @@
     padding: 0.55rem 1rem;
     margin: 1.5rem 0 0.5rem;
     color: var(--gold-deep);
-    font-size: 13px; font-weight: 600;
+    font-size: 0.8125rem; font-weight: 600;
     font-family: 'Cinzel', serif; letter-spacing: 0.8px;
     display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
     border-radius: 0 3px 3px 0;
@@ -370,7 +374,7 @@
 .step.completed .checkbox::after { content: '✓'; color: white; font-size: 10px; font-weight: bold; }
 [data-theme="dark"] .step.completed .checkbox::after { color: var(--bg-base); }
 .step-content {
-    flex: 1; padding: 0.45rem 0.75rem 0.45rem 0; font-size: 12.5px; color: var(--text-body);
+    flex: 1; padding: 0.45rem 0.75rem 0.45rem 0; font-size: 0.78125rem; color: var(--text-body);
 }
 .step-content .action { color: var(--text-primary); font-weight: 500; }
 .step-content .npc { color: var(--tan); font-weight: 500; }
@@ -438,7 +442,7 @@
     margin-top: 2rem; padding-top: 1rem;
     border-top: 1px solid var(--border-subtle);
     display: flex; justify-content: space-between;
-    font-size: 12px; font-family: 'Cinzel', serif; letter-spacing: 1px;
+    font-size: 0.75rem; font-family: 'Cinzel', serif; letter-spacing: 1px;
 }
 .footer-nav a { color: var(--gold); text-decoration: none; text-transform: uppercase; transition: color 0.15s; font-weight: 600; }
 .footer-nav a:hover { color: var(--gold-deep); }
@@ -492,13 +496,13 @@
     font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600;
 }
 .storyline-tagline {
-    color: var(--text-muted); font-style: italic; font-size: 12px;
+    color: var(--text-muted); font-style: italic; font-size: 0.75rem;
     margin-top: 0.35rem;
 }
 .storyline-body { padding: 1.5rem; }
 .storyline-body h3 {
     font-family: 'Cinzel', serif; color: var(--text-primary);
-    font-size: 14px; font-weight: 600; letter-spacing: 0.8px;
+    font-size: 0.875rem; font-weight: 600; letter-spacing: 0.8px;
     margin-top: 1.25rem; margin-bottom: 0.5rem; text-transform: uppercase;
 }
 .storyline-body h3:first-child { margin-top: 0; }
@@ -552,7 +556,7 @@
     background: var(--bg-elevated);
     border-left: 2px solid var(--gold);
     padding: 0.8rem 1rem; margin: 0.9rem 0;
-    font-size: 12.5px; border-radius: 0 3px 3px 0;
+    font-size: 0.78125rem; border-radius: 0 3px 3px 0;
     color: var(--text-body);
 }
 .callout.warn { border-left-color: var(--burnt); }
@@ -577,13 +581,13 @@
 }
 .card h4 {
     font-family: 'Cinzel', serif; color: var(--gold);
-    font-size: 13px; font-weight: 600; margin-bottom: 0.35rem; letter-spacing: 0.5px;
+    font-size: 0.8125rem; font-weight: 600; margin-bottom: 0.35rem; letter-spacing: 0.5px;
 }
 .card .role {
     font-family: 'IBM Plex Mono', monospace; color: var(--text-muted);
     font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.5rem;
 }
-.card p { color: var(--text-body); font-size: 12px; margin-bottom: 0.35rem; }
+.card p { color: var(--text-body); font-size: 0.75rem; margin-bottom: 0.35rem; }
 
 /* TOC */
 .toc {
@@ -613,7 +617,7 @@
 }
 .toc a {
     color: var(--text-body); text-decoration: none;
-    font-size: 12.5px; transition: color 0.15s; font-weight: 500;
+    font-size: 0.78125rem; transition: color 0.15s; font-weight: 500;
 }
 .toc a:hover { color: var(--gold); }
 .toc-meta {
@@ -677,7 +681,7 @@
 .act-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; gap: 1rem; flex-wrap: wrap; }
 .act-name {
     font-family: 'Cinzel', serif; color: var(--text-primary);
-    font-size: 15px; font-weight: 600; letter-spacing: 0.5px;
+    font-size: 0.9375rem; font-weight: 600; letter-spacing: 0.5px;
 }
 .act-entry.endgame .act-name { color: var(--plum); }
 .act-meta {
@@ -1949,7 +1953,7 @@
                         <li><strong><a href="https://poe.ninja/poe2" target="_blank" rel="noopener">poe.ninja/poe2</a></strong> — currency price tracking, build meta reference.</li>
                     </ul>
 
-                    <p style="margin-top: 1rem; padding-top: 0.8rem; border-top: 1px dotted var(--border-subtle); font-style: italic; color: var(--text-muted); font-size: 12px;">
+                    <p style="margin-top: 1rem; padding-top: 0.8rem; border-top: 1px dotted var(--border-subtle); font-style: italic; color: var(--text-muted); font-size: 0.75rem;">
                         Treat this guide as a quick reference, not as authoritative documentation — cross-check against PoE2DB and the live game before any expensive craft or commitment. The full disclaimer (warranty, attribution, liability) is on the <a href="index.html">index page</a>. If you are the author of a video, guide, dataset, or other resource referenced (directly or indirectly) here and would prefer not to be cited or summarised, please <a href="https://github.com/domistae/poe2-leveling/issues/new" target="_blank" rel="noopener">open an issue</a> and the reference will be removed promptly.
                     </p>
                 </div>

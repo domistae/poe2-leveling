@@ -62,6 +62,10 @@
             } catch (e) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
+            try {
+                var fs = parseFloat(localStorage.getItem('poe2-font-scale'));
+                if (fs >= 0.85 && fs <= 1.30) document.documentElement.style.setProperty('--user-font-scale', fs);
+            } catch (e) {}
         })();
     </script>
 
@@ -176,7 +180,7 @@ a { color: inherit; }
     :root:not([data-theme="dark"]) .codex-title { text-shadow: none; }
     .codex-tagline {
         font-family: 'Inter', sans-serif;
-        font-size: 14px;
+        font-size: 0.875rem;
         color: var(--text-muted);
         letter-spacing: 0.04em;
         font-weight: 400;
@@ -227,7 +231,7 @@ a { color: inherit; }
     [data-theme="dark"] .whats-new-badge { border-color: rgba(184, 138, 210, 0.45); }
     .whats-new-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.55rem; }
     .whats-new-item {
-        font-size: 12.5px;
+        font-size: 0.78125rem;
         color: var(--text-body);
         line-height: 1.55;
         padding-left: 1.1rem;
@@ -387,7 +391,7 @@ a { color: inherit; }
     }
     .hero-card-desc {
         font-family: 'Inter', sans-serif;
-        font-size: 12.75px;
+        font-size: 0.8rem;
         line-height: 1.65;
         color: var(--text-body);
         margin: 0 auto 1.15rem;

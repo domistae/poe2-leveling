@@ -114,12 +114,19 @@
 
 /* ─── BASE ─────────────────────────────────────────────────── */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html {
+    scroll-behavior: smooth;
+    /* Leaves room for the sticky .top-nav so anchor jumps don't hide the target heading. */
+    scroll-padding-top: 4rem;
+    /* 100% = user's browser default (usually 16px). --user-font-scale is written by
+       the font-scaler JS before first paint so this compounds with the browser pref. */
+    font-size: calc(100% * var(--user-font-scale, 1));
+}
 body {
     font-family: 'Inter', 'IBM Plex Sans', system-ui, sans-serif;
     background: var(--bg-base);
     color: var(--text-body);
-    font-size: 13.5px;
+    font-size: 0.84375rem;   /* was 13.5px — scales with html font-size now */
     line-height: 1.6;
     min-height: 100vh;
     font-weight: var(--body-weight);
@@ -160,6 +167,44 @@ body::before {
     box-shadow: var(--shadow-md);
 }
 .theme-toggle .icon { font-size: 13px; }
+
+/* ─── FONT SCALER (stacks directly below theme-toggle) ─────── */
+.font-scaler {
+    position: fixed;
+    top: 3.5rem; right: 1rem;
+    z-index: 1000;
+    display: flex; align-items: center;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-accent);
+    border-radius: 100px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+.font-scaler:hover { border-color: var(--gold); box-shadow: var(--shadow-md); }
+.font-scaler button {
+    background: transparent; border: 0; cursor: pointer;
+    color: var(--text-body);
+    padding: 0.45rem 0.7rem;
+    font-size: 12px; font-weight: 600;
+    font-family: 'Inter', 'IBM Plex Sans', sans-serif;
+    transition: color 0.15s, background 0.15s;
+    line-height: 1;
+}
+.font-scaler button:hover { color: var(--gold); background: var(--bg-elevated); }
+.font-scaler button:disabled { color: var(--text-dim); cursor: not-allowed; }
+.font-scaler .scale-label {
+    padding: 0 0.45rem;
+    font-size: 11px; color: var(--text-muted);
+    border-left: 1px solid var(--border-subtle);
+    border-right: 1px solid var(--border-subtle);
+    min-width: 2.8rem; text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    pointer-events: none;
+}
+
 /* ─── TOP NAV ─────────────────────────────────────────────── */
 .top-nav {
     background: var(--bg-elevated);
@@ -218,10 +263,17 @@ body::before {
     background: var(--overlay-gold-strong);
 }
 @media (max-width: 700px) {
+    /* Mobile nav can wrap onto multiple rows, so bump scroll-padding to clear it. */
+    html { scroll-padding-top: 6rem; }
     /* Reserve right padding so the fixed theme-toggle doesn't sit on top of nav links */
     .top-nav { padding: 0.5rem 5.25rem 0.5rem 0.75rem; flex-wrap: wrap; }
     .top-nav-links { gap: 0.3rem; }
     .top-nav-link { padding: 0.25rem 0.55rem; font-size: 9.5px; letter-spacing: 1px; }
+    /* Font scaler stacks below theme-toggle on mobile; hide percent to save space */
+    .font-scaler { top: 2.65rem; right: 0.5rem; }
+    .font-scaler .scale-label { display: none; }
+    .font-scaler button { padding: 0.35rem 0.6rem; }
+    .theme-toggle { top: 0.5rem; right: 0.5rem; padding: 0.4rem 0.7rem; font-size: 10.5px; }
 }
 
 

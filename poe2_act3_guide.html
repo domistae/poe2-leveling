@@ -59,6 +59,10 @@
             } catch (e) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
+            try {
+                var fs = parseFloat(localStorage.getItem('poe2-font-scale'));
+                if (fs >= 0.85 && fs <= 1.30) document.documentElement.style.setProperty('--user-font-scale', fs);
+            } catch (e) {}
         })();
     </script>
     <link rel="stylesheet" href="assets/base.css">
