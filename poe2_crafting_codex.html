@@ -742,6 +742,11 @@ footer.site-footer a {
                 Ships <strong>May 29, 2026</strong>. The Runes of Aldur league adds <strong>Verisium</strong>, <strong>Runeforging</strong>, <strong>Runic Alloys</strong>, a <strong>Genesis Tree</strong> crafting bench under Breach, and <strong>liquid emotion</strong> jewel crafts under Delirium. All flagged inline; full coverage in <a href="#aldur">§XV</a>.
             </div>
 
+            <div class="callout warn">
+                <span class="label">Caution — 0.5 crafting limit</span>
+                An addition to the 0.5 patch notes restricts every item to <strong>one crafted modifier</strong> and <strong>one desecrated modifier</strong>. Essences, perfect essences, and the new imbued alloys appear to share the same "crafted" slot, so stacking deterministic crafts on a single item is no longer possible. Expect noticeably weaker league-start gear — Martial weapons hit hardest, spell builds least affected — and more slam-and-pray beyond your one guaranteed mod. Read the rest of this codex — especially <a href="#tricks">§XIII Adept's Tricks</a> — with extra caution; many of the chained-essence techniques may no longer apply. A proper rewrite will follow once the league goes live and the surviving patterns are confirmed.
+            </div>
+
             <div class="intro-block">
                 <p><strong>How to read this codex.</strong> Sections I–IV are the foundation — what an item <em>is</em>, the orb hierarchy, the essence types. V–VIII are the precision tools (essences, omens, tags, abyss). IX is the deterministic lock — Fracturing Orbs. X–XII are the finishing layers (quality, sockets, corruption). XIII is the showpiece: the tricks streamers actually use to deterministically craft endgame pieces. XIV is the canonical order in which to apply everything. XV is what changes on May 29.</p>
                 <p>You do not need to read it linearly. Each section is self-contained and cross-links to the others when relevant. If you want one place to start: <a href="#tags">the tag system</a> is one of the most useful concepts to understand early, and it is poorly documented in-game.</p>
@@ -1021,6 +1026,12 @@ footer.site-footer a {
                                 <td>Upgrades directly to Rare with random mods (typically 4).</td>
                                 <td>Mostly used on Waystones for endgame mapping, not on gear.</td>
                             </tr>
+                            <tr>
+                                <td><strong>Orb of Chance</strong></td>
+                                <td>Normal</td>
+                                <td>Upgrades to a random <em>Unique</em> item of the same base. On failure the item is destroyed.</td>
+                                <td>Almost never used on gear (destruction risk). Common base-gambling loop pairs it with <em>Omen of Chance</em> (no destruction) or <em>Omen of the Ancients</em> (guaranteed Unique) — see <a href="#omens">§VI</a>.</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -1182,7 +1193,7 @@ footer.site-footer a {
                 </div>
 
                 <h3 class="sub-title">Side-Targeting Omens</h3>
-                <p>The bread-and-butter omens. Every endgame craft uses these. They tell a currency to only hit prefixes (Sinistral) or only suffixes (Dextral).</p>
+                <p>The bread-and-butter omens. Every endgame craft uses these. They tell a currency to only hit prefixes (Sinistral) or only suffixes (Dextral). The Alchemy variants gain relevance under the 0.5 one-crafted-modifier limit — Alchemy + side-targeting is one of the few ways to put a guaranteed-side 4-mod base into play without spending the single essence slot.</p>
 
                 <div class="tbl-wrap">
                     <table>
@@ -1202,6 +1213,8 @@ footer.site-footer a {
                             <tr><td><strong>Omen of Dextral Coronation</strong></td><td>Regal Orb</td><td>Next Regal only adds a <em>suffix</em>.</td></tr>
                             <tr><td><strong>Omen of Sinistral Necromancy</strong></td><td>Abyssal Bone</td><td>Next desecration only adds a <em>prefix</em>.</td></tr>
                             <tr><td><strong>Omen of Dextral Necromancy</strong></td><td>Abyssal Bone</td><td>Next desecration only adds a <em>suffix</em>.</td></tr>
+                            <tr><td><strong>Omen of Sinistral Alchemy</strong></td><td>Orb of Alchemy</td><td>Next Alchemy adds the maximum number of <em>prefixes</em>.</td></tr>
+                            <tr><td><strong>Omen of Dextral Alchemy</strong></td><td>Orb of Alchemy</td><td>Next Alchemy adds the maximum number of <em>suffixes</em>.</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -1248,6 +1261,23 @@ footer.site-footer a {
                     </div>
                 </div>
 
+                <h3 class="sub-title">Chance-Orb Omens</h3>
+                <p>The two omens that turn Orb of Chance from a destruction gamble into a controllable craft. Both are scarce and tradeable on the Currency Exchange.</p>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>Omen of Chance</h4>
+                        <div class="role">Pairs with Orb of Chance</div>
+                        <p>The next Orb of Chance <strong>does not destroy</strong> the item on failure. Converts the orb into a non-punitive reroll on a Normal base.</p>
+                        <p>The omen that makes Chance-orb base hunting practical. Without it, missing a Unique consumes the base.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Omen of the Ancients</h4>
+                        <div class="role">Pairs with Orb of Chance</div>
+                        <p>The next Orb of Chance <strong>guarantees</strong> an upgrade to a random Unique item of the same base type — failure becomes impossible.</p>
+                        <p>Used on bases where every Unique outcome is valuable (e.g. specific helmet or boot bases with a small Unique pool). Pair with farmed bases of the target type.</p>
+                    </div>
+                </div>
+
                 <h3 class="sub-title">Abyss-Specific Omens</h3>
                 <div class="card-grid">
                     <div class="card">
@@ -1264,6 +1294,12 @@ footer.site-footer a {
                         <h4>Omens of the Blackblooded / Liege / Sovereign</h4>
                         <div class="role">Pairs with Desecration</div>
                         <p>Each <strong>guarantees</strong> the next desecration rolls from a specific <strong>lich's</strong> pool — <em>Blackblooded → Kurgal</em>, <em>Liege → Amanamu</em>, <em>Sovereign → Ulaman</em>. When you know which lich carries the desecrated mod you want, this is the targeting layer on top of the side-targeting Necromancy omens.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Omen of Putrefaction <span class="tag-pill">0.5 caveat</span></h4>
+                        <div class="role">Pairs with Abyssal Bone</div>
+                        <p>Historically: the next desecration <strong>replaces every modifier</strong> on the item with Desecrated modifiers (up to 6) and corrupts the item — the source of the legendary "6-desecrated-mod" crafted items.</p>
+                        <p>Under the 0.5 one-desecrated-modifier cap this interaction can no longer produce a 6-desecrated item as written; treat the legacy behaviour as Standard-only and confirm the omen's reworked tooltip in-game before spending one. Existing 6-desecrated items remain functional.</p>
                     </div>
                 </div>
 
