@@ -1232,7 +1232,7 @@
                     <h3>New Breach mechanics</h3>
                     <ul>
                         <li><strong>Progress bar</strong> on starting a breach — shows time-to-close and how much each kill extends it. Reaching 100% creates a <strong>Stabilised Breach</strong>, which spawns new challenges at its start point.</li>
-                        <li>Stable breaches drop <strong>Hiveblood</strong> — the resource needed to feed the Genesis Tree.</li>
+                        <li><strong>Hiveblood</strong> accumulates from killing Hiveborn generally (stabilised Breaches and Marshal drops are the densest sources, but any Hiveborn kill contributes) — it's the resource needed to feed the Genesis Tree.</li>
                         <li>Sometimes you''ll attract a <span class="tag boss">Vruun, Marshal of Xesht</span> — drops <strong>Wombgifts</strong>.</li>
                         <li>Completing nearby maps grants points for the (revamped) <strong>Breach Atlas Passive Tree</strong>.</li>
                     </ul>
@@ -1245,6 +1245,10 @@
                         <li>Right branch → new <strong>caster mods on rings</strong> (extra spell elemental damage, niche options like unleash-seal generation rate).</li>
                         <li>Left branch → new <strong>minion mods on rings</strong> — closes the long-standing gap between attack-only and caster/minion crafting density.</li>
                         <li>Also covers belts and currency — e.g. a belt mod granting added lightning damage. New <strong>jewel catalysts</strong> (distinct from the existing jewellery catalysts that quality up rings and amulets) add quality to <em>passive-tree jewels</em> — letting you push attack-modifier jewels well past their normal ceiling.</li>
+                        <li><strong>Currency branch (Exalted path):</strong> <em>For the Price of One</em> births one extra Exalted Orb each time you birth one; <em>Riches Beget Riches</em> adds a chance to birth <strong>ten</strong> more; <em>Refuse Emptiness</em> blocks Orbs of Annulment and Transmutation from the pool, concentrating it toward pure Exalted.</li>
+                        <li><strong>Amulet branch:</strong> <em>Imbue the Body</em> guarantees a chosen resistance on birthed amulets (e.g. Fire), with a follow-up node raising that resistance's <strong>minimum modifier level</strong>. <em>Jewel of the Lords</em> is a multi-select node granting a <strong>Breachlord mutation</strong> — e.g. Xoph's, making Volcanoes crit twice as often.</li>
+                        <li><strong>Ring branch:</strong> can birth <strong>Breach Rings</strong> at higher quality than otherwise obtainable; combined with a currency-branch item this reaches <strong>65% max quality</strong> — a strong Mind Over Matter target.</li>
+                        <li><strong>Belt branch:</strong> also rolls minion and caster mods. Minion tiers <em>Stench of Carrion</em> → <em>Necrosis</em> (always one) → <em>Wrapped in Dread</em> (always two); caster tiers <em>Imperfect Sacrifice</em> → <em>Sorcerer's Scar</em> (always one) → <em>Branded with Hexes</em> (always two). <!-- VERIFY ring vs belt split on live tree --></li>
                         <li><strong>Free respec</strong> — toggle nodes on/off any time.</li>
                     </ul>
 
@@ -1627,7 +1631,7 @@
                 <div class="storyline-body">
                     <p>Atlas Masters are ascendancy-style endgame progression. Each master has <strong>12 nodes; 4 selectable at once</strong>, selection changeable any time. <strong>All three masters can be allocated simultaneously</strong>, with a quick-select to switch the active master before a map. Rows of 3 nodes unlock by performing missions.</p>
 
-                    <p>Unlock conditions (0.5 confirmed): Doryani via clearing a <strong>corruption nexus</strong>; Hilda via visiting <strong>Hilda's Campsite</strong> (south-west of the start); Jado via completing an <strong>anomaly map</strong> near the start.</p>
+                    <p>Unlock conditions (0.5 confirmed): Doryani via clearing a <strong>corruption nexus</strong>; Hilda via visiting <strong>Hilda's Campsite</strong> (south-west of the start); Jado via opening an <strong>Ancient Vaal Vault</strong> (just north of the start).</p>
 
                     <div class="card-grid">
                         <div class="card">
@@ -1635,17 +1639,26 @@
                             <div class="role">Order of the Djinn · artifact recovery</div>
                             <p>Sends you to investigate strange Atlas occurrences and recover artifacts.</p>
                             <p><strong>Lvl 1 picks:</strong> massive rare/unique chest chance, all map bosses drop +1 unique, or corrupted waystones get an extra modifier (cost: sent to a totally unknown location).</p>
+                            <p>Also: more unique items, more unique strongboxes, more unique <em>content</em> (e.g. anomaly maps), and a new unique strongbox that grants <strong>reliquary keys</strong> for still more uniques.</p>
                         </div>
                         <div class="card">
                             <h4>Hilda</h4>
                             <div class="role">Monster Hunters Guild · assassinations</div>
                             <p>Sends you to kill specific deadly creatures and harvest parts.</p>
                             <p><strong>Sample picks:</strong> 25% chance to upgrade map bosses to powerful versions; Azmerian spirits skip rares and target unique bosses instead; pinnacles get one attempt only but always drop two uniques.</p>
+                            <p><strong>Boss-farming combo:</strong> cut open Pinnacle bosses for a chance at another unique; release Azmeri wisps from unique monsters on death; add a <strong>second unique boss</strong> to maps; and make bosses already modified by other mechanics even stronger and more rewarding — stacked together this is the boss-killing master.</p>
                         </div>
                         <div class="card">
                             <h4>Doryani</h4>
-                            <div class="role">Doryani's Science · third master</div>
-                            <p><strong>Unlock:</strong> clear a <strong>corruption nexus</strong>. Patch-confirmed in 0.5.</p>
+                            <div class="role">Doryani's Science · corruption-nexus specialist</div>
+                            <p><strong>Unlock:</strong> clear a <strong>corruption nexus</strong> (SE of the start).</p>
+                            <p><strong>Signature picks:</strong></p>
+                            <ul>
+                                <li><em>Terraform</em> — after each map, convert the Atlas from one biome to another; combine with biome-targeted tree nodes to funnel specific content.</li>
+                                <li><em>Waygate / laylines</em> — opens new precursor laylines after running maps, letting you skip ahead and travel fast (excellent for hunting Citadels).</li>
+                                <li><em>Strongbox Constructions</em> — adds a button to strongboxes to destroy them and spawn a rare <strong>construct</strong>; each box mod becomes a mod on the construct, so crafting the box first builds a juiced rare monster.</li>
+                                <li>Simple modifiers: an extra <strong>Revive</strong> per map; all maps <strong>Irradiated</strong> (+map level).</li>
+                            </ul>
                         </div>
                     </div>
 
@@ -1840,6 +1853,17 @@
                     </ul>
                     <p>These skills <strong>spend Runic Ward instead of mana</strong>, have no colour requirement, no attribute requirement, and don't care about your weapon. Designed to interact with mechanics that span all classes.</p>
 
+                    <h4>More Kalguuran skills (dedicated reveal)</h4>
+                    <ul>
+                        <li><em>Bitter Dead</em> — spends Ward to raise chilling volatile orbs; the cores seek enemies and explode, dealing damage and leaving a rune that deals cold damage over time.</li>
+                        <li><em>Detonate Living</em> — enemies hit while under the Cull threshold immediately explode (detonate the living, not corpses).</li>
+                        <li><em>Conductive Runes</em> — spends Ward to arm hazardous runes in front of you; they explode when an enemy steps on them, dealing lightning attack damage and building electrocution. Strong disengage / pursuer-control tool.</li>
+                        <li><em>Runeforged Blades</em> — supported skills fire projectiles after you <strong>fully armour-break</strong> an enemy; scales with pierce / chain.</li>
+                        <li><em>Eternal March</em> — instantly revives your dead minions. Panic button after a boss wipes your army, or fuel for minion-explosion builds. Heavy Ward cost leaves you exposed.</li>
+                        <li><em>Runic Reprieve</em> — channelled block spell that blocks all hits, including from behind (turtle without a shield). Each hit depletes Ward (no recovery while channelling) and builds heavy stun on you.</li>
+                        <li><em>Fragments of the Past</em> — creates a Verisium volcano that spews Ice Fragments for a duration; augments Ice Fragment builds, Cross Slash, Freezing Salvo, etc.</li>
+                    </ul>
+
                     <h3>Runic supports</h3>
                     <ul>
                         <li><em>Concussive Runes</em> — adds shockwaves to any stunning skill.</li>
@@ -1869,12 +1893,13 @@
                 <div class="storyline-body">
                     <h3>Atlas search box</h3>
                     <p>Live-updates as you type. Enter cycles between matches when multiple maps share the name.</p>
+                    <p>Search matches more than map names — you can also find <strong>biomes, bosses, and specific mods</strong>. This pairs with tablets: e.g. holding an Essence tablet, type <em>essence</em> to locate a map that boosts Essences (such as one giving Essence packs two rares each), then run the tablet there.</p>
 
                     <h3>In-client build guide system</h3>
                     <p>Community creators can now publish a standardised <strong>.build file</strong>. Once downloaded, builds appear in the in-game client. Selecting one shows passives to allocate, ascendancy points, gems and supports to take, uniques per slot or slot-notes for what kind of item to find. Creators can attach contextual notes anywhere and provide level-range recommendations so the build evolves as you level.</p>
 
                     <h3>Trade price-check</h3>
-                    <p><strong>Ctrl+Alt</strong> click an item now searches it on the trade market. Toggle individual mods on/off to see how each one affects the price.</p>
+                    <p><strong>Shift + Alt + left-click</strong> an item to instantly search it on the trade market, auto-applying the relevant filters. You can then <strong>toggle individual modifiers on/off</strong> to see how each affects the price — useful for excluding low-tier mods on rares.</p>
 
                     <h3>Fragment Stash Tab <span class="tag craft">now in PoE2</span></h3>
                     <p>Finally arrives in PoE2 — and with tab-ception. Inside one tab:</p>
@@ -1883,6 +1908,9 @@
                         <li>Precursor tablets — six tabs of storage per type.</li>
                         <li>Djinn Baryas + Inscribed Ultimatums — six tabs each.</li>
                     </ul>
+
+                    <h3>Socketables Stash Tab — reorganised <span class="tag craft">0.5</span></h3>
+                    <p>To fit all the new Runes of Aldur runes, the Socketables tab now splits into <strong>five sub-stashes</strong>: <strong>Runes</strong>, <strong>Kalguuran Runes</strong>, <strong>Soul Cores</strong>, <strong>Idols</strong>, and <strong>Ancient Augments</strong> — much more space for the expanded rune pool.</p>
                 </div>
             </section>
 
