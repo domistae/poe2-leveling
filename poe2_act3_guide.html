@@ -137,7 +137,7 @@
             </header>
             <div class="endgame-banner">
                 <span class="label">Patch 0.5 · Return of the Ancients</span>
-                Ships <strong>May 29, 2026</strong>. 5 new endgame storylines (Origins of Divinity · Delirium · Breach · Ritual · Masters of the Atlas) + 2 core revamps (Abyss, Fate of the Vaal) + 1 new league (The Runes of Aldur) —
+                Started <strong>May 29, 2026</strong>. 5 new endgame storylines (Origins of Divinity · Delirium · Breach · Ritual · Masters of the Atlas) + 2 core revamps (Abyss, Fate of the Vaal) + 1 new league (The Runes of Aldur) —
                 <a href="poe2_endgame_guide.html">read the endgame guide →</a>
             </div>
 
@@ -177,7 +177,7 @@
                 </ul>
             </div>
 
-            <div class="note new" style="margin-bottom:1.5rem;"><span class="label">0.5 Routing</span>Patch 0.5 <strong>rearranged Act 3's area order</strong> to smooth progression. The notes don't enumerate the new sequence — the zone order below reflects the 0.4 layout and is being re-verified against the live build. Use the sidebar zone list as the source of truth, and expect minor reordering of zone transitions.</div>
+            <div class="note new" style="margin-bottom:1.5rem;"><span class="label">0.5 Routing</span>The body now follows the live 0.5 order — <strong>Jungle Ruins &rarr; Venom Crypts &rarr; Infested Barrens &rarr; Chimeral Wetlands</strong> (matching the sidebar). Transitions are still being finalised in 0.5: for the moment you reach the <strong>Infested Barrens from the Jungle Ruins</strong>, and the <strong>Azak Bog</strong> is now reached later via the Matlan Waterways rather than from the Infested Barrens. Treat the exact transitions as provisional.</div>
 
             <!-- SANDSWEPT MARSH -->
             <div class="zone-header" id="sandswept">Sandswept Marsh <span class="lvl">Lvl 30</span></div>
@@ -188,69 +188,67 @@
             <div class="step" data-step="3"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Basket</span> at Orok Campsite <span class="reward-tag optional">Lesser Jeweller's Orb</span></div></div>
             <div class="step" data-step="4"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="skip">(Opt)</span> Hanging tree corpse <span class="reward-tag optional">Magic Ring</span></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> Hanging tree corpse <span class="reward-tag optional">Magic Ring</span> <span class="reward-tag gem">Skill Gem Lv9</span></div></div>
             <div class="step" data-step="5"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="skip">(Opt)</span> Lvl 33 Ring point of interest <span class="reward-tag optional">High-tier flat damage roll</span></div></div>
-            <div class="step" data-step="6"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Ziggurat Encampment</span></div></div>
 
             <!-- ZIGGURAT ENCAMPMENT -->
             <div class="zone-header" id="ziggurat">Ziggurat Encampment <span class="wp town">TOWN</span></div>
-            <div class="step" data-step="7"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="6"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Talk <span class="npc">Alva</span>, <span class="npc">Oswald</span>, <span class="npc">The Hooded One</span></div></div>
+            <div class="step" data-step="7"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Lvl 30 flask upgrade from the town vendor (<span class="npc">Servi</span>) &mdash; increased recovery + charges</div></div>
             <div class="step" data-step="8"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Talk to <span class="npc">Farrow</span> → accept Quest 3 <span class="reward-tag craft">Unlocks Unique Verisium Runeforging</span></div></div>
-            <div class="note new"><span class="label">0.5 New</span>Farrow's Act 3 quest unlocks <strong>Unique Verisium Runeforging</strong> — upgrade the base type of Unique Weapons/Armours that drop below level 55 into endgame-viable bases. Detail in the Crafting Codex.</div>
-            <div class="step" data-step="9"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Lvl 30 flask upgrade at <span class="npc">Rog</span> (increased recovery + charges)</div></div>
-            <div class="step" data-step="10"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Jungle Ruins</span> (top exit)</div></div>
 
             <!-- JUNGLE RUINS -->
-            <div class="zone-header" id="jungle">Jungle Ruins <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 30–31</span></div>
-            <div class="note new"><span class="label">0.5 Pathing</span>The jungle's <strong>explorer camps</strong> are no longer just vendors. <strong>Talk to the explorers</strong> — they point you toward the next area, and the destination is now <strong>revealed on your minimap</strong>. Cuts a lot of wandering out of the act.</div>
-            <div class="step" data-step="11"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="zone-header" id="jungle">Jungle Ruins <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 30&ndash;31</span></div>
+            <div class="note new"><span class="label">0.5 Pathing</span>The jungle's <strong>explorer camps</strong> are no longer just vendors. <strong>Talk to the explorers</strong> &mdash; they point you toward the next area, and the destination is now <strong>revealed on your minimap</strong>. Cuts a lot of wandering out of the act.</div>
+            <div class="note new"><span class="label">0.5 League</span><strong>Runes of Aldur:</strong> <span class="npc">Farrow</span> (first met back in Act 1) now appears at the <strong>start of the Jungle Ruins</strong> &mdash; and at the start of any zone holding a Runestone. Act 3 has <strong>three Runestones: Jungle Ruins, Venom Crypts and the Azak Bog</strong>; collect all three, then return to the Infested Barrens to advance his quest. Farrow's Act 3 step unlocks <strong>Unique Verisium Runeforging</strong> (upgrades the base type of sub-55 Unique weapons/armours into endgame-viable bases).</div>
+            <div class="step" data-step="9"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Talk to <span class="npc">Farrow</span> at the start &rarr; Runes of Aldur / Runeseeker <span class="reward-tag craft">Unlocks Unique Verisium Runeforging</span></div></div>
+            <div class="note new"><span class="label">0.5 Fate of the Vaal</span>A <strong>Vaal Beacon</strong> appears in the jungle &mdash; your first Fate-of-the-Vaal encounter (a red-stone ring that empowers the pack around it; that dense corrupted pack is the "warning"). Clear the pack to light a crystal. <strong>Six beacons</strong> across Act 3 open a portal to the <strong>Vaal Ruins</strong>. See the <a href="poe2_endgame_guide.html#fate-of-the-vaal">endgame guide &rarr;</a></div>
+            <div class="step" data-step="10"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Mighty Silverfist</span> <span class="reward-tag">+2 Skill Points</span></div></div>
-            <div class="note warning">Dodge slam SIDEWAYS (not backwards) — wave travels in attack direction</div>
+            <div class="note warning">Dodge slam SIDEWAYS (not backwards) &mdash; wave travels in attack direction</div>
+            <div class="step" data-step="11"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Jungle Grave (ravaged corpse) &rarr; <span class="npc">Servi</span> gives <span class="reward-tag">Rare Belt (choice)</span></div></div>
             <div class="step" data-step="12"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Jungle Grave (ravaged corpse) → <span class="npc">Servi</span> gives <span class="reward-tag">Rare Belt (choice)</span></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> Troubled Camp (<span class="npc">Gwendolyn Albright</span>) <span class="reward-tag">Guaranteed Rare Gloves</span></div></div>
             <div class="step" data-step="13"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="skip">(Opt)</span> Field vendor <span class="reward-tag">Guaranteed Rare Gloves</span></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> Activate the Jungle Ruins <span class="item">Runestone</span> (Runes of Aldur)</div></div>
             <div class="step" data-step="14"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Find WP near <span class="loc">Venom Crypts</span></div></div>
-            <div class="step" data-step="15"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Enter <span class="loc">Infested Barrens</span></div></div>
-
-            <!-- INFESTED BARRENS -->
-            <div class="zone-header" id="infested">Infested Barrens <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 31–32</span></div>
-            <div class="step" data-step="16"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Find/talk <span class="npc">Alva</span>, take WP near her</div></div>
-            <div class="step" data-step="17"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="skip">(Opt)</span> Field vendor <span class="reward-tag">Guaranteed Rare Boots</span></div></div>
-            <div class="step" data-step="18"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Enter <span class="loc">Chimeral Wetlands</span> → take WP → return</div></div>
-            <div class="step" data-step="19"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Enter <span class="loc">Azak Bog</span> → take WP → return</div></div>
-            <div class="step" data-step="20"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">TP to <span class="loc">Venom Crypts</span> (via Jungle Ruins WP)</div></div>
+                <div class="step-content">Find WP near <span class="loc">Venom Crypts</span> &rarr; Enter <span class="loc">The Venom Crypts</span></div></div>
 
             <!-- VENOM CRYPTS -->
-            <div class="zone-header" id="venom">The Venom Crypts ⚠ <span class="lvl">Lvl 31</span></div>
-            <div class="step" data-step="21"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="zone-header" id="venom">The Venom Crypts &#9888; <span class="lvl">Area Lvl 35</span></div>
+            <div class="note new"><span class="label">0.5 Fate of the Vaal</span>Another <strong>Vaal Beacon</strong> spawns here &mdash; clear its pack to light another crystal toward the six needed for the Vaal Ruins.</div>
+            <div class="step" data-step="15"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Sarcophagus event <span class="reward-tag gem">Guaranteed Lv3 Support</span></div></div>
-            <div class="step" data-step="22"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Find corpse → loot <span class="item">Corpse-snake Venom</span></div></div>
-            <div class="step" data-step="23"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="16"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Find corpse &rarr; loot <span class="item">Orok Poison</span> &rarr; head to the safe zone <span class="loc">A Reprieve</span></div></div>
+            <div class="step" data-step="17"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> Activate the Venom Crypts <span class="item">Runestone</span> (Runes of Aldur)</div></div>
+            <div class="step" data-step="18"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">TP back to town</div></div>
 
             <!-- ZIGGURAT -->
             <div class="zone-header">Ziggurat Encampment</div>
-            <div class="step" data-step="24"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Talk to <span class="npc">Servi</span> <span class="reward-tag perm">PERMANENT CHOICE</span></div></div>
-            <div class="note warning">PERMANENT — cannot change later!<br>• <strong>+25% Stun Threshold</strong> (popular — logout cures bleeds/freeze)<br>• +30% Elemental Ailment Threshold (good if tree lacks it)<br>• +25% Mana Regeneration (rarely picked)</div>
-            <div class="step" data-step="25"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">TP to <span class="loc">Chimeral Wetlands</span></div></div>
+            <div class="step" data-step="19"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Hand <span class="item">Orok Poison</span> to <span class="npc">Servi</span> <span class="reward-tag perm">PERMANENT CHOICE</span> <span class="reward-tag craft">Artificer's Orb</span></div></div>
+            <div class="note warning">PERMANENT &mdash; cannot change later!<br>&bull; <strong>+25% Stun Threshold</strong> (popular &mdash; logout cures bleeds/freeze)<br>&bull; +30% Elemental Ailment Threshold (good if tree lacks it)<br>&bull; +25% Mana Regeneration (rarely picked)</div>
+            <div class="step" data-step="20"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Head to the <span class="loc">Infested Barrens</span> (via the Jungle Ruins for now)</div></div>
 
+            <!-- INFESTED BARRENS -->
+            <div class="zone-header" id="infested">Infested Barrens <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 31&ndash;32</span></div>
+            <div class="note new"><span class="label">0.5 Routing</span>Provisional: for the moment you reach the Infested Barrens <strong>from the Jungle Ruins</strong>. The exact 0.5 transition is still being confirmed against the live build.</div>
+            <div class="step" data-step="21"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Find/talk <span class="npc">Alva</span>, take WP near her</div></div>
+            <div class="step" data-step="22"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> Troubled Camp (<span class="npc">Sebastian Carroway</span>) <span class="reward-tag">Guaranteed Rare Boots</span></div></div>
+            <div class="step" data-step="23"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Chimeral Wetlands</span></div></div>
             <!-- CHIMERAL WETLANDS -->
             <div class="zone-header" id="chimeral">Chimeral Wetlands <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 32–33</span></div>
             <div class="step" data-step="26"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
