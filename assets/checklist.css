@@ -252,6 +252,19 @@
     display: inline-block; width: 0.9rem; margin-right: 0.45rem; text-indent: 0;
     font-size: 11px; line-height: inherit; vertical-align: baseline;
 }
+/* Collapsible info-box (details/summary) — default collapsed on all viewports */
+details.info-box > summary {
+    cursor: pointer; list-style: none;
+    font-family: 'Cinzel', serif; color: var(--gold); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
+    display: flex; align-items: center; justify-content: space-between;
+}
+details.info-box > summary::-webkit-details-marker { display: none; }
+details.info-box > summary::after {
+    content: "▸"; font-size: 9px; opacity: 0.6; margin-left: 0.5rem; font-weight: 400;
+}
+details.info-box[open] > summary { margin-bottom: 0.6rem; }
+details.info-box[open] > summary::after { content: "▾"; }
 
 /* Zone header */
 .zone-header {
