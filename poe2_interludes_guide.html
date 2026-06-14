@@ -124,14 +124,14 @@
             </header>
 
             <!-- SPEEDRUN TIPS — Community -->
-            <div class="info-box" style="border-left: 3px solid var(--steel); margin-bottom: 1.5rem;">
-                <h3 style="color: var(--steel);">⚡ Tips before Maps</h3>
+            <details class="info-box" style="border-left: 3px solid var(--steel); margin-bottom: 1.5rem;">
+                <summary style="color: var(--steel);">⚡ Tips before Maps</summary>
                 <ul class="tip-list">
                     <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Don't over-craft in Interludes.</strong> The next gear bracket is Tier 1 maps — save exalts for endgame.</li>
                     <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Confirm Ascendancy is finalized</strong> before the +2 SP completion turn-in — leveling Ascendancies (Smith of Kitava, Demon Form, Sorcery Ward) can be re-specced into specialized endgame Ascendancies later.</li>
                     <li><span class="icon" style="color: var(--steel);">◆</span> <strong>0.5 reminder:</strong> Arbiter of Ash is no longer the top of the mountain — the new apex is the <strong>Arbiter of Divinity</strong>. See the endgame guide for the 5 new storylines (Origins of Divinity / the Fortress is one of them).</li>
                 </ul>
-            </div>
+            </details>
 
 
             <div class="summary-box">
@@ -146,92 +146,106 @@
                 </div>
             </div>
 
-            <div class="info-box" style="border-left: 3px solid var(--steel); margin-bottom: 1.5rem;">
-                <h3 style="color: var(--steel);">Routing Notes</h3>
+            <details class="info-box" style="border-left: 3px solid var(--steel); margin-bottom: 1.5rem;">
+                <summary style="color: var(--steel);">Routing Notes</summary>
                 <ul class="tip-list">
                     <li><span class="icon" style="color: var(--steel);">◆</span> Interludes are <strong>permanent reward zones</strong> — every reward listed is missable, do all three before maps</li>
+                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>0.5: play the three interludes in any order.</strong> The page keeps the game's 5.1 / 5.2 / 5.3 labels for reference, but there is no forced sequence</li>
+                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Recommended order: 5.3 → 5.1 → 5.2.</strong> Do <strong>5.3 (Mount Kriar) first</strong> for the early <strong>+40 Spirit</strong> power spike, then 5.1 (Ogham) as the easier middle, then 5.2 (Khari Bazaar)</li>
+                    <li><span class="icon" style="color: var(--burnt);">⚠</span> <strong>Resistances drop the moment you enter an interlude</strong> — only zone in when you're ready to run it, not to scout</li>
+                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Skill/Spirit gem reward levels are order-dependent</strong> — the gem level scales with how far in you are / which interlude you did first, so they are not fixed numbers</li>
                     <li><span class="icon" style="color: var(--steel);">◆</span> Layouts persist between runs — once you know an interlude, subsequent characters can speedrun the rewards</li>
                     <li><span class="icon" style="color: var(--steel);">◆</span> Total weapon-swap skill point target by end of interludes: <strong>~24 points</strong></li>
                     <li><span class="icon" style="color: var(--steel);">◆</span> Orbala's 7 Boons (Khari Bazaar) — <strong>can be swapped anytime</strong> by returning to the pillar</li>
-                    <li><span class="icon" style="color: var(--steel);">◆</span> Mount Kriar layouts and POIs are very consistent — Elder Maddox always near 10–11 o'clock, Doryani's Contingency far right</li>
+                    <li><span class="icon" style="color: var(--steel);">◆</span> Mount Kriar layouts and POIs are very consistent — Elder Maddox always near 10–11 o'clock</li>
                     <li><span class="icon" style="color: var(--steel);">◆</span> <strong>0.5:</strong> monster density was reduced specifically in the Interludes to clear them faster — push, don't over-craft, the next gear bracket is T1 maps</li>
                 </ul>
-            </div>
+            </details>
 
             <!-- INTERLUDE 5.1 -->
             <div class="zone-header" id="interlude51">Interlude 5.1 — Ogham, The Refuge <span class="lvl">Lvl 52–53</span></div>
             <div class="step" data-step="1"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Travel to <span class="loc">Holten</span> (docks town) — talk to <span class="npc">The Hooded One</span></div></div>
+                <div class="step-content">Arrive at <span class="loc">The Refuge</span> (Ogham) via <span class="npc">The Hooded One</span> — talk to <span class="npc">The Hooded One</span></div></div>
             <div class="step" data-step="2"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="skip">(Opt)</span> Visit <span class="npc">Soul of the Ferryman</span> (docks) <span class="reward-tag optional">Greater Runes ~2000g (cheap)</span></div></div>
+                <div class="step-content">Enter <span class="loc">Scorched Farmlands</span> (WP). The <span class="loc">Blackwood</span> entrance (N) is sealed by <strong>Darkness</strong> — clear it via Stones of Serle first. <span class="skip">(Opt)</span> boss duo <span class="boss">Isolde &amp; Heldra</span> (E)</div></div>
             <div class="step" data-step="3"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Progress through <span class="loc">Wolvenhold</span> after Holten</div></div>
+                <div class="step-content"><span class="loc">Stones of Serle</span> (S) — activate the <span class="item">6 Runed Megaliths</span> to lift the Darkness curse</div></div>
             <div class="step" data-step="4"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><strong>Slay <span class="boss">Oswin, the Dread Warden</span></strong> <span class="reward-tag perm">+2 Skill Points</span></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> <span class="npc">Soul of the Ferryman</span> (docks, inside Holten) <span class="reward-tag optional">Greater Runes ~2000g (cheap)</span></div></div>
             <div class="step" data-step="5"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Complete interlude 5.1, return to town for next interlude</div></div>
+                <div class="step-content">Through <span class="loc">Blackwood</span> → reach <span class="loc">Holten</span>. Altars of Omen here drop <span class="item">Omens / Dark Omens</span></div></div>
+            <div class="step" data-step="6"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">In <span class="loc">Holten</span>: boss duo <span class="boss">Godwin &amp; Sigbert</span> (drops a <span class="item">Blacksmith's Whetstone</span> — currency). Two paths split: <span class="loc">Wolvenhold</span> (side) or <span class="loc">Holten Estate</span> (story)</div></div>
+            <div class="step" data-step="7"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt — do it for the reward)</span> <span class="loc">Wolvenhold</span> → slay <span class="boss">Oswin, the Dread Warden</span> → <span class="item">Warden's Ledger</span> (use for <strong>+2 Skill Points</strong>); also drops a unique + Vaal Orb <span class="reward-tag perm">+2 Skill Points</span></div></div>
+            <div class="step" data-step="8"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><strong><span class="loc">Holten Estate</span> → up two staircases (maze → upper floor) → slay <span class="boss">Thane Wulfric &amp; Lady Elswyth</span></strong> (manor courtyard) — 5.1 story bosses</div></div>
+            <div class="step" data-step="9"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Complete interlude 5.1, return to town</div></div>
 
             <!-- INTERLUDE 5.2 -->
             <div class="zone-header" id="interlude52">Interlude 5.2 — Khari Bazaar <span class="lvl">Lvl 54–55</span></div>
-            <div class="step" data-step="6"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Travel to <span class="loc">Khari Crossing</span> via Hooded One</div></div>
-            <div class="step" data-step="7"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><strong>Slay <span class="boss">Akthi &amp; Anundr</span></strong> (Worm + Scorpion) — talk to <span class="npc">Risu</span> after <span class="reward-tag perm">+2 Skill Points</span></div></div>
-            <div class="step" data-step="8"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="skip">(Opt)</span> <span class="npc">Torbek</span> (Khari Crossing) <span class="reward-tag optional">Discount rare caster weapons</span></div></div>
-            <div class="step" data-step="9"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Enter <span class="loc">Skullmaw Stairway</span> via Khari Crossing</div></div>
             <div class="step" data-step="10"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><strong>Activate <span class="item">Molten One's Gift</span></strong> — find seals, reset instance if bugged <span class="reward-tag perm">+5% Maximum Life</span></div></div>
+                <div class="step-content">Travel to <span class="loc">Khari Crossing</span> via Hooded One</div></div>
             <div class="step" data-step="11"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Travel to <span class="loc">Qimah</span></div></div>
+                <div class="step-content"><strong>Slay <span class="boss">Akthi &amp; Anundr</span></strong> (Worm + Scorpion, SE) → talk to <span class="npc">Risu</span>. <em>Nav:</em> beetle chests / rune drop up the stairs (E); Wayfinder's Seals point W to Pools of Kathal <span class="reward-tag perm">+2 Skill Points</span></div></div>
             <div class="step" data-step="12"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><strong>Use <span class="item">Orbala's Pillar</span></strong> — pick 1 of 7 Boons (swap anytime) <span class="reward-tag choice">Permanent Boon</span></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> <span class="npc">Torbek</span> (Khari Crossing) <span class="reward-tag optional">Discount rare caster weapons</span></div></div>
             <div class="step" data-step="13"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="skip">(Opt)</span> <span class="loc">Qimah Reservoir</span> Sacred Wells <span class="reward-tag optional">Currency (Exalt/Alchemy via Vials)</span></div></div>
+                <div class="step-content">Travel to <span class="loc">Pools of Kathal</span> (WP) — guaranteed <span class="item">Expedition</span> spawn; entrance to <span class="loc">Sel Khari Sanctuary</span> here (needed to progress)</div></div>
             <div class="step" data-step="14"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Enter <span class="loc">Sel Khari Sanctuary</span></div></div>
+                <div class="step-content"><span class="loc">Sel Khari Sanctuary</span> (WP): <span class="skip">(Opt) Two Wishes</span> — place <span class="item">Yoon's Barya</span> &amp; <span class="item">Rangeen's Barya</span> on their pedestals for <strong>2 rare jewelry picks</strong> (each: ring/amulet/jewel; 2nd wish excludes the 1st category) <span class="reward-tag optional">2× Rare Ring/Amulet/Jewel</span></div></div>
             <div class="step" data-step="15"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Place <span class="item">Baryas of Rageen &amp; Yoon</span> on pedestals <span class="reward-tag optional">Rare Ring/Amulet/Jewel</span></div></div>
+                <div class="step-content">End of <span class="loc">Sel Khari Sanctuary</span> → <strong>slay <span class="boss">Elzarah, the Cobra Lord</span></strong> → <span class="npc">Asala</span> &amp; <span class="npc">Jado</span> appear; then back to Khari Bazaar / further into Khari Crossing</div></div>
             <div class="step" data-step="16"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><strong>Activate <span class="item">Molten One's Gift</span></strong> — enter the <span class="loc">Skullmaw Stairway</span> in the <span class="loc">Molten Shrine</span> (NE; Galai Gate is the northern landmark); find seals, reset instance if bugged <span class="reward-tag perm">+5% Maximum Life</span></div></div>
+            <div class="step" data-step="17"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">Qimah</span> → <strong>use <span class="item">Orbala's Pillar</span></strong> — pick 1 of 7 Boons (swap anytime) <span class="reward-tag choice">Permanent Boon</span></div></div>
+            <div class="step" data-step="18"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><strong>Summon <span class="npc">Jado</span></strong> to open the entrance to <span class="loc">Qimah Reservoir</span> (if Jado is absent, finish the Sel Khari Sanctuary quest first)</div></div>
+            <div class="step" data-step="19"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> <span class="loc">Qimah Reservoir</span> — 2× <span class="item">Sacred Wells</span> (loot Vials of Sacred Water, use in wells) <span class="reward-tag optional">Currency (Regal/Exalt/Alchemy)</span>. <span class="skip">(Opt)</span> rare <span class="boss">Bloodbilge</span> (click the giant vase; safe to skip)</div></div>
+            <div class="step" data-step="20"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><strong>Slay final boss <span class="boss">Azmadi, the Faridun Prince</span></strong> (≈70% HP: <span class="boss">Zarokh</span> appears and stops time) → interact with the <span class="item">Grand Barya</span> → Jado / Asala</div></div>
+            <div class="step" data-step="21"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Complete interlude 5.2, return to town</div></div>
 
             <!-- INTERLUDE 5.3 -->
             <div class="zone-header" id="interlude53">Interlude 5.3 — Mount Kriar, The Glade <span class="lvl">Lvl 55–58</span></div>
-            <div class="step" data-step="17"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Travel to <span class="loc">Mount Kriar</span> via Hooded One</div></div>
-            <div class="step" data-step="18"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Enter <span class="loc">Ashen Forest</span></div></div>
-            <div class="step" data-step="19"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Find <span class="item">Ancient Monument</span> in Ashen Forest <span class="reward-tag gem">Skill Gem Lv14</span></div></div>
-            <div class="step" data-step="20"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Travel to <span class="loc">Kriar Village</span></div></div>
-            <div class="step" data-step="21"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><strong>Slay <span class="boss">Lythara, the Wayward Spear</span></strong> <span class="reward-tag perm">+40 Spirit</span> <span class="reward-tag gem">Spirit Gem Lv14 + Gemcrust Skull</span></div></div>
             <div class="step" data-step="22"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Travel to <span class="loc">Glacial Tarn</span> → enter <span class="loc">Howling Caves</span></div></div>
+                <div class="step-content">Travel to <span class="loc">Mount Kriar</span> via Hooded One → enter <span class="loc">Ashen Forest</span> through The Glade (<strong>no waypoint</strong> in Ashen Forest)</div></div>
             <div class="step" data-step="23"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><strong>Slay <span class="boss">The Abominable Yeti</span></strong> (drops <span class="item">Icy Tusks</span>) <span class="reward-tag perm">+2 Skill Points</span></div></div>
+                <div class="step-content">Find the <span class="item">Ancient Monument</span> in Ashen Forest (a <span class="item">Vaal Beacon</span> is also here — skippable: Vaal Chest or quadrilla encounter) <span class="reward-tag gem">Skill Gem (level scales with interlude order)</span></div></div>
             <div class="step" data-step="24"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Travel to <span class="loc">Kriar Peaks</span></div></div>
+                <div class="step-content">Travel to <span class="loc">Kriar Village</span> (<strong>roving wisps</strong> — 2 to follow — show the way; <span class="item">Abyss</span> + <span class="item">Vaal Beacon</span> present) → <strong>slay <span class="boss">Lythara, the Wayward Spear</span></strong> <span class="reward-tag perm">+40 Spirit</span> <span class="reward-tag gem">Spirit Gem (order-dependent) + Gemcrust Skull</span></div></div>
             <div class="step" data-step="25"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Find <span class="npc">Elder Maddox</span> (10–11 o'clock position) <span class="reward-tag perm">Free Unique Item</span></div></div>
+                <div class="step-content">Travel to <span class="loc">Glacial Tarn</span> (guaranteed <span class="item">Expedition</span> + <span class="item">Vaal Beacon</span>) → enter <span class="loc">Howling Caves</span> (Vaal Beacon) → <strong>slay <span class="boss">The Abominable Yeti</span></strong> → loot <span class="item">Icy Tusks</span></div></div>
             <div class="step" data-step="26"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><strong>(Opt)</strong> Travel far right to <span class="loc">Doryani's Contingency</span> <span class="reward-tag optional">Titan Rock Catafract (unique chest)</span></div></div>
+                <div class="step-content">Return <span class="item">Icy Tusks</span> to <span class="npc">Hilda</span> → <span class="item">Book of Specialization</span> <span class="reward-tag perm">+2 Skill Points</span></div></div>
             <div class="step" data-step="27"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Find &amp; energise the <span class="item">second set of 6 Ancient Beacons</span> (scattered across the Interludes) → loot <span class="item">Energised Crystals</span></div></div>
+                <div class="step-content">Back to <span class="loc">Glacial Tarn</span> → <strong>slay <span class="boss">Rakkar, the Frozen Talon</span></strong> (NW) to reveal the passage to <span class="loc">Kriar Peaks</span></div></div>
             <div class="step" data-step="28"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Open the portal to advance the <strong>Fate of the Vaal</strong> storyline</div></div>
-            <div class="note new"><span class="label">0.5 New Core</span>This is the <strong>second beacon set</strong>, continuing the Act 3 sequence. The exact area name isn't specified in the patch notes — it may relate to the existing Doryani's Contingency POI above, but treat that mapping as unverified. Full storyline in the <a href="poe2_endgame_guide.html#fate-of-the-vaal">endgame guide →</a></div>
+                <div class="step-content"><span class="loc">Kriar Peaks</span> (Vaal Beacon) → find <span class="npc">Elder Maddox</span> (10–11 o'clock; watch for blue spirit owls) <span class="reward-tag perm">Free Unique Item</span></div></div>
+            <div class="step" data-step="29"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Travel to <span class="loc">Etched Ravine</span> (far end; Vaal Beacon) → <strong>slay <span class="boss">Stormgore, the Guardian</span></strong> (lightning + reanimating robots) → unlocks <span class="loc">The Cuachic Vault</span></div></div>
+            <div class="step" data-step="30"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Enter <span class="loc">The Cuachic Vault</span> — maze halls. <span class="skip">(Opt) Ancient Treasures:</span> open <span class="item">Sealed Vaults</span> at Stone Altars using <span class="item">Small Soul Cores</span> found in the area <span class="reward-tag optional">Currency / loot</span></div></div>
+            <div class="step" data-step="31"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><strong>Reach the final boss <span class="boss">Zolin &amp; Zelina</span></strong> ("Blood Priest" duo) → defeat to advance the <strong>Fate of the Vaal</strong> storyline</div></div>
+            <div class="note new"><span class="label">0.5 Core — Fate of the Vaal</span>The six <strong>Vaal Beacons</strong> are spread across the Mount Kriar zones (one per area); finishing their encounters powers the Temple. <span class="loc">Stormgore</span> at the Etched Ravine opens <strong>The Cuachic Vault</strong>, where Doryani sealed several Vaal as a contingency — clear it and defeat <strong>Zolin &amp; Zelina</strong> to advance Fate of the Vaal. Full storyline in the <a href="poe2_endgame_guide.html#fate-of-the-vaal">endgame guide →</a></div>
 
             <!-- COMPLETION -->
             <div class="zone-header" id="completion">Completion <span class="wp town">+2 SP</span> <span class="lvl">Final</span></div>
-            <div class="step" data-step="29"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><strong>Talk to <span class="npc">The Hooded One</span></strong> after all 3 interludes <span class="reward-tag perm">+2 Skill Points</span></div></div>
+            <div class="step" data-step="32"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><strong>After all 3 interludes, talk to <span class="npc">The Hooded One</span> in <span class="loc">Kingsmarch</span></strong> <span class="reward-tag perm">+2 Skill Points</span></div></div>
 
             <div class="zone-header" id="maps">Maps / Endgame</div>
-            <div class="step" data-step="30"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Endgame Atlas / Maps unlock at Lvl 58–60 <span class="reward-tag quest">Endgame begins</span></div></div>
+            <div class="step" data-step="33"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Travel to <span class="loc">Oriath</span></div></div>
+            <div class="step" data-step="34"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Speak to <span class="npc">Farrow</span>, then <span class="npc">The Hooded One</span> (found lying down), then <span class="npc">Doryani</span></div></div>
+            <div class="step" data-step="35"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content">Endgame Atlas / Maps unlock — start your <strong>first map</strong> (Lvl 58–60) <span class="reward-tag quest">Endgame begins</span></div></div>
 
             <div class="footer-nav">
                 <a href="poe2_act4_guide.html">← Act IV</a>
@@ -251,8 +265,8 @@
 
     <script>
         window.POE2_PROGRESS = {
-            storageKey: "poe2-interludes-v05",
-            allKeys: ["poe2-act1-v05", "poe2-act2-v05", "poe2-act3-v05", "poe2-act4-v05", "poe2-interludes-v05"],
+            storageKey: "poe2-interludes-v06",
+            allKeys: ["poe2-act1-v05", "poe2-act2-v05", "poe2-act3-v05", "poe2-act4-v05", "poe2-interludes-v06"],
             resetLabel: "Interludes"
         };
     </script>
