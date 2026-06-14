@@ -1261,6 +1261,16 @@
     </div>
     <script src="assets/theme.js" defer></script>
     <!-- Buy Me a Coffee widget (index + leveling hub only) -->
-    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="domistae" data-description="Support me on Buy me a coffee!" data-message="Keeping the PoE2 Codex alive, one coffee at a time. ☕ Thanks for your support!" data-color="#FF5F5F" data-position="Left" data-x_margin="18" data-y_margin="18"></script>
+    <style>
+      /* Trim the BMC widget a notch — button, message bubble, and donation panel.
+         Targets the injected markup from widget.prod.min.js; the message bubble is an
+         anonymous inline-styled div, keyed off its 18px font. transform on #bmc-iframe
+         shrinks the panel and its (cross-origin) text together. */
+      #bmc-wbtn { width: 50px !important; height: 50px !important; }
+      #bmc-wbtn img { width: 28px !important; height: 28px !important; }
+      #bmc-wbtn ~ div[style*="font-size: 18px"] { font-size: 12px !important; padding: 10px 12px !important; }
+      #bmc-iframe { transform: scale(0.85) !important; }
+    </style>
+    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="domistae" data-description="Support me on Buy me a coffee!" data-message="Keeping the PoE2 Codex alive, one coffee at a time. ☕ Thanks for your support!" data-color="#FF5F5F" data-position="left" data-x_margin="18" data-y_margin="18"></script>
 </body>
 </html>
