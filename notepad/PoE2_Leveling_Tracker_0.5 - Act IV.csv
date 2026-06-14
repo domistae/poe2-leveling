@@ -1,0 +1,62 @@
+ACT IV — Wraeclast Awakens (Karui Archipelago),,,,,,,
+Patch 0.5 · Lvl 42–52 · All classes · Four Islands,,,,,,,
+PERMANENT REWARDS:   +8 Weapon Set Skill Points    •  +5% Max Mana    •  +1 Tattoo Slot (Halls)    •  Hideout + Trading (Ange)    •  Endgame Map Access    •  ⚡ Omniphobia +2 SP,,,,,,,
+Routing notes & speedrun tips for this act are on the Overview tab. Use the 🔧 column to flag anything wrong while you play.,,,,,,,
+Zone,Lvl,Action / Step,Reward,Type,R/O,Notes / Tactics,🔧 Fix / Correction
+Kingsmarch (HUB TOWN),42,"Routing note: Weapon Fragments & Matiki are RANDOMIZED across the four islands each league — Kingsmarch dialogue tells you which. ""Frag/Matiki?"" tags below are placeholders.",,,,,
+Kingsmarch (HUB TOWN),42,Talk to Doryani → continue to town → talk to Alva (with Rog),,,Req,,
+Kingsmarch (HUB TOWN),42,Talk to Rog in house — boat charter,,,Req,,"accept quest tujen, rog does nothing, makoru boat charter"
+Kingsmarch (HUB TOWN),42,Talk to Farrow → accept Quest 4,Unlocks 13 Ancient Runes,Quest,Req,Weapon-type-specific runes crafted at Remnant encounters.,farrow does nohing for the moment
+Kingsmarch (HUB TOWN),42,"Talk to Makoru on ship, choose destination",,,Req,,
+Whakapanu Island (FRAG/MATIKI?),42-43,Petrified Pirate on coast,Torn Map 2/4,Item,Opt,d,
+Whakapanu Island (FRAG/MATIKI?),42-43,Shark Pit: Great White One,Shark Fin,Item,Opt,,
+Whakapanu Island (FRAG/MATIKI?),42-43,Crabshell Cavern: Clawcrunch,Support Gem 4,Gem,Opt,,
+Whakapanu Island (FRAG/MATIKI?),42-43,Enter Singing Caverns,,,Req,,
+Singing Caverns (WP),-,Beckoning Clam → Humming Pearl (give to Rog),Humming Pearl,Item,Opt,,
+Singing Caverns (WP),-,"Kill Diamora, Song of Death",Fragment?,Item,Req,Frag/Matiki randomized this league.,
+Singing Caverns (WP),-,"Talk to Hooded One, TP to town",,,Req,,speak to matiki--> eye of hinekora
+Kingsmarch — Hideout,-,Talk to Ange → Shoreline Hideout → clear hideout → talk to Ange,Hideout + Trading,,Req,,
+Shrike Island (FRAG/MATIKI?),43-44,Corpse Nest (Impaled Karui),Torn Map 4/4,Item,Opt,,
+Shrike Island (FRAG/MATIKI?),43-44,Kill Scourge of the Skies,Fragment?,Item,Req,,
+Shrike Island (FRAG/MATIKI?),43-44,"Talk to Hooded One, TP, sail next",,,Req,,
+Abandoned Prison (FRAG/MATIKI?) (WP),44,Kill mobs until Chapel Key drops,Chapel Key,Item,Req,,and the armoury (kill elite jewel blackstone) and forgoitten cells (loot)
+Abandoned Prison (FRAG/MATIKI?) (WP),44,"Open Chapel, kill Forael, use Goddess of Justice",Flask choice,Item,Req,,
+Abandoned Prison (FRAG/MATIKI?) (WP),44,Enter Solitary Confinement,,,Req,,
+Solitary Confinement,-,Kill The Prisoner,Fragment?,Item,Req,,
+Solitary Confinement,-,"Talk to Hooded One, sail to Isle of Kin",,,Req,,
+Isle of Kin (MATIKI?),45,Flayed Sailor near shore,Torn Map 3/4,Item,Opt,,doomed mine = abandonned delving site with fossilised formation leeser jewelers orb
+Isle of Kin (MATIKI?),45,Beast Pen,Skill + Support Gem,Gem,Opt,,
+Isle of Kin (MATIKI?),45,Kill Mimok the Enslaved,Tier 4 Support Gem,Gem,Req,Guaranteed.,beast pen
+Isle of Kin (MATIKI?),45,Primal Arena: Blind Beast,Greater Blank Rune (0.4),Currency,Opt,Skill points moved to Omniphobia in 0.5.,
+Isle of Kin (MATIKI?),45,Enter Volcanic Warrens,,,Req,,
+Volcanic Warrens (WP),45-46,Volcanic Nest: Magma Twins — kill LIGHTNING first,Ruby Ring,Item,Opt,Kill order matters.,
+Volcanic Warrens (WP),45-46,Magma Twins — kill FIRE first (alt),Topaz Ring,Item,Opt,Kill order matters.,
+Volcanic Warrens (WP),45-46,"Kill Krutog, Lord of Kin",,Boss,Req,,the tyrant thone
+Volcanic Warrens (WP),45-46,"Click cage, free Matiki → TP to Kingsmarch",,,Req,,? but hooded one was here on this run
+Eye of Hinekora (WP),46-47,"Talk to Matiki in town, click well",,,Req,,not in town but at well
+Eye of Hinekora (WP),46-47,Chest behind waterfall,Skill Gem 12 + Spirit Gem 12,Gem,Opt,Hidden.,no skill gem here. spirit yes
+Eye of Hinekora (WP),46-47,"Complete 3 Tests: Fire, Nature, Cold",,,Req,,
+Eye of Hinekora (WP),46-47,"Silent Hall altar (Pay Respects), talk to Navali",+5% Max Mana,Mana,Req,,
+Eye of Hinekora (WP),46-47,Enter Halls of the Dead,,,Req,,
+Halls of the Dead,47,"Trial of Ngakanu (3 tests in clover-leaf), loot Blank Tattoos",Blank Tattoos,Item,Req,,
+Halls of the Dead,47,Fight Yama the White,,Boss,Req,Low life pool — easy stun.,
+Halls of the Dead,47,Enter Trial of Ancestors,,,Req,,
+Trial of the Ancestors,47-48,Talk to Hinekora,+2 Skill Points,SP,Req,,navali and hinekora
+Trial of the Ancestors,47-48,Choose tattoo,+1 Tattoo Slot,Tattoo,Req,+5% Fire/Cold/Lightning Res (recommended) or +5 Str/Dex/Int.,no +1 tatoo slot you get 3 tattoos in previous wone in the 3 tests = ancestral tattoos in halls of the dead
+Trial of the Ancestors,47-48,"TP, sail to Kedge Bay",,,Req,,
+"Kedge Bay (MAP, WP)",47-48,Dead Man's Chest / Smuggler's Stash,Torn Map 1/4,Item,Opt,,optional abandoned shipt for loot
+"Kedge Bay (MAP, WP)",47-48,Enter Journey's End,,,Req,,"Doran, the Deft is a challenging, highly mobile Rogue Exile for loot"
+Journey's End (WP),48-49,Talk to Tujen,,,Req,,also in kedge bay tidal cay with tombgrowl = loot
+Journey's End (WP),48-49,"Kill Captain Harlin, loot Verisium",Verisium,Currency,Req,,take portal
+Journey's End (WP),48-49,"TP start, talk to Freya Hartlin → Town → Dannig → Verisium Spikes",Verisium Spikes,Item,Req,,no tp
+Journey's End (WP),48-49,Back to Journey's End → Freya → Totem → kill Omniphobia,+2 Skill Points,SP,Req,Talk to Tujen in town for reward.,"Doran, the Deft is a challenging, highly mobile Rogue Exile for loot"
+Plunder's Point (Optional),-,"0.5 GATING: can't enter until all 4 Map Pieces are turned in at Kingsmarch (Whakapanu, Shrike, Isle of Kin, Kedge Bay).",,,,, skill pints from omniphobia by returning quets to tujin
+Plunder's Point (Optional),-,Give 4 maps to Makoru → sail → Dannig → Expedition,,,Opt,,NOT OPTIONAL plunderspoint for runekeerp quest ==> enter deserted post ==> summon farrow ==> runesmithing of knowledge
+Arastas (WP),49-50,Missionari Lorandis → follow → destroy shield,,,Req,,
+Arastas (WP),49-50,Evening/Morning Bells,3 Regal each,Currency,Opt,,evening bell 3 exalted orbs
+Arastas (WP),49-50,Kill Torvian → enter Excavation,,,Req,,let him throw stones at 2 priests above
+The Excavation,50-51,"Kill Benedictus, talk to Hooded One → sail to Ngakanu",,Boss,Req,,excavated cache optional at checkpoint = loot / boss at precursor forge / tp to kingsmarch
+Ngakanu → Heart of the Tribe,51,Navigate maze → Heart of the Tribe,,,Req,,also abyss ==> abyssal depth + mad butcher in large hut
+Ngakanu → Heart of the Tribe,51,"Kill Tavaki, talk to him → TP town → Rhodri → sail to final",,Boss,Req,,innhearth of the tribe ==> meeting house witch chests
+Act 4 Finale,52,Kill Zarokh (Final Act 4 Boss),,Boss,Req,,name is tavakai / remove rhodri sail to final and there is no zarockh here in campaign
+Act 4 Finale,52,"Return, talk to Hooded One → unlocks Interludes",,,Req,,"The Shark Fin is a quest item from Act 4 acquired by defeating the ""Great White One"" boss on Whakapanu Island. It triggers the ""Tribal Medicine"" quest. To complete the quest and free up your inventory slot, give the fin to Kaimana, the tribal healer.Depending on your campaign progress, you can turn in the fin at a couple of different locations:Early Act 4: Travel directly to Ngakanu (via the boat in Kingsmarch) and hand it to Kaimana.Late Act 4/Corrupted Islands: If you have progressed too far and the island is corrupted by the weapon, you must first complete Act 4 and defeat Davakai. Afterward, you can find Kaimana on the docks and turn in the fin to receive your reward.The Reward:Turning in the Shark Fin rewards you with a choice of an Uncut Gem (either Level 11 Skill Spirit or Support gem) and a permanent stat blessing from the Tukuama tribe.For a visual guide on the exact locations of the boss and the NPC to hand it in, check out the walkthrough video below:"
