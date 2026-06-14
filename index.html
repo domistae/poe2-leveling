@@ -713,6 +713,10 @@ a { color: inherit; }
       #bmc-wbtn img { width: 28px !important; height: 28px !important; }
       #bmc-wbtn ~ div[style*="font-size: 18px"] { font-size: 12px !important; padding: 10px 12px !important; }
       #bmc-iframe { transform: scale(0.85) !important; }
+      /* While the panel is closed (opacity 0) it still sits there at full size with
+         pointer-events:auto, creating a dead click-zone. Let clicks pass through until
+         it opens (opacity flips to 1). */
+      #bmc-iframe[style*="opacity: 0"] { pointer-events: none !important; }
     </style>
     <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="domistae" data-description="Support me on Buy me a coffee!" data-message="Keeping the PoE2 Codex alive, one coffee at a time. ☕ Thanks for your support!" data-color="#FF5F5F" data-position="left" data-x_margin="18" data-y_margin="18"></script>
 </body>
