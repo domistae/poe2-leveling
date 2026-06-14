@@ -1269,7 +1269,13 @@
       #bmc-wbtn { width: 50px !important; height: 50px !important; }
       #bmc-wbtn img { width: 28px !important; height: 28px !important; }
       #bmc-wbtn ~ div[style*="font-size: 18px"] { font-size: 12px !important; padding: 10px 12px !important; }
-      #bmc-iframe { transform: scale(0.85) !important; }
+      /* Dark theme: BMC hardcodes the message bubble white — recolor it to match the site. */
+      [data-theme="dark"] #bmc-wbtn ~ div[style*="font-size: 18px"] {
+        background: var(--bg-surface) !important; color: var(--text-body) !important;
+        border: 1px solid var(--border-subtle) !important;
+      }
+      /* Shrink the donation panel and bring its top down a bit (it opened nearly full-height). */
+      #bmc-iframe { transform: scale(0.85) !important; min-height: 0 !important; height: 600px !important; max-height: 80vh !important; }
       /* While the panel is closed (opacity 0) it still sits there at full size with
          pointer-events:auto, creating a dead click-zone. Let clicks pass through until
          it opens (opacity flips to 1). */
