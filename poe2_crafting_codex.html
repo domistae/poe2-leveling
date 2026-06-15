@@ -751,7 +751,7 @@ footer.site-footer a {
                 <blockquote style="margin: 0.5rem 0 0.7rem; padding: 0.5rem 0.85rem; border-left: 2px solid var(--burnt); background: rgba(220, 38, 38, 0.06); color: var(--text-body); font-style: italic; border-radius: 0 3px 3px 0;">
                     "All crafted modifiers are now guaranteed, but items can only have 1 crafted modifier at a time. Desecrated modifiers no longer count as crafted modifiers, but items are limited to 1 Desecrated modifier."
                 </blockquote>
-                An addition to the 0.5 patch notes restricts every item to <strong>one crafted modifier</strong> and <strong>one desecrated modifier</strong>. Essences, perfect essences, and the new imbued alloys appear to share the same "crafted" slot, so stacking deterministic crafts on a single item is no longer possible. Expect noticeably weaker league-start gear — Martial weapons hit hardest, spell builds least affected — and more slam-and-pray beyond your one guaranteed mod. Read the rest of this codex — especially <a href="#tricks">§XIII Adept's Tricks</a> — with extra caution; many of the chained-essence techniques may no longer apply. Now that the league is live, the surviving patterns are being confirmed against live play; until then, treat the chained-essence techniques here as provisional.
+                An addition to the 0.5 patch notes restricts every item to <strong>one crafted modifier</strong> and <strong>one desecrated modifier</strong>. Crucially, a <strong>Runic Alloy modifier counts as that one crafted modifier</strong> — and so does an Essence/Perfect-Essence craft, and certain Runic Ward enchants. They all compete for the <em>same single slot</em>, so per item you pick exactly one of them: applying an alloy overrides (or blocks) using an Essence craft or Runic Ward enchant on the same piece. Runic Alloys themselves behave like Perfect Essences — they <strong>remove a random modifier and add a guaranteed modifier that's exclusive to that specific alloy</strong> (not obtainable any other way). Expect noticeably weaker league-start gear — Martial weapons hit hardest, spell builds least affected — and more slam-and-pray beyond your one guaranteed mod. Read the rest of this codex — especially <a href="#tricks">§XIII Adept's Tricks</a> — with extra caution; many of the chained-essence techniques may no longer apply. Now that the league is live, the surviving patterns are being confirmed against live play; until then, treat the chained-essence techniques here as provisional.
             </div>
 
             <div class="intro-block">
@@ -992,6 +992,7 @@ footer.site-footer a {
                         <li><strong>Greater and Perfect currencies</strong> are somewhat rarer overall; <strong>Greater Transmutation and Greater Augmentation are significantly rarer</strong>.</li>
                         <li><strong>Greater Orbs of Transmutation / Augmentation</strong> now have a minimum modifier level of <strong>44</strong> (previously 55) and can begin dropping in <strong>Act 4</strong>.</li>
                         <li><strong>Divine Orbs are now more common.</strong></li>
+                        <li><strong>Practical impact:</strong> Transmutation / Augmentation (and their Greater variants) are a scarcer resource now — don't aggressively spam them on every white drop in the campaign as players did pre-0.5. Hold them for bases actually worth finishing.</li>
                     </ul>
                 </div>
             </section>
@@ -1003,6 +1004,8 @@ footer.site-footer a {
                 <h2 class="section-title"><span class="num">IV</span>The Currency Index</h2>
 
                 <p>The complete crafting orb stack, in the order you typically encounter them. Each entry covers what the orb <em>does</em>, what <em>state</em> of item it acts on, and the strategic note worth keeping in mind.</p>
+
+                <p><strong>0.5 economy note:</strong> Transmutation and Augmentation (basic and Greater) are now <em>significantly</em> rarer, Greater/Perfect currencies somewhat rarer, and Divine Orbs more common — so treat the cheap upgrade orbs as a budgeted resource rather than something to spam. See the <a href="#tiers">§III</a> currency-changes box.</p>
 
                 <h3 class="sub-title">Rarity-Changing Orbs</h3>
                 <div class="tbl-wrap">
@@ -1753,7 +1756,23 @@ footer.site-footer a {
 
                     <!-- TRICK VI -->
                     <div class="trick">
-                        <span class="tag">Trick VI · Sandbox First</span>
+                        <span class="tag">Trick VI · Desecration Recovery</span>
+                        <h4>Clear a Bad Desecrated Roll Without Bricking</h4>
+                        <p>You desecrated, revealed, and the result is garbage — the slot is now occupied by an unwanted Desecrated mod. Don't slam over it; recover cleanly and re-run the cycle.</p>
+                        <div class="how">
+                            <strong>How</strong>
+                            <ol>
+                                <li>Activate <strong>Omen of Light</strong> and use an <strong>Orb of Annulment</strong> — this removes <em>only</em> the Desecrated modifier, leaving your real mods untouched.</li>
+                                <li>If a second unwanted mod is sitting on the side you need open, clear it with <strong>Essence of the Abyss</strong>, using <strong>Sinistral / Dextral prioritisation</strong> to point the removal at the prefix or suffix you want gone.</li>
+                                <li>Re-bone (Preserved / Ancient) under the appropriate side-omen and reveal again. Repeat until the target Desecrated mod lands.</li>
+                            </ol>
+                        </div>
+                        <p class="why">Omen of Light makes the Annulment deterministic on the Desecrated mod specifically — without it the Annul is a coin-flip across every modifier on the item. Pairing it with Essence of the Abyss for the second mod lets you reset both problem slots and loop the desecration without ever risking the modifiers you're keeping. This is the standard endgame chase loop; budget for a variable number of cycles set by the target mod's weight.</p>
+                    </div>
+
+                    <!-- TRICK VII -->
+                    <div class="trick">
+                        <span class="tag">Trick VII · Sandbox First</span>
                         <h4>Plan with Craft of Exile Before Spending</h4>
                         <p>Not a craft trick — a discipline trick. Use the <a href="https://www.craftofexile.com/?b=poe2" target="_blank" rel="noopener">Craft of Exile emulator</a> to test the exact sequence before you spend in-game currency.</p>
                         <div class="how">
@@ -1883,14 +1902,25 @@ footer.site-footer a {
                 </div>
 
                 <h3 class="sub-title">Runic Alloys — New Mod Pools</h3>
-                <p>A new currency class. Alloys add modifiers <strong>not normally craftable</strong> to items. Verisium combined with other materials produces different alloy types:</p>
+                <p>A new currency class. Each Runic Alloy <strong>removes a random modifier and adds a guaranteed modifier that can only be obtained through that specific alloy</strong> — mod pools not normally craftable by any other means (mechanically like a Perfect Essence). Verisium — the resource used to craft <strong>Runic Ward</strong> onto armour via the Verisium Anvil, with alternative properties when applied to Kalguuran Unique items — combined with other materials produces the different alloy types:</p>
+                <p>The added modifier <strong>counts as the item's one crafted modifier</strong> (per the 0.5 single-crafted-mod cap), so it's mutually exclusive with an Essence craft or a Runic Ward enchant on the same piece — choose one route per item. See the <a href="#tricks">crafting-limit caution</a> at the top of the codex.</p>
+                <p>There are <strong>13 alloys</strong>, each themed and slot-dependent (the mod you get differs by item type). They unlock after Farrow's Act 2 quest and drop from Verisium Remnant encounters. The confirmed family:</p>
                 <ul>
-                    <li><strong>Imbued Alloy</strong> — ailment damage modifiers</li>
-                    <li><strong>Expansive Alloy</strong> — area of effect modifiers</li>
-                    <li><strong>Mystic Alloy</strong> — caster-pool modifiers</li>
-                    <li><strong>Swift Alloy</strong> — speed-pool modifiers</li>
-                    <li><strong>Runic Alloy</strong> — broader Aldur-themed mods</li>
+                    <li><strong>Runic Alloy</strong> — Runic Ward (jewellery/belt: +max ward, % max ward, ward regen)</li>
+                    <li><strong>Adaptive Alloy</strong> — "while missing Runic Ward" offence (extra fire damage, attack speed; sceptre Puppet Master)</li>
+                    <li><strong>Protective Alloy</strong> — Runic Ward recovery/defence (recover ward on charm/block, +max ward on weapons)</li>
+                    <li><strong>Expansive Alloy</strong> — utility/area (Presence AoE, remnant collection range, mana-cost efficiency, minion limit)</li>
+                    <li><strong>Swift Alloy</strong> — speed (cast / attack speed, flask charges, totem placement)</li>
+                    <li><strong>Cyclonic Alloy</strong> — duration / debuff (skill-effect & ailment duration, slowing-potency reduction, archon buff)</li>
+                    <li><strong>Prismatic Alloy</strong> — penetration / ailment magnitude / exposure effect</li>
+                    <li><strong>Mystic Alloy</strong> — caster &amp; area (spell/attack AoE, +Spirit, chain, +1 elemental infusion)</li>
+                    <li><strong>Sovereign Alloy</strong> — socketed-augment effect / increased Runic Ward / resistance magnitude</li>
+                    <li><strong>Celestial Alloy</strong> — high-end (staff/wand +max mana &amp; +1 spell skills; martial accuracy + attack speed)</li>
+                    <li><strong>Transcendent Alloy</strong> — cast speed + cold conversion (casters) / phys + all attributes (martial)</li>
+                    <li><strong>The Runebinder's Alloy</strong> — skill-limit &amp; caster effects (elemental skill limit, Puppet Master stacks, ballista totems, mark effect)</li>
+                    <li><strong>The Runefather's Alloy</strong> — martial-weapon-specific (mace Glory retention, quarterstaff Tempest Bells, spear range, talisman lightning)</li>
                 </ul>
+                <p class="why">The 13-alloy family, the names, and the replace-a-random-mod mechanic are <strong>confirmed on PoE2DB</strong>. Each is crafted from a rune recipe (Rebirth Rune is the common base ingredient), and the rarer ones — Sovereign, Celestial, Transcendent, and the two named alloys — run from tens to hundreds of Exalts. The per-slot mod rolls and rune recipes summarised here come from a 0.5 community guide; check each alloy's individual PoE2DB page for exact values before an expensive craft.</p>
                 <p>A subset of Runes are <strong>meta-crafting runes</strong>: applied to a socket, they <em>unlock</em> a new mod pool on the item that subsequent ordinary orb crafting can roll. The reveal demonstrated a <em>Rune of Chronomancy</em> on boots that unlocked time-related mods (cooldown speed, skill effect duration).</p>
 
                 <h3 class="sub-title">Elemental Conversion Runes</h3>
@@ -1988,7 +2018,7 @@ footer.site-footer a {
                 <h3 class="sub-title">Known Areas of Uncertainty</h3>
                 <ul>
                     <li><strong>Omen of Catalysing Exaltation magnitude</strong> — the bias toward the catalyst tag is real but the exact percentage shift is not documented in-game; community testing suggests it is meaningful but not deterministic.</li>
-                    <li><strong>Patch 0.5 Runic Alloy mod pools</strong> — Imbued / Expansive / Mystic / Swift names and effects are from the reveal stream; the full list of new modifiers each unlocks is not yet public.</li>
+                    <li><strong>Patch 0.5 Runic Alloy mod pools</strong> — the 13-alloy family (Runic, Adaptive, Protective, Expansive, Swift, Cyclonic, Prismatic, Mystic, Sovereign, Celestial, Transcendent, Runebinder's, Runefather's) is <strong>confirmed on PoE2DB</strong> (names and order verified). The earlier reveal-stream names (e.g. "Imbued Alloy") did not survive to launch. The per-slot mod values and rune recipes (from a 0.5 community guide) still want a check against each alloy's PoE2DB page before expensive use.</li>
                     <li><strong>Genesis Tree node count</strong> — the reveal showed 15 allocatable nodes, but the exact branches and their gating may shift in the patch notes.</li>
                     <li><strong>Soul Core list</strong> — only a subset of named Soul Cores are reliably documented externally; the full list is in-game and on PoE2DB once you encounter them.</li>
                     <li><strong>Specific mod-tier ilvl gates</strong> — the breakpoint table in §II is compiled from community sources and is illustrative. The source-of-truth for any specific base is PoE2DB's per-base modifier page.</li>
