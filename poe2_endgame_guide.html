@@ -782,6 +782,13 @@
     letter-spacing: 1.5px; text-transform: uppercase;
     opacity: 0.6; z-index: 3;
 }
+.atlas-tile .master-pip {
+    position: absolute; top: 0.42rem; left: 0.5rem;
+    font: 700 6.5px 'Cinzel', serif;
+    letter-spacing: 0.3px; text-transform: uppercase;
+    color: var(--gold-deep); opacity: 0.92; z-index: 3; white-space: nowrap;
+}
+[data-theme="dark"] .atlas-tile .master-pip { color: var(--gold); }
 .atlas-tile .name {
     font-family: 'Cinzel', serif;
     font-weight: 700;
@@ -1060,6 +1067,7 @@
                     <!-- CENTER · Spawn Point -->
                     <div class="atlas-tile center">
                         <span class="compass-tag" style="opacity: 0">·</span>
+                        <span class="master-pip">⬢ Jado</span>
                         <div class="symbol">
                             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="3.5" stroke-linecap="round">
                                 <line x1="50" y1="20" x2="50" y2="36"/>
@@ -1092,6 +1100,7 @@
                     <!-- SW · Delirium -->
                     <div class="atlas-tile delirium">
                         <span class="compass-tag">SW</span>
+                        <span class="master-pip">⬢ Hilda</span>
                         <div class="symbol">
                             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
                                 <ellipse cx="50" cy="40" rx="22" ry="26"/>
@@ -1117,6 +1126,7 @@
                     <!-- SE · The Runes of Aldur -->
                     <div class="atlas-tile expedition">
                         <span class="compass-tag">SE</span>
+                        <span class="master-pip">⬢ Doryani</span>
                         <div class="symbol">
                             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="36" y="36" width="28" height="48" rx="3"/>
@@ -1131,7 +1141,7 @@
 
                 </div>
                 <div class="diagram-caption">
-                    5 new endgame storylines + 2 core revamps (Abyss, Fate of the Vaal) + the new league (Runes of Aldur) arranged by compass heading. The <strong>Fortress</strong> is not a fixed compass point — <em>it rises on completing your first tower</em>. Masters of the Atlas (5th storyline) is not a compass placement either — it lives in the Atlas screen itself. Hub area beneath each name.
+                    5 new endgame storylines + 2 core revamps (Abyss, Fate of the Vaal) + the new league (Runes of Aldur) arranged by compass heading. The <strong>Fortress</strong> is not a fixed compass point — <em>it rises on completing your first tower</em>. The three <strong>Atlas Masters</strong> are Atlas-screen trees rather than mechanic hubs, but the <strong>⬢</strong> pips mark where you first find each one: <strong>Jado</strong> at the Sealed Vault in the Ziggurat Refuge (centre), <strong>Hilda</strong>'s Campsite by the Withered Willow (SW), and <strong>Doryani</strong>'s first corruption nexus (SE). Hub area beneath each name.
                 </div>
             </section>
 
@@ -1245,7 +1255,7 @@
                         <li><strong><a href="#fate-of-the-vaal">Fate of the Vaal</a></strong> (Vaal City): run city nodes until blocked → kill the <strong>Architect</strong> to open more → build a road to the temple top, attach rooms, connect Atziri's and the royal-access chambers → kill <strong>Atziri</strong> (≈6 points).</li>
                         <li><strong><a href="#delirium">Delirium</a></strong> (Grand Mirror): push maps to 100% delirium → clear the 7-stage Simulacrum for the Raven's Reflection → Withered Willow → kill <strong>Tangmazu</strong> <em>(name unverified)</em>. Non-fog passive maps first, &gt;100% fog maps last.</li>
                         <li><strong><span class="tag npc">Hilda</span></strong> — kill the remaining three Great Beasts (her tree also enables scavenging for extra uniques).</li>
-                        <li><strong><span class="tag npc">Jado</span></strong> (order of the Jinn) — complete the Sealed Vault, Jade Isles, Derelict Mansion, and Sacred Reservoir <em>(site names unverified)</em>; best for Exceptional Items and Lineage Supports.</li>
+                        <li><strong><span class="tag npc">Jado</span></strong> (order of the Jinn) — start at the <strong>Sealed Vault</strong>, then complete the Jade Isles, Derelict Mansion, and Sacred Reservoir <em>(latter three site names unverified)</em>; best for Exceptional Items and Lineage Supports.</li>
                         <li><strong><a href="#runes-of-aldur">The Runes of Aldur</a> — Grand Expedition</strong> (Kingsmarch): the logbook chain Medved → Vorana → Uthred → Olroth, then take the Triskelion item and sail to the Verisium Crater. No Atlas sub-tree yet, so this is the natural end of progression.</li>
                     </ul>
                 </div>
@@ -1736,7 +1746,7 @@
                 <div class="storyline-body">
                     <p>Atlas Masters are ascendancy-style endgame progression. Each master has <strong>12 nodes; 4 selectable at once</strong>, selection changeable any time. <strong>All three masters can be allocated simultaneously</strong>, with a quick-select to switch the active master before a map. Rows of 3 nodes unlock by performing missions.</p>
 
-                    <p>Unlock conditions (0.5 confirmed): Doryani via clearing a <strong>corruption nexus</strong>; Hilda via visiting <strong>Hilda's Campsite</strong> (south-west of the start); Jado via opening an <strong>Ancient Vaal Vault</strong> (just north of the start).</p>
+                    <p>Unlike PoE 1, masters are not random map encounters — each is a permanent, Ascendancy-style tree that you unlock with a short intro quest at its Atlas location, then select from the side of the Atlas screen. Unlock conditions (0.5 confirmed): <strong>Doryani</strong> — clear his <strong>Corruption Nexus</strong> (south-east of the start). <strong>Hilda</strong> — hunt and defeat the <strong>Great Beast</strong> she marks for you, reached from <strong>Hilda's Campsite</strong> (south-west, by the Withered Willow). <strong>Jado</strong> — recover artifacts at the <strong>Sealed Vault</strong> in the upper Ziggurat Refuge (north of the start).</p>
 
                     <div class="card-grid">
                         <div class="card">
@@ -2088,7 +2098,7 @@
                     <h3 class="sub-title">Reference sites</h3>
                     <ul>
                         <li><strong><a href="https://poe2db.tw/us/" target="_blank" rel="noopener">poe2db.tw</a></strong> — datamined database. Source of truth for modifiers, tiers, ilvl gates, and tags.</li>
-                        <li><strong><a href="https://maxroll.gg/poe2" target="_blank" rel="noopener">maxroll.gg/poe2</a></strong>, <strong><a href="https://mobalytics.gg/poe-2" target="_blank" rel="noopener">mobalytics.gg/poe-2</a></strong>, <strong><a href="https://www.vulkk.com/" target="_blank" rel="noopener">vulkk.com</a></strong> — guide sites cross-referenced for mechanics interpretation.</li>
+                        <li><strong><a href="https://maxroll.gg/poe2" target="_blank" rel="noopener">maxroll.gg/poe2</a></strong>, <strong><a href="https://mobalytics.gg/poe-2" target="_blank" rel="noopener">mobalytics.gg/poe-2</a></strong>, <strong><a href="https://games.gg/path-of-exile-2" target="_blank" rel="noopener">games.gg</a></strong>, <strong><a href="https://www.vulkk.com/" target="_blank" rel="noopener">vulkk.com</a></strong> — guide sites cross-referenced for mechanics interpretation (games.gg + poe2db for the Atlas Master locations and unlock quests).</li>
                         <li><strong><a href="https://poe.ninja/poe2" target="_blank" rel="noopener">poe.ninja/poe2</a></strong> — currency price tracking, build meta reference.</li>
                         <li><strong><a href="https://game8.co/games/Path-of-Exile-2" target="_blank" rel="noopener">game8.co</a></strong>, <strong><a href="https://conquestcapped.com/" target="_blank" rel="noopener">conquestcapped.com</a></strong> — used as cross-check / tiebreaker for the Fortress structure, the Grand Expedition boss chain, and the Arbiter of Divinity key chain.</li>
                     </ul>
