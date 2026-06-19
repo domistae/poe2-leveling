@@ -1217,8 +1217,8 @@ footer.site-footer a {
                             <tr><td><strong>Omen of Dextral Exaltation</strong></td><td>Exalted Orb</td><td>Next Exalt only adds a <em>suffix</em>.</td></tr>
                             <tr><td><strong>Omen of Sinistral Annulment</strong></td><td>Orb of Annulment</td><td>Next Annul only removes a <em>prefix</em>.</td></tr>
                             <tr><td><strong>Omen of Dextral Annulment</strong></td><td>Orb of Annulment</td><td>Next Annul only removes a <em>suffix</em>.</td></tr>
-                            <tr><td><strong>Omen of Sinistral Erasure</strong></td><td>Chaos Orb</td><td>Next Chaos only replaces a <em>prefix</em>.</td></tr>
-                            <tr><td><strong>Omen of Dextral Erasure</strong></td><td>Chaos Orb</td><td>Next Chaos only replaces a <em>suffix</em>.</td></tr>
+                            <tr><td><strong>Omen of Sinistral Erasure</strong></td><td>Chaos Orb</td><td>Next Chaos only removes a <em>prefix</em>.</td></tr>
+                            <tr><td><strong>Omen of Dextral Erasure</strong></td><td>Chaos Orb</td><td>Next Chaos only removes a <em>suffix</em>.</td></tr>
                             <tr><td><strong>Omen of Sinistral Crystallisation</strong></td><td>Perfect / Corrupted Essence</td><td>Next Perfect Essence only removes a <em>prefix</em> (before adding its guaranteed mod).</td></tr>
                             <tr><td><strong>Omen of Dextral Crystallisation</strong></td><td>Perfect / Corrupted Essence</td><td>Next Perfect Essence only removes a <em>suffix</em>.</td></tr>
                             <tr><td><strong>Omen of Sinistral Coronation</strong></td><td>Regal Orb</td><td>Next Regal only adds a <em>prefix</em>.</td></tr>
@@ -1267,9 +1267,26 @@ footer.site-footer a {
                     </div>
                     <div class="card">
                         <h4>Omen of Sanctification</h4>
+                        <div class="role">Pairs with Divine Orb</div>
+                        <p>The next <strong>Divine Orb</strong> used on a Rare item <strong>Sanctifies</strong> it instead of rerolling normally. Sanctifying multiplies each modifier's value by a random <strong>78%–122%</strong> roll, then marks the item <strong>Sanctified</strong>.</p>
+                        <p>Most crafting and modification can no longer be used on a Sanctified item, so this is a finishing step. Used to push an already-good Rare's rolls upward when every mod is worth keeping.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Omen of Corruption</h4>
                         <div class="role">Pairs with Vaal Orb</div>
-                        <p>The next Vaal Orb cannot brick the item — destructive corrupt outcomes are excluded. The item still becomes Corrupted and can no longer be modified, but the result is guaranteed positive.</p>
-                        <p>Extraordinarily expensive. Used on mirror-tier items where the only acceptable corrupt outcome is an upside.</p>
+                        <p>The next Vaal Orb <strong>always results in change</strong> — the "nothing happens" outcome is removed from the table, so the corrupt is guaranteed to do <em>something</em>. The item still becomes Corrupted and can no longer be modified.</p>
+                        <p>It forces a result but does <em>not</em> exclude destructive outcomes — it makes the Vaal gamble certain to fire, not certain to be good.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Omen of the Blessed</h4>
+                        <div class="role">Pairs with Divine Orb</div>
+                        <p>The next Divine Orb only <strong>rerolls Implicit modifiers</strong>, leaving the explicit roll values untouched. Used to retune a corrupted/implicit roll without disturbing a finished explicit setup.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Omen of Homogenising Coronation</h4>
+                        <div class="role">Pairs with Regal Orb</div>
+                        <p>The next Regal Orb adds a modifier of the <strong>same type as a modifier already on the item</strong> — the Regal-step analogue of Homogenising Exaltation.</p>
+                        <p>Same caveat as the Exaltation version: the Homogenising family's drops have been toggled between patches, so confirm current-patch availability (see <a href="#tags">§VII</a>).</p>
                     </div>
                 </div>
 
@@ -1305,7 +1322,7 @@ footer.site-footer a {
                     <div class="card">
                         <h4>Omens of the Blackblooded / Liege / Sovereign</h4>
                         <div class="role">Pairs with Desecration</div>
-                        <p>Each <strong>guarantees</strong> the next desecration rolls from a specific <strong>lich's</strong> pool — <em>Blackblooded → Kurgal</em>, <em>Liege → Amanamu</em>, <em>Sovereign → Ulaman</em>. When you know which lich carries the desecrated mod you want, this is the targeting layer on top of the side-targeting Necromancy omens.</p>
+                        <p>Each <strong>guarantees</strong> the next desecration rolls from a specific <strong>lich's</strong> pool — <em>Blackblooded → Kurgal</em>, <em>Liege → Amanamu</em>, <em>Sovereign → Ulaman</em>. When you know which lich carries the desecrated mod you want, this is the targeting layer on top of the side-targeting Necromancy omens. <em>Per poe2db, these apply to <strong>weapon and jewellery</strong> desecration specifically.</em></p>
                     </div>
                     <div class="card">
                         <h4>Omen of Putrefaction <span class="tag-pill">0.5 caveat</span></h4>
