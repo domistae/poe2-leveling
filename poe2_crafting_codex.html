@@ -1275,21 +1275,9 @@ footer.site-footer a {
                         <p>Most crafting and modification can no longer be used on a Sanctified item, so this is a finishing step. Used to push an already-good Rare's rolls upward when every mod is worth keeping.</p>
                     </div>
                     <div class="card">
-                        <h4>Omen of Corruption</h4>
-                        <div class="role">Pairs with Vaal Orb</div>
-                        <p>The next Vaal Orb <strong>always results in change</strong> — the "nothing happens" outcome is removed from the table, so the corrupt is guaranteed to do <em>something</em>. The item still becomes Corrupted and can no longer be modified.</p>
-                        <p>It forces a result but does <em>not</em> exclude destructive outcomes — it makes the Vaal gamble certain to fire, not certain to be good.</p>
-                    </div>
-                    <div class="card">
                         <h4>Omen of the Blessed</h4>
                         <div class="role">Pairs with Divine Orb</div>
                         <p>The next Divine Orb only <strong>rerolls Implicit modifiers</strong>, leaving the explicit roll values untouched. Used to retune a corrupted/implicit roll without disturbing a finished explicit setup.</p>
-                    </div>
-                    <div class="card">
-                        <h4>Omen of Homogenising Coronation</h4>
-                        <div class="role">Pairs with Regal Orb</div>
-                        <p>The next Regal Orb adds a modifier of the <strong>same type as a modifier already on the item</strong> — the Regal-step analogue of Homogenising Exaltation.</p>
-                        <p>Same caveat as the Exaltation version: the Homogenising family's drops have been toggled between patches, so confirm current-patch availability (see <a href="#tags">§VII</a>).</p>
                     </div>
                 </div>
 
@@ -1670,9 +1658,11 @@ footer.site-footer a {
                 <p>All four <strong>require the item to be at 20% Quality or above</strong> to use, and apply a corruption with the usual risk. They are the route to top-end quality corruption on a finished piece. Note the slot mapping: the old generic Infuser now lives on as the <em>Armourer's</em> (armour) — martial weapons need the <em>Blacksmith's</em> Infuser, not the legacy one. Twin-corruption (Vaal twice) remains possible through specific temple mechanics.</p>
 
                 <h3 class="sub-title">Corrupting Omens</h3>
-                <ul>
-                    <li><strong>Omen of Sanctification</strong> — eliminates negative outcomes entirely. Only positive (sockets, implicits, modifier improvements) can occur. Extraordinarily rare and expensive.</li>
-                </ul>
+                <p>In the <strong>Runes of Aldur</strong> league there is <strong>no omen that modifies Vaal corruption</strong> — it is raw gambling. The old <strong>Omen of Corruption</strong> (which removed the "no change" result, guaranteeing the Vaal did <em>something</em>) was pulled from 0.5 league drops and is now legacy / Standard-only — see <a href="#caveats">§XVII</a>.</p>
+                <div class="callout warn">
+                    <span class="label">There is no Vaal "anti-brick" omen</span>
+                    No omen makes a Vaal Orb safe — not now, not ever. <strong>Omen of Sanctification</strong> is a <em>Divine Orb</em> omen (it Sanctifies a Rare — see <a href="#omens">§VI</a>), not a corruption safeguard. If you cannot afford the brick, do not Vaal.
+                </div>
 
                 <div class="callout warn">
                     <span class="label">Once corrupted, the item is final</span>
@@ -1878,7 +1868,7 @@ footer.site-footer a {
                     <li><b>Sockets and runes / soul cores</b>Use Artificer's Orbs to add sockets to maximum. Insert your chosen Rune, Soul Core, or Talisman. Once placed, the socket is filled forever (overwriting destroys the contents).
                         <span class="why">Sockets cannot be added after corruption (except via Vaal). Doing this now keeps the corruption-step door open for a socket-adding implicit.</span>
                     </li>
-                    <li><b>Corrupt — last, and only when finished</b>Vaal Orb. The item is locked from all further modification, but gains a corrupted implicit, an extra socket, or another effect (or rerolls — be ready to brick). Omen of Sanctification removes negative outcomes entirely (at extreme cost).
+                    <li><b>Corrupt — last, and only when finished</b>Vaal Orb. The item is locked from all further modification, but gains a corrupted implicit, an extra socket, or another effect (or rerolls — be ready to brick). Vaal corruption is raw gambling in-league — there is no anti-brick omen.
                         <span class="why">Corruption is irreversible. Every prior step's flexibility is consumed here. Doing it before any prior step is over throws away every later constraint.</span>
                     </li>
                 </ol>
@@ -2059,7 +2049,8 @@ footer.site-footer a {
                     <li><strong>Omen of Homogenising Exaltation</strong> — the tag-locked Exalt that older guides treat as the core deterministic move for "+# to Level of all X Skills" crafts. Its drops were disabled back in <strong>0.4</strong>, so it is <strong>not obtainable in the Runes of Aldur league</strong>; legacy copies remain functional and tradeable only in <strong>Standard</strong>. Tag-locked level-of-skill crafting is therefore a Standard-only technique — in league, the live tag tools are Catalysing Exaltation and tag-aware essences (see §VI, §VII). This omen and its uses have been removed from the crafting body of this codex for that reason. <em>Mentioned here so the technique isn't forgotten if drops are ever re-enabled.</em></li>
                     <li><strong>Recombinators</strong> (formerly §IX) — the Expedition-fuelled bench that combined two items of the same class into a single output with a chosen mod subset. <strong>Disabled for the duration of The Runes of Aldur league</strong> alongside the rest of Expedition; expected to return when Expedition reintegrates into Standard. The deterministic two-mod-starter trick that lived in §XIII Tricks (formerly Trick III) and the recombinate-for-fractured-tag option in the §XIV workflow both relied on it — they're removed from this codex while the bench is offline. <em>Mentioned here so the mechanic isn't forgotten when it comes back.</em></li>
                     <li><strong>Omen of Recombination</strong> — paired with the Recombinator (rolled success chance twice, took the better outcome). Removed in 0.5; existing copies deleted on login.</li>
-                    <li><strong>Omen of Corruption</strong> — could no longer be obtained as of 0.5 (the patch notes removed it from the drop / vendor pool). All references stripped from this codex.</li>
+                    <li><strong>Omen of Corruption</strong> — removed the "no change" result from Vaal Orbs, making the corrupt always do something. <strong>Pulled from 0.5 league drops</strong>; it no longer appears in new leagues, and Vaal corruption is raw gambling again. Legacy copies remain available only through the <strong>Standard</strong> Currency Exchange. Removed from the crafting body of this codex for that reason.</li>
+                    <li><strong>Omen of Homogenising Coronation</strong> — the Regal-step analogue of Homogenising Exaltation (adds a mod of the same type as one already on the item). Its drops were disabled in <strong>0.4</strong> alongside the Exaltation version, so it is <strong>not obtainable in the Runes of Aldur league</strong>; legacy copies are Standard-only.</li>
                 </ul>
 
                 <h3 class="sub-title">A Last Word</h3>
