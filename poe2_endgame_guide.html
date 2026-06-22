@@ -516,6 +516,12 @@
     content: '◆'; position: absolute; left: 0.2rem;
     color: var(--gold-deep); font-size: 8px; top: 0.6rem;
 }
+.storyline-body ol.step-list { list-style: none; padding-left: 0; counter-reset: step; margin-bottom: 0.6rem; }
+.storyline-body ol.step-list > li { counter-increment: step; padding-left: 1.7rem; }
+.storyline-body ol.step-list > li::before {
+    content: counter(step) "."; left: 0.15rem; top: 0.32rem;
+    color: var(--gold-deep); font-family: 'Cinzel', serif; font-weight: 700; font-size: 11px;
+}
 .storyline-body strong { color: var(--text-primary); font-weight: 600; }
 .storyline-body em { color: var(--gold); font-style: normal; font-weight: 500; }
 
@@ -588,6 +594,21 @@
     font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.5rem;
 }
 .card p { color: var(--text-body); font-size: 0.75rem; margin-bottom: 0.35rem; }
+
+/* Atlas Masters — a system, deliberately styled apart from the storylines */
+#masters-atlas.storyline { border-top: 3px solid var(--steel); }
+#masters-atlas .storyline-header {
+    background: linear-gradient(90deg, var(--overlay-steel) 0%, var(--bg-elevated) 100%);
+}
+#masters-atlas .storyline-header .ordinal { color: var(--steel); }
+#masters-atlas .card { border-top: 2px solid var(--steel); }
+#masters-atlas .card h4 { color: var(--steel); }
+.master-meta { margin: 0.35rem 0 0.55rem; }
+.master-meta-row { font-size: 11.5px; color: var(--text-body); margin-bottom: 0.22rem; line-height: 1.4; }
+.master-meta-row .k {
+    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--steel); margin-right: 0.4rem; font-weight: 600;
+}
 
 /* TOC */
 .toc {
@@ -789,6 +810,11 @@
     color: var(--gold-deep); opacity: 0.92; z-index: 3; white-space: nowrap;
 }
 [data-theme="dark"] .atlas-tile .master-pip { color: var(--gold); }
+.atlas-tile .master-pips {
+    position: absolute; top: 0.42rem; left: 0.5rem; right: 0.5rem;
+    display: flex; flex-direction: column; gap: 1px; z-index: 3;
+}
+.atlas-tile .master-pips .master-pip { position: static; display: block; }
 .atlas-tile .name {
     font-family: 'Cinzel', serif;
     font-weight: 700;
@@ -969,7 +995,6 @@
             </details>
             <details class="sidebar-section zones-details">
                 <summary class="zones-summary">Reference</summary>
-                <a href="#bosses" class="sidebar-link boss">Pinnacle Bosses</a>
                 <a href="#runic-ward" class="sidebar-link system">Runic Ward</a>
                 <a href="#qol" class="sidebar-link system">QoL &amp; Tools</a>
                 <a href="#challenges" class="sidebar-link system">Challenge League</a>
@@ -992,14 +1017,7 @@
             </header>
 
             <div class="intro-block">
-                <p>Patch <strong>0.5.0 — Return of the Ancients</strong> overhauls the entire endgame. The Atlas now has <strong>fixed points of interest</strong>, an immediate goal as soon as you finish the campaign, and pop-out progress bars for every active questline. <em>"All league mechanics on the Atlas now have quests that introduce the mechanic and guide you through its various stages up to the Pinnacle Boss."</em></p>
-                <p>The new endgame breaks into three buckets:</p>
-                <ul style="margin: 0.4rem 0 0.7rem; padding-left: 1.4rem;">
-                    <li><strong>5 new endgame storylines</strong> — <a href="#fortress">Fortress</a> (Origins of Divinity, also unlocks the Atlas passive tree), <a href="#delirium">Delirium</a> (Hare and Raven), <a href="#breach">Breach</a> (Waking the Dreamer), <a href="#ritual">Ritual</a> (Rite of the Nameless), and <a href="#masters-atlas">Masters of the Atlas</a> (endgame ascendancy-style progression).</li>
-                    <li><strong>2 core revamps</strong> — <a href="#abyss">Abyss</a> and <a href="#fate-of-the-vaal">Fate of the Vaal</a>. Both were in the game already; both got Atlas placement, Atlas-tree treatment, and quest framing in 0.5.</li>
-                    <li><strong>1 new league</strong> — <a href="#runes-of-aldur">The Runes of Aldur</a> (Explore the Uncharted Seas, with Farrow). The old Expedition mechanic is temporarily disabled on Standard for the league''s duration.</li>
-                </ul>
-                <p>The Arbiter of Ash has been moved into the Fortress. The new top pinnacle is the <strong>Arbiter of Divinity</strong>, at the Fortress core.</p>
+                <p>0.5 overhauls the endgame around the Atlas below: every mechanic now has a fixed location and a guided questline, and the <strong>Arbiter of Ash has been moved into the Fortress</strong> — the new apex of Path of Exile 2 is the <strong>Arbiter of Divinity</strong> at the Fortress core. Start with the practical <a href="#where-to-start">endgame chapter</a> further down; this map and the index that follows are the lay of the land.</p>
                 <p style="font-size: 11.5px; color: var(--text-muted); font-style: italic;">Community names (Breach, Ritual, Delirium, Fortress) are kept as the primary heading for each section; the 0.5 storyline names appear as subtitles. <em>GGG's official key art and reveal present these as 5 storylines; the written 0.5.0 patch-notes intro phrases it as "six."</em></p>
             </div>
 
@@ -1067,7 +1085,11 @@
                     <!-- CENTER · Spawn Point -->
                     <div class="atlas-tile center">
                         <span class="compass-tag" style="opacity: 0">·</span>
-                        <span class="master-pip">⬢ Jado</span>
+                        <div class="master-pips">
+                            <span class="master-pip">⬢ Hilda</span>
+                            <span class="master-pip">⬢ Jado</span>
+                            <span class="master-pip">⬢ Doryani</span>
+                        </div>
                         <div class="symbol">
                             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="3.5" stroke-linecap="round">
                                 <line x1="50" y1="20" x2="50" y2="36"/>
@@ -1100,7 +1122,6 @@
                     <!-- SW · Delirium -->
                     <div class="atlas-tile delirium">
                         <span class="compass-tag">SW</span>
-                        <span class="master-pip">⬢ Hilda</span>
                         <div class="symbol">
                             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
                                 <ellipse cx="50" cy="40" rx="22" ry="26"/>
@@ -1126,7 +1147,6 @@
                     <!-- SE · The Runes of Aldur -->
                     <div class="atlas-tile expedition">
                         <span class="compass-tag">SE</span>
-                        <span class="master-pip">⬢ Doryani</span>
                         <div class="symbol">
                             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="36" y="36" width="28" height="48" rx="3"/>
@@ -1141,7 +1161,7 @@
 
                 </div>
                 <div class="diagram-caption">
-                    5 new endgame storylines + 2 core revamps (Abyss, Fate of the Vaal) + the new league (Runes of Aldur) arranged by compass heading. The <strong>Fortress</strong> is not a fixed compass point — <em>it rises on completing your first tower</em>. The three <strong>Atlas Masters</strong> are Atlas-screen trees rather than mechanic hubs, but the <strong>⬢</strong> pips mark where you first find each one: <strong>Jado</strong> at the Sealed Vault in the Ziggurat Refuge (centre), <strong>Hilda</strong>'s Campsite by the Withered Willow (SW), and <strong>Doryani</strong>'s first corruption nexus (SE). Hub area beneath each name.
+                    5 new endgame storylines + 2 core revamps (Abyss, Fate of the Vaal) + the new league (Runes of Aldur) arranged by compass heading. The <strong>Fortress</strong> is not a fixed compass point — <em>it rises on completing your first tower</em>. The three <strong>Atlas Masters</strong> are Atlas-screen trees rather than mechanic hubs; the <strong>⬢</strong> pips sit on the central Ziggurat spawn, where all three (<strong>Hilda</strong>, <strong>Jado</strong>, <strong>Doryani</strong>) are reached. Their individual camps and sites lie out on the Atlas — see <a href="#masters-atlas">Masters of the Atlas</a> for where each one is. Hub area beneath each name.
                 </div>
             </section>
 
@@ -1188,7 +1208,7 @@
                         <div class="card">
                             <h4>Mechanic-first</h4>
                             <div class="role">Gear where you're comfortable, then the Atlas</div>
-                            <p>Fully unlock one or two mechanics you enjoy first (Abyss and Ritual are popular openers), bank the gear and tablets they hand you, then treat the main Atlas as your second or third priority. Lower-risk and more fun if you're not ready for the Arbiter of Ash, but the per-map Atlas bonuses arrive later.</p>
+                            <p>Fully unlock one or two mechanics you enjoy first (<strong>Abyss then Breach</strong> is the common opener; <strong>Abyss then Ritual</strong> is a fine alternative — it's down to taste), bank the gear and tablets they hand you, then treat the main Atlas as your second or third priority. Lower-risk and more fun if you're not ready for the Arbiter of Ash, but the per-map Atlas bonuses arrive later.</p>
                         </div>
                     </div>
                     <p>Both camps agree on one thing: the Atlas-tree nodes that add <strong>per-map loot, tablet drops, and waystone drops</strong> are worth reaching reasonably early either way. And the devs have said outright they expect most players to <strong>skip</strong> a mechanic or two they don't enjoy (Fate of the Vaal and Delirium are the usual skips) — clearing all of it is for completionists, not a requirement.</p>
@@ -1210,14 +1230,29 @@
                 </div>
                 <div class="storyline-body">
                     <p>If <a href="#farming-priority">Farming Priority</a> answers <em>what</em> to play and <a href="#where-to-start">Where to Start</a> answers your opening move, this answers <em>in what order, and when to stop</em>. It front-loads waystone sustain, parks you in low tiers to gear safely, then uses repeated pinnacle kills to auto-complete the Atlas tree instead of grinding every map by hand.</p>
+                    <p>The spine below is the same whichever opening you picked in <a href="#where-to-start">Where to Start</a> — the only real difference is <em>timing</em>. An <strong>Atlas-first</strong> player banks tree nodes before peeling off to gear in Phase 2; a <strong>Mechanic-first</strong> player gears first and returns to the Fortress a little later. Both rejoin at the same Phase 3 pinnacle loop, so neither path changes the steps — just when you take them.</p>
                     <p><strong>The habit that underpins all of it:</strong> unless you're target-farming a specific mechanic, <strong>rush straight to the map boss</strong>. Regular rares and league content are under-rewarding until the tree is allocated and over-rewarding after, so spend as little time as possible in maps that don't move progression forward.</p>
 
                     <h3>Phase 1 — First steps &amp; early Fortress</h3>
-                    <p>At the Ziggurat after the campaign: open the <strong>Waygate</strong> and clear your first map by rushing the boss (this unlocks your hideout Map Device), then talk to <span class="tag npc">Doryani</span> and <span class="tag npc">Farrow</span> to open your first quests. Detour to <strong>Hilda's camp</strong> for just the <em>first</em> Beast Contract — it unlocks a passive giving a <strong>25% chance to upgrade a normal map boss to a powerful one</strong> (powerful bosses drop waystones one tier higher). Then complete the nearby <strong>Precursor Tower</strong> to raise the Fortress.</p>
-                    <p><strong>Waystone sustain &amp; tier gates.</strong> Always run your highest tier. Quest gates open at <strong>T6 / T11 / T14</strong> minimums. Doryani sells waystones one tier below your highest completed — so clear a T7, buy a few backup T6s; clear a T12, buy backup T11s. Inside the Fortress, don't run every map: path the <strong>shortest route to each objective</strong> (the pinnacle auto-completes whole sections later). Route the <a href="#fortress">Ancient Gateway → Burning Monolith → Eastern/Western Gateways → the two Enigma Chambers</a>, whose bosses give the two Crisis Fragments for the <strong>Arbiter of Ash</strong>.</p>
+                    <p><strong>Atlas-first — bank the sustain passives, then gear.</strong> Rush the <a href="#fortress">Fortress</a> straight to the Enigma Chambers, taking the Atlas-tree nodes that fix waystone sustain and <strong>unlock tablets before anything else</strong>.</p>
+                    <p>At the Ziggurat after the campaign, in order:</p>
+                    <ol class="step-list">
+                        <li>Open the <strong>Waygate</strong> and clear your first map by rushing the boss (this unlocks your hideout Map Device), then talk to <span class="tag npc">Doryani</span> and <span class="tag npc">Farrow</span> to open your first quests.</li>
+                        <li><strong>Detour to Hilda's camp</strong> for just the <em>first</em> Beast Contract — it unlocks a passive giving a <strong>25% chance to upgrade a normal map boss to a powerful one</strong> (powerful bosses drop waystones one tier higher).</li>
+                        <li>Complete the nearby <strong>Precursor Tower</strong> to raise the Fortress.</li>
+                        <li>Inside the Fortress, don't run every map — path the <strong>shortest route to each objective</strong> (the pinnacle auto-completes whole sections later). Route the <a href="#fortress">Ancient Gateway → Burning Monolith → Eastern/Western Gateways → the two Enigma Chambers</a>; the Enigma bosses give the two Crisis Fragments for the <strong>Arbiter of Ash</strong>.</li>
+                    </ol>
+                    <div class="info-box">
+                        <h3>Waystone sustain &amp; Fortress quest gates</h3>
+                        <ul>
+                            <li><span class="icon">◆</span><span>Always run your <strong>highest tier</strong>.</span></li>
+                            <li><span class="icon">◆</span><span>The Fortress questline is <strong>tier-gated</strong>: advancing Origins-of-Divinity — and unlocking the next Atlas-tree section — needs <strong>T6 / T11 / T14</strong> map completions as minimums. A hard quest gate, distinct from the gear/ilvl phases in <a href="#farming-priority">Farming Priority</a>.</span></li>
+                            <li><span class="icon">◆</span><span><span class="tag npc">Doryani</span> sells waystones <strong>one tier below</strong> your highest completed — clear a T7, buy a few backup T6s; clear a T12, buy backup T11s.</span></li>
+                        </ul>
+                    </div>
                     <div class="callout tip">
                         <span class="callout-label">Ascendancy breadcrumb</span>
-                        If your level is on point as you pass the trials, take the matching Ascendancy — the 3rd around level 70, the 4th around level 85 (a level-75 four-trial Djinn Barya from Tier 11 maps is the easiest 4th-trial key).
+                        Take each Ascendancy as your level lines up with the trials. The <strong>3rd is best run as a Trial of the Sekhemas from a level-60 Djinn Barya</strong> (grabbable as early as the low 60s); prepare for it with <strong>Honour Resistance</strong> and as high a <strong>maximum Honour</strong> pool as you can, since the trial drains Honour whenever you take hits. The 4th comes around level 85 — a level-75 four-trial Djinn Barya from Tier 11 maps is the easiest 4th-trial key.
                     </div>
                     <div class="callout warn">
                         <span class="callout-label">When to bail</span>
@@ -1227,7 +1262,7 @@
                     <h3>Phase 2 — Gear in T11, don't rush T15</h3>
                     <p>The biggest mistake is sprinting to T15 unprepared. <strong>Tier 11 = Area Level 75</strong>, so drops are item level 75 — enough for most of the rolls a build actually wants, and exactly where <a href="#atlas-tree">Section 3 of the Atlas tree</a> begins to apply. Pushing to T15 for ilvl 82 chases lower-weight, marginal upgrades at far higher risk. <strong>Park in T11</strong>, finish your gear and levels, then push.</p>
                     <p style="font-size: 11.5px; color: var(--text-muted); font-style: italic;">For exact item-level and modifier-tier breakpoints, defer to the <a href="poe2_crafting_codex.html">Crafting Codex</a> and <a href="https://poe2db.tw/us/" target="_blank" rel="noopener">PoE2DB</a> rather than memorising numbers here — those are the source of truth.</p>
-                    <p>While parked in T11, gear via the mechanic that suits your build, and take <strong>one Doryani point</strong> from a nearby corrupted nexus (the extra revival makes harder maps safer). The consensus opener is <strong>Abyss</strong> — raw currency, good Omens, and universally useful Desecrated Bones — followed by <strong>Breach</strong> (build jewellery, especially early belts). A clean Phase-2 order: Doryani point → <strong>Delirium pt.1</strong> (Withered Willow — five boss kills under fog unlocks amulet anoints) → <strong>Abyss</strong> (Well of Souls → kill <strong>Kulemak</strong>) → <strong>Breach</strong> (Monastery of the Keepers → Hives + Colony → kill <strong>Xesht</strong>).</p>
+                    <p>While parked in T11, gear via the mechanic that suits your build, and take <strong>one Doryani point</strong> from a nearby corrupted nexus (the extra revival makes harder maps safer). The canonical opener is <strong>Abyss → Breach</strong>: Abyss for raw currency, good Omens, and universally useful Desecrated Bones, then Breach for build jewellery (especially early belts). <strong>Abyss → Ritual</strong> is an equally valid alternative if you'd rather chase league-start uniques — it's down to playstyle. A clean Phase-2 order: Doryani point → <strong>Abyss</strong> (Well of Souls → kill <strong>Kulemak</strong>) → <strong>Breach</strong> (Monastery of the Keepers → Hives + Colony → kill <strong>Xesht</strong>). <strong>Delirium is an early skip</strong> — if you enjoy it, pick it up a little later for the amulet anoints rather than slotting it here.</p>
                     <div class="callout tip">
                         <span class="callout-label">Two quest tips</span>
                         Don't run a mechanic's own tablets while questing it — they add more of it and slow you down — and skip its size/spawn tree nodes until the quest is done. If a sub-tree node won't allocate, it's gated behind that mechanic's boss kill; keep progressing.
@@ -1256,7 +1291,7 @@
                         <li><strong><a href="#delirium">Delirium</a></strong> (Grand Mirror): push maps to 100% delirium → clear the 7-stage Simulacrum for the Raven's Reflection → Withered Willow → kill <strong>Tangmazu</strong> <em>(name unverified)</em>. Non-fog passive maps first, &gt;100% fog maps last.</li>
                         <li><strong><span class="tag npc">Hilda</span></strong> — kill the remaining three Great Beasts (her tree also enables scavenging for extra uniques).</li>
                         <li><strong><span class="tag npc">Jado</span></strong> (order of the Jinn) — start at the <strong>Sealed Vault</strong>, then complete the Jade Isles, Derelict Mansion, and Sacred Reservoir <em>(latter three site names unverified)</em>; best for Exceptional Items and Lineage Supports.</li>
-                        <li><strong><a href="#runes-of-aldur">The Runes of Aldur</a> — Grand Expedition</strong> (Kingsmarch): the logbook chain Medved → Vorana → Uthred → Olroth, then take the Triskelion item and sail to the Verisium Crater. No Atlas sub-tree yet, so this is the natural end of progression.</li>
+                        <li><strong><a href="#runes-of-aldur">The Runes of Aldur</a> — Grand Expedition</strong> (Kingsmarch): the logbook chain Medved → Vorana → Uhtred → Olroth, then take the Triskelion item and sail to the Verisium Crater. No Atlas sub-tree yet, so this is the natural end of progression.</li>
                     </ul>
                 </div>
             </section>
@@ -1272,6 +1307,7 @@
                 </div>
                 <div class="storyline-body">
                     <p>The endgame league mechanics serve different purposes at different points in your endgame progression. Engaging the wrong one too early (e.g. juicing Abyss before your gear can take it) wastes time; engaging the wrong one too late (e.g. chasing Ritual unique-window drops for league-start gear after you've already crafted your own) wastes opportunity. The matrix below is the rough community consensus on what to prioritise when.</p>
+                    <p style="font-size: 11.5px; color: var(--text-muted); font-style: italic;">These phases track your <strong>gear / item-level maturity</strong> — not the Fortress quest gates. You can be deep into the Origins-of-Divinity questline (T11+) and still sit in the "Early" column here if your gear isn't built yet. The tier ranges are a rough guide to gear readiness, not a hard gate.</p>
                     <p><strong>Constant background:</strong> the <a href="#fortress">Fortress</a> is your core progression no matter where you are — every map you run, mix it in. It's the only source of the new Atlas tree points, and the Atlas tree is what unlocks the bonuses that make every other mechanic worth farming.</p>
 
                     <h3 class="sub-title">The three phases</h3>
@@ -1281,7 +1317,6 @@
                             <div class="role">Maps T1–T8 · before crafted gear</div>
                             <p><strong>The Runes of Aldur</strong> — predictable rare gear from vendor artifact-spend at the Ruins of Kingsmarch. Easy to bank what you need.</p>
                             <p><strong>Breach</strong> — Wombgifts feed the Genesis Tree for early jewellery (rings, amulets, belts). Hit resistance caps faster than any other source.</p>
-                            <p><strong>Delirium</strong> — first anoints on your amulet. One emotion combo is often a power spike worth more than any single item upgrade.</p>
                             <p><strong>Ritual</strong> — reward window is Unique-or-Omen only in 0.5. Chase league-start uniques here while their prices are highest.</p>
                             <p><strong>Abyss</strong> — the lowest-effort currency dump: Divines plus universally useful Desecrated Bones and Omens, at low risk. Farm it for raw income now — its precision-crafting use (Well of Souls targeting) comes later, in Mid.</p>
                         </div>
@@ -1289,7 +1324,7 @@
                             <h4>Mid — Crafted Jewels &amp; Targeted Uniques</h4>
                             <div class="role">Maps T9–T14 · rare gear done</div>
                             <p><strong>Breach</strong> — high-tier Breach rings, the new <em>jewel catalysts</em> for passive-tree jewels, and pinnacle-boss uniques (Hands of Wisdom and Action, Controlled Metamorphosis, Zest of the Storm).</p>
-                            <p><strong>Delirium</strong> — liquid emotions for best-in-slot jewel crafts. The mod pool is broader than any other crafting source.</p>
+                            <p><strong>Delirium</strong> <em>(optional — pick it up here if you enjoy it)</em> — first amulet anoints (one emotion combo is often a bigger power spike than any single item upgrade), plus liquid emotions for best-in-slot jewel crafts. The mod pool is broader than any other crafting source.</p>
                             <p><strong>Abyss</strong> — Well of Souls precision: shrink the desecrated mod pool to near-100% certainty on a single targeted modifier. Use this for the one mod a craft is missing.</p>
                             <p style="margin-top: 0.6rem; padding-top: 0.5rem; border-top: 1px dashed var(--border-subtle); font-style: italic; color: var(--text-muted); font-size: 11.5px;"><strong>Skip mid-game Ritual.</strong> Once the Rite of the Nameless quest is done, rituals can stack up to <strong>5 map bosses</strong> in a single encounter — punishing unless your build is already late-game.</p>
                         </div>
@@ -1730,7 +1765,7 @@
                     <p>The Atlas Passive Tree has been significantly expanded — <strong>over 300 nodes</strong> (sources disagree on the exact total). Points come exclusively from maps inside the Fortress. See the <a href="#atlas-tree">New Atlas Tree section</a> for full detail on the fully-allocatable, no-respec model.</p>
 
                     <h3>Quest hand-in: <span class="tag boss">Arbiter of Ash</span> (now inside the Fortress)</h3>
-                    <p>Every endgame boss is now reachable through a questline. To fight Arbiter of Ash for the first time you no longer need lucky key drops; the keys are at fixed locations inside the Fortress and the quest tells you where.</p>
+                    <p>Every endgame boss is now reachable through a questline. To fight Arbiter of Ash for the first time you no longer need lucky key drops; the keys are at fixed locations inside the Fortress and the quest tells you where. Across the whole endgame there are now <strong>two versions of every pinnacle boss</strong> — a deterministic <strong>Quest version</strong> reached through the storyline and a tougher <strong>Infinite Farm version</strong> — and the old <strong>Primary, Secondary, and Tertiary Calamity Fragments can no longer be obtained</strong>.</p>
                 </div>
             </section>
 
@@ -1741,32 +1776,44 @@
                         <h2>Masters of the Atlas</h2>
                         <div class="storyline-tagline">"Ascendancy-style endgame progression — three masters, hot-swap before each map."</div>
                     </div>
-                    <span class="ordinal">Storyline V · Masters of the Atlas</span>
+                    <span class="ordinal">Atlas System · Three Masters</span>
                 </div>
                 <div class="storyline-body">
                     <p>Atlas Masters are ascendancy-style endgame progression. Each master has <strong>12 nodes; 4 selectable at once</strong>, selection changeable any time. <strong>All three masters can be allocated simultaneously</strong>, with a quick-select to switch the active master before a map. Rows of 3 nodes unlock by performing missions.</p>
 
-                    <p>Unlike PoE 1, masters are not random map encounters — each is a permanent, Ascendancy-style tree that you unlock with a short intro quest at its Atlas location, then select from the side of the Atlas screen. Unlock conditions (0.5 confirmed): <strong>Doryani</strong> — clear his <strong>Corruption Nexus</strong> (south-east of the start). <strong>Hilda</strong> — hunt and defeat the <strong>Great Beast</strong> she marks for you, reached from <strong>Hilda's Campsite</strong> (south-west, by the Withered Willow). <strong>Jado</strong> — recover artifacts at the <strong>Sealed Vault</strong> in the upper Ziggurat Refuge (north of the start).</p>
+                    <p>Unlike PoE 1, masters are not random map encounters — each is a permanent, Ascendancy-style tree that you unlock with a short intro quest at its Atlas location, then select from the side of the Atlas screen. All three first appear close to the Ziggurat; the per-master cards below give where to find each, how to unlock it, and what it does.</p>
 
                     <div class="card-grid">
                         <div class="card">
                             <h4>Jado</h4>
                             <div class="role">Order of the Djinn · artifact recovery</div>
-                            <p>Sends you to investigate strange Atlas occurrences and recover artifacts.</p>
+                            <div class="master-meta">
+                                <div class="master-meta-row"><span class="k">Where</span>The <strong>Sealed Vault</strong> — NE, just above the Abyss cracks.</div>
+                                <div class="master-meta-row"><span class="k">Unlock</span>Recover the artifacts at the Sealed Vault (a short intro quest).</div>
+                                <div class="master-meta-row"><span class="k">Does</span>Investigate strange Atlas occurrences and recover artifacts; the unique-item master.</div>
+                            </div>
                             <p><strong>Lvl 1 picks:</strong> massive rare/unique chest chance, all map bosses drop +1 unique, or corrupted waystones get an extra modifier (cost: sent to a totally unknown location).</p>
-                            <p>Also: more unique items, more unique strongboxes, more unique <em>content</em> (e.g. anomaly maps), and a new unique strongbox that grants <strong>reliquary keys</strong> for still more uniques.</p>
+                            <p>Also: more unique items, more unique strongboxes, more unique <em>content</em> (e.g. anomaly maps), and a new unique strongbox that grants <strong>reliquary keys</strong> for still more uniques. Best for Exceptional Items and Lineage Supports.</p>
                         </div>
                         <div class="card">
                             <h4>Hilda</h4>
                             <div class="role">Monster Hunters Guild · assassinations</div>
-                            <p>Sends you to kill specific deadly creatures and harvest parts.</p>
+                            <div class="master-meta">
+                                <div class="master-meta-row"><span class="k">Where</span><strong>Hilda's Campsite</strong> — SW, by the Withered Willow (the Delirium hub).</div>
+                                <div class="master-meta-row"><span class="k">Unlock</span>Hunt and defeat the <strong>Great Beast</strong> she marks for you.</div>
+                                <div class="master-meta-row"><span class="k">Does</span>Kill specific deadly creatures and harvest parts; the boss-killing master.</div>
+                            </div>
                             <p><strong>Sample picks:</strong> 25% chance to upgrade map bosses to powerful versions; Azmerian spirits skip rares and target unique bosses instead; pinnacles get one attempt only but always drop two uniques.</p>
                             <p><strong>Boss-farming combo:</strong> cut open Pinnacle bosses for a chance at another unique; release Azmeri wisps from unique monsters on death; add a <strong>second unique boss</strong> to maps; and make bosses already modified by other mechanics even stronger and more rewarding — stacked together this is the boss-killing master.</p>
                         </div>
                         <div class="card">
                             <h4>Doryani</h4>
                             <div class="role">Doryani's Science · corruption-nexus specialist</div>
-                            <p><strong>Unlock:</strong> clear a <strong>corruption nexus</strong> (SE of the start).</p>
+                            <div class="master-meta">
+                                <div class="master-meta-row"><span class="k">Where</span>His first <strong>Corruption Nexus</strong> — SE of the start.</div>
+                                <div class="master-meta-row"><span class="k">Unlock</span>Clear the corruption nexus.</div>
+                                <div class="master-meta-row"><span class="k">Does</span>Reshape the Atlas and juice maps; the exploration/terraforming master.</div>
+                            </div>
                             <p><strong>Signature picks:</strong></p>
                             <ul>
                                 <li><em>Terraform</em> — after each map, convert the Atlas from one biome to another; combine with biome-targeted tree nodes to funnel specific content.</li>
@@ -1796,7 +1843,7 @@
                     <p>The Atlas Passive Tree has been significantly expanded — <strong>over 300 nodes</strong> (community sources quote different exact totals). You earn points from every Fortress map and every storyline questline. After completing all Fortress maps you can <strong>allocate the entire tree</strong> — so there is no respec; <strong>multi-choice nodes can be switched between options at any time</strong>. This unlocks design space that wasn''t possible when nodes had to be respec''d in/out per map type.</p>
 
                     <h3>How the tree unlocks</h3>
-                    <p>The tree opens in three sections, gated by Fortress progress <em>and</em> area level: <strong>Section 1</strong> is available immediately and applies in all waystone areas; <strong>Section 2</strong> unlocks after the Eastern/Western Gateways and an Arbiter of Ash kill, applying at <strong>Area Level 70+</strong>; <strong>Section 3</strong> unlocks after the Enigma Chamber bosses, applying at <strong>Area Level 75+</strong> (i.e. Tier 11 maps); the final top points open after the Arbiter of Divinity. This is why Tier 11 / Area Level 75 is the natural place to settle and gear before pushing higher.</p>
+                    <p>The tree opens in three sections, gated by Fortress progress <em>and</em> area level: <strong>Section 1</strong> is available immediately and applies in all waystone areas; <strong>Section 2</strong> unlocks after the Eastern/Western Gateways and an Arbiter of Ash kill, applying at <strong>Area Level 70+</strong>; <strong>Section 3</strong> unlocks after the Enigma Chamber bosses, applying at <strong>Area Level 75+</strong> (i.e. Tier 11 maps); the final top points open after the Arbiter of Divinity.</p>
                     <ul>
                         <li>Points come from <strong>maps inside the Fortress</strong> — this entirely replaces the previous method of gaining Atlas points.</li>
                         <li>The Atlas has been <strong>reset</strong>; existing tablets/waystones still work, but Atlas-tree points now require progressing the Origins of Divinity storyline.</li>
@@ -1828,15 +1875,7 @@
                 <div class="storyline-body">
                     <h3>Fixed points of interest</h3>
                     <p><em>"The Atlas now has fixed points of interest at specific locations. All league mechanics on the Atlas now have quests that introduce the mechanic and guide you through its various stages up to the Pinnacle Boss."</em></p>
-                    <ul>
-                        <li><strong>W</strong> — Ritual hub: <strong>Caer Tarth</strong> (the Wildwood).</li>
-                        <li><strong>SW</strong> — Delirium hub: <strong>The Withered Willow</strong>, plus <strong>Hilda''s Campsite</strong> (Atlas Master unlock).</li>
-                        <li><strong>S</strong> — Breach hub: <strong>The Monastery of the Keepers</strong>.</li>
-                        <li><strong>SE</strong> — The Runes of Aldur hub: <strong>The Ruins of Kingsmarch</strong> and the ocean.</li>
-                        <li><strong>E</strong> — Abyss cracks (revamped — not a new storyline).</li>
-                        <li><strong>NE</strong> — Fate of the Vaal hub: the city of <strong>Lira Vaal</strong> / Atziri''s Temple.</li>
-                        <li><strong>★ Fortress</strong> — not a fixed compass point. Rises at the location of your first completed tower.</li>
-                    </ul>
+                    <p style="color: var(--text-muted); font-size: 11.5px; font-style: italic;">For <em>where</em> each hub sits, see the compass map at the top of this page. This section covers the systems behind those locations rather than repeating the positioning.</p>
 
                     <h3>Atlas QoL &amp; system changes (0.5)</h3>
                     <ul>
@@ -1862,81 +1901,6 @@
 
                     <h3>Endgame quest pop-out</h3>
                     <p>Each endgame questline has a progress bar you can pop out from the side of the Atlas screen at any time, showing your current depth into each storyline plus quick-jump buttons to each hub.</p>
-                </div>
-            </section>
-
-            <!-- BOSSES SUMMARY -->
-            <section class="storyline lg-meta" id="bosses">
-                <div class="storyline-header">
-                    <div>
-                        <h2>Pinnacle Bosses (quick reference)</h2>
-                        <div class="storyline-tagline">"All endgame bosses are now quest-accessible — no more lucky-key gating."</div>
-                    </div>
-                    <span class="ordinal">Reference</span>
-                </div>
-                <div class="storyline-body">
-                    <div class="callout tip">
-                        <span class="callout-label">0.5 system change</span>
-                        There are now <strong>two versions of each pinnacle boss</strong> — the Quest version (deterministic, accessed through the storyline) and the Infinite Farm version (a greater challenge). <strong>Primary, Secondary, and Tertiary Calamity Fragments can no longer be obtained.</strong>
-                    </div>
-
-                    <div class="card-grid">
-                        <div class="card">
-                            <h4>Arbiter of Divinity</h4>
-                            <div class="role">Fortress pinnacle · new apex of PoE 2</div>
-                            <p>Centre of the Fortress, post-Origins of Divinity questline. Skip-route: 5 kills auto-complete remaining Fortress maps.</p>
-                        </div>
-                        <div class="card">
-                            <h4>Tangmazu, the Raven Trickster</h4>
-                            <div class="role">Delirium pinnacle · "an ancient Trickster God"</div>
-                            <p>Accessed via a Simulacrum key after the Trial of Madness. Simulacrum is now a 7-wave encounter.</p>
-                        </div>
-                        <div class="card">
-                            <h4>Tul &amp; Esh</h4>
-                            <div class="role">Breach lords</div>
-                            <p>Inside the central Sky Hive, post Hive Blood / Genesis Tree path.</p>
-                        </div>
-                        <div class="card">
-                            <h4>Xesht</h4>
-                            <div class="role">Existing breach pinnacle</div>
-                            <p>Re-fight via Dreamer commune at the monastery, post-Tul &amp; Esh.</p>
-                        </div>
-                        <div class="card">
-                            <h4>The Bodach</h4>
-                            <div class="role">Ritual pinnacle · within the prison</div>
-                            <p>Reached at the end of the 5-map Rite of the Nameless. An ancient being of darkness whose power fed the King in the Mists.</p>
-                        </div>
-                        <div class="card">
-                            <h4>Runes of Aldur pinnacle <span class="tag boss">community name</span></h4>
-                            <div class="role">Inside the meteor, key from Olroth</div>
-                            <p>Reached via the key dropped by Olroth, post-Triskelion Flame. Reveal/community label: "The Eldritch Meristem-bound" — not yet surfaced in patch notes.</p>
-                        </div>
-                        <div class="card">
-                            <h4>Abyss pinnacle <span class="tag boss">community name</span></h4>
-                            <div class="role">Well of Souls · 3 faction-boss key</div>
-                            <p>Reachable via the three Atlas Abyss faction bosses. Reveal/community label: "Vessel of Kulemak" — not yet surfaced in patch notes.</p>
-                        </div>
-                        <div class="card">
-                            <h4>Arbiter of Ash <span class="tag boss">moved</span></h4>
-                            <div class="role">Inside the Fortress (no longer apex)</div>
-                            <p>Moved into the Fortress in 0.5 along with the Burning Monolith. Quest versions of the Crisis fragments are in two Enigma chambers inside the Fortress.</p>
-                        </div>
-                        <div class="card">
-                            <h4>Vruun, Marshal of Xesht</h4>
-                            <div class="role">Stabilised Breach boss (new in 0.5)</div>
-                            <p>Spawns inside Stabilised Breaches; drops Wombgifts.</p>
-                        </div>
-                        <div class="card">
-                            <h4>The Queen in the Mists</h4>
-                            <div class="role">New Ritual boss (not pinnacle)</div>
-                            <p>Unlocked via a specific Ritual Atlas-tree node. Drops three new corrupted Idols.</p>
-                        </div>
-                        <div class="card">
-                            <h4>Atziri, Queen of the Vaal</h4>
-                            <div class="role">Fate of the Vaal pinnacle</div>
-                            <p>Atziri's Vault, at the end of a chained Vaal temple. Now reached in Lira Vaal on the NE Atlas.</p>
-                        </div>
-                    </div>
                 </div>
             </section>
 
@@ -2051,22 +2015,6 @@
                 </div>
             </section>
 
-            <!-- CLOSING -->
-            <section class="storyline lg-meta" id="closing">
-                <div class="storyline-header">
-                    <div>
-                        <h2>Roadmap Note · 1.0 Year</h2>
-                        <div class="storyline-tagline">"This is the last full-sized league during Early Access."</div>
-                    </div>
-                    <span class="ordinal">Context</span>
-                </div>
-                <div class="storyline-body">
-                    <p>Per the reveal: 0.5.0 is the last big content drop before <strong>1.0</strong>. Patch 1.0 is bigger still, planned for sometime after <strong>ExileCon (weekend of November 7th, NZ)</strong>, where Acts 5 and 6 are slated for unveiling. Between now and then GGG plans polish + balance + smaller event-league remixes rather than further large content.</p>
-
-                    <p><strong>Patch 0.5.0 ships May 29th, 2026.</strong> Patch notes released 21 May 2026 — this guide is reconciled against them.</p>
-                </div>
-            </section>
-
             <!-- SOURCES -->
             <section class="storyline lg-meta" id="sources">
                 <div class="storyline-header">
@@ -2085,22 +2033,15 @@
                         <li><strong>Return of the Ancients content reveal stream</strong> — the primary source for every storyline mechanic, boss, and Atlas-tree node previewed here.</li>
                     </ul>
 
-                    <h3 class="sub-title">Community creators referenced in this guide</h3>
-                    <ul>
-                        <li><strong>Spud the King</strong> — the farming-priority framework (when to play what across early/mid/late endgame), the precursor-tablet stacking strategy, the Delirium compass and Alt-key recipe reveal, and the Vaal Temple body-parts caveat all trace back to his endgame breakdown videos.</li>
-                        <li><strong>Crimson Casts</strong> — the speedrun-tips block and XP-margin-of-safety formula used across the campaign guides come from his "Get to Endgame Fast" coverage.</li>
-                        <li><strong>Angormus</strong> — the full-run-through commentary that informs zone-specific routing and the strongbox-reset trick.</li>
-                        <li><strong>Asmodeus</strong> (Mobalytics) — the phase-by-phase <a href="#progression-roadmap">Endgame Progression Roadmap</a>: the boss-rush blueprint, the Tier-11 gear-up breakpoint, the Arbiter loop, and the side-content order.</li>
-                        <li><strong>Lolcohol</strong> (Mobalytics) — the Fortress structure and Atlas-tree gating: the layered layout, the area-level section gates, per-map point values, and the Site of the Chosen.</li>
-                        <li><strong>Zizaran / Sisin</strong> — the intro-to-mapping framing behind the <a href="#where-to-start">Where to Start</a> section (Atlas-first vs mechanic-first) and corroboration of the Fortress route and several mechanic flows.</li>
-                    </ul>
+                    <h3 class="sub-title">Community creators</h3>
+                    <p>The endgame mechanics, the progression order, the Where-to-Start framing, and the farming-priority matrix are synthesised from the wider PoE2 content-creator community — speedrun and full-clear breakdowns, mapping primers, and Fortress / Atlas-tree walkthroughs — then cross-checked against the live game and the reference sites below. Individual creators are not credited per claim; if you'd like a specific resource credited or removed, use the issue link below.</p>
 
                     <h3 class="sub-title">Reference sites</h3>
                     <ul>
                         <li><strong><a href="https://poe2db.tw/us/" target="_blank" rel="noopener">poe2db.tw</a></strong> — datamined database. Source of truth for modifiers, tiers, ilvl gates, and tags.</li>
-                        <li><strong><a href="https://maxroll.gg/poe2" target="_blank" rel="noopener">maxroll.gg/poe2</a></strong>, <strong><a href="https://mobalytics.gg/poe-2" target="_blank" rel="noopener">mobalytics.gg/poe-2</a></strong>, <strong><a href="https://games.gg/path-of-exile-2" target="_blank" rel="noopener">games.gg</a></strong>, <strong><a href="https://www.vulkk.com/" target="_blank" rel="noopener">vulkk.com</a></strong> — guide sites cross-referenced for mechanics interpretation (games.gg + poe2db for the Atlas Master locations and unlock quests).</li>
+                        <li><strong><a href="https://maxroll.gg/poe2" target="_blank" rel="noopener">maxroll.gg/poe2</a></strong>, <strong><a href="https://mobalytics.gg/poe-2" target="_blank" rel="noopener">mobalytics.gg/poe-2</a></strong>, <strong><a href="https://games.gg/path-of-exile-2" target="_blank" rel="noopener">games.gg</a></strong>, <strong><a href="https://www.vulkk.com/" target="_blank" rel="noopener">vulkk.com</a></strong> — guide sites cross-referenced for mechanics interpretation.</li>
                         <li><strong><a href="https://poe.ninja/poe2" target="_blank" rel="noopener">poe.ninja/poe2</a></strong> — currency price tracking, build meta reference.</li>
-                        <li><strong><a href="https://game8.co/games/Path-of-Exile-2" target="_blank" rel="noopener">game8.co</a></strong>, <strong><a href="https://conquestcapped.com/" target="_blank" rel="noopener">conquestcapped.com</a></strong> — used as cross-check / tiebreaker for the Fortress structure, the Grand Expedition boss chain, and the Arbiter of Divinity key chain.</li>
+                        <li><strong><a href="https://game8.co/games/Path-of-Exile-2" target="_blank" rel="noopener">game8.co</a></strong>, <strong><a href="https://conquestcapped.com/" target="_blank" rel="noopener">conquestcapped.com</a></strong> — used as cross-check / tiebreaker.</li>
                     </ul>
 
                     <p style="margin-top: 1rem; padding-top: 0.8rem; border-top: 1px dotted var(--border-subtle); font-style: italic; color: var(--text-muted); font-size: 0.75rem;">
