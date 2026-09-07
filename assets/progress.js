@@ -108,6 +108,9 @@
         }
         updateProgressBar();
         syncZoneMarks();
+        // Import re-runs this after the filters are already live.
+        syncOrphanNotes();
+        syncEmptyZones();
     }
 
     function saveProgress() {
@@ -136,8 +139,7 @@
         getZoneSteps(zoneHeader).forEach(function (step) {
             if (isRequiredStep(step)) step.classList.toggle('completed', target);
         });
-        saveProgress();
-        updateProgressBar();
+        afterStepChange();
     }
 
     function syncZoneMarks() {
@@ -175,9 +177,7 @@
                 var sel = window.getSelection && window.getSelection();
                 if (sel && sel.toString().length > 0 && this.contains(sel.anchorNode)) return;
                 this.classList.toggle('completed');
-                saveProgress();
-                updateProgressBar();
-                syncZoneMarks();
+                afterStepChange();
             });
         });
     }
@@ -190,6 +190,8 @@
         });
         updateProgressBar();
         syncZoneMarks();
+        syncOrphanNotes();
+        syncEmptyZones();
     }
 
     function updateProgressBar() {
@@ -214,14 +216,24 @@
         if (textAll) textAll.textContent = doneAll + ' / ' + totalAll;
     }
 
+    /* Everything that must happen after a step's completed state changes.
+       Both entry points (the row click handler and the legacy toggleStep
+       onclick) go through here so they cannot drift apart — the row handler
+       previously skipped the filter re-sync, which left zone headers and
+       notes stale while a filter was already on. */
+    function afterStepChange() {
+        saveProgress();
+        updateProgressBar();
+        syncZoneMarks();
+        syncOrphanNotes();
+        syncEmptyZones();
+    }
+
     function toggleStep(el) {
         var step = el && el.closest ? el.closest('.step') : null;
         if (!step) return;
         step.classList.toggle('completed');
-        saveProgress();
-        updateProgressBar();
-        syncZoneMarks();
-        syncEmptyZones();
+        afterStepChange();
     }
 
     /* ── View filters ────────────────────────────────────────────────
@@ -255,12 +267,39 @@
         });
     }
 
+    // Would this step be hidden by the filters currently on? Decided from
+    // state rather than from layout, so it does not depend on a reflow
+    // having happened first.
+    function stepIsFiltered(step) {
+        if (VIEWS['alt-leveling'] && step.querySelector('.skip')) return true;
+        if (VIEWS['hide-completed'] && step.classList.contains('completed')) return true;
+        return false;
+    }
+
+    /* A .note is a SIBLING of the step it describes, not a child, so hiding a
+       step leaves its commentary stranded. Walk back to the step each note
+       belongs to and hide the note with it. Notes sitting directly under a
+       zone-header belong to the zone, not to any step, so they stay. */
+    function syncOrphanNotes() {
+        document.querySelectorAll('.note').forEach(function (n) {
+            var owner = n.previousElementSibling;
+            while (owner &&
+                   !owner.classList.contains('step') &&
+                   !owner.classList.contains('zone-header')) {
+                owner = owner.previousElementSibling;
+            }
+            var orphan = !!(owner && owner.classList.contains('step') && stepIsFiltered(owner));
+            n.classList.toggle('note-orphan', orphan);
+        });
+    }
+
     function applyViewFilters() {
         Object.keys(VIEWS).forEach(function (k) {
             document.body.classList.toggle(k, VIEWS[k]);
             var btn = document.querySelector('[data-view="' + k + '"]');
             if (btn) btn.setAttribute('aria-pressed', VIEWS[k] ? 'true' : 'false');
         });
+        syncOrphanNotes();
         syncEmptyZones();
     }
 

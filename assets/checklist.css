@@ -499,6 +499,10 @@ details.info-box[open] > summary::after { content: "▾"; }
 
 body.hide-completed .step.completed { display: none; }
 body.alt-leveling .step:has(.skip) { display: none; }
+/* Commentary belonging to a step that a filter hid. Notes are siblings of
+   their step, not children, so CSS alone cannot reach them — progress.js
+   tags them (see syncOrphanNotes). */
+.note.note-orphan { display: none; }
 /* A zone whose steps are all filtered out keeps its header — it is your
    only landmark for where you are once the rows vanish. Strip it back to
    just the title (no waypoint/level tags, no "mark required") and slim the
