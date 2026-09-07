@@ -255,15 +255,18 @@
         try { localStorage.setItem(VIEW_KEY, JSON.stringify(VIEWS)); } catch (e) {}
     }
 
-    // A zone whose steps are all filtered out would leave a bare heading
-    // behind; collapse those so the page reads as a continuous list.
+    // Is every step in this zone hidden by the filters currently on?
+    function zoneIsFiltered(zoneHeader) {
+        var steps = getZoneSteps(zoneHeader);
+        return steps.length > 0 && steps.every(stepIsFiltered);
+    }
+
+    // A zone whose steps are all filtered out keeps its header as a landmark,
+    // but stripped back to just the title (see .zone-empty in checklist.css).
     function syncEmptyZones() {
         var anyFilter = VIEWS['hide-completed'] || VIEWS['alt-leveling'];
         document.querySelectorAll('.zone-header').forEach(function (zh) {
-            if (!anyFilter) { zh.classList.remove('zone-empty'); return; }
-            var steps = getZoneSteps(zh);
-            var visible = steps.some(function (s) { return s.offsetParent !== null; });
-            zh.classList.toggle('zone-empty', steps.length > 0 && !visible);
+            zh.classList.toggle('zone-empty', anyFilter && zoneIsFiltered(zh));
         });
     }
 
@@ -277,9 +280,14 @@
     }
 
     /* A .note is a SIBLING of the step it describes, not a child, so hiding a
-       step leaves its commentary stranded. Walk back to the step each note
-       belongs to and hide the note with it. Notes sitting directly under a
-       zone-header belong to the zone, not to any step, so they stay. */
+       step leaves its commentary stranded. Walk back to whatever each note
+       hangs off and hide it only when that owner is gone:
+         - owned by a step  -> hide when that step is filtered out
+         - owned by a zone  -> hide only when the whole zone is filtered out,
+                               so a collapsed zone title is not left trailing
+                               notes under it
+       Nothing else is touched: a note under a step you have NOT completed
+       stays put, which is the point of the per-step rule. */
     function syncOrphanNotes() {
         document.querySelectorAll('.note').forEach(function (n) {
             var owner = n.previousElementSibling;
@@ -288,7 +296,12 @@
                    !owner.classList.contains('zone-header')) {
                 owner = owner.previousElementSibling;
             }
-            var orphan = !!(owner && owner.classList.contains('step') && stepIsFiltered(owner));
+            var orphan = false;
+            if (owner && owner.classList.contains('step')) {
+                orphan = stepIsFiltered(owner);
+            } else if (owner && owner.classList.contains('zone-header')) {
+                orphan = (VIEWS['hide-completed'] || VIEWS['alt-leveling']) && zoneIsFiltered(owner);
+            }
             n.classList.toggle('note-orphan', orphan);
         });
     }

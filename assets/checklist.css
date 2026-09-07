@@ -525,11 +525,10 @@ body.alt-leveling .step:has(.skip) { display: none; }
 .zone-header.zone-empty .map,
 .zone-header.zone-empty .zone-mark { display: none; }
 
-/* "Hide done" is the tidy-up view: drop the commentary too (visual cues,
-   routing, patch notes, tips) so what is left is a bare task list. */
-body.hide-completed .note,
-body.hide-completed .info-box,
-body.hide-completed .summary-box { display: none; }
+/* Commentary is hidden per-step, not wholesale: a note disappears only when
+   the step it belongs to is hidden (see .note-orphan / syncOrphanNotes).
+   Section-level boxes (Permanent Rewards, Routing Notes) are not tied to a
+   step and always stay. */
 
 /* ── Permanent patch change (bronze) ──────────────────────────
    Routing/QoL/gating changes that are now core and will NOT disappear when
