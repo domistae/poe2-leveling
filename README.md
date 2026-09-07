@@ -3,7 +3,7 @@
 A free, interactive Path of Exile 2 guide covering campaign leveling (Acts I–IV plus Interludes), endgame Atlas progression, and a full crafting codex (currencies, omens, essences, breakpoints, the tag system, recombinators, and more).
 
 **Live site:** [domistae.github.io/poe2-leveling](https://domistae.github.io/poe2-leveling/)
-**Target patch:** PoE2 patch 0.5 (Return of the Ancients) — live since 29 May 2026; the guide is reconciled against the patch notes (released 21 May 2026).
+**Target patch:** PoE2 patch 0.5.5 (Forbidden Rites) — an event league running alongside Runes of Aldur until the 1.0 release. This guide always tracks the most recent live league and is **not tailored to Standard**. Content reconciliation to 0.5.5 is in progress; sections still reflecting 0.5 are flagged on the site.
 
 ## What's covered
 

@@ -221,6 +221,62 @@
         saveProgress();
         updateProgressBar();
         syncZoneMarks();
+        syncEmptyZones();
+    }
+
+    /* ── View filters ────────────────────────────────────────────────
+       Two independent toggles that only hide rows — they never touch
+       saved progress, and the progress counters keep counting every
+       step whether it is visible or not. Persisted per browser and
+       shared across all act pages. */
+    var VIEW_KEY = 'poe2-view-filters';
+    var VIEWS = { 'hide-completed': false, 'alt-leveling': false };
+
+    function loadViewFilters() {
+        try {
+            var saved = JSON.parse(localStorage.getItem(VIEW_KEY) || '{}');
+            Object.keys(VIEWS).forEach(function (k) { VIEWS[k] = saved[k] === true; });
+        } catch (e) { /* private mode / cleared storage — defaults stand */ }
+    }
+
+    function saveViewFilters() {
+        try { localStorage.setItem(VIEW_KEY, JSON.stringify(VIEWS)); } catch (e) {}
+    }
+
+    // A zone whose steps are all filtered out would leave a bare heading
+    // behind; collapse those so the page reads as a continuous list.
+    function syncEmptyZones() {
+        var anyFilter = VIEWS['hide-completed'] || VIEWS['alt-leveling'];
+        document.querySelectorAll('.zone-header').forEach(function (zh) {
+            if (!anyFilter) { zh.classList.remove('zone-empty'); return; }
+            var steps = getZoneSteps(zh);
+            var visible = steps.some(function (s) { return s.offsetParent !== null; });
+            zh.classList.toggle('zone-empty', steps.length > 0 && !visible);
+        });
+    }
+
+    function applyViewFilters() {
+        Object.keys(VIEWS).forEach(function (k) {
+            document.body.classList.toggle(k, VIEWS[k]);
+            var btn = document.querySelector('[data-view="' + k + '"]');
+            if (btn) btn.setAttribute('aria-pressed', VIEWS[k] ? 'true' : 'false');
+        });
+        syncEmptyZones();
+    }
+
+    function toggleView(name) {
+        if (!Object.prototype.hasOwnProperty.call(VIEWS, name)) return;
+        VIEWS[name] = !VIEWS[name];
+        saveViewFilters();
+        applyViewFilters();
+    }
+
+    function initViewFilters() {
+        loadViewFilters();
+        document.querySelectorAll('[data-view]').forEach(function (btn) {
+            btn.addEventListener('click', function () { toggleView(btn.getAttribute('data-view')); });
+        });
+        applyViewFilters();
     }
 
     // onclick attributes in HTML reference these — expose globally.
@@ -235,6 +291,7 @@
         loadProgress();
         initStepRowClicks();
         initZoneMarks();
+        initViewFilters();
     }
 
     if (document.readyState === 'loading') {

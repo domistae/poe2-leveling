@@ -14,25 +14,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoE 2 Act 4 Walkthrough — Kingsmarch & The Four Islands (Patch 0.5)</title>
-    <meta name="description" content="Path of Exile 2 Act 4 walkthrough with progress tracking. Optimal routing across the four islands, Magma Twins, Mimok, Omniphobia +2 skill points. Patch 0.5 (Return of the Ancients).">
+    <title>PoE 2 Act 4 Walkthrough — Kingsmarch & The Four Islands (Patch 0.5.5)</title>
+    <meta name="description" content="Path of Exile 2 Act 4 walkthrough with progress tracking. Optimal routing across the four islands, Magma Twins, Mimok, Omniphobia +2 skill points. Patch 0.5.5 (Forbidden Rites).">
     <meta name="author" content="domistae">
     <meta name="theme-color" content="#181410">
     <link rel="canonical" href="https://domistae.github.io/poe2-leveling/poe2_act4_guide.html">
 
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="PoE 2 Leveling Guide">
-    <meta property="og:title" content="PoE 2 Act 4 Walkthrough — Kingsmarch & The Four Islands (Patch 0.5)">
-    <meta property="og:description" content="Optimal Act 4 routing with progress tracking — all four islands, Magma Twins, Omniphobia +2 skill points. Patch 0.5.">
+    <meta property="og:title" content="PoE 2 Act 4 Walkthrough — Kingsmarch & The Four Islands (Patch 0.5.5)">
+    <meta property="og:description" content="Optimal Act 4 routing with progress tracking — all four islands, Magma Twins, Omniphobia +2 skill points. Patch 0.5.5.">
     <meta property="og:url" content="https://domistae.github.io/poe2-leveling/poe2_act4_guide.html">
     <meta property="og:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Path of Exile 2 Act 4 Walkthrough — Kingsmarch and the four islands (Patch 0.5)">
+    <meta property="og:image:alt" content="Path of Exile 2 Act 4 Walkthrough — Kingsmarch and the four islands (Patch 0.5.5)">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="PoE 2 Act 4 Walkthrough — Kingsmarch & The Four Islands (Patch 0.5)">
-    <meta name="twitter:description" content="Optimal Act 4 routing with progress tracking — all four islands, Magma Twins, Omniphobia +2 skill points. Patch 0.5.">
+    <meta name="twitter:title" content="PoE 2 Act 4 Walkthrough — Kingsmarch & The Four Islands (Patch 0.5.5)">
+    <meta name="twitter:description" content="Optimal Act 4 routing with progress tracking — all four islands, Magma Twins, Omniphobia +2 skill points. Patch 0.5.5.">
     <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
 
     <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM" />
@@ -50,12 +50,13 @@
         (function() {
             try {
                 var saved = localStorage.getItem('poe2-theme');
-                if (saved === 'light' || saved === 'dark') {
-                    document.documentElement.setAttribute('data-theme', saved);
-                } else {
+                if (saved !== 'light' && saved !== 'dark' && saved !== 'night') {
                     var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-                    document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+                    saved = prefersLight ? 'light' : 'dark';
                 }
+                /* night reuses the dark theme + a [data-tint] layer */
+                document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+                if (saved === 'night') document.documentElement.setAttribute('data-tint', 'night');
             } catch (e) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
@@ -87,26 +88,45 @@
 
     <div class="container">
         <aside class="sidebar">
-            <div class="progress-info">
-                <div class="progress-label">⚡ Required</div>
-                <div class="progress-bar-bg"><div class="progress-bar-fill fast" id="progressBarFast"></div></div>
-                <div class="progress-text" id="progressTextFast">0 / 0</div>
-                <div class="progress-label complete">◆ Complete</div>
-                <div class="progress-bar-bg"><div class="progress-bar-fill complete" id="progressBarComplete"></div></div>
-                <div class="progress-text" id="progressTextComplete">0 / 0</div>
-            </div>
-            <div class="sidebar-actions">
-                <button class="btn" onclick="resetProgress()">Reset Progress</button>
-                <button class="btn export" onclick="exportAllProgress()">Export Progress</button>
-                <button class="btn import" onclick="showImportDialog()">Import Progress</button>
+            <div class="progress-panel">
+                <div class="progress-row">
+                    <div class="progress-head">
+                        <span class="progress-name">⚡ Required</span>
+                        <span class="progress-count" id="progressTextFast">0 / 0</span>
+                    </div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill fast" id="progressBarFast"></div></div>
+                </div>
+                <div class="progress-row">
+                    <div class="progress-head">
+                        <span class="progress-name complete">◆ Complete</span>
+                        <span class="progress-count" id="progressTextComplete">0 / 0</span>
+                    </div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill complete" id="progressBarComplete"></div></div>
+                </div>
+
+                <div class="view-filters">
+                    <button type="button" class="view-chip" data-view="hide-completed" aria-pressed="false" title="Hide steps you have already ticked off">
+                        <span class="dot" aria-hidden="true"></span>Hide done
+                    </button>
+                    <button type="button" class="view-chip" data-view="alt-leveling" aria-pressed="false" title="Alt leveling — show only the necessary steps, hiding everything marked (Opt)">
+                        <span class="dot" aria-hidden="true"></span>Alt leveling
+                    </button>
+                </div>
+
+                <div class="panel-actions">
+                    <button class="mini-btn reset" onclick="resetProgress()" title="Clear progress on this page">Reset</button>
+                    <button class="mini-btn export" onclick="exportAllProgress()" title="Copy a progress code covering every page">Export</button>
+                    <button class="mini-btn import" onclick="showImportDialog()" title="Paste a progress code">Import</button>
+                </div>
                 <div id="importDialog" class="import-dialog" style="display:none;">
                     <textarea id="importCode" placeholder="Paste progress code…"></textarea>
                     <div class="import-actions">
-                        <button class="btn" onclick="importAllProgress()">Import</button>
-                        <button class="btn" onclick="hideImportDialog()">Cancel</button>
+                        <button class="mini-btn" onclick="importAllProgress()">Import</button>
+                        <button class="mini-btn" onclick="hideImportDialog()">Cancel</button>
                     </div>
                 </div>
             </div>
+
             <details class="sidebar-section zones-details">
                 <summary class="zones-summary">Islands &amp; Zones</summary>
                 <a href="#kingsmarch" class="sidebar-link">Kingsmarch (Hub)</a>
@@ -129,7 +149,7 @@
         <main class="main">
             <header class="header">
                 <h1>Act IV — Wraeclast Awakens</h1>
-                <span class="patch">Patch 0.5 · Lvl 42–52 · All classes · Optimal routing</span>
+                <span class="patch">Patch 0.5.5 · Lvl 42–52 · All classes · Optimal routing</span>
             </header>
 
 
@@ -158,15 +178,6 @@
                 </ul>
             </details>
 
-            <!-- SPEEDRUN TIPS — Community -->
-            <details class="info-box" style="border-left: 3px solid var(--steel); margin-bottom: 1.5rem;">
-                <summary style="color: var(--steel);">⚡ Speedrun Tips (Community)</summary>
-                <ul class="tip-list">
-                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Pre-organize your stash on Standard</strong> a few days before league start — tab names, layouts and highlights carry over to your fresh league character. Saves a chunk of first-town time.</li>
-                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Save artificers / runes / whetstones</strong> for your weapon at the end of Act 4 once you know what you're carrying into Interludes/Maps.</li>
-                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Aim for ~5 hours campaign without layout study</strong> — pure urgency + magic-pack focus + breakpoint-aware crafting gets you there.</li>
-                </ul>
-            </details>
 
             <!-- KINGSMARCH -->
             <div class="zone-header" id="kingsmarch">Kingsmarch <span class="wp town">HUB TOWN</span> <span class="lvl">Lvl 42</span></div>
@@ -178,17 +189,18 @@
                 <div class="step-content">Talk to <span class="npc">Tujen</span> → accept quest</div></div>
             <div class="note tip"><span class="label">0.5</span><span class="npc">Rog</span> does nothing this patch — the boat charter is handled by <span class="npc">Makoru</span> (step below).</div>
             <div class="step" data-step="4"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Talk to <span class="npc">Farrow</span> → accept Quest 4 <span class="reward-tag craft">Unlocks 13 Ancient Runes via Remnants</span></div></div>
-            <div class="note new"><span class="label">0.5 New</span>Farrow's Act 4 quest unlocks the <strong>13 Ancient Runes</strong> — powerful weapon-type-specific runes crafted at <strong>Remnant</strong> encounters. Crafting detail in the Codex.</div>
-            <div class="note tip"><span class="label">Heads-up</span><span class="npc">Farrow</span> does nothing further here for now — his quest only completes later at the Plunder's Point <strong>Deserted Post</strong>.</div>
-            <div class="note new"><span class="label">Runeforging ladder</span>One tier unlocks per act: Act 1 Armour Runeforging &rarr; Act 2 Runic Inscriptions &rarr; Act 3 Unique Runeforging &rarr; <strong>Act 4 Ancient Runes</strong>. Act 4 has no Runestones — collect the <strong>Torn Map Pieces (4 in total)</strong> instead.</div>
+                <div class="step-content">Talk to <span class="npc">Farrow</span> → accept the <span class="item">Runeseeker</span> quest <span class="reward-tag craft">Unlocks Verisium Anvil</span></div></div>
+            <div class="note change"><span class="label">0.5.5 Verisium Anvil</span>Outside Runes of Aldur — i.e. in <strong>Forbidden Rites</strong> and Standard — this Act 4 chain is the <strong>only</strong> way to unlock the <span class="npc">Verisium Anvil</span>. Once unlocked, <span class="npc">Farrow</span> can be placed in your <strong>Hideout in all leagues</strong>, and Farrow / Dannig / Expedition become <strong>core Atlas content</strong>, Standard included.</div>
+            <div class="note warn"><span class="label">Unverified</span>The 0.5.5 notes name this quest <strong>"The Runeseeker"</strong> and confirm only the <strong>Verisium Anvil</strong> unlock; the step list below still uses the 0.5 name <strong>"Runekeeper"</strong>. Whether the <strong>13 Ancient Runes</strong> still come with it outside Runes of Aldur is not stated — verify in game.</div>
+            <div class="note tip"><span class="label">Heads-up</span><span class="npc">Farrow</span> does nothing further here — the quest only completes later at the Plunder's Point <strong>Deserted Post</strong>.</div>
+            <div class="note legacy"><span class="label">Runes of Aldur only</span>The per-act Runeforging ladder — Armour Runeforging → Runic Inscriptions → Unique Runeforging → <strong>Ancient Runes</strong> — is league-only. Act 4 has no Runestones; the gate here is the <strong>Torn Map Pieces (4 in total)</strong>.</div>
             <div class="step" data-step="5"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Makoru</span> on ship, choose destination</div></div>
 
             <!-- WHAKAPANU ISLAND -->
             <div class="zone-header" id="whakapanu">Whakapanu Island <span class="frag">FRAG/MATIKI?</span> <span class="map">MAP</span> <span class="lvl">Lvl 42–43</span></div>
             <div class="step" data-step="6"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Petrified Pirate</span> on coast <span class="reward-tag map">Torn Map (4 in total)</span></div></div>
+                <div class="step-content"><span class="item">Petrified Pirate</span> on coast <span class="reward-tag map">Torn Map (4 in total)</span></div></div>
             <div class="step" data-step="7"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Shark Pit: <span class="boss">Great White One</span> <span class="reward-tag optional">Shark Fin</span></div></div>
             <div class="note tip"><span class="label">Shark Fin</span>Hand the <strong>Shark Fin</strong> to <span class="npc">Kaimana</span> to complete <em>Tribal Medicine</em> — at <span class="loc">Ngakanu</span> early, or on the docks <strong>after defeating Tavakai</strong> if the islands are already corrupted. Reward: choice of <strong>Uncut Gem Lv11</strong> (Skill / Spirit / Support) + a permanent Tukuama stat blessing.</div>
@@ -214,7 +226,7 @@
             <!-- SHRIKE ISLAND -->
             <div class="zone-header" id="shrike">Shrike Island <span class="frag">FRAG/MATIKI?</span> <span class="map">MAP</span> <span class="lvl">Lvl 43–44</span></div>
             <div class="step" data-step="15"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Corpse Nest</span> (Impaled Karui) <span class="reward-tag map">Torn Map (4 in total)</span></div></div>
+                <div class="step-content"><span class="item">Corpse Nest</span> (Impaled Karui) <span class="reward-tag map">Torn Map (4 in total)</span></div></div>
             <div class="step" data-step="16"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Scourge of the Skies</span> <span class="reward-tag frag">Fragment?</span></div></div>
             <div class="step" data-step="17"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
@@ -240,7 +252,7 @@
             <!-- ISLE OF KIN -->
             <div class="zone-header" id="isleofkin">Isle of Kin <span class="frag">MATIKI?</span> <span class="map">MAP</span> <span class="lvl">Lvl 45</span></div>
             <div class="step" data-step="24"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Flayed Sailor</span> near shore <span class="reward-tag map">Torn Map (4 in total)</span></div></div>
+                <div class="step-content"><span class="item">Flayed Sailor</span> near shore <span class="reward-tag map">Torn Map (4 in total)</span></div></div>
             <div class="step" data-step="25"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="loc">Doomed Mine</span> — abandoned delving site (Fossilised Formation) <span class="reward-tag optional">Lesser Jeweller's Orb</span></div></div>
             <div class="step" data-step="26"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
@@ -292,7 +304,7 @@
             <!-- KEDGE BAY -->
             <div class="zone-header" id="kedge">Kedge Bay <span class="map">MAP</span> <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 47–48</span></div>
             <div class="step" data-step="43"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Dead Man's Chest</span> / <span class="item">Smuggler's Stash</span> <span class="reward-tag map">Torn Map (4 in total)</span></div></div>
+                <div class="step-content"><span class="item">Dead Man's Chest</span> / <span class="item">Smuggler's Stash</span> <span class="reward-tag map">Torn Map (4 in total)</span></div></div>
             <div class="step" data-step="44"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="loc">Abandoned Ship</span> (loot)</div></div>
             <div class="step" data-step="45"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
@@ -320,8 +332,8 @@
                 <div class="step-content">Talk to <span class="npc">Tujen</span> in town for reward <span class="reward-tag perm">+2 Skill Points</span></div></div>
 
             <div class="zone-header">Plunder's Point</div>
-            <div class="note new"><span class="label">0.5 Gating</span>Plunder's Point can only be entered once you have turned in <strong>all 4 Map Pieces</strong> at Kingsmarch (Torn Maps from Whakapanu, Shrike, Isle of Kin, Kedge Bay).</div>
-            <div class="note warning"><span class="label">Required — don't skip</span>This is the <strong>Runekeeper</strong> quest and the most-skipped leg of the chain. The Plunder's Point expedition opens the <strong>Deserted Post</strong> → <strong>summon <span class="npc">Farrow</span></strong> → <strong>Runesmithing of Knowledge</strong>, which unlocks the <strong>13 Ancient Runes</strong>. Skip it and you forgo Ancient Runes entirely.</div>
+            <div class="note change"><span class="label">0.5 Gating</span>Plunder's Point can only be entered once you have turned in <strong>all 4 Map Pieces</strong> at Kingsmarch (Torn Maps from Whakapanu, Shrike, Isle of Kin, Kedge Bay).</div>
+            <div class="note warning"><span class="label">Required — don't skip</span>This is the <strong>Runekeeper / Runeseeker</strong> quest and the most-skipped leg of the chain. The Plunder's Point expedition opens the <strong>Deserted Post</strong> → <strong>summon <span class="npc">Farrow</span></strong> → <strong>Runesmithing of Knowledge</strong>. In Forbidden Rites and Standard this is what unlocks the <strong>Verisium Anvil</strong> — skip it and you lose access to Runeforging entirely.</div>
             <div class="step" data-step="55"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Give 4 maps to <span class="npc">Makoru</span> → sail → <span class="npc">Dannig</span> → Expedition → <span class="loc">Deserted Post</span> → summon <span class="npc">Farrow</span></div></div>
 

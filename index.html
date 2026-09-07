@@ -14,25 +14,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoE2 Guide 0.5 — Campaign Leveling, Endgame & Crafting</title>
-    <meta name="description" content="PoE2 Patch 0.5 (Return of the Ancients): free Path of Exile 2 guide | PoE 2 campaign leveling, Endgame Atlas, and Crafting Codex. By a player for the community.">
+    <title>PoE2 Guide 0.5.5 — Campaign Leveling, Endgame & Crafting</title>
+    <meta name="description" content="PoE2 Patch 0.5.5 (Forbidden Rites): free Path of Exile 2 guide | PoE 2 campaign leveling, Endgame Atlas, and Crafting Codex. By a player for the community.">
     <meta name="author" content="domistae">
     <meta name="theme-color" content="#181410">
     <link rel="canonical" href="https://domistae.github.io/poe2-leveling/">
 
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PoE2 Leveling Guide">
-    <meta property="og:title" content="PoE2 Guide 0.5 — Campaign Leveling, Endgame & Crafting">
-    <meta property="og:description" content="PoE2 Patch 0.5 (Return of the Ancients): a free interactive Path of Exile 2 guide covering campaign leveling with progress tracking, Endgame Atlas progression, and the full Crafting Codex. Made by a player, for the community.">
+    <meta property="og:title" content="PoE2 Guide 0.5.5 — Campaign Leveling, Endgame & Crafting">
+    <meta property="og:description" content="PoE2 Patch 0.5.5 (Forbidden Rites): a free interactive Path of Exile 2 guide covering campaign leveling with progress tracking, Endgame Atlas progression, and the full Crafting Codex. Made by a player, for the community.">
     <meta property="og:url" content="https://domistae.github.io/poe2-leveling/">
     <meta property="og:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Path of Exile 2 Leveling Guide — Interactive checklist for Patch 0.5 Return of the Ancients">
+    <meta property="og:image:alt" content="Path of Exile 2 Leveling Guide — Interactive checklist for Patch 0.5.5 Forbidden Rites">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="PoE2 Guide 0.5 — Campaign Leveling, Endgame & Crafting">
-    <meta name="twitter:description" content="PoE2 Patch 0.5 (Return of the Ancients): a free interactive Path of Exile 2 guide covering campaign leveling with progress tracking, Endgame Atlas progression, and the full Crafting Codex. Made by a player, for the community.">
+    <meta name="twitter:title" content="PoE2 Guide 0.5.5 — Campaign Leveling, Endgame & Crafting">
+    <meta name="twitter:description" content="PoE2 Patch 0.5.5 (Forbidden Rites): a free interactive Path of Exile 2 guide covering campaign leveling with progress tracking, Endgame Atlas progression, and the full Crafting Codex. Made by a player, for the community.">
     <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
 
     <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM" />
@@ -53,12 +53,13 @@
         (function() {
             try {
                 var saved = localStorage.getItem('poe2-theme');
-                if (saved === 'light' || saved === 'dark') {
-                    document.documentElement.setAttribute('data-theme', saved);
-                } else {
+                if (saved !== 'light' && saved !== 'dark' && saved !== 'night') {
                     var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-                    document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+                    saved = prefersLight ? 'light' : 'dark';
                 }
+                /* night reuses the dark theme + a [data-tint] layer */
+                document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+                if (saved === 'night') document.documentElement.setAttribute('data-tint', 'night');
             } catch (e) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
@@ -267,6 +268,48 @@ a { color: inherit; }
     }
     .whats-new-badge { animation: whats-new-pulse 2.6s ease-out infinite; }
     @media (prefers-reduced-motion: reduce) { .whats-new-badge { animation: none; } }
+
+    /* ─── LEAGUE SCOPE · what this site targets ─────────────────── */
+    .league-scope {
+        background: linear-gradient(135deg, var(--overlay-steel) 0%, var(--bg-surface) 70%);
+        border: 1px solid var(--border-subtle);
+        border-left: 4px solid var(--steel);
+        border-radius: 6px;
+        padding: 0.9rem 1.2rem 0.95rem;
+        margin: 0 0 1.25rem 0;
+        box-shadow: var(--shadow-sm);
+    }
+    .league-scope-header { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+    .league-scope-label {
+        font-family: 'Cinzel', serif;
+        color: var(--steel);
+        font-size: 11px;
+        letter-spacing: 2.2px;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+    .league-scope-badge {
+        background: var(--overlay-steel);
+        color: var(--steel);
+        border: 1px solid rgba(29, 78, 216, 0.4);
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 1.1px;
+        padding: 0.18rem 0.5rem;
+        border-radius: 3px;
+        text-transform: uppercase;
+    }
+    [data-theme="dark"] .league-scope-badge { border-color: rgba(126, 158, 184, 0.45); }
+    .league-scope p {
+        font-size: 0.78125rem;
+        line-height: 1.6;
+        color: var(--text-body);
+        margin: 0 0 0.5rem 0;
+    }
+    .league-scope p:last-child { margin-bottom: 0; }
+    .league-scope strong { color: var(--text-primary); font-weight: 600; }
+    .league-scope em { color: var(--steel); font-style: normal; font-weight: 600; }
 
     /* ─── HERO CARD GRID ────────────────────────────────────────── */
     .hero-grid {
@@ -552,7 +595,7 @@ a { color: inherit; }
             <div class="codex-wordmark">PATH <span class="of">OF</span> EXILE 2</div>
             <hr class="codex-wordmark-rule">
             <h1 class="codex-title">CODEX</h1>
-            <p class="codex-tagline">Patch 0.5 · Return of the Ancients</p>
+            <p class="codex-tagline">Patch 0.5.5 · Forbidden Rites</p>
 
             <svg class="codex-flourish" viewBox="0 0 180 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M0 8 L70 8" stroke="currentColor" stroke-width="0.6" />
@@ -567,22 +610,30 @@ a { color: inherit; }
         <!-- Reusable changelog. Add new <li class="whats-new-item"> entries on top. -->
         <aside class="whats-new" aria-label="What's new on this site">
             <div class="whats-new-header">
-                <span class="whats-new-label">✦ What's New · 14 Jun 2026 · Patch 0.5</span>
+                <span class="whats-new-label">✦ What's New · 7 Sep 2026 · Patch 0.5.5</span>
                 <span class="whats-new-badge">New</span>
             </div>
             <ul class="whats-new-list">
                 <li class="whats-new-item">
-                    All acts and the Interludes ✦ updated and verified for 0.5 —
-                    <a href="poe2_leveling_guide.html">leveling hub →</a>.
-                    Some progress resets will be needed over the coming days; I'll keep them to a minimum.
+                    <strong>Leveling</strong> — all acts and the Interludes updated for <strong>0.5.5</strong>:
+                    Forbidden Rites Rituals, the Runes of Aldur content that went core, and navigation cues moved
+                    into the zone where each one starts — <a href="poe2_leveling_guide.html">leveling hub →</a>.
+                    Some <strong>progress resets</strong> may be needed as steps are re-sorted; I'll keep them to a minimum.
                 </li>
                 <li class="whats-new-item">
-                    Endgame reorganised around 5 storylines + Abyss / Fate of the Vaal + Runes of Aldur league —
-                    <a href="poe2_endgame_guide.html">endgame guide →</a>
+                    <strong>Endgame</strong> — unchanged for now: 5 storylines + Abyss / Fate of the Vaal.
+                    A 0.5.5 pass is still to come — <a href="poe2_endgame_guide.html">endgame guide →</a>
                 </li>
                 <li class="whats-new-item">
-                    Crafting reconciled to 0.5 (Recombinators / Omen of Corruption removed, catalysts from Genesis Tree, Runes of Aldur suite) —
+                    <strong>Crafting</strong> — unchanged since the 0.5 reconciliation. Runeforging is now core in
+                    0.5.5, but parts of §XV still describe the Runes of Aldur league version —
                     <a href="poe2_crafting_codex.html">crafting codex →</a>
+                </li>
+                <li class="whats-new-item">
+                    <strong>Site</strong> — new <strong>Night</strong> theme (light / dark / night),
+                    <strong>Hide done</strong> and <strong>Alt leveling</strong> filters in a rebuilt sidebar panel,
+                    and a readability pass across every page. If the new colours or buttons don't show up,
+                    do a <strong>hard refresh</strong> (<kbd>Ctrl</kbd>+<kbd>F5</kbd>, or <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> on Mac).
                 </li>
             </ul>
         </aside>
@@ -650,10 +701,37 @@ a { color: inherit; }
                 <path d="M100 7 L160 7" stroke="currentColor" stroke-width="0.6" />
                 <path d="M80 1 L86 7 L80 13 L74 7 Z" stroke="currentColor" stroke-width="0.8" fill="none" />
             </svg>
-            <div class="codex-updated">Last updated: 14 Jun 2026 · Patch 0.5 · Return of the Ancients · launched 29 May 2026</div>
+            <div class="codex-updated">Last updated: 7 Sep 2026 · Patch 0.5.5 · Forbidden Rites · event league, runs until 1.0</div>
         </div>
 
         <!-- ╔══ DISCLAIMER ═══════════════════════════════════════════════════ ╗ -->
+        <!-- ╔══ LEAGUE SCOPE · which league this site is written for ═════════ ╗ -->
+        <!-- Update the badge + first paragraph whenever a new league goes live. -->
+        <aside class="league-scope" aria-label="Which league this guide covers">
+            <div class="league-scope-header">
+                <span class="league-scope-label">Which League This Guide Covers</span>
+                <span class="league-scope-badge">0.5.5 · Forbidden Rites</span>
+            </div>
+            <p>
+                This site always tracks the <strong>most recent live league</strong> — currently
+                <em>0.5.5 Forbidden Rites</em>. Everything here is written for that league's rules,
+                pathing, and rewards. It is <strong>not tailored to Standard</strong>, and league-specific
+                mechanics will not exist on a Standard character.
+            </p>
+            <p>
+                Forbidden Rites is an <strong>event league</strong> with its own economy and ladder, running
+                until the 1.0 release. The previous league, <strong>Runes of Aldur</strong>, continues to run
+                alongside it — and much of its content (Farrow, the Verisium Anvil, Expedition encounters)
+                went <strong>core in 0.5.5</strong>, so that part now applies everywhere, Standard included.
+            </p>
+            <p style="border-top: 1px solid var(--border-subtle); padding-top: 0.5rem; margin-top: 0.6rem;">
+                <strong>Reconciliation in progress.</strong> The 0.5.5 patch notes have landed and the guides are
+                being updated against them — Forbidden Rites Ritual encounters, the Trial of Chaos rework, and the
+                Runes of Aldur content that went core. Pages not yet fully reconciled still describe 0.5 rules.
+                Cross-check the official patch notes before anything expensive.
+            </p>
+        </aside>
+
         <section class="disclaimer-block" aria-label="Disclaimer and sources">
             <h3>This Codex is a Community Summary, Not Ground Truth</h3>
             <p>

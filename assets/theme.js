@@ -12,25 +12,59 @@
 (function () {
     'use strict';
 
-    /* ── Theme ─────────────────────────────────────────────────── */
-    function syncButton() {
-        var cur = document.documentElement.getAttribute('data-theme') || 'light';
-        var ic = document.getElementById('theme-icon');
-        var lb = document.getElementById('theme-label');
-        if (ic) ic.textContent = cur === 'light' ? '☀' : '☾';
-        if (lb) lb.textContent = cur === 'light' ? 'Light' : 'Dark';
+    /* ── Theme ─────────────────────────────────────────────────────
+       Three themes, cycled by the one toggle: light → dark → night.
+
+       "night" is NOT its own data-theme value. It reuses
+       data-theme="dark" and adds data-tint="night", so the ~117
+       `[data-theme="dark"] .foo` rules across the stylesheets and pages all
+       continue to apply; only the ground tokens are re-pointed in base.css. */
+    var THEMES = ['light', 'dark', 'night'];
+    var META = {
+        light: { icon: '☀', label: 'Light', theme: 'light', tint: null },
+        dark:  { icon: '☾', label: 'Dark',  theme: 'dark',  tint: null },
+        night: { icon: '✦', label: 'Night', theme: 'dark',  tint: 'night' }
+    };
+
+    // Derive the current theme name from the DOM (set by the early-init script).
+    function currentTheme() {
+        var html = document.documentElement;
+        if (html.getAttribute('data-tint') === 'night') return 'night';
+        return html.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
     }
 
-    function toggleTheme() {
+    function applyTheme(name) {
+        var m = META[name] || META.light;
         var html = document.documentElement;
-        var cur = html.getAttribute('data-theme') || 'light';
-        var next = cur === 'light' ? 'dark' : 'light';
-        html.setAttribute('data-theme', next);
-        try { localStorage.setItem('poe2-theme', next); } catch (e) { /* private mode */ }
+        html.setAttribute('data-theme', m.theme);
+        if (m.tint) html.setAttribute('data-tint', m.tint);
+        else html.removeAttribute('data-tint');
         syncButton();
     }
 
+    function syncButton() {
+        var m = META[currentTheme()];
+        var ic = document.getElementById('theme-icon');
+        var lb = document.getElementById('theme-label');
+        var btn = document.querySelector('.theme-toggle');
+        if (ic) ic.textContent = m.icon;
+        if (lb) lb.textContent = m.label;
+        // Announce what the button will do next, not just where it is.
+        if (btn) {
+            var nxt = META[THEMES[(THEMES.indexOf(currentTheme()) + 1) % THEMES.length]];
+            btn.setAttribute('aria-label', 'Theme: ' + m.label + '. Switch to ' + nxt.label);
+            btn.setAttribute('title', 'Theme: ' + m.label + ' — click for ' + nxt.label);
+        }
+    }
+
+    function toggleTheme() {
+        var next = THEMES[(THEMES.indexOf(currentTheme()) + 1) % THEMES.length];
+        applyTheme(next);
+        try { localStorage.setItem('poe2-theme', next); } catch (e) { /* private mode */ }
+    }
+
     window.toggleTheme = toggleTheme;
+    window.setTheme = applyTheme;
 
     /* ── Font scale ────────────────────────────────────────────── */
     var MIN_SCALE = 0.85, MAX_SCALE = 1.30, STEP = 0.05;

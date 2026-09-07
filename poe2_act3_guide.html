@@ -14,25 +14,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoE 2 Act 3 Walkthrough — Sandswept Marsh to Ziggurat (Patch 0.5)</title>
-    <meta name="description" content="Path of Exile 2 Act 3 walkthrough with progress tracking. Optimal routing, second ascendancy, all permanent rewards from Sandswept Marsh to Ziggurat. Patch 0.5 (Return of the Ancients).">
+    <title>PoE 2 Act 3 Walkthrough — Sandswept Marsh to Ziggurat (Patch 0.5.5)</title>
+    <meta name="description" content="Path of Exile 2 Act 3 walkthrough with progress tracking. Optimal routing, second ascendancy, all permanent rewards from Sandswept Marsh to Ziggurat. Patch 0.5.5 (Forbidden Rites).">
     <meta name="author" content="domistae">
     <meta name="theme-color" content="#181410">
     <link rel="canonical" href="https://domistae.github.io/poe2-leveling/poe2_act3_guide.html">
 
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="PoE 2 Leveling Guide">
-    <meta property="og:title" content="PoE 2 Act 3 Walkthrough — Sandswept Marsh to Ziggurat (Patch 0.5)">
-    <meta property="og:description" content="Optimal Act 3 routing with progress tracking — Sandswept Marsh to Ziggurat, second ascendancy. Patch 0.5.">
+    <meta property="og:title" content="PoE 2 Act 3 Walkthrough — Sandswept Marsh to Ziggurat (Patch 0.5.5)">
+    <meta property="og:description" content="Optimal Act 3 routing with progress tracking — Sandswept Marsh to Ziggurat, second ascendancy. Patch 0.5.5.">
     <meta property="og:url" content="https://domistae.github.io/poe2-leveling/poe2_act3_guide.html">
     <meta property="og:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Path of Exile 2 Act 3 Walkthrough — Sandswept Marsh to Ziggurat (Patch 0.5)">
+    <meta property="og:image:alt" content="Path of Exile 2 Act 3 Walkthrough — Sandswept Marsh to Ziggurat (Patch 0.5.5)">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="PoE 2 Act 3 Walkthrough — Sandswept Marsh to Ziggurat (Patch 0.5)">
-    <meta name="twitter:description" content="Optimal Act 3 routing with progress tracking — Sandswept Marsh to Ziggurat, second ascendancy. Patch 0.5.">
+    <meta name="twitter:title" content="PoE 2 Act 3 Walkthrough — Sandswept Marsh to Ziggurat (Patch 0.5.5)">
+    <meta name="twitter:description" content="Optimal Act 3 routing with progress tracking — Sandswept Marsh to Ziggurat, second ascendancy. Patch 0.5.5.">
     <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
 
     <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM" />
@@ -50,12 +50,13 @@
         (function() {
             try {
                 var saved = localStorage.getItem('poe2-theme');
-                if (saved === 'light' || saved === 'dark') {
-                    document.documentElement.setAttribute('data-theme', saved);
-                } else {
+                if (saved !== 'light' && saved !== 'dark' && saved !== 'night') {
                     var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-                    document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+                    saved = prefersLight ? 'light' : 'dark';
                 }
+                /* night reuses the dark theme + a [data-tint] layer */
+                document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+                if (saved === 'night') document.documentElement.setAttribute('data-tint', 'night');
             } catch (e) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
@@ -87,26 +88,45 @@
 
     <div class="container">
         <aside class="sidebar">
-            <div class="progress-info">
-                <div class="progress-label">⚡ Required</div>
-                <div class="progress-bar-bg"><div class="progress-bar-fill fast" id="progressBarFast"></div></div>
-                <div class="progress-text" id="progressTextFast">0 / 0</div>
-                <div class="progress-label complete">◆ Complete</div>
-                <div class="progress-bar-bg"><div class="progress-bar-fill complete" id="progressBarComplete"></div></div>
-                <div class="progress-text" id="progressTextComplete">0 / 0</div>
-            </div>
-            <div class="sidebar-actions">
-                <button class="btn" onclick="resetProgress()">Reset Progress</button>
-                <button class="btn export" onclick="exportAllProgress()">Export Progress</button>
-                <button class="btn import" onclick="showImportDialog()">Import Progress</button>
+            <div class="progress-panel">
+                <div class="progress-row">
+                    <div class="progress-head">
+                        <span class="progress-name">⚡ Required</span>
+                        <span class="progress-count" id="progressTextFast">0 / 0</span>
+                    </div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill fast" id="progressBarFast"></div></div>
+                </div>
+                <div class="progress-row">
+                    <div class="progress-head">
+                        <span class="progress-name complete">◆ Complete</span>
+                        <span class="progress-count" id="progressTextComplete">0 / 0</span>
+                    </div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill complete" id="progressBarComplete"></div></div>
+                </div>
+
+                <div class="view-filters">
+                    <button type="button" class="view-chip" data-view="hide-completed" aria-pressed="false" title="Hide steps you have already ticked off">
+                        <span class="dot" aria-hidden="true"></span>Hide done
+                    </button>
+                    <button type="button" class="view-chip" data-view="alt-leveling" aria-pressed="false" title="Alt leveling — show only the necessary steps, hiding everything marked (Opt)">
+                        <span class="dot" aria-hidden="true"></span>Alt leveling
+                    </button>
+                </div>
+
+                <div class="panel-actions">
+                    <button class="mini-btn reset" onclick="resetProgress()" title="Clear progress on this page">Reset</button>
+                    <button class="mini-btn export" onclick="exportAllProgress()" title="Copy a progress code covering every page">Export</button>
+                    <button class="mini-btn import" onclick="showImportDialog()" title="Paste a progress code">Import</button>
+                </div>
                 <div id="importDialog" class="import-dialog" style="display:none;">
                     <textarea id="importCode" placeholder="Paste progress code…"></textarea>
                     <div class="import-actions">
-                        <button class="btn" onclick="importAllProgress()">Import</button>
-                        <button class="btn" onclick="hideImportDialog()">Cancel</button>
+                        <button class="mini-btn" onclick="importAllProgress()">Import</button>
+                        <button class="mini-btn" onclick="hideImportDialog()">Cancel</button>
                     </div>
                 </div>
             </div>
+
             <details class="sidebar-section zones-details">
                 <summary class="zones-summary">Zones</summary>
                 <a href="#sandswept" class="sidebar-link">Sandswept Marsh</a>
@@ -133,7 +153,7 @@
         <main class="main">
             <header class="header">
                 <h1>Act III — Sandswept to Ziggurat</h1>
-                <span class="patch">Patch 0.5 · Lvl 30–42 · All classes · Optimal routing</span>
+                <span class="patch">Patch 0.5.5 · Lvl 30–42 · All classes · Optimal routing</span>
             </header>
 
 
@@ -161,18 +181,8 @@
                 </ul>
             </details>
 
-            <!-- SPEEDRUN TIPS — Community -->
-            <details class="info-box" style="border-left: 3px solid var(--steel); margin-bottom: 1.5rem;">
-                <summary style="color: var(--steel);">⚡ Speedrun Tips (Community)</summary>
-                <ul class="tip-list">
-                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Don't study layouts.</strong> GGG (Sunna, level designer) said publicly: too much is reworked in 0.5 to make layout study worth it. Push forward — even when unsure of direction.</li>
-                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Use a regex</strong> in vendor search bars to highlight wanted bases. Cuts town shopping from minutes to seconds.</li>
-                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Menu hotkeys:</strong> hold <kbd>Ctrl</kbd> on the passive tree to auto-confirm points. Bind <strong>Quick Assign</strong> (no default key) for attribute nodes. <kbd>Ctrl+Shift+L/R-click</kbd> on hotbar = weapon-swap assign.</li>
-                    <li><span class="icon">◆</span> <strong>Magic packs only</strong> while pushing — ignore white werewolf packs etc. unless underleveled. Pre-mapping XP is mostly about magic-monster efficiency.</li>
-                </ul>
-            </details>
 
-            <div class="note new" style="margin-bottom:1.5rem;"><span class="label">0.5 Routing</span>The body now follows the live 0.5 order — <strong>Jungle Ruins &rarr; Venom Crypts &rarr; Infested Barrens &rarr; Chimeral Wetlands</strong> (matching the sidebar). Transitions are still being finalised in 0.5: for the moment you reach the <strong>Infested Barrens from the Jungle Ruins</strong>, and the <strong>Azak Bog</strong> is now reached later via the Matlan Waterways rather than from the Infested Barrens. Treat the exact transitions as provisional.</div>
+            <div class="note change" style="margin-bottom:1.5rem;"><span class="label">0.5 Routing</span>The body follows the live 0.5 order — <strong>Jungle Ruins &rarr; Venom Crypts &rarr; Infested Barrens &rarr; Chimeral Wetlands</strong> (matching the sidebar). You reach the <strong>Infested Barrens from the Jungle Ruins</strong>, and the <strong>Azak Bog</strong> is reached later via the Matlan Waterways rather than from the Infested Barrens.</div>
 
             <!-- SANDSWEPT MARSH -->
             <div class="zone-header" id="sandswept">Sandswept Marsh <span class="lvl">Lvl 30</span></div>
@@ -198,12 +208,9 @@
 
             <!-- JUNGLE RUINS -->
             <div class="zone-header" id="jungle">Jungle Ruins <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 30&ndash;31</span></div>
-            <div class="note new"><span class="label">0.5 Pathing</span>The jungle's <strong>explorer camps</strong> are no longer just vendors. <strong>Talk to the explorers</strong> &mdash; they point you toward the next area, and the destination is now <strong>revealed on your minimap</strong>. Cuts a lot of wandering out of the act.</div>
-            <div class="note new"><span class="label">0.5 League</span><strong>Runes of Aldur:</strong> <span class="npc">Farrow</span> (first met back in Act 1) now appears at the <strong>start of the Jungle Ruins</strong> &mdash; and at the start of any zone holding a Runestone. Act 3 has <strong>three Runestones: Jungle Ruins, Venom Crypts and the Azak Bog</strong>. Collect all three, then return to the <strong>Infested Barrens</strong> and enter the <strong>Mystic Refuge</strong> (the locked jungle vault) &mdash; clear it and talk to Farrow at the end to unlock <strong>Unique Verisium Runeforging</strong> at the <span class="npc">Verisium Anvil</span>. On Uniques <strong>level 55 and below</strong>, weapons gain increased base damage + defence and armour gains <strong>Runic Ward</strong> with no trade-off (level 56+ take the standard base-stat trade-off); best value is on Kalguuran uniques.</div>
-            <div class="note new"><span class="label">Runeforging ladder</span>One tier unlocks per act: Act 1 Armour Runeforging &rarr; Act 2 Runic Inscriptions &rarr; <strong>Act 3 Unique Runeforging</strong> &rarr; Act 4 Ancient Runes.</div>
-            <div class="step" data-step="9"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Talk to <span class="npc">Farrow</span> at the start &rarr; Runes of Aldur / Runeseeker <span class="reward-tag craft">Unlocks Unique Verisium Runeforging</span></div></div>
-            <div class="note new"><span class="label">0.5 Fate of the Vaal</span>A <strong>Vaal Beacon</strong> appears in the jungle &mdash; your first Fate-of-the-Vaal encounter (a red-stone ring that empowers the pack around it; that dense corrupted pack is the "warning"). Clear the pack to light a crystal — this is beacon <strong>1 of 6</strong>. <strong>Six beacons</strong> across Act 3 open a portal to the <strong>Vaal Ruins</strong>. See the <a href="poe2_endgame_guide.html#fate-of-the-vaal">endgame guide &rarr;</a></div>
+            <div class="note cue"><span class="label">Visual Cue</span><strong>Explorer camps.</strong> The jungle's <strong>explorer camps</strong> are no longer just vendors. <strong>Talk to the explorers</strong> &mdash; they point you toward the next area, and the destination is <strong>revealed on your minimap</strong>. Cuts most of the wandering out of the act.</div>
+            <div class="note legacy"><span class="label">Runes of Aldur only</span>That league puts <span class="npc">Farrow</span> at the start of any zone holding a Runestone — <strong>three in Act 3</strong> (Jungle Ruins, Venom Crypts, Azak Bog). Collecting all three opens the <strong>Mystic Refuge</strong> in the Infested Barrens → clear it → unlock <strong>Unique Verisium Runeforging</strong>. On Uniques <strong>level 55 and below</strong>, weapons gain increased base damage + defence and armour gains <strong>Runic Ward</strong> with no trade-off; best value is on Kalguuran uniques. <strong>Not present in Forbidden Rites</strong> — see <a href="poe2_act4_guide.html">Act 4</a> for the Verisium Anvil unlock.</div>
+            <div class="note change"><span class="label">0.5 Fate of the Vaal</span>A <strong>Vaal Beacon</strong> appears in the jungle &mdash; your first Fate-of-the-Vaal encounter (a red-stone ring that empowers the pack around it; that dense corrupted pack is the "warning"). Clear the pack to light a crystal — this is beacon <strong>1 of 6</strong>. <strong>Six beacons</strong> across Act 3 open a portal to the <strong>Vaal Ruins</strong>. See the <a href="poe2_endgame_guide.html#fate-of-the-vaal">endgame guide &rarr;</a></div>
             <div class="step" data-step="10"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Mighty Silverfist</span> <span class="reward-tag">+2 Skill Points</span></div></div>
             <div class="note warning">Dodge slam SIDEWAYS (not backwards) &mdash; wave travels in attack direction</div>
@@ -211,20 +218,16 @@
                 <div class="step-content">Jungle Grave (ravaged corpse) &rarr; <span class="npc">Servi</span> gives <span class="reward-tag">Rare Belt (choice)</span></div></div>
             <div class="step" data-step="12"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Troubled Camp (<span class="npc">Gwendolyn Albright</span>) <span class="reward-tag">Guaranteed Rare Gloves</span></div></div>
-            <div class="step" data-step="13"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="skip">(Opt)</span> Activate the Jungle Ruins <span class="item">Runestone</span> (Runes of Aldur)</div></div>
             <div class="step" data-step="14"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Find WP near <span class="loc">Venom Crypts</span> &rarr; Enter <span class="loc">The Venom Crypts</span></div></div>
 
             <!-- VENOM CRYPTS -->
             <div class="zone-header" id="venom">The Venom Crypts &#9888; <span class="lvl">Area Lvl 35</span></div>
-            <div class="note new"><span class="label">0.5 Fate of the Vaal</span>Another <strong>Vaal Beacon</strong> spawns here (<strong>2 of 6</strong>) &mdash; clear its pack to light another crystal toward the six needed for the Vaal Ruins.</div>
+            <div class="note change"><span class="label">0.5 Fate of the Vaal</span>Another <strong>Vaal Beacon</strong> spawns here (<strong>2 of 6</strong>) &mdash; clear its pack to light another crystal toward the six needed for the Vaal Ruins.</div>
             <div class="step" data-step="15"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Sarcophagus event <span class="reward-tag gem">Guaranteed Lv3 Support</span></div></div>
             <div class="step" data-step="16"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Find corpse &rarr; loot <span class="item">Orok Poison</span> &rarr; head to the safe zone <span class="loc">A Reprieve</span></div></div>
-            <div class="step" data-step="17"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="skip">(Opt)</span> Activate the Venom Crypts <span class="item">Runestone</span> (Runes of Aldur)</div></div>
             <div class="step" data-step="18"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">TP back to town</div></div>
 
@@ -238,8 +241,8 @@
 
             <!-- INFESTED BARRENS -->
             <div class="zone-header" id="infested">Infested Barrens <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 31&ndash;32</span></div>
-            <div class="note new"><span class="label">0.5 Routing</span>Provisional: for the moment you reach the Infested Barrens <strong>from the Jungle Ruins</strong>. The exact 0.5 transition is still being confirmed against the live build.</div>
-            <div class="note new"><span class="label">0.5 Fate of the Vaal</span>A <strong>Vaal Beacon</strong> spawns here (<strong>3 of 6</strong>) — clear its pack toward the six needed for the Vaal Ruins.</div>
+            <div class="note change"><span class="label">0.5 Routing</span>You reach the Infested Barrens <strong>from the Jungle Ruins</strong>.</div>
+            <div class="note change"><span class="label">0.5 Fate of the Vaal</span>A <strong>Vaal Beacon</strong> spawns here (<strong>3 of 6</strong>) — clear its pack toward the six needed for the Vaal Ruins.</div>
             <div class="step" data-step="21"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Find/talk <span class="npc">Alva</span>, take WP near her</div></div>
             <div class="step" data-step="22"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
@@ -248,7 +251,7 @@
                 <div class="step-content">Enter <span class="loc">Chimeral Wetlands</span></div></div>
             <!-- CHIMERAL WETLANDS -->
             <div class="zone-header" id="chimeral">Chimeral Wetlands <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 32–33</span></div>
-            <div class="note new"><span class="label">0.5 Fate of the Vaal</span>A <strong>Vaal Beacon</strong> spawns here (<strong>4 of 6</strong>) — clear its pack toward the six needed for the Vaal Ruins.</div>
+            <div class="note change"><span class="label">0.5 Fate of the Vaal</span>A <strong>Vaal Beacon</strong> spawns here (<strong>4 of 6</strong>) — clear its pack toward the six needed for the Vaal Ruins.</div>
             <div class="step" data-step="26"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="loc">Ravaged Camp</span> → <span class="item">Lost Temple Logbook</span> (reveals the Temple of Chaos) + gold chest <span class="reward-tag">Guaranteed Rare Armour</span></div></div>
             <div class="step" data-step="27"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
@@ -296,14 +299,14 @@
                 <div class="step-content">Loot 2 <span class="item">Medium Soul Cores</span>, place in Generators</div></div>
             <div class="step" data-step="42"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Back to start → click <span class="item">Large Soul Core</span> → kill <span class="boss">Zicoatl, Warden of the Core</span> → loot core</div></div>
-            <div class="note new"><span class="label">0.5 Fate of the Vaal</span>A <strong>Vaal Beacon</strong> spawns in the Sanctum (<strong>5 of 6</strong>) — clear its pack toward the six needed for the Vaal Ruins.</div>
+            <div class="note change"><span class="label">0.5 Fate of the Vaal</span>A <strong>Vaal Beacon</strong> spawns in the Sanctum (<strong>5 of 6</strong>) — clear its pack toward the six needed for the Vaal Ruins.</div>
             <div class="note tip"><strong>Paquate's Mechanism</strong> (corruption altar) sits in the Sanctum — Vaal-orb-style item corruption while you clear.</div>
             <div class="step" data-step="43"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">TP to the <span class="loc">Jungle Ruins</span></div></div>
 
             <!-- JUNGLE RUINS RETURN -->
             <div class="zone-header">Jungle Ruins (Return)</div>
-            <div class="note new"><span class="label">0.5 Routing</span>After the Sanctum you return to the <strong>Jungle Ruins</strong> (not the Infested Barrens) and use the Large Soul Core on the Stone Altar there to resurface the Matlan Waterways entrance.</div>
+            <div class="note change"><span class="label">0.5 Routing</span>After the Sanctum you return to the <strong>Jungle Ruins</strong> (not the Infested Barrens) and use the Large Soul Core on the Stone Altar there to resurface the Matlan Waterways entrance.</div>
             <div class="step" data-step="44"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Use the <span class="item">Large Soul Core</span> on the <span class="item">Stone Altar</span> → resurfaces the <span class="loc">Matlan Waterways</span> entrance</div></div>
             <div class="step" data-step="45"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
@@ -317,27 +320,22 @@
                 <div class="step-content">Walk over <span class="item">pressure pads</span> (6–8 per layout) — auto-activate on contact</div></div>
             <div class="step" data-step="48"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Proceed to end of zone — final section is now <strong>pre-drained</strong></div></div>
-            <div class="note new"><span class="label">0.5 QoL</span>Levers became walk-over <strong>pressure pads</strong>, and the final canal section ships <strong>pre-drained</strong>. The old portal-skip is no longer needed — just walk straight through.</div>
-            <div class="note new"><span class="label">0.5 Fate of the Vaal</span>The <strong>6th and final Vaal Beacon</strong> spawns here — energising it completes the set and <strong>opens the portal to the Vaal Ruins</strong> (enter promptly; the entrance can disappear and stall the quest). The storyline continues in the Interludes (6 more beacons) and becomes a full endgame storyline. See the <a href="poe2_endgame_guide.html#fate-of-the-vaal">endgame guide's Fate of the Vaal section &rarr;</a></div>
+            <div class="note change"><span class="label">0.5 QoL</span>Levers became walk-over <strong>pressure pads</strong>, and the final canal section ships <strong>pre-drained</strong>. The old portal-skip is no longer needed — just walk straight through.</div>
+            <div class="note change"><span class="label">0.5 Fate of the Vaal</span>The <strong>6th and final Vaal Beacon</strong> spawns here — energising it completes the set and <strong>opens the portal to the Vaal Ruins</strong> (enter promptly; the entrance can disappear and stall the quest). The storyline continues in the Interludes (6 more beacons) and becomes a full endgame storyline. See the <a href="poe2_endgame_guide.html#fate-of-the-vaal">endgame guide's Fate of the Vaal section &rarr;</a></div>
             <div class="step" data-step="88"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Ravaged Corpse</span> at the Azak Bog entrance → summon <span class="npc">Servi</span> <span class="reward-tag">Unidentified Rare Belt</span></div></div>
-            <div class="note tip">Servi appears here at the entrance only — she is <strong>not</strong> inside Azak Bog (<span class="npc">Farrow</span> holds the Runestone in there).</div>
+            <div class="note tip">Servi appears here at the entrance only — she is <strong>not</strong> inside Azak Bog.</div>
             <div class="step" data-step="49"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Take the <span class="loc">Azak Bog</span> side entrance (off the Waterways)</div></div>
 
             <!-- AZAK BOG -->
             <div class="zone-header" id="azakbog">Azak Bog <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 33–34</span></div>
-            <div class="note new"><span class="label">0.5 Routing</span>Azak Bog is now a <strong>side zone off the Matlan Waterways</strong> (no longer reached from the Drowned City). It holds the third Act 3 Runestone.</div>
-            <div class="step" data-step="55"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Talk to <span class="npc">Farrow</span> at the start → Runes of Aldur / Runeseeker</div></div>
+            <div class="note change"><span class="label">0.5 Routing</span>Azak Bog is now a <strong>side zone off the Matlan Waterways</strong> (no longer reached from the Drowned City).</div>
             <div class="step" data-step="56"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Flameskin rituals <span class="reward-tag optional">Ignagduk's Harvest (Fire Res + Rarity)</span></div></div>
             <div class="note tip">Boss arena always top-right; rotation depends on entrance side. Reset farm magic packs around fire shrine for XP</div>
             <div class="step" data-step="57"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Ignagduk, the Bog Witch</span> → use <span class="item">Gemrot Skull</span> <span class="reward-tag">+30 Spirit</span> <span class="reward-tag gem">Uncut Spirit Gem Lv10</span></div></div>
-            <div class="step" data-step="89"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="skip">(Opt)</span> Activate the Azak Bog <span class="item">Runestone</span> (Runes of Aldur) — 3rd of 3</div></div>
-            <div class="note new"><span class="label">0.5 League</span>With all three Runestones collected, return to the <strong>Infested Barrens</strong> and enter the <strong>Mystic Refuge</strong> (the locked jungle vault) → clear it → talk to <span class="npc">Farrow</span> to unlock <strong>Unique Verisium Runeforging</strong>.</div>
             <div class="step" data-step="58"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Return <span class="item">Ignagduk's Ghastly Spear</span> to <span class="npc">Servi</span> in town <span class="reward-tag">Charm (choice of 3)</span></div></div>
             <div class="step" data-step="59"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>

@@ -14,7 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoE2 Crafting Codex — Currencies, Omens, Desecration & 0.5 Runeforging</title>
+    <title>PoE2 Crafting Codex — Currencies, Omens, Desecration & 0.5.5 Runeforging</title>
     <meta name="description" content="Path of Exile 2 crafting codex: every currency, omen, essence, abyssal bone, catalyst, fracturing strategy, the tag system, and Patch 0.5 Runes of Aldur additions (Verisium, Runeforging, Genesis Tree, liquid emotions, wombgifts).">
     <meta name="author" content="domistae">
     <meta name="theme-color" content="#181410">
@@ -22,7 +22,7 @@
 
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="PoE2 Leveling Guide">
-    <meta property="og:title" content="PoE2 Crafting Codex — Patch 0.5 Reference">
+    <meta property="og:title" content="PoE2 Crafting Codex — Patch 0.5.5 Reference">
     <meta property="og:description" content="Every currency, every omen, every trick — a community-driven summary covering the live patch and the 0.5 Runes of Aldur additions.">
     <meta property="og:url" content="https://domistae.github.io/poe2-leveling/poe2_crafting_codex.html">
     <meta property="og:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
@@ -30,7 +30,7 @@
     <meta property="og:image:height" content="630">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="PoE2 Crafting Codex — Patch 0.5 Reference">
+    <meta name="twitter:title" content="PoE2 Crafting Codex — Patch 0.5.5 Reference">
     <meta name="twitter:description" content="Every currency, every omen, every trick. Patch 0.5 ready.">
     <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
 
@@ -41,12 +41,13 @@
         (function() {
             try {
                 var saved = localStorage.getItem('poe2-theme');
-                if (saved === 'light' || saved === 'dark') {
-                    document.documentElement.setAttribute('data-theme', saved);
-                } else {
+                if (saved !== 'light' && saved !== 'dark' && saved !== 'night') {
                     var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-                    document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+                    saved = prefersLight ? 'light' : 'dark';
                 }
+                /* night reuses the dark theme + a [data-tint] layer */
+                document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+                if (saved === 'night') document.documentElement.setAttribute('data-tint', 'night');
             } catch (e) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
@@ -69,7 +70,7 @@
     --r-corrupt: #d20000;
     --r-desec:   #4ade80;
     /* Runes of Aldur (0.5) */
-    --c-aldur:      #c89860;
+    --c-aldur:      #7a5c26;     /* was #c89860 — only 2.21 contrast on the light ground */
     --overlay-aldur: rgba(200, 152, 96, 0.10);
 }
 [data-theme="dark"] {
@@ -737,13 +738,13 @@ footer.site-footer a {
             <header class="header">
                 <div class="eyebrow">Path of Exile 2 · Workbench Reference</div>
                 <h1>The Crafting Codex</h1>
-                <span class="patch">Patch 0.5 · The Runes of Aldur — live since May 29, 2026 · Every currency · Every omen · Every trick</span>
-                <p class="subtitle">A practitioner's reference for turning every white drop into something a build can use. Every currency, every omen, every meta-mod, and the tricks that turn a 1-mod base into a 6-mod finished piece without bricking it — a community-driven summary, compiled from multiple sources, covering the live <strong>0.5</strong> patch (The Runes of Aldur). <strong>Treat as a quick reference, not as ground truth.</strong> See <a href="#caveats">§XVII</a>.</p>
+                <span class="patch">Patch 0.5.5 · Forbidden Rites · Every currency · Every omen · Every trick</span>
+                <p class="subtitle">A practitioner's reference for turning every white drop into something a build can use. Every currency, every omen, every meta-mod, and the tricks that turn a 1-mod base into a 6-mod finished piece without bricking it — a community-driven summary, compiled from multiple sources, covering the live <strong>0.5.5</strong> patch (Forbidden Rites). <strong>Treat as a quick reference, not as ground truth.</strong> See <a href="#caveats">§XVII</a>.</p>
             </header>
 
             <div class="banner-05">
-                <span class="label">Patch 0.5 · Return of the Ancients</span>
-                Launched <strong>May 29, 2026</strong>. The Runes of Aldur league adds <strong>Verisium</strong>, <strong>Runeforging</strong>, <strong>Runic Alloys</strong>, a <strong>Genesis Tree</strong> crafting bench under Breach, and <strong>liquid emotion</strong> jewel crafts under Delirium. All flagged inline; full coverage in <a href="#aldur">§XV</a>.
+                <span class="label">Patch 0.5.5 · Forbidden Rites</span>
+<strong>Runes of Aldur went core in 0.5.5</strong> — <strong>Verisium</strong>, <strong>Runeforging</strong> and the <strong>Verisium Anvil</strong> now apply in every league, Standard included (the Anvil unlocks via the <strong>Runeseeker</strong> quest in Act 4). The <strong>Genesis Tree</strong> bench under Breach and <strong>liquid emotion</strong> jewel crafts under Delirium are unchanged. <strong>Runic Alloys</strong> and the per-act Runeforging ladder remain Runes of Aldur–only. Full coverage in <a href="#aldur">§XV</a> — that section is not yet fully reconciled to 0.5.5.
             </div>
 
             <div class="callout warn">

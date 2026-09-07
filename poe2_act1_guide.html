@@ -14,25 +14,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoE 2 Act 1 Walkthrough — Clearfell to Ogham (Patch 0.5)</title>
-    <meta name="description" content="Path of Exile 2 Act 1 walkthrough with progress tracking. Optimal routing, all skill points and permanent rewards from Clearfell to Ogham Manor. Patch 0.5 (Return of the Ancients).">
+    <title>PoE 2 Act 1 Walkthrough — Clearfell to Ogham (Patch 0.5.5)</title>
+    <meta name="description" content="Path of Exile 2 Act 1 walkthrough with progress tracking. Optimal routing, all skill points and permanent rewards from Clearfell to Ogham Manor. Patch 0.5.5 (Forbidden Rites).">
     <meta name="author" content="domistae">
     <meta name="theme-color" content="#181410">
     <link rel="canonical" href="https://domistae.github.io/poe2-leveling/poe2_act1_guide.html">
 
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="PoE 2 Leveling Guide">
-    <meta property="og:title" content="PoE 2 Act 1 Walkthrough — Clearfell to Ogham (Patch 0.5)">
-    <meta property="og:description" content="Optimal Act 1 routing with progress tracking — Clearfell to Ogham, all skill points and permanent rewards. Patch 0.5.">
+    <meta property="og:title" content="PoE 2 Act 1 Walkthrough — Clearfell to Ogham (Patch 0.5.5)">
+    <meta property="og:description" content="Optimal Act 1 routing with progress tracking — Clearfell to Ogham, all skill points and permanent rewards. Patch 0.5.5.">
     <meta property="og:url" content="https://domistae.github.io/poe2-leveling/poe2_act1_guide.html">
     <meta property="og:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Path of Exile 2 Act 1 Walkthrough — Clearfell to Ogham Manor (Patch 0.5)">
+    <meta property="og:image:alt" content="Path of Exile 2 Act 1 Walkthrough — Clearfell to Ogham Manor (Patch 0.5.5)">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="PoE 2 Act 1 Walkthrough — Clearfell to Ogham (Patch 0.5)">
-    <meta name="twitter:description" content="Optimal Act 1 routing with progress tracking — Clearfell to Ogham, all skill points and permanent rewards. Patch 0.5.">
+    <meta name="twitter:title" content="PoE 2 Act 1 Walkthrough — Clearfell to Ogham (Patch 0.5.5)">
+    <meta name="twitter:description" content="Optimal Act 1 routing with progress tracking — Clearfell to Ogham, all skill points and permanent rewards. Patch 0.5.5.">
     <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
 
     <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM" />
@@ -50,12 +50,13 @@
         (function() {
             try {
                 var saved = localStorage.getItem('poe2-theme');
-                if (saved === 'light' || saved === 'dark') {
-                    document.documentElement.setAttribute('data-theme', saved);
-                } else {
+                if (saved !== 'light' && saved !== 'dark' && saved !== 'night') {
                     var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-                    document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+                    saved = prefersLight ? 'light' : 'dark';
                 }
+                /* night reuses the dark theme + a [data-tint] layer */
+                document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+                if (saved === 'night') document.documentElement.setAttribute('data-tint', 'night');
             } catch (e) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
@@ -87,26 +88,45 @@
 
     <div class="container">
         <aside class="sidebar">
-            <div class="progress-info">
-                <div class="progress-label">⚡ Required</div>
-                <div class="progress-bar-bg"><div class="progress-bar-fill fast" id="progressBarFast"></div></div>
-                <div class="progress-text" id="progressTextFast">0 / 0</div>
-                <div class="progress-label complete">◆ Complete</div>
-                <div class="progress-bar-bg"><div class="progress-bar-fill complete" id="progressBarComplete"></div></div>
-                <div class="progress-text" id="progressTextComplete">0 / 0</div>
-            </div>
-            <div class="sidebar-actions">
-                <button class="btn" onclick="resetProgress()">Reset Progress</button>
-                <button class="btn export" onclick="exportAllProgress()">Export Progress</button>
-                <button class="btn import" onclick="showImportDialog()">Import Progress</button>
+            <div class="progress-panel">
+                <div class="progress-row">
+                    <div class="progress-head">
+                        <span class="progress-name">⚡ Required</span>
+                        <span class="progress-count" id="progressTextFast">0 / 0</span>
+                    </div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill fast" id="progressBarFast"></div></div>
+                </div>
+                <div class="progress-row">
+                    <div class="progress-head">
+                        <span class="progress-name complete">◆ Complete</span>
+                        <span class="progress-count" id="progressTextComplete">0 / 0</span>
+                    </div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill complete" id="progressBarComplete"></div></div>
+                </div>
+
+                <div class="view-filters">
+                    <button type="button" class="view-chip" data-view="hide-completed" aria-pressed="false" title="Hide steps you have already ticked off">
+                        <span class="dot" aria-hidden="true"></span>Hide done
+                    </button>
+                    <button type="button" class="view-chip" data-view="alt-leveling" aria-pressed="false" title="Alt leveling — show only the necessary steps, hiding everything marked (Opt)">
+                        <span class="dot" aria-hidden="true"></span>Alt leveling
+                    </button>
+                </div>
+
+                <div class="panel-actions">
+                    <button class="mini-btn reset" onclick="resetProgress()" title="Clear progress on this page">Reset</button>
+                    <button class="mini-btn export" onclick="exportAllProgress()" title="Copy a progress code covering every page">Export</button>
+                    <button class="mini-btn import" onclick="showImportDialog()" title="Paste a progress code">Import</button>
+                </div>
                 <div id="importDialog" class="import-dialog" style="display:none;">
                     <textarea id="importCode" placeholder="Paste progress code…"></textarea>
                     <div class="import-actions">
-                        <button class="btn" onclick="importAllProgress()">Import</button>
-                        <button class="btn" onclick="hideImportDialog()">Cancel</button>
+                        <button class="mini-btn" onclick="importAllProgress()">Import</button>
+                        <button class="mini-btn" onclick="hideImportDialog()">Cancel</button>
                     </div>
                 </div>
             </div>
+
             <details class="sidebar-section zones-details">
                 <summary class="zones-summary">Zones</summary>
                 <a href="#riverbank" class="sidebar-link">Riverbank</a>
@@ -128,7 +148,7 @@
         <main class="main">
             <header class="header">
                 <h1>Act I — Clearfell to Ogham</h1>
-                <span class="patch">Patch 0.5 · Lvl 1–14 · All classes · Optimal routing</span>
+                <span class="patch">Patch 0.5.5 · Lvl 1–14 · All classes · Optimal routing</span>
             </header>
 
 
@@ -143,19 +163,6 @@
                 </div>
             </div>
 
-            <!-- SPEEDRUN TIPS — Community -->
-            <details class="info-box" style="border-left: 3px solid var(--steel); margin-bottom: 1.5rem;">
-                <summary style="color: var(--steel); cursor: pointer; font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;">⚡ Speedrun Tips (Community) <span style="text-transform: none; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0; opacity: 0.75;">▸ click to expand</span></summary>
-                <ul class="tip-list" style="margin-top: 0.75rem;">
-                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Play with urgency.</strong> Minimize town time and never stop moving in a zone — even inefficient progress beats no progress.</li>
-                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Focus magic packs.</strong> Blue-name (magic) monsters give ~3.5× the XP of equivalent whites. Skip white packs unless you're under-leveled.</li>
-                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Don't mule.</strong> Push to the <strong>Red Vale weapon racks</strong> — they're guaranteed to drop a 2nd-tier Martial weapon (long quarterstaff, smithing hammer, tense crossbow).</li>
-                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Ration regals/exalts.</strong> 1–2 regals per act, ideally on weapon bases that hit modifier breakpoints. Save exalts.</li>
-                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Stay on the XP curve.</strong> Margin of safety = 3 levels under area + 1 per 16 character levels. Push XP when you fall outside it.</li>
-                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Cemetery: do Draven first</strong>, then <strong>manually refresh the zone</strong> (leave and re-enter) before doing Asinia — her drops scale with the higher zone level.</li>
-                    <li><span class="icon" style="color: var(--steel);">◆</span> <strong>Aim for Lvl 14</strong> before the Geonor fight.</li>
-                </ul>
-            </details>
 
             <!-- RIVERBANK -->
             <div class="zone-header" id="riverbank">Riverbank <span class="lvl">Lvl 1</span></div>
@@ -177,10 +184,8 @@
 
             <!-- CLEARFELL -->
             <div class="zone-header" id="clearfell">Clearfell <span class="lvl">Lvl 2–3</span></div>
-            <div class="step" data-step="7"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Talk to <span class="npc">Farrow</span> → starts <span class="item">The Runeseeker</span> quest <span class="reward-tag craft">Runesmithing tutorial</span></div></div>
-            <div class="note new"><span class="label">0.5 New</span>Farrow is the new league NPC. Meeting him here only <strong>starts</strong> the Runeseeker quest — the <strong>Verisium Anvil unlocks at the end of the Act 1 chain</strong> (collect 3 Runestones → Lost Catacombs → return to Clearfell). Runeforging then lets you spend <strong>Verisium</strong> to add <strong>Runic Ward</strong>, a regenerating layer that absorbs damage at 1 life (free on sub-55 bases; trades some defence for Ward above that). Full detail in the Crafting Codex.</div>
-            <div class="note new"><span class="label">Runeforging ladder</span>One tier unlocks per act: <strong>Act 1 Armour Runeforging</strong> &rarr; Act 2 Runic Inscriptions &rarr; Act 3 Unique Runeforging &rarr; Act 4 Ancient Runes.</div>
+            <div class="note change"><span class="label">0.5.5 Verisium Anvil</span>In <strong>Forbidden Rites</strong> (and Standard), the Anvil is <strong>not</strong> unlocked here — you unlock it by completing <strong>The Runeseeker quest in Act 4</strong>. After that, <span class="npc">Farrow</span> can be placed in your <strong>Hideout in all leagues</strong>, and Farrow / Dannig / Expedition become core Atlas content. See the <a href="poe2_act4_guide.html">Act 4 guide</a>.</div>
+            <div class="note legacy"><span class="label">Runes of Aldur only</span>In that league the unlock is an <strong>Act 1 chain</strong> instead: collect <strong>3 Runestones</strong> → <span class="loc">Lost Catacombs</span> → return to <span class="loc">Clearfell</span>. Runeforging then spends <strong>Verisium</strong> to add <strong>Runic Ward</strong>, a regenerating layer that absorbs damage at 1 life. The per-act ladder (Armour Runeforging → Runic Inscriptions → Unique Runeforging → Ancient Runes) is league-only. Detail in the <a href="poe2_crafting_codex.html">Crafting Codex</a>.</div>
             <div class="step" data-step="8"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Beira of the Rotten Pack</span> (north) <span class="reward-tag">+10% Cold Res</span></div></div>
             <div class="step" data-step="9"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
@@ -194,6 +199,7 @@
 
             <!-- GRELWOOD -->
             <div class="zone-header" id="grelwood">The Grelwood <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 3–5</span></div>
+            <div class="note cue"><span class="label">Visual Cue</span><strong>Glowing roots.</strong> Magical roots with a subtle glow thread through the Grelwood and all lead the same way — toward the <span class="loc">Tree of Souls</span>. Separately, <strong>follow the river upstream</strong> and it always brings you to the <span class="loc">Red Vale</span> entrance.</div>
             <div class="step" data-step="12"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Find/summon/talk <span class="npc">Una</span></div></div>
             <div class="step" data-step="13"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
@@ -245,7 +251,7 @@
 
             <!-- GRIM TANGLE -->
             <div class="zone-header" id="grimtangle">Grim Tangle <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 6</span></div>
-            <div class="note new"><span class="label">0.5 Quest</span><strong>Runeseeker — Runestone 1 of 3</strong> (Grim Tangle). The first stone is mandatory — you interact with it during normal progression. Follow the <strong>mushrooms</strong> toward the Druid (<span class="loc">Grim Tangle</span>); follow the <strong>caskets</strong> toward the <span class="loc">Cemetery of the Eternals</span>.</div>
+            <div class="note cue"><span class="label">Visual Cue</span><strong>Mushrooms and caskets.</strong> Clusters of <strong>mushrooms</strong> on the ground mean the <span class="loc">Grim Tangle</span> entrance is nearby — follow them toward the Druid. A separate trail of <strong>caskets</strong> runs toward the <span class="loc">Cemetery of the Eternals</span>. The two diverge, so pick the trail matching your objective.</div>
             <div class="step" data-step="29"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Kill <span class="boss">Ervig, the Rotted Druid</span> <span class="reward-tag gem">Support Gem</span></div></div>
             <div class="step" data-step="30"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
@@ -258,12 +264,14 @@
             <div class="step" data-step="32"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Ancient Ruins</span> (sarcophagus near checkpoint) <span class="reward-tag optional">Iron or Lazuli Ring</span></div></div>
             <div class="step" data-step="33"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="loc">Mausoleum of the Praetor</span> → <span class="boss">Draven</span> → Key Piece, TP back</div></div>
+                <div class="step-content"><span class="loc">Mausoleum of the Praetor</span> → <span class="boss">Draven</span> → <span class="item">Draven's Memorial Key Piece</span>, TP back</div></div>
             <div class="step" data-step="34"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="loc">Mausoleum of the Praetor</span> — <span class="item">Forgotten Riches</span> hidden cache <span class="reward-tag gem">Support Gem 1</span> <span class="reward-tag optional">Loot</span> <span class="reward-tag craft">Gold</span></div></div>
-            <div class="note tip">Find the hidden <strong>switch</strong> to open the cache</div>
+            <div class="note cue"><span class="label">Visual Cue</span><strong>Lit pillar switch.</strong> The <span class="item">Forgotten Riches</span> cache sits behind a large sarcophagus near a checkpoint. The <strong>hidden switch is on a nearby pillar and lights up as you approach it</strong> — that glow is the tell. Pure loot (gold + rare chests, no guaranteed item), and it is repeatable by resetting the zone from the waypoint.</div>
             <div class="step" data-step="35"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="loc">Tomb of the Consort</span> → <span class="boss">Asinia</span> → Key Piece, TP back. <span class="skip">(Opt)</span> <span class="item">Haunted Treasure</span> secret <span class="reward-tag gem">Support Gem Lv1</span></div></div>
+                <div class="step-content"><span class="loc">Tomb of the Consort</span> → <span class="boss">Asinia</span> → <span class="item">Asinia's Memorial Key Piece</span>, TP back</div></div>
+            <div class="step" data-step="67"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+                <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Haunted Treasure</span> secret <span class="reward-tag gem">Support Gem Lv1</span></div></div>
             <div class="step" data-step="36"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Open <span class="item">Memorial Gate</span> next to Lachlann</div></div>
             <div class="step" data-step="37"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
@@ -281,12 +289,10 @@
 
             <!-- HUNTING GROUNDS -->
             <div class="zone-header" id="hunting">Hunting Grounds <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 10</span></div>
-            <div class="note new"><span class="label">0.5 Pathing</span>This sparse zone now ships with navigation cues. After completing the small <strong>ritual encounter</strong>, follow the <strong>trail of locusts</strong> — it leads straight to the <span class="loc">Freythorn</span> entrance. <strong>Crowbells</strong> peck dead animals and leave <strong>blood trails</strong> that lead directly to the boss. A <strong>signpost on the road</strong> indicates the way to <span class="loc">Ogham Village</span>.</div>
-            <div class="step" data-step="41"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="npc">Farrow</span> → <span class="item">Runestone 2 of 3</span> (Hunting Grounds)</div></div>
+            <div class="note cue"><span class="label">Visual Cue</span><strong>Locust trail.</strong> Completing this zone's small <strong>ritual encounter</strong> spawns a <strong>trail of locusts</strong> running straight to the <span class="loc">Freythorn</span> entrance. Ritual chains always point to the next-closest one — the same trick carries into endgame rituals.</div>
+            <div class="note cue"><span class="label">Visual Cue</span><strong>Blood trails + signpost.</strong> <strong>Crowbells</strong> peck at dead livestock and leave <strong>blood trails</strong> leading directly to the boss — a "farm-to-table" path straight to <span class="boss">The Crowbell</span>. A <strong>signpost on the road</strong> points the way onward to <span class="loc">Ogham Farmlands</span> — the Farmlands come first, the Village is the zone after.</div>
             <div class="step" data-step="42"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content">Talk to <span class="npc">Delwyn</span></div></div>
-            <div class="note tip"><span class="npc">Delwyn</span> is a bit further into the zone than Farrow</div>
+                <div class="step-content"><span class="skip">(Opt)</span> Talk to <span class="npc">Delwyn</span> — starts the wisp mechanic only</div></div>
             <div class="step" data-step="43"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">The Crowbell</span> <span class="reward-tag">+2 Skill Points</span></div></div>
             <div class="note warning">Watch slam attacks — can one-shot. Boss flees at low HP, kite carefully</div>
@@ -295,7 +301,7 @@
             <div class="step" data-step="45"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Ogham Farmlands</span> → take WP → return</div></div>
             <div class="step" data-step="46"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
-                <div class="step-content"><span class="skip">(Opt)</span> Small ritual event (not near the start of the zone) <span class="reward-tag gem">Support Gem Lv1</span></div></div>
+                <div class="step-content">Small ritual event (not near the start of the zone) — <strong>do this one</strong>, it spawns the locust trail <span class="reward-tag gem">Support Gem Lv1</span></div></div>
             <div class="step" data-step="47"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">TP to <span class="loc">Freythorn</span></div></div>
 
@@ -303,7 +309,7 @@
             <div class="zone-header" id="freythorn">Freythorn <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 11–12</span></div>
             <div class="step" data-step="48"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Activate 3 small <span class="item">Ritual Altars</span></div></div>
-            <div class="note tip">Big altar's smoke tendrils point to the small altars — follow them</div>
+            <div class="note cue"><span class="label">Visual Cue</span><strong>Smoke tendrils.</strong> The big central altar trails <strong>smoke</strong> that reaches out toward each of the three small <span class="item">Ritual Altars</span> — follow a tendril and it leads you straight to one. No need to sweep the zone.</div>
             <div class="step" data-step="49"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content">Big Ritual Altar → kill <span class="boss">The King in the Mists</span> <span class="reward-tag">+30 Spirit</span> <span class="reward-tag gem">Spirit Gem Lv4 (Persistent Buff)</span></div></div>
             <div class="note tip"><span class="npc">Aoife</span> spawns in this fight (Druid class only?) and drops a spirit gem</div>
@@ -318,7 +324,6 @@
             <div class="step" data-step="52"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="item">Una's Lute Box</span> in house near checkpoint → <span class="item">Una's Lute</span> <span class="reward-tag">+2 Skill Points</span></div></div>
             <div class="note tip">Deliver to Una in town for the reward</div>
-            <div class="note new"><span class="label">0.5 Quest</span><strong>Runeseeker — Runestone 3 of 3</strong> (this zone, in a crop field). With all three found: return to <span class="loc">Grelwood</span> and summon <span class="npc">Farrow</span> at the <span class="item">Tree of Souls</span> → run the <span class="loc">Lost Catacombs</span> → grab the <span class="item">Liquid Verisium</span> at the end → return to <span class="loc">Clearfell</span> to unlock the <strong>Verisium Anvil</strong>.</div>
             <div class="step" data-step="53"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Rare dogs in crop circle <span class="reward-tag gem">Skill Gem Lv4</span></div></div>
             <div class="step" data-step="54"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
@@ -328,7 +333,7 @@
             <div class="zone-header" id="oghamvillage">Ogham Village <span class="lvl">Lvl 12–13</span></div>
             <div class="step" data-step="55"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="action">(1st char)</span> <span class="item">Smithing Tools</span> in house <span class="reward-tag craft">Salvage Bench</span></div></div>
-            <div class="note tip">Follow the cobble road to the smithing house</div>
+            <div class="note cue"><span class="label">Visual Cue</span><strong>Cobble road.</strong> Follow the paved <strong>cobble road</strong> through the village — it runs straight to the <strong>smithing house</strong>. Stay on the stone rather than cutting between buildings and you land on the Smithing Tools and the Blacksmith's Chest without searching.</div>
             <div class="step" data-step="56"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Blacksmith's Chest</span> same house <span class="reward-tag optional">Blank Rune + Artificer's Orb</span></div></div>
             <div class="step" data-step="57"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>

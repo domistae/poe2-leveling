@@ -15,28 +15,36 @@
     /* Text */
     --text-primary: #0f172a;     /* near-black, slate undertone */
     --text-body: #334155;
-    --text-muted: #64748b;
-    --text-dim: #94a3b8;
+    --text-muted: #57657a;       /* was #64748b — 3.90 contrast on light ground */
+    --text-dim: #636d7b;         /* was #94a3b8 — 2.37 */
     --parchment: #0f172a;        /* now means "darkest text" for headings */
 
-    /* Gold accents (PoE2 native) */
-    --gold: #b08537;
-    --gold-bright: #d4a258;
-    --gold-deep: #8a6a2c;
+    /* Gold accents (PoE2 native).
+       LIGHT-MODE CONTRAST: these are text colours on a near-white ground, so
+       they are deepened to clear WCAG AA (4.5:1) at the 10-13px sizes the
+       guides actually use. The dark-theme block below keeps the brighter
+       values, which already pass there. Do not lighten these back without
+       re-checking contrast. */
+    --gold: #7a5c26;             /* was #b08537 — 2.61 */
+    --gold-bright: #d4a258;      /* decorative / dark-mode only */
+    --gold-deep: #6b5122;        /* was #8a6a2c — 3.87 */
 
-    /* Semantic colors — bright, canonical PoE league hues */
-    --sage:    #16a34a;          /* tip / success / ritual / wildwood */
-    --burnt:   #dc2626;          /* warning / vaal */
-    --steel:   #1d4ed8;          /* loc / abyss */
-    --tan:     #b45309;          /* npc / fortress bronze */
-    --plum:    #7c3aed;          /* new pathing notes / breach */
+    /* Semantic colors — canonical PoE league hues, deepened for light mode */
+    --sage:    #0f7434;          /* was #16a34a — 2.80 */
+    --burnt:   #c11f1f;          /* was #dc2626 — 3.96 */
+    --steel:   #1d4ed8;          /* loc / abyss — already passes */
+    --tan:     #a44b08;          /* was #b45309 — 4.18 */
+    --plum:    #7c3aed;          /* TEMPORARY league content only (Forbidden Rites) */
+    --cue:     #8a6410;          /* navigational visual cues — soft yellow */
     --crimson: #b91c1c;          /* pinnacle threats */
 
     /* Per-league solid colors (used in endgame zone cards + diagram) */
     --c-fortress:   #b45309;     /* NW · precursor bronze */
     --c-vaal:       #991b1b;     /* N  · vaal crimson */
     --c-abyss:      #047857;     /* E  · deep green (per user) */
-    --c-expedition: #d97706;     /* SE · Kalguuran gold */
+    --c-expedition: #a55b05;     /* SE · Kalguuran gold — deepened from #d97706;
+                                    Atlas tiles carry cream text, which only
+                                    reached 2.86 against the brighter gold */
     --c-breach:     #7c3aed;     /* S  · breach purple */
     --c-delirium:   #64748b;     /* SW · silver chrome (mid-stop) */
     --c-delirium-a: #e2e8f0;     /* light end of silver gradient */
@@ -56,6 +64,7 @@
     --overlay-steel: rgba(29, 78, 216, 0.08);
     --overlay-tan: rgba(180, 83, 9, 0.08);
     --overlay-plum: rgba(124, 58, 237, 0.08);
+    --overlay-cue: rgba(214, 178, 66, 0.13);
 
     /* Body font weight feels lighter on cream — use normal */
     --body-weight: 400;
@@ -71,20 +80,25 @@
 
     --text-primary: #d8cab0;
     --text-body: #b8a888;
-    --text-muted: #8a7c64;
-    --text-dim: #5a4f3e;
+    /* DARK-MODE CONTRAST: these are text colours on the near-black ground.
+       Lightened to clear WCAG AA (4.5:1) at the 10-13px sizes in use.
+       --text-muted is kept a step brighter than --text-dim so the two levels
+       of de-emphasis stay distinguishable. Do not darken without re-checking. */
+    --text-muted: #ae9d7e;       /* was #8a7c64 — 3.84 */
+    --text-dim: #978468;         /* was #5a4f3e — 2.12, the worst on the site */
     --parchment: #e8d8a8;
 
-    --gold: #c89860;
+    --gold: #c89860;             /* already passes */
     --gold-bright: #e8b878;
-    --gold-deep: #a07840;
+    --gold-deep: #b18547;        /* was #a07840 — 3.92 */
 
     --sage:    #9bb87a;
-    --burnt:   #c87060;
+    --burnt:   #d27565;          /* was #c87060 — 4.31 */
     --steel:   #7e9eb8;
     --tan:     #c4a47e;
     --plum:    #b88aa0;
-    --crimson: #c84a4a;
+    --cue:     #e3cd86;          /* soft yellow — visual cues */
+    --crimson: #fa5c5c;          /* was #c84a4a — 3.15 */
 
     /* Per-league colors — slightly desaturated for dark mode */
     --c-fortress:   #d97706;
@@ -108,12 +122,77 @@
     --overlay-steel: rgba(126, 158, 184, 0.08);
     --overlay-tan: rgba(196, 164, 126, 0.08);
     --overlay-plum: rgba(184, 138, 160, 0.08);
+    --overlay-cue: rgba(227, 205, 134, 0.10);
 
     --body-weight: 300;
 }
 
+/* ─── NIGHT ────────────────────────────────────────────────────
+   A cool, near-black variant of the dark theme (requested on GitHub:
+   "a dark one with black or blueish background").
+
+   It is layered as a separate [data-tint] attribute ON TOP of
+   data-theme="dark" rather than being its own data-theme value. That
+   matters: there are ~117 `[data-theme="dark"] .foo` rules spread across
+   base.css, checklist.css and several pages' inline styles. Reusing the
+   dark theme means every one of them keeps applying, and only the ground
+   and text tokens are re-pointed here.
+
+   Gold accents are deliberately kept — the darker ground only increases
+   their contrast, and it preserves the site's identity. */
+/* :root[...] (0,2,0) is used deliberately so these also beat the
+   `[data-theme="dark"]` (0,1,0) blocks declared inside individual pages'
+   inline <style>, which would otherwise win on source order. */
+:root[data-tint="night"] {
+    --bg-base:      #080b12;
+    --bg-surface:   #0e131c;
+    --bg-elevated:  #141b27;
+    --bg-step:      #0b1017;
+    --border-subtle: #1e2836;
+    --border-accent: #35485f;
+
+    --text-primary: #e4eaf3;
+    --text-body:    #c3cddb;
+    --text-muted:   #9aa8ba;
+    --text-dim:     #8694a6;
+    --parchment:    #dce5f2;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.55);
+    --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.7);
+}
+/* Warm amber wash on the dark body becomes a cool blue one */
+:root[data-tint="night"] body {
+    background: radial-gradient(ellipse at top left, rgba(96, 140, 210, 0.09) 0%, transparent 55%), var(--bg-base);
+}
+/* The sidebar gradient is hardcoded warm brown in checklist.css and in two
+   pages' inline styles — re-point it once here instead of in three files. */
+:root[data-tint="night"] .sidebar {
+    background: linear-gradient(180deg, rgba(14, 19, 28, 0.95) 0%, rgba(8, 11, 18, 0.95) 100%);
+}
+/* Landing-page atmosphere: swap the ember/aether wash to cool blues */
+:root[data-tint="night"] {
+    --hero-ember:  radial-gradient(ellipse 70% 80% at bottom left,  rgba(56, 92, 158, 0.30) 0%, rgba(30, 50, 100, 0.14) 28%, transparent 62%);
+    --hero-aether: radial-gradient(ellipse 70% 80% at bottom right, rgba(90, 130, 190, 0.26) 0%, rgba(30, 50, 100, 0.14) 28%, transparent 62%);
+}
+
 /* ─── BASE ─────────────────────────────────────────────────── */
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Keyboard keys. Previously only the crafting codex styled <kbd>, so the
+   element fell back to the browser default anywhere else. Shared here;
+   the codex's own rule still overrides it there. */
+kbd {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9em;
+    padding: 0.08em 0.34em;
+    border: 1px solid var(--border-accent);
+    border-bottom-width: 2px;
+    border-radius: 3px;
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    white-space: nowrap;
+}
 html {
     scroll-behavior: smooth;
     /* Leaves room for the sticky .top-nav so anchor jumps don't hide the target heading. */

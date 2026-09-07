@@ -105,38 +105,11 @@
 .progress-label.complete { color: var(--sage); margin-top: 0.5rem; }
 .progress-text { font-size: 10.5px; color: var(--text-muted); text-align: right; font-family: 'IBM Plex Mono', monospace; }
 
-/* Sidebar buttons */
-.btn {
-    width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-    background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-base) 100%);
-    border: 1px solid var(--border-subtle); border-top-color: rgba(255, 255, 255, 0.06);
-    color: var(--text-body); padding: 0.55rem 0.7rem; border-radius: 4px; cursor: pointer;
-    font-size: 11px; font-weight: 600; line-height: 1; margin-top: 0.45rem;
-    font-family: 'Cinzel', serif; letter-spacing: 1.2px; text-transform: uppercase;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 1px 2px rgba(0, 0, 0, 0.18);
-    transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
-    position: relative; overflow: hidden;
-}
-.btn::before {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 45%);
-    pointer-events: none;
-}
-.btn:hover { transform: translateY(-1px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 10px rgba(0, 0, 0, 0.25); }
-.btn:active { transform: translateY(0); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3); }
-.btn:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
-
-/* Reset = warning tone */
-.btn { color: var(--burnt); border-color: rgba(200, 112, 96, 0.35); }
-.btn:hover { background: linear-gradient(180deg, var(--overlay-burnt) 0%, var(--bg-elevated) 100%); border-color: var(--burnt); color: var(--burnt); }
-
-/* Export = sage */
-.btn.export { color: var(--sage); border-color: rgba(155, 184, 122, 0.35); }
-.btn.export:hover { background: linear-gradient(180deg, var(--overlay-sage) 0%, var(--bg-elevated) 100%); border-color: var(--sage); color: var(--sage); }
-
-/* Import = steel */
-.btn.import { color: var(--steel); border-color: rgba(126, 158, 184, 0.35); }
-.btn.import:hover { background: linear-gradient(180deg, var(--overlay-steel) 0%, var(--bg-elevated) 100%); border-color: var(--steel); color: var(--steel); }
+/* .progress-info / .progress-label / .progress-text above are still used by
+   the endgame guide and the leveling hub — the act pages moved to
+   .progress-panel (see "Sidebar progress panel" further down).
+   The old full-width .btn rules were dropped with the act sidebars; the
+   panel now uses .mini-btn. */
 .import-dialog { margin-top: 0.5rem; }
 .import-dialog textarea {
     width: 100%; height: 60px; background: var(--bg-base); border: 1px solid var(--border-subtle);
@@ -449,6 +422,187 @@ details.info-box[open] > summary::after { content: "▾"; }
 .note.new .label { color: var(--plum); }
 .note.new strong { color: var(--text-primary); font-weight: 600; }
 .note.new .loc { color: var(--gold); font-weight: 500; }
+
+/* ── Sidebar progress panel ───────────────────────────────────
+   Compact rewrite: each bar's label and count share one row instead of
+   stacking, then the view filters, then the actions — all in one card. */
+.progress-panel {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 5px;
+    padding: 0.7rem 0.75rem 0.65rem;
+    margin-bottom: 1rem;
+}
+.progress-row + .progress-row { margin-top: 0.55rem; }
+.progress-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 0.5rem; margin-bottom: 0.28rem;
+}
+.progress-name {
+    font-family: 'Cinzel', serif; font-size: 9.5px; font-weight: 600;
+    letter-spacing: 1.4px; text-transform: uppercase; color: var(--gold);
+}
+.progress-name.complete { color: var(--sage); }
+.progress-count {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+    color: var(--text-muted); white-space: nowrap;
+}
+.progress-panel .progress-bar-bg { margin-bottom: 0; }
+
+/* Two view filters. Both only hide rows — progress and the counts above
+   are untouched, so the numbers still reflect the whole act. */
+.view-filters,
+.panel-actions {
+    display: grid; gap: 0.35rem;
+    margin-top: 0.65rem; padding-top: 0.6rem;
+    border-top: 1px solid var(--border-subtle);
+}
+.view-filters { grid-template-columns: 1fr 1fr; }
+.panel-actions { grid-template-columns: repeat(3, 1fr); }
+
+.view-chip, .mini-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.3rem;
+    background: var(--bg-base);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    font-family: 'Cinzel', serif; font-size: 9px; font-weight: 600;
+    letter-spacing: 0.9px; text-transform: uppercase;
+    padding: 0.42rem 0.25rem; border-radius: 3px; cursor: pointer;
+    line-height: 1; white-space: nowrap;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.view-chip:hover, .mini-btn:hover { color: var(--text-primary); }
+.view-chip:focus-visible, .mini-btn:focus-visible { outline: 1px solid var(--steel); outline-offset: 2px; }
+.view-chip:hover { border-color: var(--steel); }
+/* ON state is deliberately loud — solid fill with inverted text, so it is
+   obvious at a glance that a filter is hiding rows from you. */
+.view-chip[aria-pressed="true"] {
+    background: var(--steel);
+    border-color: var(--steel);
+    color: var(--bg-base);
+    box-shadow: 0 0 0 2px var(--overlay-steel), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+.view-chip[aria-pressed="true"]:hover { color: var(--bg-base); filter: brightness(1.08); }
+.view-chip .dot {
+    width: 5px; height: 5px; border-radius: 50%; flex: none;
+    background: var(--text-dim); transition: background 0.15s, box-shadow 0.15s;
+}
+/* filled ring reads as a "checked" marker without needing a glyph */
+.view-chip[aria-pressed="true"] .dot {
+    background: var(--bg-base);
+    box-shadow: 0 0 0 2px var(--bg-base);
+}
+
+.mini-btn.reset:hover  { background: var(--overlay-burnt); border-color: var(--burnt); color: var(--burnt); }
+.mini-btn.export:hover { background: var(--overlay-sage);  border-color: var(--sage);  color: var(--sage); }
+.mini-btn.import:hover { background: var(--overlay-steel); border-color: var(--steel); color: var(--steel); }
+
+body.hide-completed .step.completed { display: none; }
+body.alt-leveling .step:has(.skip) { display: none; }
+/* A zone whose steps are all filtered out keeps its header — it is your
+   only landmark for where you are once the rows vanish. Strip it back to
+   just the title (no waypoint/level tags, no "mark required") and slim the
+   padding, so it reads as a quiet divider rather than a content block.
+   Deliberately not opacity-dimmed: that would undercut the contrast the
+   rest of the palette is held to. */
+.zone-header.zone-empty {
+    padding-top: 0.3rem; padding-bottom: 0.3rem;
+    margin: 0.85rem 0 0.35rem;
+    font-size: 12px;
+    background: none;
+    border-left-color: var(--border-accent);
+    color: var(--text-muted);
+}
+[data-theme="dark"] .zone-header.zone-empty { color: var(--text-muted); }
+.zone-header.zone-empty .wp,
+.zone-header.zone-empty .town,
+.zone-header.zone-empty .lvl,
+.zone-header.zone-empty .frag,
+.zone-header.zone-empty .map,
+.zone-header.zone-empty .zone-mark { display: none; }
+
+/* "Hide done" is the tidy-up view: drop the commentary too (visual cues,
+   routing, patch notes, tips) so what is left is a bare task list. */
+body.hide-completed .note,
+body.hide-completed .info-box,
+body.hide-completed .summary-box { display: none; }
+
+/* ── Permanent patch change (bronze) ──────────────────────────
+   Routing/QoL/gating changes that are now core and will NOT disappear when
+   the league rotates. Kept off plum so plum can mean "temporary" reliably. */
+.note.change {
+    background: var(--overlay-tan);
+    border-left: 2px solid var(--tan);
+    color: var(--text-body); font-style: normal;
+}
+/* --tan lands at 4.18 on its own overlay in light mode; deepen to clear AA */
+.note.change .label { color: #954409; }
+[data-theme="dark"] .note.change .label { color: var(--tan); }
+.note.change strong { color: var(--text-primary); font-weight: 600; }
+.note.change .loc { color: var(--gold-deep); font-weight: 600; }
+[data-theme="dark"] .note.change .loc { color: var(--gold); font-weight: 500; }
+.note.change a { color: var(--tan); border-bottom-color: var(--tan); }
+
+/* ── Navigational visual cue (soft yellow) ────────────────────
+   GGG's environmental wayfinding: glowing roots, mushroom patches, locust
+   trails, signposts. Permanent world detail — deliberately NOT plum, which
+   is reserved for temporary league content. */
+.note.cue {
+    background: var(--overlay-cue);
+    border-left: 2px solid var(--cue);
+    color: var(--text-body); font-style: normal;
+}
+.note.cue .label { color: var(--cue); }
+.note.cue strong { color: var(--text-primary); font-weight: 600; }
+/* --gold fails contrast on the yellow cue overlay in light mode (2.87);
+   the deeper gold clears AA. Dark mode keeps the brighter gold. */
+.note.cue .loc { color: #79591f; font-weight: 600; }
+[data-theme="dark"] .note.cue .loc { color: var(--gold); font-weight: 500; }
+.note.cue a { color: var(--cue); border-bottom-color: var(--cue); }
+
+/* Links inside notes — otherwise they fall back to the browser's default
+   blue, which is unreadable on the dark note backgrounds. */
+.note a {
+    color: var(--gold);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(168, 115, 40, 0.45);
+}
+.note a:hover { color: var(--gold-deep); border-bottom-color: var(--gold-deep); }
+[data-theme="dark"] .note a:hover { color: var(--gold-bright); border-bottom-color: var(--gold-bright); }
+
+/* ── Runes of Aldur league-only content ───────────────────────
+   That league still runs, so this is kept rather than deleted — but it is
+   NOT part of the current Forbidden Rites campaign. Dashed + muted so it
+   visibly recedes from the live step flow. */
+.note.legacy {
+    background: var(--bg-surface);
+    border-left: 2px dashed var(--text-muted);
+    color: var(--text-muted); font-style: normal;
+}
+.note.legacy .label { color: var(--text-muted); }
+.note.legacy strong { color: var(--text-body); font-weight: 600; }
+.note.legacy .loc, .note.legacy .npc, .note.legacy .item { color: var(--text-muted); }
+/* Keep legacy links readable without pulling the eye back to league content */
+.note.legacy a { color: var(--text-body); border-bottom-color: var(--text-muted); }
+.note.legacy a:hover { color: var(--text-primary); border-bottom-color: var(--text-primary); }
+
+.step.legacy { opacity: 0.72; }
+.step.legacy .step-content { color: var(--text-muted); }
+
+/* Inline "league only" badge for steps and notes */
+.league-only {
+    display: inline-block;
+    background: var(--bg-elevated);
+    border: 1px dashed var(--text-muted);
+    color: var(--text-muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8.5px; font-weight: 700; letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 0.1rem 0.4rem; border-radius: 3px;
+    margin-right: 0.4rem; vertical-align: middle;
+    white-space: nowrap;
+}
 
 /* Footer nav */
 .footer-nav {

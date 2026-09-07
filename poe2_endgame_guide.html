@@ -14,7 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoE 2 Endgame Guide — Return of the Ancients (Patch 0.5)</title>
+    <title>PoE 2 Endgame Guide — Forbidden Rites (Patch 0.5.5)</title>
     <meta name="description" content="Path of Exile 2 patch 0.5 endgame guide. Five new endgame storylines (Fortress / Origins of Divinity, Delirium / Hare and Raven, Breach / Waking the Dreamer, Ritual / Rite of the Nameless, Masters of the Atlas), two core revamps (Abyss, Fate of the Vaal), and the new league The Runes of Aldur. Includes the new Atlas tree and the Arbiter of Divinity pinnacle.">
     <meta name="author" content="domistae">
     <meta name="theme-color" content="#181410">
@@ -22,17 +22,17 @@
 
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="PoE 2 Leveling Guide">
-    <meta property="og:title" content="PoE 2 Endgame Guide — Return of the Ancients (Patch 0.5)">
-    <meta property="og:description" content="Five new endgame storylines (Fortress, Delirium, Breach, Ritual, Masters of the Atlas), two core revamps (Abyss, Fate of the Vaal), and the new league The Runes of Aldur. Patch 0.5.">
+    <meta property="og:title" content="PoE 2 Endgame Guide — Forbidden Rites (Patch 0.5.5)">
+    <meta property="og:description" content="Five new endgame storylines (Fortress, Delirium, Breach, Ritual, Masters of the Atlas), two core revamps (Abyss, Fate of the Vaal), and the new league The Runes of Aldur. Patch 0.5.5.">
     <meta property="og:url" content="https://domistae.github.io/poe2-leveling/poe2_endgame_guide.html">
     <meta property="og:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Path of Exile 2 Endgame Guide — Return of the Ancients (5 storylines + 2 revamps + 1 league, Patch 0.5)">
+    <meta property="og:image:alt" content="Path of Exile 2 Endgame Guide — Patch 0.5.5 Forbidden Rites (5 storylines + 2 core revamps, Atlas progression)">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="PoE 2 Endgame Guide — Return of the Ancients (Patch 0.5)">
-    <meta name="twitter:description" content="Five new endgame storylines (Fortress, Delirium, Breach, Ritual, Masters of the Atlas), two core revamps (Abyss, Fate of the Vaal), and the new league The Runes of Aldur. Patch 0.5.">
+    <meta name="twitter:title" content="PoE 2 Endgame Guide — Forbidden Rites (Patch 0.5.5)">
+    <meta name="twitter:description" content="Five new endgame storylines (Fortress, Delirium, Breach, Ritual, Masters of the Atlas), two core revamps (Abyss, Fate of the Vaal), and the new league The Runes of Aldur. Patch 0.5.5.">
     <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
 
     <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM" />
@@ -53,12 +53,13 @@
         (function() {
             try {
                 var saved = localStorage.getItem('poe2-theme');
-                if (saved === 'light' || saved === 'dark') {
-                    document.documentElement.setAttribute('data-theme', saved);
-                } else {
+                if (saved !== 'light' && saved !== 'dark' && saved !== 'night') {
                     var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-                    document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+                    saved = prefersLight ? 'light' : 'dark';
                 }
+                /* night reuses the dark theme + a [data-tint] layer */
+                document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+                if (saved === 'night') document.documentElement.setAttribute('data-tint', 'night');
             } catch (e) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
@@ -876,6 +877,18 @@
 .atlas-tile.breach      .symbol svg { stroke: #ede9fe; }
 .atlas-tile.ritual      .symbol svg { stroke: #fce7f3; }
 
+/* Dark mode ships these tiles BRIGHTER than their light-mode counterparts,
+   which drops the pale label text to as low as 1.5:1 (expedition). Deepen the
+   fills, scoped to the diagram, so --c-* keeps its other uses. Note the vaal
+   tile at #dc2626 could not be fixed from the text side at all — even pure
+   black only reaches 4.34 against it. */
+[data-theme="dark"] .atlas-tile.fortress   { background: #a35a05; }
+[data-theme="dark"] .atlas-tile.vaal       { background: #c62222; }
+[data-theme="dark"] .atlas-tile.abyss      { background: #0b7a55; }
+[data-theme="dark"] .atlas-tile.expedition { background: #886713; }
+[data-theme="dark"] .atlas-tile.breach     { background: #6f5ca6; }
+[data-theme="dark"] .atlas-tile.ritual     { background: #b63776; }
+
 /* Delirium — metallic silver gradient */
 .atlas-tile.delirium {
     background: linear-gradient(135deg,
@@ -1010,10 +1023,10 @@
 
         <main class="main">
             <header class="header">
-                <div class="eyebrow">Return of the Ancients</div>
+                <div class="eyebrow">Forbidden Rites</div>
                 <h1>POE2 Endgame Guide</h1>
                 <div class="subtitle">Five new endgame storylines, two core revamps (Abyss + Temple), the new league The Runes of Aldur, and the road to the new apex — the Arbiter of Divinity.</div>
-                <span class="patch">Patch 0.5.0 · ships 29 May 2026</span>
+                <span class="patch">Patch 0.5.5 · Forbidden Rites</span>
             </header>
 
             <div class="intro-block">

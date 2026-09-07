@@ -14,25 +14,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoE2 Leveling Guide 0.5 — Campaign Acts I–IV Interactive Checklist</title>
-    <meta name="description" content="PoE2 Patch 0.5 (Return of the Ancients): free interactive Path of Exile 2 leveling guide for Acts I–IV and the Interludes. Waypoints, skill points, rewards, and optimal pathing for every class.">
+    <title>PoE2 Leveling Guide 0.5.5 — Campaign Acts I–IV Interactive Checklist</title>
+    <meta name="description" content="PoE2 Patch 0.5.5 (Forbidden Rites): free interactive Path of Exile 2 leveling guide for Acts I–IV and the Interludes. Waypoints, skill points, rewards, and optimal pathing for every class.">
     <meta name="author" content="domistae">
     <meta name="theme-color" content="#181410">
     <link rel="canonical" href="https://domistae.github.io/poe2-leveling/poe2_leveling_guide.html">
 
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PoE2 Leveling Guide">
-    <meta property="og:title" content="PoE2 Leveling Guide 0.5 — Campaign Acts I–IV Interactive Checklist">
-    <meta property="og:description" content="PoE2 Patch 0.5 (Return of the Ancients): free interactive Path of Exile 2 leveling guide for Acts I–IV and the Interludes. Waypoints, skill points, rewards, and optimal pathing for every class.">
+    <meta property="og:title" content="PoE2 Leveling Guide 0.5.5 — Campaign Acts I–IV Interactive Checklist">
+    <meta property="og:description" content="PoE2 Patch 0.5.5 (Forbidden Rites): free interactive Path of Exile 2 leveling guide for Acts I–IV and the Interludes. Waypoints, skill points, rewards, and optimal pathing for every class.">
     <meta property="og:url" content="https://domistae.github.io/poe2-leveling/poe2_leveling_guide.html">
     <meta property="og:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Path of Exile 2 Leveling Guide — Interactive checklist for Patch 0.5 Return of the Ancients">
+    <meta property="og:image:alt" content="Path of Exile 2 Leveling Guide — Interactive checklist for Patch 0.5.5 Forbidden Rites">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="PoE2 Leveling Guide 0.5 — Campaign Acts I–IV Interactive Checklist">
-    <meta name="twitter:description" content="PoE2 Patch 0.5 (Return of the Ancients): free interactive Path of Exile 2 leveling guide for Acts I–IV and the Interludes. Waypoints, skill points, rewards, and optimal pathing for every class.">
+    <meta name="twitter:title" content="PoE2 Leveling Guide 0.5.5 — Campaign Acts I–IV Interactive Checklist">
+    <meta name="twitter:description" content="PoE2 Patch 0.5.5 (Forbidden Rites): free interactive Path of Exile 2 leveling guide for Acts I–IV and the Interludes. Waypoints, skill points, rewards, and optimal pathing for every class.">
     <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
 
     <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM" />
@@ -53,12 +53,13 @@
         (function() {
             try {
                 var saved = localStorage.getItem('poe2-theme');
-                if (saved === 'light' || saved === 'dark') {
-                    document.documentElement.setAttribute('data-theme', saved);
-                } else {
+                if (saved !== 'light' && saved !== 'dark' && saved !== 'night') {
                     var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-                    document.documentElement.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+                    saved = prefersLight ? 'light' : 'dark';
                 }
+                /* night reuses the dark theme + a [data-tint] layer */
+                document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+                if (saved === 'night') document.documentElement.setAttribute('data-tint', 'night');
             } catch (e) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
@@ -693,6 +694,28 @@
     font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
     text-align: center; margin-bottom: 1.25rem; font-weight: 600;
 }
+/* Left-aligned major section heading with a rule — reads as a real title
+   rather than the small centred quest-log label. */
+.section-title {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 16px; letter-spacing: 2.2px; text-transform: uppercase;
+    /* --gold only reaches 3.1 on the light ground; the deeper gold clears AA.
+       Same swap index.html already makes for .codex-wordmark. */
+    font-weight: 600; text-align: left;
+    margin: 2.75rem 0 0.9rem; padding-bottom: 0.55rem;
+    border-bottom: 1px solid var(--border-accent);
+}
+:root:not([data-theme="dark"]) .section-title { color: var(--gold-deep); }
+.section-title .sub {
+    display: block; font-family: 'Inter', sans-serif; font-size: 11px;
+    letter-spacing: 0.4px; text-transform: none; font-weight: 400;
+    color: var(--text-body); margin-top: 0.3rem;   /* --text-muted lands at 4.49, just under AA */
+}
+/* Section intro paragraphs run the full container width */
+.section-intro {
+    font-size: 12.5px; color: var(--text-body);
+    margin: 0 0 1.25rem; line-height: 1.6;
+}
 .journey { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2.5rem; }
 .act-entry { position: relative; }
 .act-entry::before {
@@ -1000,13 +1023,13 @@
         <header class="header">
             <h1>POE 2 Leveling Guide</h1>
             <div class="subtitle">Acts I–IV · Interludes · All Classes</div>
-            <div class="version">Patch 0.5 · Return of the Ancients · ships 29 May 2026</div>
+            <div class="version">Patch 0.5.5 · Forbidden Rites · event league, runs until 1.0</div>
         </header>
 
         <!-- ╔══ PATCH 0.5 · COMBINED NOTICE ═══════════════════════════════════ ╗ -->
         <div class="endgame-banner" style="border-left-color: var(--plum); margin-bottom: 1.5rem; padding-top: 0.85rem; padding-bottom: 0.85rem;">
             <div>
-                <span class="label">Patch 0.5 · Return of the Ancients</span>
+                <span class="label">Patch 0.5.5 · Forbidden Rites</span>
                 <ul style="margin: 0.5rem 0 0; padding-left: 1.1rem; font-size: 12.5px; line-height: 1.65;">
                     <li><strong>All acts</strong> — updated &amp; verified for rewards, drops, and routing (speedrun tips still need checking)</li>
                     <li><strong>Interludes</strong> — updated &amp; verified for 0.5 (5.1–5.3 rebuilt, any-order routing, Fate of the Vaal)</li>
@@ -1106,136 +1129,110 @@
             </div>
         </div>
 
+        <!-- ╔══ FORBIDDEN RITES · CURRENT LEAGUE MECHANIC ═════════════════════ ╗ -->
+        <!-- Plum = TEMPORARY league content. Replace this whole block when the
+             league rotates; nothing else on the site should carry plum. -->
+        <div class="section-title">Forbidden Rites — The League Mechanic<span class="sub">Patch 0.5.5 · temporary event league content</span></div>
+        <p class="section-intro">
+            Forbidden Rites is an <strong>event league</strong> with its own economy and ladder, running until the 1.0
+            release. The mechanic is a <strong>reworked Ritual</strong>, split into a campaign half and an endgame half.
+            Because it is league content it is described here <strong>once</strong>, rather than repeated in every act —
+            you will meet it in <em>every</em> zone regardless of route.
+        </p>
+
+        <div class="preview-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0.85rem; margin-bottom: 1rem;">
+
+            <!-- Campaign half -->
+            <article style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--plum); border-radius: 4px; padding: 0.95rem 1.05rem; box-shadow: var(--shadow-sm);">
+                <header style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.6rem; padding-bottom: 0.45rem; border-bottom: 1px solid var(--border-subtle);">
+                    <h3 style="font-family: 'Cinzel', serif; color: var(--plum); font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 0; font-weight: 600;">In the Campaign</h3>
+                    <span style="font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">Acts I–IV + Interludes</span>
+                </header>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; font-size: 12px; color: var(--text-body); line-height: 1.55;">
+                    <li><strong>One Ritual in every area.</strong> Every campaign zone holds a Ritual encounter — not a rare spawn. Unlike endgame Rituals, these reward <strong>levelling items</strong>: crafting currency and a batch of equipment, rather than the Unique-only selection.</li>
+                    <li><strong>Boss Ritual clusters.</strong> <strong>Twice per Act</strong> and <strong>once per Interlude</strong>, clusters of <strong>Ritual Effigies</strong> appear on the World Map.</li>
+                    <li><strong>Bosses chain forward.</strong> Beat a boss Ritual and that boss is <strong>carried into the next Ritual in the cluster</strong> in the following area — you fight it again on top of the new one, building into an increasingly dangerous series of boss waves.</li>
+                    <li><strong>Chain payout.</strong> Finish the full series and you can spend your accumulated <strong>Tribute on Unique Items</strong>.</li>
+                    <li><strong>Aoife</strong> introduces each encounter. In a party, <strong>every player in the area must hear her introduction</strong> before the Ritual will start.</li>
+                </ul>
+            </article>
+
+            <!-- Endgame half -->
+            <article style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--plum); border-radius: 4px; padding: 0.95rem 1.05rem; box-shadow: var(--shadow-sm);">
+                <header style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.6rem; padding-bottom: 0.45rem; border-bottom: 1px solid var(--border-subtle);">
+                    <h3 style="font-family: 'Cinzel', serif; color: var(--plum); font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 0; font-weight: 600;">In the Endgame</h3>
+                    <span style="font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">Atlas · Maps</span>
+                </header>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; font-size: 12px; color: var(--text-body); line-height: 1.55;">
+                    <li><strong>Sacred Bloom.</strong> A league-exclusive currency that now appears in the Ritual reward window. Use it to add the <strong>Viridian Wildwood</strong> to a cluster of Maps on your Atlas — right-click the item, then left-click a point on the Atlas.</li>
+                    <li><strong>The Wildwood.</strong> A separate fog-shrouded forest at the <em>start</em> of the map, where visibility drops the deeper you go. Follow and collect <strong>trails of Azmeri Wisps</strong>, then you are returned to the main map.</li>
+                    <li><strong>Wisps empower the map.</strong> On leaving, monsters in the map area are affected by the Wisps you gathered — <strong>more powerful and more rewarding</strong>. The mix you collect determines the reward profile.</li>
+                    <li><strong>Stacking Tablets.</strong> Using more than one <strong>Ritual Tablet</strong> now adds an extra Altar to a Map where possible, and increases the quantity of Wisps inside the Wildwood.</li>
+                    <li><strong>Royal Lenience</strong> — new Ritual Atlas notable. Tribute already offered to the King may be used to <strong>Defer</strong> items, at <strong>500% more</strong> Offered Tribute cost.</li>
+                    <li><strong>Party Tribute.</strong> Party members now earn their own Ritual Tribute with their own reward selection, or can offer it to the King in the Mists.</li>
+                </ul>
+            </article>
+
+        </div>
+
+        <div class="note warn" style="margin-left: 0; margin-bottom: 1.75rem;">
+            <span class="label">Flagged — not in the patch notes</span>
+            The <strong>Wisp types</strong> are community-derived, inherited from PoE1's Affliction league, and are
+            <strong>not named in the 0.5.5 notes</strong>: <strong>Primal</strong> (blue) upgrades normal monsters to magic,
+            <strong>Vivid</strong> (yellow) adds affixes to rares, <strong>Wild</strong> (purple) increases item rarity.
+            A fourth <strong>Sacred Wisp</strong> is listed by some sites with an unknown effect — unconfirmed. Note also that
+            the patch notes spell it <strong>Sacred Bloom</strong>; some pre-launch previews said "Sacred Blossom". Treat all
+            of this as unverified until you see it in play.
+        </div>
+        <!-- ╚═══════════════════════════════════════════════════════════════════ ╝ -->
+
+        <!-- ╔══ SPEEDRUN TIPS · consolidated from all acts ════════════════════ ╗ -->
+        <div class="section-title">Speedrun &amp; Efficiency Tips<span class="sub">Community-sourced · collected from every act into one list</span></div>
+        <p class="section-intro">
+            These used to sit in a collapsed box on each act page. They are gathered here so you can read
+            them once before a run rather than re-opening them five times. Act-specific ones are labelled.
+        </p>
+        <ul style="list-style: none; padding: 0; margin: 0 0 2.25rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 0.4rem 1.6rem; font-size: 11.5px; line-height: 1.55; color: var(--text-body);">
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--steel);">◆</span><strong>Play with urgency.</strong> Minimise town time and never stop moving in a zone — even inefficient progress beats no progress. Target is roughly a 5-hour campaign.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--steel);">◆</span><strong>Don't study layouts.</strong> GGG level designer Sunna said publicly that too much was reworked in 0.5 for layout study to pay off. Push forward even when unsure of direction.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--steel);">◆</span><strong>Focus magic packs.</strong> Blue-name monsters give roughly <strong>3.5×</strong> the XP of equivalent whites. Skip white packs unless you are under-levelled.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--steel);">◆</span><strong>Stay on the XP curve.</strong> Margin of safety = 3 levels under the area, +1 per 16 character levels. Push XP when you fall outside it.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--steel);">◆</span><strong>Don't mule.</strong> Push to the <strong>Red Vale weapon racks</strong> — guaranteed to drop a 2nd-tier Martial weapon (long quarterstaff, smithing hammer, tense crossbow).</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--steel);">◆</span><strong>Ration regals and exalts.</strong> One or two regals per act, ideally on weapon bases that hit modifier breakpoints. Save exalts.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--steel);">◆</span><strong>Don't over-craft.</strong> Expect to finish a whole act without a weapon upgrade. The next real gear bracket is <strong>Tier 1 maps</strong> — save currency for endgame.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--steel);">◆</span><strong>Save artificers, runes and whetstones</strong> for your weapon at the end of Act 4, once you know what you are carrying into the Interludes and maps.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--steel);">◆</span><strong>Buy fewer times, more efficiently.</strong> When you do find an upgrade early, ignore vendors until the next act starts.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--steel);">◆</span><strong>Use a regex in vendor search bars</strong> to highlight the bases you want. Cuts town shopping from minutes to seconds.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--steel);">◆</span><strong>Use a levelling item filter</strong> with aggressive base highlighting for your build — hide junk, surface upgrades only.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--steel);">◆</span><strong>Menu hotkeys.</strong> Hold <kbd>Ctrl</kbd> on the passive tree to auto-confirm points. Bind <strong>Quick Assign</strong> (no default key) for attribute nodes. <kbd>Ctrl+Shift+L/R-click</kbd> on the hotbar assigns weapon-swap skills.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--steel);">◆</span><strong>Pre-organise your stash on Standard</strong> a few days before league start — tab names, layouts and highlights carry over to your fresh character.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--steel);">◆</span><strong>Pick a levelling Ascendancy.</strong> Demon Form (Infernalist), Smith of Kitava, Sorcery Ward (Mercenary) give flat damage and survivability without needing specific items. You can re-spec for endgame.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--steel);">◆</span><strong>Confirm your Ascendancy is final</strong> before the <strong>+2 SP</strong> completion turn-in at the end of the Interludes.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--gold);">◆</span><strong>Act I — Cemetery.</strong> Do <strong>Draven first</strong>, then leave and re-enter to refresh the zone before Asinia — her drops scale with the higher zone level.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--gold);">◆</span><strong>Act I —</strong> aim for <strong>Lvl 14</strong> before the Geonor fight.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--gold);">◆</span><strong>Act II —</strong> run <strong>Mastodon Badlands before Keth</strong>; Kabala drops a Lvl 7 gem, which is a large spike for every class.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--gold);">◆</span><strong>Act II — delay ascension to Lvl 28.</strong> Skip the highly mobile Balbala fight in Traitor's Passage; farm a backup <strong>Djinn Barya</strong> from the Watchful Twins in Deshar, then on trial entry manually pick the Lvl 28 Barya rather than the Lvl 22 default. Better resistances at trial end — this is the speedrun meta.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--gold);">◆</span><strong>Act II — trial room preference:</strong> Ritual &gt; Chalice &gt; Hourglass &gt; Gauntlet.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--gold);">◆</span><strong>Act II —</strong> aim <strong>Lvl 29</strong> for Jamanra and <strong>Lvl 30</strong> entering Act III.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--gold);">◆</span><strong>Before maps —</strong> the Arbiter of Ash is no longer the top of the mountain; the apex is now the <strong>Arbiter of Divinity</strong>. See the <a href="poe2_endgame_guide.html" style="color: var(--gold);">endgame guide</a>.</li>
+        </ul>
+        <!-- ╚═══════════════════════════════════════════════════════════════════ ╝ -->
+
         <!-- ╔══ 0.5 STREAMLINING PREVIEW ══════════════════════════════════════ ╗ -->
-        <div class="quest-log-title" style="margin-top: 2.5rem; text-align: left;">0.5 — Confirmed Streamlining Changes</div>
-        <p style="font-size: 12.5px; color: var(--text-body); margin: 0 0 1.25rem; line-height: 1.55; max-width: 72ch;">
-            These campaign changes are <strong>confirmed in the 0.5 patch notes</strong>. The first grid covers <strong>structural changes</strong> — zones, mechanics, new core content. The second covers the <strong>navigational visual cues</strong> GGG added across acts. Per GGG level designer Sunna, <strong>don't study layouts</strong> — much was reworked.
+        <div class="section-title">Permanent Campaign Changes<span class="sub">Core since 0.5 — these stay when the league rotates</span></div>
+        <p class="section-intro">
+            These campaign changes are <strong>confirmed in the 0.5 patch notes</strong> — <strong>structural changes</strong> to zones, mechanics, and core content. The <strong>navigational visual cues</strong> GGG added now live in the act guides themselves, described in the zone where each one actually starts. Per GGG level designer Sunna, <strong>don't study layouts</strong> — much was reworked.
         </p>
 
-        <!-- Structural changes grid (plum accent) -->
-        <div class="preview-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.85rem; margin-bottom: 1.5rem;">
+        <ul style="list-style: none; padding: 0; margin: 0 0 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 0.35rem 1.6rem; font-size: 11.5px; line-height: 1.55; color: var(--text-body);">
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--tan);">◆</span><strong>Act II — Dreadnought Vanguard removed.</strong> Jamanra is fought directly in The Dreadnought.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--tan);">◆</span><strong>Act III reordered.</strong> Area order rearranged; the Act 3 sidebar zone list is the source of truth.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--tan);">◆</span><strong>Matlan Waterways.</strong> Levers are now walk-over pressure pads; the final canal ships pre-drained.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--tan);">◆</span><strong>Monster density reduced</strong> in the back half of the campaign, especially the Interludes.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--tan);">◆</span><strong>Farrow (Acts 1–4).</strong> The Verisium Anvil now unlocks via the Runeseeker quest in <a href="poe2_act4_guide.html" style="color: var(--gold);">Act 4</a>; the per-act Runeforging ladder is Runes of Aldur–only.</li>
+            <li style="padding-left: 0.95rem; position: relative;"><span style="position: absolute; left: 0; color: var(--tan);">◆</span><strong>Fate of the Vaal (core).</strong> 6 Ancient Beacons in Act 3 + 6 more in the Interludes open the Vaal Ruins portal.</li>
+        </ul>
 
-            <article style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--plum); border-radius: 4px; padding: 0.95rem 1.05rem; box-shadow: var(--shadow-sm);">
-                <header style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.55rem; padding-bottom: 0.45rem; border-bottom: 1px solid var(--border-subtle);">
-                    <h3 style="font-family: 'Cinzel', serif; color: var(--plum); font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 0; font-weight: 600;">Act II — Dreadnought</h3>
-                    <span style="font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">Zone removed</span>
-                </header>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.55; margin: 0;">The <strong>Dreadnought Vanguard</strong> area is removed. Jamanra is now fought directly in <strong>The Dreadnought</strong>.</p>
-            </article>
-
-            <article style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--plum); border-radius: 4px; padding: 0.95rem 1.05rem; box-shadow: var(--shadow-sm);">
-                <header style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.55rem; padding-bottom: 0.45rem; border-bottom: 1px solid var(--border-subtle);">
-                    <h3 style="font-family: 'Cinzel', serif; color: var(--plum); font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 0; font-weight: 600;">Act III — Reorder</h3>
-                    <span style="font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">Routing</span>
-                </header>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.55; margin: 0;">Act 3 area order rearranged for smoother progression. The Act 3 guide's sidebar zone list is the source of truth.</p>
-            </article>
-
-            <article style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--plum); border-radius: 4px; padding: 0.95rem 1.05rem; box-shadow: var(--shadow-sm);">
-                <header style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.55rem; padding-bottom: 0.45rem; border-bottom: 1px solid var(--border-subtle);">
-                    <h3 style="font-family: 'Cinzel', serif; color: var(--plum); font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 0; font-weight: 600;">Matlan Waterways</h3>
-                    <span style="font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">QoL</span>
-                </header>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.55; margin: 0;">Levers became walk-over <strong>pressure pads</strong>. Final canal section ships <strong>pre-drained</strong> — no portal-skip needed.</p>
-            </article>
-
-            <article style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--plum); border-radius: 4px; padding: 0.95rem 1.05rem; box-shadow: var(--shadow-sm);">
-                <header style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.55rem; padding-bottom: 0.45rem; border-bottom: 1px solid var(--border-subtle);">
-                    <h3 style="font-family: 'Cinzel', serif; color: var(--plum); font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 0; font-weight: 600;">Monster Density</h3>
-                    <span style="font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">Pacing</span>
-                </header>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.55; margin: 0;">Density reduced in the <strong>back half</strong> of the campaign — especially the Interludes. Push, don't over-craft.</p>
-            </article>
-
-            <article style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--plum); border-radius: 4px; padding: 0.95rem 1.05rem; box-shadow: var(--shadow-sm);">
-                <header style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.55rem; padding-bottom: 0.45rem; border-bottom: 1px solid var(--border-subtle);">
-                    <h3 style="font-family: 'Cinzel', serif; color: var(--plum); font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 0; font-weight: 600;">New NPC — Farrow</h3>
-                    <span style="font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">Acts 1–4</span>
-                </header>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.55; margin: 0;">One quest per act unlocking <strong>Verisium Runeforging</strong>, <strong>Runic Alloys</strong>, <strong>Unique Verisium Runeforging</strong>, and <strong>Ancient Runes</strong>. Detail in the <a href="poe2_crafting_codex.html">Crafting Codex</a>.</p>
-            </article>
-
-            <article style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--plum); border-radius: 4px; padding: 0.95rem 1.05rem; box-shadow: var(--shadow-sm);">
-                <header style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.55rem; padding-bottom: 0.45rem; border-bottom: 1px solid var(--border-subtle);">
-                    <h3 style="font-family: 'Cinzel', serif; color: var(--plum); font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 0; font-weight: 600;">Fate of the Vaal — Core</h3>
-                    <span style="font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">Act 3 + Interludes</span>
-                </header>
-                <p style="font-size: 12px; color: var(--text-body); line-height: 1.55; margin: 0;"><strong>6 Ancient Beacons</strong> in Act 3 + <strong>6 more</strong> in the Interludes open the Vaal Ruins portal. Full storyline in the <a href="poe2_endgame_guide.html">endgame guide</a>.</p>
-            </article>
-
-        </div>
-
-        <h3 style="font-family: 'Cinzel', serif; color: var(--text-primary); font-size: 12.5px; letter-spacing: 2px; text-transform: uppercase; margin: 1.75rem 0 0.85rem; font-weight: 600;">◆ Navigational Visual Cues by Act</h3>
-
-        <div class="preview-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.85rem; margin-bottom: 1rem;">
-
-            <!-- Act I card -->
-            <article style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--gold); border-radius: 4px; padding: 0.95rem 1.05rem; box-shadow: var(--shadow-sm);">
-                <header style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.85rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--border-subtle);">
-                    <h3 style="font-family: 'Cinzel', serif; color: var(--gold); font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 0; font-weight: 600;">Act I — Clearfell</h3>
-                    <span style="font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">Lvl 1–14</span>
-                </header>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
-                    <li>
-                        <div style="font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Glowing Roots</div>
-                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">In <strong>Grelwood</strong>, glowing roots lead to the <strong>Tree of Souls</strong>; follow the river upstream to reach <strong>Red Vale</strong>; mushrooms mark the <strong>Grim Tangle</strong>.</div>
-                    </li>
-                    <li>
-                        <div style="font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Signposts &amp; Bovines</div>
-                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">A signpost in <strong>Hunting Grounds</strong> points to <strong>Ogham Farmlands</strong>; a "farm-to-table" trail of pecked bovines leads to <strong>Crowbell</strong>.</div>
-                    </li>
-                    <li>
-                        <div style="font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Locust Trail</div>
-                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">Finishing a ritual spawns locusts pointing to <strong>Freythorn</strong>; ritual chains route to the next-closest one. (Endgame rituals too.)</div>
-                    </li>
-                </ul>
-            </article>
-
-            <!-- Act II card -->
-            <article style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--burnt); border-radius: 4px; padding: 0.95rem 1.05rem; box-shadow: var(--shadow-sm);">
-                <header style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.85rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--border-subtle);">
-                    <h3 style="font-family: 'Cinzel', serif; color: var(--burnt); font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 0; font-weight: 600;">Act II — Vastiri</h3>
-                    <span style="font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">Lvl 14–29</span>
-                </header>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
-                    <li>
-                        <div style="font-size: 11px; font-weight: 700; color: var(--burnt); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Maraketh Parchment</div>
-                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;"><strong>Traitor's Passage</strong> gains a guaranteed intersection. Follow the parchment (used to bind djinns) to find <strong>Balbala</strong> — the other path is the exit.</div>
-                    </li>
-                    <li>
-                        <div style="font-size: 11px; font-weight: 700; color: var(--burnt); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Titan Heads</div>
-                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;"><strong>Valley of Titans</strong> now shows the giant heads from the start; each leads to a linear canyon with end-seal and a portal back.</div>
-                    </li>
-                </ul>
-            </article>
-
-            <!-- Act III card -->
-            <article style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 3px solid var(--sage); border-radius: 4px; padding: 0.95rem 1.05rem; box-shadow: var(--shadow-sm);">
-                <header style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.85rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--border-subtle);">
-                    <h3 style="font-family: 'Cinzel', serif; color: var(--sage); font-size: 12.5px; letter-spacing: 1.6px; text-transform: uppercase; margin: 0; font-weight: 600;">Act III — Jungle</h3>
-                    <span style="font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace;">Lvl 30–42</span>
-                </header>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
-                    <li>
-                        <div style="font-size: 11px; font-weight: 700; color: var(--sage); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Explorer Camps</div>
-                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">Talk to jungle explorers — they point toward the next area and the destination appears on the mini-map.</div>
-                    </li>
-                    <li>
-                        <div style="font-size: 11px; font-weight: 700; color: var(--sage); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Waterways Relocated</div>
-                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">Entrance moved from <strong>Infested Barrens</strong> to <strong>Jungle Ruins</strong>; <strong>Azak Bog</strong> now lives inside the Waterways.</div>
-                    </li>
-                    <li>
-                        <div style="font-size: 11px; font-weight: 700; color: var(--sage); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.25rem;">◆ Crypts Escape</div>
-                        <div style="font-size: 12px; color: var(--text-body); line-height: 1.5;">New alternate route out of <strong>Venom Crypts</strong> back through the Jungle.</div>
-                    </li>
-                </ul>
-            </article>
-
-        </div>
-
-        <p style="font-size: 11px; color: var(--text-muted); margin: 0 0 2rem; font-style: italic; letter-spacing: 0.2px;">
-            GGG note this is "just a few examples" — expect more streamlining throughout the game in 0.5 and continuing patches.
-        </p>
         <!-- ╚═══════════════════════════════════════════════════════════════════ ╝ -->
 
         <div class="features">
