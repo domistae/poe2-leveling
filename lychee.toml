@@ -2,7 +2,8 @@
 # On every push it runs with --offline (internal links + #anchors only);
 # once a week it also checks links to external sites.
 
-include_fragments = true
+# "full": check #anchors (and text fragments) in links
+include_fragments = "full"
 max_retries = 2
 timeout = 20
 
