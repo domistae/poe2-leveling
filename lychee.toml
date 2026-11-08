@@ -1,0 +1,20 @@
+# Link checker settings (lychee), used by .github/workflows/checks.yml.
+# On every push it runs with --offline (internal links + #anchors only);
+# once a week it also checks links to external sites.
+
+include_fragments = true
+max_retries = 2
+timeout = 20
+
+# Some sites refuse automated requests (403) or rate-limit them (429);
+# those are not dead links.
+accept = ["200..=299", "403", "429"]
+
+exclude = [
+    # The site's own published URLs (canonical / social tags): a new page
+    # only exists there after it is deployed. Internal links are checked as files.
+    "^https://domistae\\.github\\.io/poe2-leveling",
+    # Analytics and social sites that block link checkers
+    "^https://www\\.googletagmanager\\.com",
+    "^https://(x|twitter)\\.com",
+]

@@ -1,0 +1,8 @@
+# Weekly pull requests that update the pinned GitHub Actions in
+# .github/workflows/ (new commit + version comment).
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

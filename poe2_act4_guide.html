@@ -14,7 +14,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoE 2 Act 4 Walkthrough — Kingsmarch & The Four Islands (Patch 0.5.5)</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>PoE 2 Act 4 Walkthrough — Kingsmarch &amp; Four Islands (Patch 0.5.5)</title>
     <meta name="description" content="Path of Exile 2 Act 4 walkthrough with progress tracking. Optimal routing across the four islands, Magma Twins, Mimok, Omniphobia +2 skill points. Patch 0.5.5 (Forbidden Rites).">
     <meta name="author" content="domistae">
     <meta name="theme-color" content="#181410">
@@ -35,133 +37,77 @@
     <meta name="twitter:description" content="Optimal Act 4 routing with progress tracking — all four islands, Magma Twins, Omniphobia +2 skill points. Patch 0.5.5.">
     <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
 
-    <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM" />
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7N3S1HHM51"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-7N3S1HHM51');
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <script>
-        (function() {
-            try {
-                var saved = localStorage.getItem('poe2-theme');
-                if (saved !== 'light' && saved !== 'dark' && saved !== 'night') {
-                    var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-                    saved = prefersLight ? 'light' : 'dark';
-                }
-                /* night reuses the dark theme + a [data-tint] layer */
-                document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
-                if (saved === 'night') document.documentElement.setAttribute('data-tint', 'night');
-            } catch (e) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-            try {
-                var fs = parseFloat(localStorage.getItem('poe2-font-scale'));
-                if (fs >= 0.85 && fs <= 1.30) document.documentElement.style.setProperty('--user-font-scale', fs);
-            } catch (e) {}
-        })();
-    </script>
+    <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM">
+    <script src="assets/analytics.js" defer></script>
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <script src="assets/site.js"></script>
     <link rel="stylesheet" href="assets/base.css">
     <link rel="stylesheet" href="assets/checklist.css">
+    <link rel="stylesheet" href="assets/skin.css">
+    <link rel="stylesheet" href="assets/act.css">
 </head>
-<body>
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-        <span class="icon" id="theme-icon">☀</span>
-        <span id="theme-label">Light</span>
-    </button>
+<body class="act-page" data-progress-key="poe2-act4-v05" data-reset-label="Act IV">
+    <header class="site-head">
+        <div class="site-head-row">
+            <a href="index.html" class="brand">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 2 L21 12 L12 22 L3 12 Z"/><path d="M12 7 L16 12 L12 17 L8 12 Z"/></svg>
+                <span>POE2 CODEX</span>
+            </a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="poe2_leveling_guide.html" class="site-nav-link current">Leveling</a>
+                <a href="poe2_endgame_guide.html" class="site-nav-link">Endgame</a>
+                <a href="poe2_league_guide.html" class="site-nav-link">League</a>
+                <a href="https://github.com/domistae/poe2-leveling" class="site-nav-link">GitHub</a>
+                <button type="button" class="theme-toggle" aria-label="Toggle theme">
+                    <span class="icon" id="theme-icon">☾</span>
+                    <span id="theme-label">Night</span>
+                </button>
+            </nav>
+        </div>
+    </header>
 
-    <nav class="top-nav" aria-label="Main navigation">
-        <a href="poe2_leveling_guide.html" class="top-nav-home">← Leveling Hub</a>
-        <div class="top-nav-links">
-            <a href="poe2_act1_guide.html" class="top-nav-link">Act I</a>
-            <a href="poe2_act2_guide.html" class="top-nav-link">Act II</a>
-            <a href="poe2_act3_guide.html" class="top-nav-link">Act III</a>
-            <a href="poe2_act4_guide.html" class="top-nav-link current" aria-current="page">Act IV</a>
-            <a href="poe2_interludes_guide.html" class="top-nav-link">Interludes</a>
+    <nav class="act-strip" aria-label="Acts">
+        <div class="act-strip-row">
+            <div class="act-tabs">
+            <a href="poe2_act1_guide.html" class="act-tab">Act I</a>
+            <a href="poe2_act2_guide.html" class="act-tab">Act II</a>
+            <a href="poe2_act3_guide.html" class="act-tab">Act III</a>
+            <a href="poe2_act4_guide.html" class="act-tab current" aria-current="page">Act IV</a>
+            <a href="poe2_interludes_guide.html" class="act-tab">Interludes</a>
+            <span class="act-tab coming" title="Coming with 1.0">Act V</span>
+            <span class="act-tab coming" title="Coming with 1.0">Act VI</span>
+            </div>
+            <div class="act-progress" title="Steps done on this page"><span class="act-progress-count" id="actProgressText">0 / 0</span><span class="act-progress-bar" aria-hidden="true"><span id="actProgressBar"></span></span><button type="button" class="act-reset" id="resetProgress" title="Clear progress on this page">Reset</button></div>
         </div>
     </nav>
 
-    <div class="container">
-        <aside class="sidebar">
-            <div class="progress-panel">
-                <div class="progress-row">
-                    <div class="progress-head">
-                        <span class="progress-name">⚡ Required</span>
-                        <span class="progress-count" id="progressTextFast">0 / 0</span>
-                    </div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill fast" id="progressBarFast"></div></div>
-                </div>
-                <div class="progress-row">
-                    <div class="progress-head">
-                        <span class="progress-name complete">◆ Complete</span>
-                        <span class="progress-count" id="progressTextComplete">0 / 0</span>
-                    </div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill complete" id="progressBarComplete"></div></div>
-                </div>
-
-                <div class="view-filters">
-                    <button type="button" class="view-chip" data-view="hide-completed" aria-pressed="false" title="Hide steps you have already ticked off">
-                        <span class="dot" aria-hidden="true"></span>Hide done
-                    </button>
-                    <button type="button" class="view-chip" data-view="alt-leveling" aria-pressed="false" title="Alt leveling — show only the necessary steps, hiding everything marked (Opt)">
-                        <span class="dot" aria-hidden="true"></span>Alt leveling
-                    </button>
-                </div>
-
-                <div class="panel-actions">
-                    <button class="mini-btn reset" onclick="resetProgress()" title="Clear progress on this page">Reset</button>
-                    <button class="mini-btn export" onclick="exportAllProgress()" title="Copy a progress code covering every page">Export</button>
-                    <button class="mini-btn import" onclick="showImportDialog()" title="Paste a progress code">Import</button>
-                </div>
-                <div id="importDialog" class="import-dialog" style="display:none;">
-                    <textarea id="importCode" placeholder="Paste progress code…"></textarea>
-                    <div class="import-actions">
-                        <button class="mini-btn" onclick="importAllProgress()">Import</button>
-                        <button class="mini-btn" onclick="hideImportDialog()">Cancel</button>
-                    </div>
-                </div>
+    <div class="act-top">
+        <section class="act-head">
+            <div class="act-title"><span class="act-num">IV</span><h1>Wraeclast Awakens</h1><span class="act-meta">Lvl 42–52 · all classes · 0.5.5</span></div>
+            <div class="act-filters" role="group" aria-label="Filters">
+                <button type="button" class="view-chip" data-view="hide-completed" aria-pressed="false" title="Hide steps you have already ticked off">Hide done</button>
+                <button type="button" class="view-chip" data-view="alt-leveling" aria-pressed="false" title="Alt run: only the necessary steps, everything marked (Opt) is hidden">Alt run</button>
+                <button type="button" class="view-chip league" data-view="league-notes" aria-pressed="true" title="Show or hide league-only notes">League notes</button>
             </div>
+        </section>
+        <div class="act-rewards">
+            <span class="act-rewards-label">Act rewards</span>
+            <span class="act-chip">+4 Skill Points</span>
+            <span class="act-chip">+5% Max Mana</span>
+            <span class="act-chip">Tattoo Choice</span>
+            <span class="act-chip">Hideout</span>
+            <span class="act-legend" role="group" aria-label="Colour key">
+                <span class="lg-boss">Boss</span><span class="lg-npc">NPC</span><span class="lg-loc">Location</span><span class="lg-gem">Gem</span><span class="lg-perm">Permanent</span>
+            </span>
+        </div>
+    </div>
 
-            <details class="sidebar-section zones-details">
-                <summary class="zones-summary">Islands &amp; Zones</summary>
-                <a href="#kingsmarch" class="sidebar-link">Kingsmarch (Hub)</a>
-                <a href="#whakapanu" class="sidebar-link">Whakapanu Island</a>
-                <a href="#shrike" class="sidebar-link">Shrike Island</a>
-                <a href="#prison" class="sidebar-link">Abandoned Prison</a>
-                <a href="#isleofkin" class="sidebar-link perm">Isle of Kin ◆</a>
-                <a href="#volcanic" class="sidebar-link perm">Volcanic Warrens ◆</a>
-                <a href="#hinekora" class="sidebar-link perm">Eye of Hinekora ◆</a>
-                <a href="#halls" class="sidebar-link perm">Halls of the Dead ◆</a>
-                <a href="#kedge" class="sidebar-link perm">Kedge Bay ◆</a>
-                <a href="#journey" class="sidebar-link perm">Journey's End ◆</a>
-                <a href="#arastas" class="sidebar-link">Arastas</a>
-                <a href="#excavation" class="sidebar-link">The Excavation</a>
-                <a href="#ngakanu" class="sidebar-link">Ngakanu</a>
-                <a href="#finale" class="sidebar-link quest">Heart of the Tribe ⚡</a>
-            </details>
+    <div class="container act-body">
+        <aside class="act-side">
+            <nav class="zone-rail" id="zoneRail" aria-label="Zones"></nav>
         </aside>
 
         <main class="main">
-            <header class="header">
-                <h1>Act IV — Wraeclast Awakens</h1>
-                <span class="patch">Patch 0.5.5 · Lvl 42–52 · All classes · Optimal routing</span>
-            </header>
-
-
-            <div class="summary-box">
-                <h3>Permanent Rewards</h3>
-                <div class="summary-grid">
-                    <div class="summary-item">+4 Skill Points</div>
-                    <div class="summary-item">+5% Max Mana</div>
-                    <div class="summary-item">Tattoo Choice</div>
-                    <div class="summary-item">Hideout</div>
-                </div>
-            </div>
 
             <details class="info-box" style="border-left: 3px solid var(--steel); margin-bottom: 1.5rem;">
                 <summary style="color: var(--steel);">Routing Notes</summary>
@@ -181,197 +127,197 @@
 
             <!-- KINGSMARCH -->
             <div class="zone-header" id="kingsmarch">Kingsmarch <span class="wp town">HUB TOWN</span> <span class="lvl">Lvl 42</span></div>
-            <div class="step" data-step="1"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="1"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Doryani</span></div></div>
-            <div class="step" data-step="2"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="2"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Continue to town, talk to <span class="npc">Alva</span> (with Rog)</div></div>
-            <div class="step" data-step="3"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="3"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Tujen</span> → accept quest</div></div>
             <div class="note tip"><span class="label">0.5</span><span class="npc">Rog</span> does nothing this patch — the boat charter is handled by <span class="npc">Makoru</span> (step below).</div>
-            <div class="step" data-step="4"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="4"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Farrow</span> → accept the <span class="item">Runeseeker</span> quest <span class="reward-tag craft">Unlocks Verisium Anvil</span></div></div>
             <div class="note change"><span class="label">0.5.5 Verisium Anvil</span>Outside Runes of Aldur — i.e. in <strong>Forbidden Rites</strong> and Standard — this Act 4 chain is the <strong>only</strong> way to unlock the <span class="npc">Verisium Anvil</span>. Once unlocked, <span class="npc">Farrow</span> can be placed in your <strong>Hideout in all leagues</strong>, and Farrow / Dannig / Expedition become <strong>core Atlas content</strong>, Standard included.</div>
             <div class="note warn"><span class="label">Unverified</span>The 0.5.5 notes name this quest <strong>"The Runeseeker"</strong> and confirm only the <strong>Verisium Anvil</strong> unlock; the step list below still uses the 0.5 name <strong>"Runekeeper"</strong>. Whether the <strong>13 Ancient Runes</strong> still come with it outside Runes of Aldur is not stated — verify in game.</div>
             <div class="note tip"><span class="label">Heads-up</span><span class="npc">Farrow</span> does nothing further here — the quest only completes later at the Plunder's Point <strong>Deserted Post</strong>.</div>
-            <div class="note legacy"><span class="label">Runes of Aldur only</span>The per-act Runeforging ladder — Armour Runeforging → Runic Inscriptions → Unique Runeforging → <strong>Ancient Runes</strong> — is league-only. Act 4 has no Runestones; the gate here is the <strong>Torn Map Pieces (4 in total)</strong>.</div>
-            <div class="step" data-step="5"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="note league" data-league="runes-of-aldur">The per-act Runeforging ladder — Armour Runeforging → Runic Inscriptions → Unique Runeforging → <strong>Ancient Runes</strong> — is league-only. Act 4 has no Runestones; the gate here is the <strong>Torn Map Pieces (4 in total)</strong>.</div>
+            <div class="step" data-step="5"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Makoru</span> on ship, choose destination</div></div>
 
             <!-- WHAKAPANU ISLAND -->
             <div class="zone-header" id="whakapanu">Whakapanu Island <span class="frag">FRAG/MATIKI?</span> <span class="map">MAP</span> <span class="lvl">Lvl 42–43</span></div>
-            <div class="step" data-step="6"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="6"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="item">Petrified Pirate</span> on coast <span class="reward-tag map">Torn Map (4 in total)</span></div></div>
-            <div class="step" data-step="7"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="7"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Shark Pit: <span class="boss">Great White One</span> <span class="reward-tag optional">Shark Fin</span></div></div>
             <div class="note tip"><span class="label">Shark Fin</span>Hand the <strong>Shark Fin</strong> to <span class="npc">Kaimana</span> to complete <em>Tribal Medicine</em> — at <span class="loc">Ngakanu</span> early, or on the docks <strong>after defeating Tavakai</strong> if the islands are already corrupted. Reward: choice of <strong>Uncut Gem Lv11</strong> (Skill / Spirit / Support) + a permanent Tukuama stat blessing.</div>
-            <div class="step" data-step="8"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="8"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Crabshell Cavern: <span class="boss">Clawcrunch</span> <span class="reward-tag gem">Support Gem 4</span></div></div>
-            <div class="step" data-step="9"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="9"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Singing Caverns</span></div></div>
 
             <div class="zone-header">Singing Caverns <span class="wp">WAYPOINT</span></div>
-            <div class="step" data-step="10"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="10"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Beckoning Clam</span> → <span class="item">Humming Pearl</span> (give to Rog)</div></div>
-            <div class="step" data-step="11"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="11"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Diamora, Song of Death</span> <span class="reward-tag frag">Fragment?</span></div></div>
-            <div class="step" data-step="12"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="12"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Hooded One</span>, TP to town</div></div>
 
             <div class="zone-header">Kingsmarch — Hideout</div>
-            <div class="step" data-step="13"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="13"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Ange</span> → <span class="loc">Shoreline Hideout</span></div></div>
-            <div class="step" data-step="14"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="14"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Clear hideout, talk to <span class="npc">Ange</span> <span class="reward-tag perm">Hideout + Trading</span></div></div>
 
             <!-- SHRIKE ISLAND -->
             <div class="zone-header" id="shrike">Shrike Island <span class="frag">FRAG/MATIKI?</span> <span class="map">MAP</span> <span class="lvl">Lvl 43–44</span></div>
-            <div class="step" data-step="15"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="15"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="item">Corpse Nest</span> (Impaled Karui) <span class="reward-tag map">Torn Map (4 in total)</span></div></div>
-            <div class="step" data-step="16"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="16"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Scourge of the Skies</span> <span class="reward-tag frag">Fragment?</span></div></div>
-            <div class="step" data-step="17"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="17"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Hooded One</span>, TP, sail next</div></div>
 
             <!-- ABANDONED PRISON -->
             <div class="zone-header" id="prison">Abandoned Prison <span class="frag">FRAG/MATIKI?</span> <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 44</span></div>
-            <div class="step" data-step="18"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="18"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill mobs until <span class="item">Chapel Key</span> drops</div></div>
-            <div class="step" data-step="19"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="19"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Side areas: <span class="loc">Armoury</span> (kill the elite for a Jewel + Blackstone) &amp; <span class="loc">Forgotten Cells</span> (loot)</div></div>
-            <div class="step" data-step="20"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="20"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Open Chapel, kill <span class="boss">Forael</span>, use <span class="item">Goddess of Justice</span> <span class="reward-tag choice">Flask choice</span></div></div>
-            <div class="step" data-step="21"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="21"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Solitary Confinement</span></div></div>
 
             <div class="zone-header">Solitary Confinement</div>
-            <div class="step" data-step="22"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="22"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">The Prisoner</span> <span class="reward-tag frag">Fragment?</span></div></div>
-            <div class="step" data-step="23"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="23"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Hooded One</span>, sail to <span class="loc">Isle of Kin</span></div></div>
 
             <!-- ISLE OF KIN -->
             <div class="zone-header" id="isleofkin">Isle of Kin <span class="frag">MATIKI?</span> <span class="map">MAP</span> <span class="lvl">Lvl 45</span></div>
-            <div class="step" data-step="24"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="24"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="item">Flayed Sailor</span> near shore <span class="reward-tag map">Torn Map (4 in total)</span></div></div>
-            <div class="step" data-step="25"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="25"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="loc">Doomed Mine</span> — abandoned delving site (Fossilised Formation) <span class="reward-tag optional">Lesser Jeweller's Orb</span></div></div>
-            <div class="step" data-step="26"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="26"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Beast Pen <span class="reward-tag gem">Skill + Support Gem</span></div></div>
-            <div class="step" data-step="27"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="27"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><strong>Kill <span class="boss">Mimok the Enslaved</span></strong> (Beast Pen boss) <span class="reward-tag gem">Tier 4 Support Gem</span></div></div>
-            <div class="step" data-step="28"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="28"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Primal Arena: <span class="boss">Blind Beast</span> <span class="reward-tag optional">Greater Blank Rune</span></div></div>
-            <div class="step" data-step="29"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="29"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Volcanic Warrens</span></div></div>
 
             <!-- VOLCANIC WARRENS -->
             <div class="zone-header" id="volcanic">Volcanic Warrens <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 45–46</span></div>
-            <div class="step" data-step="30"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="30"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Volcanic Nest: <span class="boss">Magma Twins</span> — <strong>kill order matters</strong>: Lightning first → Ruby Ring · Fire first → Topaz Ring <span class="reward-tag optional">Ruby / Topaz Ring</span></div></div>
-            <div class="step" data-step="31"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="31"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Krutog, Lord of Kin</span> (<span class="loc">The Tyrant Throne</span>)</div></div>
-            <div class="step" data-step="32"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="32"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP to <span class="loc">Kingsmarch</span></div></div>
 
             <!-- EYE OF HINEKORA -->
             <div class="zone-header" id="hinekora">Eye of Hinekora <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 46–47</span></div>
-            <div class="step" data-step="33"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="33"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Matiki</span> at the well (he's at the well, not in town), click well</div></div>
-            <div class="step" data-step="34"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="34"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Chest behind waterfall <span class="reward-tag gem">Spirit Gem 12</span></div></div>
-            <div class="step" data-step="35"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="35"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Complete 3 Tests: <span class="item">Fire</span>, <span class="item">Nature</span>, <span class="item">Cold</span></div></div>
-            <div class="step" data-step="36"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="36"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="loc">Silent Hall</span> altar (Pay Respects), talk to <span class="npc">Navali</span> <span class="reward-tag perm">+5% Max Mana</span></div></div>
-            <div class="step" data-step="37"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="37"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Halls of the Dead</span></div></div>
 
             <!-- HALLS OF THE DEAD -->
             <div class="zone-header" id="halls">Halls of the Dead <span class="lvl">Lvl 47</span></div>
-            <div class="step" data-step="38"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="38"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Trial of Ngakanu (3 tests in clover-leaf), loot <span class="item">Tattoos</span> — choose <span class="reward-tag perm">+5% Fire/Cold/Lightning Res (recommended)</span> or +5 Str/Dex/Int</div></div>
-            <div class="step" data-step="39"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="39"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Fight <span class="boss">Yama the White</span> (low life pool — easy stun)</div></div>
-            <div class="step" data-step="40"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="40"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Trial of Ancestors</span></div></div>
 
             <div class="zone-header">Trial of the Ancestors <span class="lvl">Lvl 47–48</span></div>
-            <div class="step" data-step="41"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="41"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Navali</span> &amp; <span class="npc">Hinekora</span> <span class="reward-tag perm">+2 Skill Points</span></div></div>
-            <div class="step" data-step="42"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="42"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP, sail to <span class="loc">Kedge Bay</span></div></div>
 
             <!-- KEDGE BAY -->
             <div class="zone-header" id="kedge">Kedge Bay <span class="map">MAP</span> <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 47–48</span></div>
-            <div class="step" data-step="43"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="43"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="item">Dead Man's Chest</span> / <span class="item">Smuggler's Stash</span> <span class="reward-tag map">Torn Map (4 in total)</span></div></div>
-            <div class="step" data-step="44"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="44"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="loc">Abandoned Ship</span> (loot)</div></div>
-            <div class="step" data-step="45"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="45"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="loc">Tidal Cay</span> with <span class="boss">Tombgrowl</span> (loot)</div></div>
-            <div class="step" data-step="47"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="47"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="boss">Doran, the Deft</span> — challenging, highly mobile Rogue Exile near the entrance (loot)</div></div>
-            <div class="step" data-step="46"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="46"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Journey's End</span></div></div>
 
             <!-- JOURNEY'S END -->
             <div class="zone-header" id="journey">Journey's End <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 48–49</span></div>
-            <div class="step" data-step="48"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="48"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Tujen</span></div></div>
-            <div class="step" data-step="49"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="49"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Captain Harlin</span>, loot <span class="item">Verisium</span></div></div>
-            <div class="step" data-step="50"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="50"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Freya Hartlin</span></div></div>
-            <div class="step" data-step="51"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="51"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Town → <span class="npc">Dannig</span> → <span class="item">Verisium Spikes</span></div></div>
-            <div class="step" data-step="52"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="52"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Back to Journey's End → <span class="npc">Freya</span></div></div>
-            <div class="step" data-step="53"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="53"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><strong>Totem → kill <span class="boss">Omniphobia</span></strong></div></div>
-            <div class="step" data-step="54"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="54"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Tujen</span> in town for reward <span class="reward-tag perm">+2 Skill Points</span></div></div>
 
             <div class="zone-header">Plunder's Point</div>
             <div class="note change"><span class="label">0.5 Gating</span>Plunder's Point can only be entered once you have turned in <strong>all 4 Map Pieces</strong> at Kingsmarch (Torn Maps from Whakapanu, Shrike, Isle of Kin, Kedge Bay).</div>
             <div class="note warning"><span class="label">Required — don't skip</span>This is the <strong>Runekeeper / Runeseeker</strong> quest and the most-skipped leg of the chain. The Plunder's Point expedition opens the <strong>Deserted Post</strong> → <strong>summon <span class="npc">Farrow</span></strong> → <strong>Runesmithing of Knowledge</strong>. In Forbidden Rites and Standard this is what unlocks the <strong>Verisium Anvil</strong> — skip it and you lose access to Runeforging entirely.</div>
-            <div class="step" data-step="55"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="55"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Give 4 maps to <span class="npc">Makoru</span> → sail → <span class="npc">Dannig</span> → Expedition → <span class="loc">Deserted Post</span> → summon <span class="npc">Farrow</span></div></div>
 
             <!-- ARASTAS -->
             <div class="zone-header" id="arastas">Arastas <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 49–50</span></div>
-            <div class="step" data-step="56"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="56"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="npc">Missionari Lorandis</span> → follow → destroy shield</div></div>
-            <div class="step" data-step="57"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="57"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Evening / Morning Bells</span> <span class="reward-tag optional">Evening → 3 Exalted · Morning → 3 Regal</span></div></div>
-            <div class="step" data-step="58"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="58"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Torvian</span> → enter <span class="loc">Excavation</span></div></div>
             <div class="note tip"><span class="label">Tactic</span>Let <span class="boss">Torvian</span> throw stones at the 2 priests above to break the fight open.</div>
 
             <!-- EXCAVATION -->
             <div class="zone-header" id="excavation">The Excavation <span class="lvl">Lvl 50–51</span></div>
-            <div class="step" data-step="59"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="59"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Benedictus</span> (<span class="loc">Precursor Forge</span>), talk to <span class="npc">Hooded One</span></div></div>
-            <div class="step" data-step="60"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="60"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="loc">Excavated Cache</span> at the checkpoint (loot)</div></div>
-            <div class="step" data-step="61"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="61"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP to <span class="loc">Kingsmarch</span> → sail to <span class="loc">Ngakanu</span></div></div>
 
             <!-- NGAKANU -->
             <div class="zone-header" id="ngakanu">Ngakanu <span class="lvl">Lvl 51</span></div>
-            <div class="step" data-step="63"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="63"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="loc">Abyss</span> → <span class="loc">Abyssal Depths</span> (loot)</div></div>
-            <div class="step" data-step="64"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="64"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="boss">Mad Butcher</span> in the large hut (loot)</div></div>
-            <div class="step" data-step="62"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="62"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Heart of the Tribe</span></div></div>
 
             <!-- HEART OF THE TRIBE -->
             <div class="zone-header" id="finale">Heart of the Tribe <span class="lvl">Lvl 52</span></div>
-            <div class="step" data-step="65"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="65"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="loc">Meeting House</span> in the Heart of the Tribe has chests (loot)</div></div>
-            <div class="step" data-step="66"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="66"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><strong>Kill <span class="boss">Tavakai</span></strong> (Final Act 4 Boss), talk to him</div></div>
-            <div class="step" data-step="67"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="67"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Return, talk to <span class="npc">Hooded One</span> → unlocks Interludes</div></div>
 
             <div class="footer-nav">
@@ -379,25 +325,16 @@
                 <a href="index.html">Index</a>
                 <a href="poe2_interludes_guide.html">Interludes →</a>
             </div>
-            <footer class="site-footer">
-                <div class="site-footer-tag">Made for the PoE2 community · AI-assisted, community-verified</div>
-                <div class="site-footer-links">
-                    <a href="https://github.com/domistae/poe2-leveling/issues/new" class="site-footer-link">Suggestions</a>
-                    <a href="https://github.com/domistae/poe2-leveling" class="site-footer-link">GitHub</a>
-                </div>
-                <div class="site-footer-disclaimer">Path of Exile 2 is © Grinding Gear Games. Unofficial fan-made content.</div>
-            </footer>
         </main>
     </div>
 
-    <script>
-        window.POE2_PROGRESS = {
-            storageKey: "poe2-act4-v05",
-            allKeys: ["poe2-act1-v05", "poe2-act2-v05", "poe2-act3-v05", "poe2-act4-v05", "poe2-interludes-v06"],
-            resetLabel: "Act IV"
-        };
-    </script>
+    <footer class="site-footer act-footer">
+        <div class="act-footer-row">
+            <span>Unofficial, fan-made. Path of Exile 2 is © Grinding Gear Games.</span>
+            <span class="act-footer-links"><a href="https://github.com/domistae/poe2-leveling/issues/new">Suggestions</a><a href="https://github.com/domistae/poe2-leveling">GitHub</a></span>
+        </div>
+    </footer>
+    <script src="assets/league.js" defer></script>
     <script src="assets/progress.js" defer></script>
-    <script src="assets/theme.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,202 @@
+/* ══════════════════════════════════════════════════════════════
+   2027 SKIN — loaded last on every page (after checklist.css and any
+   page-inline <style>), so it restyles without touching page markup.
+   Flat surfaces, one accent (steel blue), compact defined step rows.
+   Selectors are prefixed with :root so they also beat the older
+   [data-theme="dark"] .foo rules (same specificity, later in file).
+   Mobile behaviour above (sidebar flattening, 900px breakpoint) is
+   untouched — only looks change here.
+   ══════════════════════════════════════════════════════════════ */
+:root { --gem: #1d6b62; --zone-band: #e8e3dd; --step-done: #f5f2ee; }
+[data-theme="dark"] { --gem: #8fc9c0; --zone-band: #1a1d23; --step-done: #111214; }
+
+/* Sidebar */
+:root .sidebar { background: var(--bg-surface); box-shadow: none; }
+:root .sidebar h2 {
+    font-family: var(--font-body); color: var(--text-muted);
+    font-size: 0.6875rem; letter-spacing: 0.14em; font-weight: 700;
+}
+:root .sidebar-link { border-left: 0; border-radius: 0; padding: 0.3rem 0.5rem; font-size: 0.78125rem; }
+:root .sidebar-link:hover { background: var(--overlay-gold-strong); color: var(--text-primary); }
+:root .zones-details > summary.zones-summary { font-family: var(--font-body); }
+
+/* Progress panel + filters */
+:root .view-chip {
+    font-family: var(--font-body); font-size: 0.71875rem; font-weight: 600;
+    letter-spacing: 0.01em; text-transform: none; padding: 0.4rem 0.3rem;
+}
+:root .view-chip[aria-pressed="true"] { background: var(--text-body); border-color: var(--text-body); color: var(--bg-base); }
+
+/* Page header */
+:root .header { margin-bottom: 1rem; padding-bottom: 0.75rem; }
+:root .header .eyebrow { font-family: var(--font-body); font-weight: 700; letter-spacing: 0.18em; color: var(--gold); font-size: 0.6875rem; }
+:root .header h1 {
+    font-family: var(--font-display); font-variation-settings: 'wdth' 112;
+    font-weight: 800; letter-spacing: -0.01em; font-size: 1.75rem; line-height: 1.1;
+}
+:root .header .subtitle, :root .subtitle { font-style: normal; }
+
+/* Banners / boxes — no gradients, no thick left bars */
+:root .endgame-banner {
+    background: var(--overlay-plum); border: 1px solid color-mix(in srgb, var(--plum) 45%, transparent);
+    border-left-width: 1px; border-radius: 2px;
+}
+:root .endgame-banner .label { font-family: var(--font-body); font-weight: 700; letter-spacing: 0.1em; }
+:root .info-box {
+    border-left: 1px solid var(--border-subtle); border-radius: 2px;
+    padding: 0.8rem 1rem; margin-bottom: 1rem; box-shadow: none;
+}
+:root .info-box h3, :root details.info-box > summary {
+    font-family: var(--font-body); color: var(--text-muted);
+    font-size: 0.6875rem; letter-spacing: 0.14em; font-weight: 700;
+}
+
+/* Zone header → a quiet band with a thin accent edge */
+:root .zone-header {
+    background: var(--zone-band);
+    border-left: 0; box-shadow: inset 2px 0 0 var(--gold);
+    border-radius: 0;
+    color: var(--text-primary);
+    font-family: var(--font-display); font-variation-settings: 'wdth' 110;
+    font-size: 0.90625rem; font-weight: 800; letter-spacing: 0.01em;
+    padding: 0.4rem 0.75rem; margin: 1.1rem 0 1px; min-height: 36px;
+}
+:root .zone-header .wp, :root .zone-header .town, :root .zone-header .lvl,
+:root .zone-header .frag, :root .zone-header .map {
+    background: transparent; border-radius: 2px;
+    font-family: var(--font-mono); font-size: 0.65625rem; font-weight: 600;
+    padding: 0 0.35rem; line-height: 1.6;
+    border: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+}
+:root .zone-header .wp { color: var(--steel); }
+:root .zone-header .town { color: var(--text-muted); }
+:root .zone-header .lvl, :root .zone-header .frag, :root .zone-header .map { color: var(--text-muted); border-color: transparent; }
+:root .phase-header { font-family: var(--font-body); color: var(--text-muted); letter-spacing: 0.14em; font-weight: 700; }
+:root .phase-header::before { color: var(--gold); }
+
+/* Steps → one defined row each, 1px apart */
+:root .step { background: var(--bg-surface); margin-bottom: 1px; border-left: 0; border-radius: 0; }
+:root .step:hover { background: color-mix(in srgb, var(--bg-surface) 88%, var(--gold)); }
+:root .step.completed { opacity: 1; background: var(--step-done); }
+:root .step.completed .step-content { color: var(--text-dim); }
+:root .step.completed .step-content span { color: inherit; }
+:root .step-check { width: 34px; padding-top: 0.6rem; }
+:root .checkbox { width: 14px; height: 14px; border-radius: 3px; background: transparent; border: 1.5px solid var(--border-accent); }
+:root .step:hover .checkbox { border-color: var(--gold); }
+:root .step.completed .checkbox { background: var(--gold); border-color: var(--gold); }
+:root .step.completed .checkbox::after { color: var(--bg-base); font-size: 0.5625rem; }
+:root .step-content { font-size: 0.875rem; line-height: 1.45; padding: 0.42rem 0.75rem 0.42rem 0; color: var(--text-primary); }
+:root .step-content .npc { color: var(--tan); font-weight: 600; }
+:root .step-content .boss { color: var(--burnt); font-weight: 700; }
+:root .step-content .loc { color: var(--steel); font-weight: 600; }
+:root .step-content .item { color: var(--text-primary); font-weight: 600; }
+:root .step-content .skip { color: var(--text-muted); }
+
+/* Reward tags */
+:root .reward-tag {
+    font-family: var(--font-body); font-size: 0.65625rem; font-weight: 600; letter-spacing: 0.02em;
+    padding: 0 0.35rem; line-height: 1.6; border-radius: 2px; background: transparent;
+    border: 1px solid color-mix(in srgb, currentColor 55%, transparent); vertical-align: 1px;
+    color: var(--sage);
+}
+:root .reward-tag.gem { color: var(--gem); background: transparent; }
+:root .reward-tag.craft, :root .reward-tag.quest { color: var(--text-muted); background: transparent; }
+:root .reward-tag.optional { color: var(--text-muted); background: transparent; border-style: dashed; }
+:root .reward-tag.perm { color: var(--bg-base); background: var(--text-body); border-color: var(--text-body); }
+
+/* Notes — tinted, thin marker, same indent as the step text */
+:root .note { font-size: 0.8125rem; line-height: 1.5; margin: 1px 0 1px 34px; padding: 0.45rem 0.75rem; border-left-width: 2px; }
+:root .note .label { font-family: var(--font-body); font-size: 0.65625rem; letter-spacing: 0.1em; font-weight: 700; }
+:root .note.cue .label { color: var(--cue); }
+
+/* Footer nav + site footer */
+:root .footer-nav { font-family: var(--font-body); letter-spacing: 0.02em; }
+:root .footer-nav a { text-transform: none; font-weight: 700; }
+:root .site-footer-link {
+    font-family: var(--font-body); text-transform: none; letter-spacing: 0.01em;
+    font-size: 0.75rem; border-radius: 2px; color: var(--text-body);
+}
+:root .site-footer-link:hover { transform: none; color: var(--text-primary); border-color: var(--border-accent); background: transparent; }
+
+/* Endgame building blocks */
+:root .storyline { box-shadow: none; margin-bottom: 1.25rem; }
+:root .storyline-header { padding: 0.75rem 1.1rem; }
+:root .storyline-body { padding: 1.1rem; }
+:root .storyline[class*="lg-"] { border-top-width: 2px; }
+:root .tag {
+    font-family: var(--font-body); font-size: 0.65625rem; font-weight: 600; letter-spacing: 0.02em;
+    background: transparent; border: 1px solid color-mix(in srgb, currentColor 50%, transparent);
+}
+:root .callout { border-left-width: 2px; border-radius: 0; }
+:root .callout-label { font-family: var(--font-body); letter-spacing: 0.1em; font-weight: 700; }
+:root .toc-title, :root .diagram-title { font-family: var(--font-body); letter-spacing: 0.14em; font-weight: 700; color: var(--text-muted); }
+:root .atlas-tile::before { display: none; }
+
+/* Leveling hub act list */
+:root .act-entry::before { background: var(--gold); width: 2px; }
+:root .act-entry.final::before { background: var(--gold); }
+:root .act-meta { font-family: var(--font-mono); }
+:root .reward {
+    font-family: var(--font-body); font-size: 0.71875rem; border-radius: 2px; background: transparent;
+    color: var(--text-body); border: 1px solid var(--border-accent);
+}
+:root .reward.res, :root .reward.special, :root .reward.warn { background: transparent; }
+
+/* Mobile: keep everything above; just keep the tighter rows tidy */
+@media (max-width: 900px) {
+    :root .note { margin-left: 34px; }
+    :root .zone-header { font-size: 0.875rem; }
+}
+
+:root .header .patch, :root .header .version { font-family: var(--font-mono); }
+
+/* ─── Leveling hub ─────────────────────────────────────────── */
+:root .section-title {
+    font-family: var(--font-display); font-variation-settings: 'wdth' 112;
+    color: var(--text-primary); font-size: 1.125rem; letter-spacing: 0; text-transform: none; font-weight: 800;
+}
+:root .section-title .sub { color: var(--text-muted); }
+:root .section-intro { font-size: 0.8125rem; }
+:root .quest-log-title { font-family: var(--font-body); color: var(--text-muted); letter-spacing: 0.14em; font-weight: 700; text-transform: uppercase; font-size: 0.6875rem; }
+:root .act-entry::before, :root .act-entry.final::before { display: none; }
+:root .act-link {
+    background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 0;
+    padding: 0.8rem 1rem; box-shadow: none; transform: none;
+}
+:root .act-link:hover {
+    border-color: var(--border-accent); background: color-mix(in srgb, var(--bg-surface) 92%, var(--gold)); transform: none; box-shadow: none;
+}
+:root .journey { gap: 1px; }
+:root .act-name { font-family: var(--font-display); font-variation-settings: 'wdth' 110; font-weight: 800; letter-spacing: 0; font-size: 1rem; color: var(--text-primary); }
+:root .act-rewards { gap: 0.3rem; }
+:root .reward, :root .reward.res, :root .reward.special, :root .reward.warn {
+    font-family: var(--font-body); font-size: 0.71875rem; font-weight: 500; letter-spacing: 0;
+    padding: 0.1rem 0.45rem; border-radius: 2px; background: transparent;
+    color: var(--text-body); border: 1px solid var(--border-accent);
+}
+:root .feature { font-family: var(--font-body); }
+
+/* ─── Endgame ──────────────────────────────────────────────── */
+:root .intro-block, :root .toc { border-left-width: 1px; border-radius: 2px; box-shadow: none; }
+:root .toc ol li::before { font-family: var(--font-mono); color: var(--gold); }
+:root .storyline-header h2 { font-family: var(--font-display); font-variation-settings: 'wdth' 112; font-weight: 800; letter-spacing: 0; text-transform: none; }
+:root .storyline-header .ordinal { font-family: var(--font-mono); color: var(--gold); }
+:root .storyline-body h3 { font-family: var(--font-body); font-weight: 700; letter-spacing: 0.1em; color: var(--text-muted); }
+:root .storyline-body li::before { color: var(--gold); }
+:root #masters-atlas .storyline-header { background: var(--bg-elevated); }
+:root .master-meta-row .k { font-family: var(--font-body); font-weight: 700; letter-spacing: 0.08em; }
+:root .card { border-radius: 2px; box-shadow: none; }
+:root .card h4 { font-family: var(--font-body); font-weight: 700; letter-spacing: 0; }
+:root .storyline-body ol.step-list > li::before { font-family: var(--font-mono); color: var(--gold); }
+/* Atlas tiles: same hues, flat and a little calmer */
+:root .atlas-tile { box-shadow: none; border-radius: 2px; filter: saturate(.75); }
+:root .atlas-tile.center, :root .atlas-tile.compass { filter: none; }
+:root .atlas-tile.delirium { background: var(--c-delirium-b); color: #f3f4f6; }
+:root .atlas-tile.delirium .symbol svg { stroke: #f3f4f6; }
+:root .atlas-tile.delirium .compass-tag { color: #f3f4f6; }
+:root .atlas-tile .name { font-family: var(--font-body); font-weight: 700; }
+:root .atlas-tile .master-pip { font-family: var(--font-body); }
+
+/* Sidebar link colours: one calm colour, the section names do the work */
+:root .sidebar-link.story, :root .sidebar-link.system { color: var(--text-body); }
+:root .sidebar-link em { color: var(--text-muted); }

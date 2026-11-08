@@ -14,7 +14,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoE2 Crafting Codex — Currencies, Omens, Desecration & 0.5.5 Runeforging</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>PoE2 Crafting Codex — Currencies, Omens &amp; Runeforging (0.5.5)</title>
     <meta name="description" content="Path of Exile 2 crafting codex: every currency, omen, essence, abyssal bone, catalyst, fracturing strategy, the tag system, and Patch 0.5 Runes of Aldur additions (Verisium, Runeforging, Genesis Tree, liquid emotions, wombgifts).">
     <meta name="author" content="domistae">
     <meta name="theme-color" content="#181410">
@@ -33,30 +35,8 @@
     <meta name="twitter:title" content="PoE2 Crafting Codex — Patch 0.5.5 Reference">
     <meta name="twitter:description" content="Every currency, every omen, every trick. Patch 0.5 ready.">
     <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <script>
-        (function() {
-            try {
-                var saved = localStorage.getItem('poe2-theme');
-                if (saved !== 'light' && saved !== 'dark' && saved !== 'night') {
-                    var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-                    saved = prefersLight ? 'light' : 'dark';
-                }
-                /* night reuses the dark theme + a [data-tint] layer */
-                document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
-                if (saved === 'night') document.documentElement.setAttribute('data-tint', 'night');
-            } catch (e) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-            try {
-                var fs = parseFloat(localStorage.getItem('poe2-font-scale'));
-                if (fs >= 0.85 && fs <= 1.30) document.documentElement.style.setProperty('--user-font-scale', fs);
-            } catch (e) {}
-        })();
-    </script>
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <script src="assets/site.js"></script>
     <link rel="stylesheet" href="assets/base.css">
     <style>
 /* Crafting-specific extras layered on top of assets/base.css */
@@ -110,20 +90,20 @@
 .sidebar-section { margin-bottom: 1.5rem; }
 .sidebar-section h2 {
     font-family: 'Cinzel', serif; color: var(--gold);
-    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    font-size: 0.625rem; letter-spacing: 2px; text-transform: uppercase;
     margin-bottom: 0.6rem; font-weight: 600;
     padding-bottom: 0.3rem; border-bottom: 1px solid var(--border-subtle);
 }
 .sidebar-link {
     display: block; padding: 0.35rem 0.5rem;
     color: var(--text-body); text-decoration: none;
-    font-size: 12px; border-radius: 3px;
+    font-size: 0.75rem; border-radius: 3px;
     transition: all 0.15s;
 }
 .sidebar-link:hover { background: var(--overlay-gold-soft); color: var(--gold); }
 .sidebar-link .marker {
     display: inline-block; width: 10px; color: var(--gold-deep);
-    font-family: 'Cinzel', serif; font-size: 10px; margin-right: 0.35rem;
+    font-family: 'Cinzel', serif; font-size: 0.625rem; margin-right: 0.35rem;
 }
 
 .main {
@@ -135,7 +115,7 @@
 .header { margin-bottom: 1.5rem; }
 .header .eyebrow {
     font-family: 'Cinzel', serif; color: var(--gold-deep);
-    font-size: 10px; letter-spacing: 3.5px; text-transform: uppercase;
+    font-size: 0.625rem; letter-spacing: 3.5px; text-transform: uppercase;
     margin-bottom: 0.4rem;
 }
 .header h1 {
@@ -144,7 +124,7 @@
     margin-bottom: 0.4rem; line-height: 1.2;
 }
 .header .patch {
-    color: var(--text-muted); font-size: 11.5px;
+    color: var(--text-muted); font-size: 0.71875rem;
     font-family: 'IBM Plex Mono', monospace;
 }
 .header .subtitle {
@@ -160,7 +140,7 @@
     font-size: 0.75rem; color: var(--text-body);
 }
 .banner-05 .label {
-    font-family: 'Cinzel', serif; color: var(--plum); font-size: 10px;
+    font-family: 'Cinzel', serif; color: var(--plum); font-size: 0.625rem;
     letter-spacing: 1.5px; text-transform: uppercase; margin-right: 0.5rem; font-weight: 600;
 }
 
@@ -187,7 +167,7 @@
 }
 .toc-title {
     font-family: 'Cinzel', serif; color: var(--gold);
-    font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase;
+    font-size: 0.6875rem; letter-spacing: 2.5px; text-transform: uppercase;
     margin-bottom: 0.85rem; font-weight: 600;
 }
 .toc ol {
@@ -202,7 +182,7 @@
 .toc ol li::before {
     content: counter(codex, upper-roman) ".";
     font-family: 'Cinzel', serif; color: var(--gold-deep);
-    font-size: 11px; letter-spacing: 1px; margin-right: 0.7rem;
+    font-size: 0.6875rem; letter-spacing: 1px; margin-right: 0.7rem;
     display: inline-block; width: 1.7rem; font-weight: 600;
 }
 .toc a {
@@ -247,7 +227,7 @@ h3.sub-title {
 }
 h4.minor-title {
     font-family: 'Cinzel', serif; color: var(--gold-deep);
-    font-size: 11.5px; font-weight: 600; letter-spacing: 1.2px;
+    font-size: 0.71875rem; font-weight: 600; letter-spacing: 1.2px;
     text-transform: uppercase; margin: 1rem 0 0.5rem;
 }
 
@@ -267,7 +247,7 @@ code, kbd {
     border: 1px solid var(--border-subtle);
     color: var(--gold-deep);
     padding: 0.05rem 0.4rem;
-    font-size: 11.5px;
+    font-size: 0.71875rem;
     border-radius: 3px;
 }
 [data-theme="dark"] code, [data-theme="dark"] kbd { color: var(--gold-bright); }
@@ -282,7 +262,7 @@ code, kbd {
     border: 1px solid var(--border-subtle);
     padding: 0.7rem 0.85rem; border-radius: 4px;
     display: flex; align-items: center; gap: 0.6rem;
-    font-family: 'Inter', sans-serif; font-size: 12px;
+    font-family: 'Inter', sans-serif; font-size: 0.75rem;
     box-shadow: var(--shadow-sm);
 }
 .chip .dot {
@@ -291,10 +271,10 @@ code, kbd {
 }
 .chip .label { color: var(--text-primary); font-weight: 600; line-height: 1.2; }
 .chip .label small {
-    display: block; color: var(--text-muted); font-size: 10.5px;
+    display: block; color: var(--text-muted); font-size: 0.65625rem;
     letter-spacing: 0.5px; font-weight: 400; margin-top: 0.15rem;
 }
-.c-normal  .dot, .c-normal  .dot { color: var(--r-normal);  background: var(--r-normal); }
+.c-normal  .dot { color: var(--r-normal);  background: var(--r-normal); }
 .c-magic   .dot { color: var(--r-magic);   background: var(--r-magic); }
 .c-rare    .dot { color: var(--r-rare);    background: var(--r-rare); }
 .c-unique  .dot { color: var(--r-unique);  background: var(--r-unique); }
@@ -315,7 +295,7 @@ table {
 table caption {
     text-align: left; padding: 0.7rem 1rem;
     font-family: 'Cinzel', serif; font-weight: 600;
-    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    font-size: 0.6875rem; letter-spacing: 2px; text-transform: uppercase;
     color: var(--gold);
     background: var(--bg-elevated);
     border-bottom: 1px solid var(--border-subtle);
@@ -327,7 +307,7 @@ th, td {
 }
 th {
     font-family: 'Cinzel', serif; font-weight: 600;
-    color: var(--gold-deep); font-size: 10.5px;
+    color: var(--gold-deep); font-size: 0.65625rem;
     letter-spacing: 1.2px; text-transform: uppercase;
     background: var(--bg-elevated);
 }
@@ -336,7 +316,7 @@ tbody tr:hover { background: var(--overlay-gold-soft); }
 td strong { color: var(--text-primary); font-weight: 600; }
 td .tag-pill {
     display: inline-block; padding: 0.05rem 0.4rem;
-    border-radius: 3px; font-size: 10px; font-weight: 600;
+    border-radius: 3px; font-size: 0.625rem; font-weight: 600;
     font-family: 'IBM Plex Mono', monospace;
     margin: 0 0.15rem 0.15rem 0;
     background: var(--overlay-gold-soft); color: var(--gold);
@@ -346,7 +326,7 @@ td .tag-pill {
 /* Currency tier tags */
 .tier-pill {
     display: inline-block; padding: 0.05rem 0.5rem;
-    border-radius: 100px; font-size: 9.5px; font-weight: 600;
+    border-radius: 100px; font-size: 0.59375rem; font-weight: 600;
     font-family: 'Cinzel', serif; letter-spacing: 1px;
     text-transform: uppercase; margin-left: 0.3rem;
     vertical-align: 1px;
@@ -371,7 +351,7 @@ td .tag-pill {
 .callout.aldur{ border-left-color: var(--c-aldur); background: var(--overlay-aldur); }
 .callout .label {
     display: block; font-family: 'Cinzel', serif;
-    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    font-size: 0.625rem; letter-spacing: 1.5px; text-transform: uppercase;
     color: var(--gold); margin-bottom: 0.3rem; font-weight: 600;
 }
 .callout.warn .label { color: var(--burnt); }
@@ -393,18 +373,18 @@ td .tag-pill {
 }
 .card h4 {
     font-family: 'Cinzel', serif; color: var(--gold);
-    font-size: 12.5px; font-weight: 600;
+    font-size: 0.78125rem; font-weight: 600;
     margin-bottom: 0.35rem; letter-spacing: 0.5px;
 }
 .card .role {
     font-family: 'IBM Plex Mono', monospace; color: var(--text-muted);
-    font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase;
+    font-size: 0.625rem; letter-spacing: 0.5px; text-transform: uppercase;
     margin-bottom: 0.5rem;
 }
 .card p { color: var(--text-body); font-size: 0.75rem; margin-bottom: 0.35rem; }
 .card p:last-child { margin-bottom: 0; }
 .card ul { margin: 0.3rem 0 0; padding-left: 1.2rem; }
-.card li { font-size: 11.5px; margin-bottom: 0.15rem; color: var(--text-body); }
+.card li { font-size: 0.71875rem; margin-bottom: 0.15rem; color: var(--text-body); }
 
 /* ─── TRICK CARDS (the showpieces) ────────────────────────── */
 .tricks {
@@ -423,16 +403,16 @@ td .tag-pill {
 .trick .tag {
     display: inline-block;
     font-family: 'Cinzel', serif;
-    font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase;
+    font-size: 0.59375rem; letter-spacing: 2px; text-transform: uppercase;
     color: var(--gold-deep); margin-bottom: 0.4rem; font-weight: 600;
 }
 .trick h4 {
     font-family: 'Cinzel', serif; color: var(--text-primary);
-    font-size: 14px; font-weight: 700; letter-spacing: 0.5px;
+    font-size: 0.875rem; font-weight: 700; letter-spacing: 0.5px;
     margin-bottom: 0.5rem;
 }
 .trick p {
-    font-size: 12.5px; color: var(--text-body); margin-bottom: 0.6rem;
+    font-size: 0.78125rem; color: var(--text-body); margin-bottom: 0.6rem;
 }
 .trick .how {
     background: var(--bg-elevated);
@@ -440,25 +420,25 @@ td .tag-pill {
     border-radius: 3px;
     padding: 0.7rem 0.9rem;
     margin: 0.6rem 0;
-    font-size: 12px;
+    font-size: 0.75rem;
 }
 .trick .how > strong {
     display: block; font-family: 'Cinzel', serif;
-    color: var(--gold-deep); font-size: 10px;
+    color: var(--gold-deep); font-size: 0.625rem;
     letter-spacing: 1.5px; text-transform: uppercase;
     margin-bottom: 0.4rem; font-weight: 600;
 }
 .trick .how ol { margin: 0; padding-left: 1.2rem; }
-.trick .how li { margin-bottom: 0.2rem; font-size: 11.5px; }
+.trick .how li { margin-bottom: 0.2rem; font-size: 0.71875rem; }
 .trick .why {
     margin-top: 0.6rem; padding-top: 0.5rem;
     border-top: 1px dashed var(--border-subtle);
-    font-style: italic; color: var(--text-muted); font-size: 12px;
+    font-style: italic; color: var(--text-muted); font-size: 0.75rem;
 }
 .trick .why::before {
     content: 'Why ';
     font-style: normal; font-family: 'Cinzel', serif;
-    color: var(--gold-deep); font-size: 10px;
+    color: var(--gold-deep); font-size: 0.625rem;
     letter-spacing: 1.5px; text-transform: uppercase;
     margin-right: 0.3rem; font-weight: 600;
 }
@@ -475,7 +455,7 @@ td .tag-pill {
 }
 .canonical .can-title {
     font-family: 'Cinzel', serif;
-    color: var(--gold); font-size: 11px;
+    color: var(--gold); font-size: 0.6875rem;
     letter-spacing: 2.5px; text-transform: uppercase;
     text-align: center; margin-bottom: 0.9rem; font-weight: 600;
 }
@@ -490,13 +470,13 @@ td .tag-pill {
     background: var(--bg-elevated);
     border: 1px solid var(--border-subtle);
     font-family: 'Cinzel', serif;
-    font-size: 11px; letter-spacing: 0.5px;
+    font-size: 0.6875rem; letter-spacing: 0.5px;
     color: var(--text-body); white-space: nowrap;
     border-radius: 3px;
 }
 .pill .n {
     font-family: 'Cinzel', serif; color: var(--gold);
-    font-size: 10.5px; font-weight: 700;
+    font-size: 0.65625rem; font-weight: 700;
 }
 .pill.final {
     border-color: var(--burnt);
@@ -504,10 +484,10 @@ td .tag-pill {
     color: var(--text-primary);
 }
 .pill.final .n { color: var(--burnt); }
-.arrow { color: var(--gold-deep); font-size: 10px; opacity: 0.7; }
+.arrow { color: var(--gold-deep); font-size: 0.625rem; opacity: 0.7; }
 .canonical .rule {
     text-align: center; font-style: italic;
-    color: var(--text-muted); font-size: 12px;
+    color: var(--text-muted); font-size: 0.75rem;
     border-top: 1px solid var(--border-subtle);
     padding-top: 0.7rem; margin-top: 0.4rem;
 }
@@ -525,18 +505,18 @@ td .tag-pill {
     border-radius: 4px;
     position: relative;
     box-shadow: var(--shadow-sm);
-    font-size: 12.5px;
+    font-size: 0.78125rem;
 }
 .steps > li::before {
     content: counter(step, upper-roman);
     position: absolute; left: 0.9rem; top: 0.95rem;
     font-family: 'Cinzel', serif;
-    color: var(--gold); font-size: 16px;
+    color: var(--gold); font-size: 1rem;
     font-weight: 700; width: 2.2rem; text-align: center;
 }
 .steps > li b {
     display: block; font-family: 'Cinzel', serif;
-    color: var(--text-primary); font-size: 12px;
+    color: var(--text-primary); font-size: 0.75rem;
     letter-spacing: 0.6px; text-transform: uppercase;
     font-weight: 600; margin-bottom: 0.3rem;
 }
@@ -544,12 +524,12 @@ td .tag-pill {
     display: block; margin-top: 0.5rem;
     padding-top: 0.45rem;
     border-top: 1px dashed var(--border-subtle);
-    font-style: italic; color: var(--text-muted); font-size: 11.5px;
+    font-style: italic; color: var(--text-muted); font-size: 0.71875rem;
 }
 .steps .why::before {
     content: 'Why ';
     font-style: normal; font-family: 'Cinzel', serif;
-    color: var(--gold-deep); font-size: 9.5px;
+    color: var(--gold-deep); font-size: 0.59375rem;
     letter-spacing: 1.5px; text-transform: uppercase;
     margin-right: 0.3rem; font-weight: 600;
 }
@@ -566,7 +546,7 @@ td .tag-pill {
     border: 1px solid var(--border-subtle);
     border-radius: 3px;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px; color: var(--text-body);
+    font-size: 0.6875rem; color: var(--text-body);
 }
 .tag-chip .mark {
     width: 6px; height: 6px; border-radius: 50%;
@@ -597,17 +577,17 @@ td .tag-pill {
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
     border-radius: 4px; padding: 0.7rem 0.6rem;
-    text-align: center; font-size: 11.5px;
+    text-align: center; font-size: 0.71875rem;
     box-shadow: var(--shadow-sm);
 }
 .bone .name {
     font-family: 'Cinzel', serif; color: var(--text-primary);
-    font-weight: 600; font-size: 12px; letter-spacing: 0.3px;
+    font-weight: 600; font-size: 0.75rem; letter-spacing: 0.3px;
     margin-bottom: 0.2rem;
 }
 .bone .target {
     font-family: 'IBM Plex Mono', monospace;
-    color: var(--gold); font-size: 10px;
+    color: var(--gold); font-size: 0.625rem;
     text-transform: uppercase; letter-spacing: 0.5px;
 }
 @media (max-width: 720px) {
@@ -619,7 +599,7 @@ td .tag-pill {
     margin-top: 2rem; padding-top: 1rem;
     border-top: 1px solid var(--border-subtle);
     display: flex; justify-content: space-between;
-    font-size: 12px; font-family: 'Cinzel', serif; letter-spacing: 1px;
+    font-size: 0.75rem; font-family: 'Cinzel', serif; letter-spacing: 1px;
 }
 .footer-nav a {
     color: var(--gold); text-decoration: none;
@@ -631,7 +611,7 @@ td .tag-pill {
 
 footer.site-footer {
     text-align: center; padding: 1.5rem 1rem;
-    margin-top: 1.5rem; font-size: 12px;
+    margin-top: 1.5rem; font-size: 0.75rem;
     color: var(--text-muted);
     border-top: 1px solid var(--border-subtle);
 }
@@ -663,7 +643,7 @@ footer.site-footer a {
     }
     .sidebar-section h2::after {
         content: '▾';
-        font-size: 11px;
+        font-size: 0.6875rem;
         color: var(--gold-deep);
         transition: transform 0.2s ease;
         opacity: 0.75;
@@ -676,7 +656,7 @@ footer.site-footer a {
 
     .main { padding: 1.25rem 1rem; }
     .header h1 { font-size: 1.4rem; }
-    .theme-toggle { top: 0.5rem; right: 0.5rem; padding: 0.4rem 0.7rem; font-size: 10.5px; }
+    .theme-toggle { top: 0.5rem; right: 0.5rem; padding: 0.4rem 0.7rem; font-size: 0.65625rem; }
     .bone-grid { grid-template-columns: repeat(2, 1fr); }
     .toc ol { grid-template-columns: 1fr; }
 }
@@ -695,7 +675,7 @@ footer.site-footer a {
     </style>
 </head>
 <body>
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+    <button type="button" class="theme-toggle" aria-label="Toggle theme">
         <span class="icon" id="theme-icon">☀</span>
         <span id="theme-label">Light</span>
     </button>
@@ -762,7 +742,7 @@ footer.site-footer a {
                 <p><em>A community-driven summary compiled from multiple sources: live 0.5 (Runes of Aldur) in-game systems, the 0.5.0 patch notes (21 May 2026), the 0.5 reveal stream, Maxroll, Mobalytics, Vulkk, PoE2DB, the official site, and community streamer crafting demonstrations. This codex acts as a quick reference, not as authoritative documentation — cross-check with PoE2DB and in-game tooltips before any expensive craft. The full disclaimer is on the <a href="index.html">index page</a>.</em></p>
             </div>
 
-            <nav class="toc">
+            <nav class="toc" aria-label="Table of contents">
                 <div class="toc-title">Table of Workings</div>
                 <ol>
                     <li><a href="#anatomy">Item Anatomy</a></li>
@@ -1895,7 +1875,7 @@ footer.site-footer a {
                 <p>Throughout the campaign and endgame, you encounter <strong>Ezomyte Remnants</strong> — stone monuments with pre-inscribed runes and empty slots. The campaign NPC <strong>Farrow</strong> teaches you to inscribe additional runes to complete recipes. Each completed recipe is permanently recorded in your <strong>Runebook</strong>, available at any future Remnant.</p>
                 <p>Inscribing runes <strong>resurrects nearby corpses</strong> as undead, empowered with modifiers matching the runes used (a fire rune empowers the wave with fire, an oath rune nominates an invincible leader, and so on). Defeat the wave; the inscribed item appears at the Remnant.</p>
                 <p>Larger Remnants in higher-level areas have more rune slots — up to 6, 7, or 8 — yielding rarer crafting currencies but also stacking more monster empowerment.</p>
-                <p>The richest Remnant interaction is on the <strong>Inland Heath</strong> ocean island (see <a href="poe2_endgame_guide.html#expedition">the Endgame Guide</a>): a gigantic master Remnant is ringed by smaller runestones, and each runestone you detonate activates another slot on the master — fully cleared, it opens up <em>almost any recipe</em> in a single encounter. It's the most efficient place to chase specific Runebook recipes once you reach the endgame ocean.</p>
+                <p>The richest Remnant interaction is on the <strong>Inland Heath</strong> ocean island (see <a href="poe2_endgame_guide.html#runes-of-aldur">the Endgame Guide</a>): a gigantic master Remnant is ringed by smaller runestones, and each runestone you detonate activates another slot on the master — fully cleared, it opens up <em>almost any recipe</em> in a single encounter. It's the most efficient place to chase specific Runebook recipes once you reach the endgame ocean.</p>
 
                 <h3 class="sub-title">Verisium &amp; Runic Ward</h3>
                 <p><strong>Verisium</strong> is the new core resource of the 0.5 league. It drops from Remnants, Expedition encounters, and ocean exploration. It powers:</p>
@@ -1922,7 +1902,7 @@ footer.site-footer a {
                     <li><strong>Protective Alloy</strong> — Runic Ward recovery/defence (recover ward on charm/block, +max ward on weapons)</li>
                     <li><strong>Expansive Alloy</strong> — utility/area (Presence AoE, remnant collection range, mana-cost efficiency, minion limit)</li>
                     <li><strong>Swift Alloy</strong> — speed (cast / attack speed, flask charges, totem placement)</li>
-                    <li><strong>Cyclonic Alloy</strong> — duration / debuff (skill-effect & ailment duration, slowing-potency reduction, archon buff)</li>
+                    <li><strong>Cyclonic Alloy</strong> — duration / debuff (skill-effect &amp; ailment duration, slowing-potency reduction, archon buff)</li>
                     <li><strong>Prismatic Alloy</strong> — penetration / ailment magnitude / exposure effect</li>
                     <li><strong>Mystic Alloy</strong> — caster &amp; area (spell/attack AoE, +Spirit, chain, +1 elemental infusion)</li>
                     <li><strong>Sovereign Alloy</strong> — socketed-augment effect / increased Runic Ward / resistance magnitude</li>
@@ -2071,30 +2051,9 @@ footer.site-footer a {
                 Made for the PoE2 community · A community-driven summary, AI-assisted ·
                 <a href="https://github.com/domistae/poe2-leveling/issues/new">Suggestions</a> ·
                 <a href="https://github.com/domistae/poe2-leveling">GitHub</a><br>
-                <span style="font-size: 11px; opacity: 0.7;">Path of Exile 2 is © Grinding Gear Games. Unofficial fan-made content.</span>
+                <span style="font-size: 0.6875rem; opacity: 0.7;">Path of Exile 2 is © Grinding Gear Games. Unofficial fan-made content.</span>
             </footer>
         </main>
     </div>
-
-    <script src="assets/theme.js" defer></script>
-    <script>
-        /* Mobile sidebar zone collapse */
-        (function() {
-            function isMobile() { return window.innerWidth <= 900; }
-            document.querySelectorAll(".sidebar-section h2").forEach(function(h2) {
-                h2.addEventListener("click", function() {
-                    if (!isMobile()) return;
-                    this.parentElement.classList.toggle("expanded");
-                });
-            });
-            document.querySelectorAll(".sidebar-link").forEach(function(link) {
-                link.addEventListener("click", function() {
-                    if (!isMobile()) return;
-                    var section = this.closest(".sidebar-section");
-                    if (section) section.classList.remove("expanded");
-                });
-            });
-        })();
-    </script>
 </body>
 </html>

@@ -1,0 +1,87 @@
+# Site checks: run on every push to main and on every pull request.
+# Nothing here builds or deploys the site; GitHub Pages still publishes the
+# files as they are. A red check means something needs fixing before (or
+# right after) it goes live.
+#
+#   HTML        html-validate: broken markup, accessibility mistakes (.htmlvalidate.json)
+#   CSS         stylelint: invalid CSS, duplicates, px font sizes (.stylelintrc.json)
+#   Links       lychee: internal links + #anchors on every push; external sites weekly (lychee.toml)
+#   Lighthouse  accessibility / performance / SEO report, attached as an artifact (.github/lighthouserc.json)
+#
+# Third-party actions are pinned to exact commits (supply-chain safety);
+# Dependabot (.github/dependabot.yml) proposes updates.
+
+name: Site checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '0 6 * * 1'   # Mondays 06:00 UTC: also check links to external sites
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  html:
+    name: HTML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      - run: npx --yes html-validate@9.7.1 "*.html"
+
+  css:
+    name: CSS
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      - run: npm install --no-save --no-package-lock --no-fund --no-audit stylelint@16.26.1 postcss-html@1.8.1
+      - run: npx stylelint "assets/**/*.css" "*.html"
+
+  links:
+    name: Links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Internal links and anchors
+        if: github.event_name != 'schedule'
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: --offline --config lychee.toml "*.html"
+          fail: true
+      - name: All links, including external sites
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: --config lychee.toml "*.html"
+          fail: true
+
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18 # v12
+        with:
+          configPath: ./.github/lighthouserc.json
+          uploadArtifacts: true

@@ -1,0 +1,163 @@
+<!--
+  PoE2 Leveling Campaign & Endgame Guide — League guide (seasonal)
+  Copyright (c) 2026 domistae
+  Licensed under the MIT License — see LICENSE for the full text.
+  Source: https://github.com/domistae/poe2-leveling
+  Live site: https://domistae.github.io/poe2-leveling/
+
+  You are free to use, modify, and redistribute this code, including for commercial purposes.
+  You MUST preserve this notice and provide attribution to the original source.
+  See README.md for full attribution requirements.
+
+  SEASONAL PAGE: everything about the current league lives here. Rewrite it
+  for each new league (see "Season change" in CLAUDE.md).
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <!-- DRAFT: remove this line (and add the page to sitemap.xml) when it is published -->
+    <meta name="robots" content="noindex">
+    <title>PoE 2 League Guide — Conquerors of Wraeclast (1.0)</title>
+    <meta name="description" content="Path of Exile 2 league guide for the 1.0 launch league Conquerors of Wraeclast: armies, castles and sieges in the campaign and endgame. Plus Forbidden Rites, live until 11 December.">
+    <meta name="author" content="domistae">
+    <meta name="theme-color" content="#181410">
+    <link rel="canonical" href="https://domistae.github.io/poe2-leveling/poe2_league_guide.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PoE 2 Leveling Guide">
+    <meta property="og:title" content="PoE 2 League Guide — Conquerors of Wraeclast (1.0)">
+    <meta property="og:description" content="Conquerors of Wraeclast, the Path of Exile 2 1.0 launch league: recruit an army, build a castle and lay siege to rival strongholds.">
+    <meta property="og:url" content="https://domistae.github.io/poe2-leveling/poe2_league_guide.html">
+    <meta property="og:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Path of Exile 2 League Guide — Conquerors of Wraeclast (1.0)">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PoE 2 League Guide — Conquerors of Wraeclast (1.0)">
+    <meta name="twitter:description" content="Conquerors of Wraeclast, the Path of Exile 2 1.0 launch league: recruit an army, build a castle and lay siege to rival strongholds.">
+    <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
+
+    <script src="assets/analytics.js" defer></script>
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <script src="assets/site.js"></script>
+    <link rel="stylesheet" href="assets/base.css">
+    <link rel="stylesheet" href="assets/checklist.css">
+    <link rel="stylesheet" href="assets/skin.css">
+    <link rel="stylesheet" href="assets/act.css">
+</head>
+<body class="act-page article-page">
+    <header class="site-head">
+        <div class="site-head-row">
+            <a href="index.html" class="brand">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 2 L21 12 L12 22 L3 12 Z"/><path d="M12 7 L16 12 L12 17 L8 12 Z"/></svg>
+                <span>POE2 CODEX</span>
+            </a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="poe2_leveling_guide.html" class="site-nav-link">Leveling</a>
+                <a href="poe2_endgame_guide.html" class="site-nav-link">Endgame</a>
+                <a href="poe2_league_guide.html" class="site-nav-link current" aria-current="page">League</a>
+                <a href="https://github.com/domistae/poe2-leveling" class="site-nav-link">GitHub</a>
+                <button type="button" class="theme-toggle" aria-label="Toggle theme">
+                    <span class="icon" id="theme-icon">☾</span>
+                    <span id="theme-label">Night</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="act-top">
+        <section class="act-head">
+            <div class="act-title"><span class="league-kicker">League</span><h1>Conquerors of Wraeclast</h1><span class="act-meta">1.0 launch league · from 11 December 2026</span></div>
+        </section>
+    </div>
+
+    <main class="article">
+        <div class="note warn"><span class="label">Draft</span>This page is being written. It covers what Grinding Gear Games announced at ExileCon 2026; details may change before launch. Sections marked <strong>To write</strong> are still empty.</div>
+
+        <h2>What the league is</h2>
+        <p>
+            <strong>Conquerors of Wraeclast</strong> is the launch league of <strong>Path of Exile 2 1.0</strong>,
+            starting on <strong>11 December 2026</strong>. It adds a strategy layer on top of the game: you recruit an
+            army, build a castle and lay siege to enemy strongholds. Before each battle you place your troops, then
+            fight alongside them.
+        </p>
+        <p>1.0 also brings the final two acts of the campaign and two new classes.</p>
+
+        <h2>The league mechanic</h2>
+        <div class="article-cols">
+            <section class="article-card">
+                <h3>In the campaign <span>Acts I–VI + Interludes</span></h3>
+                <ul>
+                    <li><strong>How it starts.</strong> Mercenaries who deserted the Count ask you to help free the rest of their band.</li>
+                    <li><strong>Points of interest.</strong> More than 70 new league points of interest along the campaign.</li>
+                    <li><strong>Battles.</strong> 23 battles where your troops fight with you.</li>
+                </ul>
+            </section>
+            <section class="article-card">
+                <h3>In the endgame <span>Atlas</span></h3>
+                <ul>
+                    <li><strong>100 castles.</strong> One shared map outside the starting area of the Atlas, with factions fighting for control of the castles.</li>
+                    <li><strong>Commanders.</strong> Commanders such as Athela can run maps for you while you are away.</li>
+                    <li><strong>Rewards.</strong> Major league bosses, such as Valen, the Dread Carnifex, drop Treasury keys and a new crafting material for reforging items.</li>
+                </ul>
+            </section>
+        </div>
+
+        <h2>Strategy and rewards</h2>
+        <div class="article-todo"><strong>To write:</strong> how to approach the league at launch, what to prioritise while levelling, and which rewards are worth chasing.</div>
+
+        <h2>Changes during the league</h2>
+        <div class="article-todo"><strong>To write:</strong> hotfixes and balance changes that affect the mechanic, newest first.</div>
+
+        <h2>Until 11 December: Forbidden Rites <span class="h2-note">Patch 0.5.5 · live now</span></h2>
+        <p>
+            <strong>Forbidden Rites</strong> is the event league running until 1.0. Its mechanic is a
+            <strong>reworked Ritual</strong>, with a campaign half and an endgame half.
+        </p>
+        <div class="article-cols">
+            <section class="article-card">
+                <h3>In the campaign <span>Acts I–IV + Interludes</span></h3>
+                <ul>
+                    <li><strong>One Ritual in every area.</strong> Every campaign zone holds a Ritual encounter that rewards <strong>levelling items</strong>: crafting currency and a batch of equipment.</li>
+                    <li><strong>Boss Ritual clusters.</strong> <strong>Twice per Act</strong> and <strong>once per Interlude</strong>, clusters of <strong>Ritual Effigies</strong> appear on the World Map; each boss you beat is carried into the next Ritual of the cluster.</li>
+                    <li><strong>Chain payout.</strong> Finish the series and spend your accumulated <strong>Tribute on Unique Items</strong>.</li>
+                    <li><strong>Aoife</strong> introduces each encounter; in a party, every player in the area must hear her before the Ritual starts.</li>
+                </ul>
+            </section>
+            <section class="article-card">
+                <h3>In the endgame <span>Atlas · Maps</span></h3>
+                <ul>
+                    <li><strong>Sacred Bloom</strong> adds the <strong>Viridian Wildwood</strong> to a cluster of Maps: a fog-shrouded forest where you collect trails of <strong>Azmeri Wisps</strong>.</li>
+                    <li><strong>Wisps empower the map:</strong> monsters become more powerful and more rewarding, depending on the Wisps you gathered.</li>
+                    <li><strong>Stacking Tablets</strong> add an extra Altar where possible and more Wisps in the Wildwood.</li>
+                    <li><strong>Royal Lenience</strong> lets offered Tribute <strong>Defer</strong> items at 500% more cost; party members earn their own Tribute.</li>
+                </ul>
+            </section>
+        </div>
+        <div class="note warn"><span class="label">Unverified</span>The <strong>Wisp types</strong> (Primal, Vivid, Wild, and a possible Sacred Wisp) are community-derived from PoE1's Affliction league and are not named in the 0.5.5 notes.</div>
+        <p>
+            <strong>Runes of Aldur</strong>, the league before, still runs alongside it. Much of it went core in 0.5.5:
+            <strong>Farrow</strong>, the <strong>Verisium Anvil</strong> (unlocked in <a href="poe2_act4_guide.html">Act IV</a>)
+            and its Expedition encounters. In the act guides, Runes of Aldur notes sit in burgundy boxes; the
+            <strong>League notes</strong> button shows or hides them.
+        </p>
+
+        <div class="footer-nav">
+            <a href="index.html">← Index</a>
+            <a href="poe2_leveling_guide.html">Leveling →</a>
+        </div>
+    </main>
+
+    <footer class="site-footer act-footer">
+        <div class="act-footer-row">
+            <span>Unofficial, fan-made. Path of Exile 2 is © Grinding Gear Games.</span>
+            <span class="act-footer-links"><a href="https://github.com/domistae/poe2-leveling/issues/new">Suggestions</a><a href="https://github.com/domistae/poe2-leveling">GitHub</a></span>
+        </div>
+    </footer>
+</body>
+</html>

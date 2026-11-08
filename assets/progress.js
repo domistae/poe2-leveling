@@ -1,354 +1,354 @@
 /*
- * Shared progress + checklist logic for the act and interlude pages.
- * Each page sets window.POE2_PROGRESS before this script loads:
- *   window.POE2_PROGRESS = {
- *     storageKey: 'poe2-act1-v05',
- *     allKeys: ['poe2-act1-v05', 'poe2-act2-v05', 'poe2-act3-v05', 'poe2-act4-v05', 'poe2-interludes-v05'],
- *     resetLabel: 'Act'
- *   };
- * localStorage keys are unchanged — saved progress survives the refactor.
+ * Checklist for the act and interlude pages (body.act-page).
+ * The page names its storage key and reset label on <body>:
+ *   <body class="act-page" data-progress-key="poe2-act1-v05" data-reset-label="Act I">
+ * Saved progress is a JSON array of completed step ids ("1", "2", …) in
+ * localStorage; the keys are unchanged, so earlier progress still loads.
+ *
+ * Built here from the page's own markup:
+ *   - the zone rail (one link per zone, repeat visits folded in)
+ *   - per-zone counts in each zone band
+ *   - step detail lines (tips / warnings under a step, opened with +)
+ *   - league note labels, from assets/league.js
+ * View filters (Hide done, Alt run, League notes, Cues) only hide rows; they are
+ * shared across the act pages under poe2-view-filters.
  */
 (function () {
     'use strict';
 
-    var cfg = window.POE2_PROGRESS || {};
-    var STORAGE_KEY = cfg.storageKey;
-    var ALL_STORAGE_KEYS = cfg.allKeys || [];
-    var RESET_LABEL = cfg.resetLabel || 'this page';
+    var body = document.body;
+    var STORAGE_KEY = body.getAttribute('data-progress-key');
+    var RESET_LABEL = body.getAttribute('data-reset-label') || 'this page';
+    var VIEW_KEY = 'poe2-view-filters';
+    var STEP_ID = /^\d{1,4}$/;
+    var VIEWS = { 'hide-completed': false, 'alt-leveling': false, 'league-notes': true, 'cue-notes': true };
 
-    function showToast(message, isError) {
-        var existing = document.querySelector('.toast');
-        if (existing) existing.remove();
-        var toast = document.createElement('div');
-        toast.className = 'toast' + (isError ? ' error' : '');
-        toast.textContent = message;
-        document.body.appendChild(toast);
-        setTimeout(function () { toast.remove(); }, 3000);
+    var steps = [];        // every .step on the page
+    var zones = [];        // { header, steps, count }
+    var notes = [];        // { el, owner } for notes in the route (not folded into a step)
+    var railEntries = [];  // { link, zones }
+
+    /* ── Storage (blocked storage must never break the page) ──────── */
+    function readJSON(key) {
+        try { return JSON.parse(localStorage.getItem(key)); } catch (e) { return null; }
+    }
+    function writeJSON(key, value) {
+        try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* not saved */ }
     }
 
-    function exportAllProgress() {
-        var allData = {};
-        ALL_STORAGE_KEYS.forEach(function (key) {
-            var saved = localStorage.getItem(key);
-            if (!saved) return;
-            try { allData[key] = JSON.parse(saved); } catch (e) { /* skip corrupted */ }
-        });
-        if (Object.keys(allData).length === 0) {
-            showToast('No progress to export!', true);
-            return;
-        }
-        var code = 'PoE2v05_' + btoa(JSON.stringify(allData));
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(code).then(function () {
-                showToast('Progress code copied to clipboard');
-            }).catch(function () {
-                prompt('Copy this progress code:', code);
-            });
-        } else {
-            prompt('Copy this progress code:', code);
-        }
+    /* ── Step state ───────────────────────────────────────────────── */
+    function isDone(step) { return step.classList.contains('completed'); }
+    function isOptional(step) { return !!step.querySelector('.skip'); }
+    function anyFilter() { return VIEWS['hide-completed'] || VIEWS['alt-leveling']; }
+
+    // Does this step count toward progress? Alt run counts only required steps.
+    function counts(step) { return !(VIEWS['alt-leveling'] && isOptional(step)); }
+
+    // Is this step hidden by the filters that are on?
+    function isFiltered(step) {
+        return (VIEWS['alt-leveling'] && isOptional(step)) ||
+               (VIEWS['hide-completed'] && isDone(step));
     }
 
-    function showImportDialog() {
-        var dlg = document.getElementById('importDialog');
-        var inp = document.getElementById('importCode');
-        if (dlg) dlg.style.display = 'block';
-        if (inp) { inp.value = ''; inp.focus(); }
-    }
-
-    function hideImportDialog() {
-        var dlg = document.getElementById('importDialog');
-        if (dlg) dlg.style.display = 'none';
-    }
-
-    function importAllProgress() {
-        var inp = document.getElementById('importCode');
-        if (!inp) return;
-        var code = inp.value.trim();
-        var prefix = code.indexOf('PoE2v05_') === 0 ? 'PoE2v05_'
-                   : code.indexOf('PoE2_') === 0 ? 'PoE2_' : null;
-        if (!prefix) { showToast('Invalid progress code!', true); return; }
-        if (code.length > 10000) { showToast('Progress code too large!', true); return; }
-        try {
-            var decoded = JSON.parse(atob(code.substring(prefix.length)));
-            if (typeof decoded !== 'object' || decoded === null || Array.isArray(decoded)) {
-                throw new Error('Invalid format');
-            }
-            var imported = 0;
-            Object.keys(decoded).forEach(function (key) {
-                if (ALL_STORAGE_KEYS.indexOf(key) === -1) return;
-                var steps = decoded[key];
-                if (!Array.isArray(steps) || steps.length > 200) return;
-                if (!steps.every(function (s) { return typeof s === 'string' && /^\d+$/.test(s); })) return;
-                localStorage.setItem(key, JSON.stringify(steps));
-                imported += steps.length;
-            });
-            hideImportDialog();
-            loadProgress();
-            showToast('Imported ' + imported + ' completed steps');
-        } catch (e) {
-            showToast('Failed to import — invalid code', true);
-        }
+    function setDone(step, done) {
+        step.classList.toggle('completed', done);
+        var check = step.querySelector('.step-check');
+        if (check) check.setAttribute('aria-checked', done ? 'true' : 'false');
     }
 
     function loadProgress() {
-        document.querySelectorAll('.step.completed').forEach(function (el) {
-            el.classList.remove('completed');
-        });
-        var saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {
-            var steps = [];
-            try { steps = JSON.parse(saved); } catch (e) { steps = []; }
-            if (Array.isArray(steps)) {
-                steps.forEach(function (step) {
-                    var el = document.querySelector('[data-step="' + step + '"]');
-                    if (el) el.classList.add('completed');
-                });
-            }
+        var saved = readJSON(STORAGE_KEY);
+        var done = {};
+        if (Array.isArray(saved)) {
+            saved.forEach(function (id) { if (typeof id === 'string' && STEP_ID.test(id)) done[id] = true; });
         }
-        updateProgressBar();
-        syncZoneMarks();
-        // Import re-runs this after the filters are already live.
-        syncOrphanNotes();
-        syncEmptyZones();
+        steps.forEach(function (step) { setDone(step, done[step.getAttribute('data-step')] === true); });
     }
 
     function saveProgress() {
-        var completed = [];
-        document.querySelectorAll('.step.completed').forEach(function (el) {
-            completed.push(el.dataset.step);
+        writeJSON(STORAGE_KEY, steps.filter(isDone).map(function (s) { return s.getAttribute('data-step'); }));
+    }
+
+    function resetProgress() {
+        if (!window.confirm('Reset all progress for ' + RESET_LABEL + '?')) return;
+        try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* nothing saved */ }
+        steps.forEach(function (step) { setDone(step, false); });
+        render();
+    }
+
+    /* ── Rendering: everything that follows from step state + views ─ */
+    function render() {
+        renderProgress();
+        renderZones();
+        renderNotes();
+        renderRail();
+    }
+
+    function renderProgress() {
+        var counted = steps.filter(counts);
+        var done = counted.filter(isDone).length;
+        var text = document.getElementById('actProgressText');
+        var bar = document.getElementById('actProgressBar');
+        if (text) text.textContent = done + ' / ' + counted.length;
+        if (bar) bar.style.width = (counted.length ? done / counted.length * 100 : 0) + '%';
+    }
+
+    // Each band shows "done/total"; a zone whose steps are all filtered out
+    // keeps its band as a landmark, stripped back to the title (.zone-empty).
+    function renderZones() {
+        zones.forEach(function (z) {
+            var counted = z.steps.filter(counts);
+            z.count.textContent = counted.length ? counted.filter(isDone).length + '/' + counted.length : '';
+            z.header.classList.toggle('zone-empty', anyFilter() && isZoneFiltered(z));
         });
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
     }
 
-    function isRequiredStep(stepEl) { return !stepEl.querySelector('.skip'); }
-
-    function getZoneSteps(zoneHeader) {
-        var steps = [];
-        var el = zoneHeader.nextElementSibling;
-        while (el && !el.classList.contains('zone-header')) {
-            if (el.classList.contains('step')) steps.push(el);
-            el = el.nextElementSibling;
-        }
-        return steps;
+    function isZoneFiltered(z) {
+        return z.steps.length > 0 && z.steps.every(isFiltered);
     }
 
-    function markZoneRequired(checkbox) {
-        var zoneHeader = checkbox.closest('.zone-header');
-        var target = checkbox.checked;
-        getZoneSteps(zoneHeader).forEach(function (step) {
-            if (isRequiredStep(step)) step.classList.toggle('completed', target);
-        });
-        afterStepChange();
-    }
-
-    function syncZoneMarks() {
-        document.querySelectorAll('.zone-header').forEach(function (zh) {
-            var cb = zh.querySelector('.zone-mark input[type="checkbox"]');
-            if (!cb) return;
-            var required = getZoneSteps(zh).filter(isRequiredStep);
-            if (required.length === 0) { cb.checked = false; return; }
-            cb.checked = required.every(function (s) { return s.classList.contains('completed'); });
+    // A note left in the route hides with its owner: a step's note with that
+    // step, a zone-level note only once the whole zone is filtered out.
+    function renderNotes() {
+        notes.forEach(function (n) {
+            var orphan = n.owner && (n.owner.steps ? anyFilter() && isZoneFiltered(n.owner) : isFiltered(n.owner));
+            n.el.classList.toggle('note-orphan', !!orphan);
         });
     }
 
-    function initZoneMarks() {
-        document.querySelectorAll('.zone-header').forEach(function (zh) {
-            if (zh.querySelector('.zone-mark')) return;
-            var required = getZoneSteps(zh).filter(isRequiredStep);
-            if (required.length === 0) return;
-            var label = document.createElement('label');
-            label.className = 'zone-mark';
-            label.innerHTML = '<input type="checkbox"><span>mark required</span>';
-            var cb = label.querySelector('input');
-            cb.addEventListener('change', function (e) { e.stopPropagation(); markZoneRequired(this); });
-            label.addEventListener('click', function (e) { e.stopPropagation(); });
-            zh.appendChild(label);
+    // The current zone is where the first unfinished step sits. A zone visited
+    // again later (a town, a "Return") counts as done once its first visit is.
+    function renderRail() {
+        var current = -1;
+        zones.forEach(function (z, i) {
+            if (current === -1 && !z.steps.filter(counts).every(isDone)) current = i;
         });
-        syncZoneMarks();
+        railEntries.forEach(function (entry) {
+            var first = zones.indexOf(entry.zones[0]);
+            var state = current === -1 ? 'done'
+                      : entry.zones.indexOf(zones[current]) !== -1 ? 'current'
+                      : first < current ? 'done' : 'todo';
+            entry.link.classList.toggle('is-done', state === 'done');
+            entry.link.classList.toggle('is-current', state === 'current');
+            if (state === 'current') entry.link.setAttribute('aria-current', 'step');
+            else entry.link.removeAttribute('aria-current');
+        });
     }
 
-    function initStepRowClicks() {
-        document.querySelectorAll('.step').forEach(function (step) {
-            var check = step.querySelector('.step-check');
-            if (check) check.removeAttribute('onclick');
-            step.addEventListener('click', function (e) {
-                if (e.target.closest('a, .zone-mark')) return;
-                var sel = window.getSelection && window.getSelection();
-                if (sel && sel.toString().length > 0 && this.contains(sel.anchorNode)) return;
-                this.classList.toggle('completed');
-                afterStepChange();
+    /* ── View filters ─────────────────────────────────────────────── */
+    function loadViews() {
+        var saved = readJSON(VIEW_KEY);
+        if (!saved || typeof saved !== 'object') return;
+        Object.keys(VIEWS).forEach(function (k) {
+            if (typeof saved[k] === 'boolean') VIEWS[k] = saved[k];
+        });
+    }
+
+    function applyViews() {
+        Object.keys(VIEWS).forEach(function (k) {
+            body.classList.toggle(k, VIEWS[k]);
+            // a view can have several buttons (Cues: the filter chip and the eye in each zone band)
+            document.querySelectorAll('[data-view="' + k + '"]').forEach(function (btn) {
+                btn.setAttribute('aria-pressed', VIEWS[k] ? 'true' : 'false');
+            });
+        });
+        render();
+    }
+
+    function initViews() {
+        loadViews();
+        document.querySelectorAll('[data-view]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var name = btn.getAttribute('data-view');
+                if (!Object.prototype.hasOwnProperty.call(VIEWS, name)) return;
+                VIEWS[name] = !VIEWS[name];
+                writeJSON(VIEW_KEY, VIEWS);
+                applyViews();
             });
         });
     }
 
-    function resetProgress() {
-        if (!confirm('Reset all progress for this ' + RESET_LABEL + '?')) return;
-        localStorage.removeItem(STORAGE_KEY);
-        document.querySelectorAll('.step.completed').forEach(function (el) {
-            el.classList.remove('completed');
+    /* ── Building the page ────────────────────────────────────────── */
+    function el(tag, className, text) {
+        var node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text) node.textContent = text;
+        return node;
+    }
+
+    // League-only notes and steps carry data-league="<key>"; assets/league.js
+    // names the leagues. A note gets its "<name> only" label from there, and
+    // anything from a league no longer listed is dropped.
+    function initLeagues() {
+        var leagues = window.POE2_LEAGUES || {};
+        document.querySelectorAll('[data-league]').forEach(function (n) {
+            var key = n.getAttribute('data-league');
+            var league = Object.prototype.hasOwnProperty.call(leagues, key) ? leagues[key] : null;
+            if (!league || !league.name) {
+                n.remove();
+                return;
+            }
+            if (n.classList.contains('note')) n.insertBefore(el('span', 'label', league.name + ' only'), n.firstChild);
         });
-        updateProgressBar();
-        syncZoneMarks();
-        syncOrphanNotes();
-        syncEmptyZones();
+        steps = steps.filter(function (s) { return s.isConnected; });
+        if (!document.querySelector('[data-league]')) {
+            var btn = document.querySelector('[data-view="league-notes"]');
+            if (btn) btn.hidden = true;
+        }
     }
 
-    function updateProgressBar() {
-        var allSteps = document.querySelectorAll('.step');
-        var requiredSteps = document.querySelectorAll('.step:not(:has(.skip))');
-        var completedAll = document.querySelectorAll('.step.completed');
-        var completedRequired = document.querySelectorAll('.step.completed:not(:has(.skip))');
-
-        var totalAll = allSteps.length;
-        var totalRequired = requiredSteps.length;
-        var doneAll = completedAll.length;
-        var doneRequired = completedRequired.length;
-
-        var barFast = document.getElementById('progressBarFast');
-        var textFast = document.getElementById('progressTextFast');
-        var barAll = document.getElementById('progressBarComplete');
-        var textAll = document.getElementById('progressTextComplete');
-
-        if (barFast && totalRequired > 0) barFast.style.width = (doneRequired / totalRequired) * 100 + '%';
-        if (textFast) textFast.textContent = doneRequired + ' / ' + totalRequired;
-        if (barAll && totalAll > 0) barAll.style.width = (doneAll / totalAll) * 100 + '%';
-        if (textAll) textAll.textContent = doneAll + ' / ' + totalAll;
-    }
-
-    /* Everything that must happen after a step's completed state changes.
-       Both entry points (the row click handler and the legacy toggleStep
-       onclick) go through here so they cannot drift apart — the row handler
-       previously skipped the filter re-sync, which left zone headers and
-       notes stale while a filter was already on. */
-    function afterStepChange() {
-        saveProgress();
-        updateProgressBar();
-        syncZoneMarks();
-        syncOrphanNotes();
-        syncEmptyZones();
-    }
-
-    function toggleStep(el) {
-        var step = el && el.closest ? el.closest('.step') : null;
-        if (!step) return;
-        step.classList.toggle('completed');
-        afterStepChange();
-    }
-
-    /* ── View filters ────────────────────────────────────────────────
-       Two independent toggles that only hide rows — they never touch
-       saved progress, and the progress counters keep counting every
-       step whether it is visible or not. Persisted per browser and
-       shared across all act pages. */
-    var VIEW_KEY = 'poe2-view-filters';
-    var VIEWS = { 'hide-completed': false, 'alt-leveling': false };
-
-    function loadViewFilters() {
-        try {
-            var saved = JSON.parse(localStorage.getItem(VIEW_KEY) || '{}');
-            Object.keys(VIEWS).forEach(function (k) { VIEWS[k] = saved[k] === true; });
-        } catch (e) { /* private mode / cleared storage — defaults stand */ }
-    }
-
-    function saveViewFilters() {
-        try { localStorage.setItem(VIEW_KEY, JSON.stringify(VIEWS)); } catch (e) {}
-    }
-
-    // Is every step in this zone hidden by the filters currently on?
-    function zoneIsFiltered(zoneHeader) {
-        var steps = getZoneSteps(zoneHeader);
-        return steps.length > 0 && steps.every(stepIsFiltered);
-    }
-
-    // A zone whose steps are all filtered out keeps its header as a landmark,
-    // but stripped back to just the title (see .zone-empty in checklist.css).
-    function syncEmptyZones() {
-        var anyFilter = VIEWS['hide-completed'] || VIEWS['alt-leveling'];
-        document.querySelectorAll('.zone-header').forEach(function (zh) {
-            zh.classList.toggle('zone-empty', anyFilter && zoneIsFiltered(zh));
-        });
-    }
-
-    // Would this step be hidden by the filters currently on? Decided from
-    // state rather than from layout, so it does not depend on a reflow
-    // having happened first.
-    function stepIsFiltered(step) {
-        if (VIEWS['alt-leveling'] && step.querySelector('.skip')) return true;
-        if (VIEWS['hide-completed'] && step.classList.contains('completed')) return true;
-        return false;
-    }
-
-    /* A .note is a SIBLING of the step it describes, not a child, so hiding a
-       step leaves its commentary stranded. Walk back to whatever each note
-       hangs off and hide it only when that owner is gone:
-         - owned by a step  -> hide when that step is filtered out
-         - owned by a zone  -> hide only when the whole zone is filtered out,
-                               so a collapsed zone title is not left trailing
-                               notes under it
-       Nothing else is touched: a note under a step you have NOT completed
-       stays put, which is the point of the per-step rule. */
-    function syncOrphanNotes() {
-        document.querySelectorAll('.note').forEach(function (n) {
+    // Tips and warnings written right under a step become that step's detail
+    // line, opened with the + on the row.
+    function foldStepNotes() {
+        var keep = ['cue', 'change', 'league', 'success'];
+        function isFoldable(n) {
+            return n.classList.contains('note') && !keep.some(function (k) { return n.classList.contains(k); });
+        }
+        document.querySelectorAll('.main > .note.tip, .main > .note.warning, .main > .note.warn').forEach(function (n) {
             var owner = n.previousElementSibling;
-            while (owner &&
-                   !owner.classList.contains('step') &&
-                   !owner.classList.contains('zone-header')) {
-                owner = owner.previousElementSibling;
+            while (owner && isFoldable(owner)) owner = owner.previousElementSibling;
+            if (!owner || !owner.classList.contains('step')) return;
+            var detail = owner.querySelector('.step-detail');
+            if (!detail) {
+                var content = owner.querySelector('.step-content');
+                var line = el('div', 'step-line');
+                while (content.firstChild) line.appendChild(content.firstChild);
+                var sign = el('span', 'step-sign', '+');
+                sign.setAttribute('aria-hidden', 'true');
+                line.appendChild(sign);
+                line.setAttribute('role', 'button');
+                line.setAttribute('tabindex', '0');
+                line.setAttribute('aria-expanded', 'false');
+                content.appendChild(line);
+                detail = el('div', 'step-detail');
+                content.appendChild(detail);
+                owner.classList.add('has-detail');
             }
-            var orphan = false;
-            if (owner && owner.classList.contains('step')) {
-                orphan = stepIsFiltered(owner);
-            } else if (owner && owner.classList.contains('zone-header')) {
-                orphan = (VIEWS['hide-completed'] || VIEWS['alt-leveling']) && zoneIsFiltered(owner);
+            detail.appendChild(n);
+        });
+    }
+
+    function toggleDetail(step) {
+        var open = step.classList.toggle('open');
+        var line = step.querySelector('.step-line');
+        var sign = step.querySelector('.step-sign');
+        if (line) line.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (sign) sign.textContent = open ? '−' : '+';
+    }
+
+    // The zone name is the band's own text, without its tags and buttons.
+    function zoneName(zh) {
+        var name = '';
+        zh.childNodes.forEach(function (n) { if (n.nodeType === 3) name += n.textContent; });
+        return name.replace(/\s+/g, ' ').trim();
+    }
+
+    function collectZones() {
+        document.querySelectorAll('.zone-header').forEach(function (zh, i) {
+            if (!zh.id) zh.id = 'zone-' + (i + 1);
+            var count = el('span', 'zone-count');
+            zh.insertBefore(count, zh.querySelector('.lvl, .frag, .map'));
+            var zone = { header: zh, steps: [], count: count };
+            for (var s = zh.nextElementSibling; s && !s.classList.contains('zone-header'); s = s.nextElementSibling) {
+                if (s.classList.contains('step')) zone.steps.push(s);
             }
-            n.classList.toggle('note-orphan', orphan);
+            zones.push(zone);
         });
     }
 
-    function applyViewFilters() {
-        Object.keys(VIEWS).forEach(function (k) {
-            document.body.classList.toggle(k, VIEWS[k]);
-            var btn = document.querySelector('[data-view="' + k + '"]');
-            if (btn) btn.setAttribute('aria-pressed', VIEWS[k] ? 'true' : 'false');
+    function collectNotes() {
+        document.querySelectorAll('.main > .note').forEach(function (n) {
+            var owner = null;
+            for (var p = n.previousElementSibling; p && !owner; p = p.previousElementSibling) {
+                if (p.classList.contains('step')) owner = p;
+                else if (p.classList.contains('zone-header')) owner = zones.filter(function (z) { return z.header === p; })[0];
+            }
+            notes.push({ el: n, owner: owner });
         });
-        syncOrphanNotes();
-        syncEmptyZones();
     }
 
-    function toggleView(name) {
-        if (!Object.prototype.hasOwnProperty.call(VIEWS, name)) return;
-        VIEWS[name] = !VIEWS[name];
-        saveViewFilters();
-        applyViewFilters();
-    }
-
-    function initViewFilters() {
-        loadViewFilters();
-        document.querySelectorAll('[data-view]').forEach(function (btn) {
-            btn.addEventListener('click', function () { toggleView(btn.getAttribute('data-view')); });
+    // One rail link per zone; "(Return)" and repeat visits fold into the first.
+    function buildRail() {
+        var rail = document.getElementById('zoneRail');
+        if (!rail) return;
+        var byName = {};
+        zones.forEach(function (z) {
+            var name = zoneName(z.header).replace(/\s*\([^)]*\)\s*$/, '');
+            var entry = byName[name];
+            if (!entry) {
+                var link = el('a', 'rail-link');
+                link.href = '#' + z.header.id;
+                var node = el('span', 'rail-node');
+                node.setAttribute('aria-hidden', 'true');
+                var lvl = z.header.querySelector('.lvl');
+                link.appendChild(node);
+                link.appendChild(el('span', 'rail-name', name));
+                link.appendChild(el('span', 'rail-lvl', lvl ? lvl.textContent.replace(/^Lvl\s*/i, '') : ''));
+                rail.appendChild(link);
+                entry = byName[name] = { link: link, zones: [] };
+                railEntries.push(entry);
+            }
+            entry.zones.push(z);
         });
-        applyViewFilters();
     }
 
-    // onclick attributes in HTML reference these — expose globally.
-    window.toggleStep = toggleStep;
-    window.resetProgress = resetProgress;
-    window.exportAllProgress = exportAllProgress;
-    window.showImportDialog = showImportDialog;
-    window.hideImportDialog = hideImportDialog;
-    window.importAllProgress = importAllProgress;
+    /* ── Interaction ──────────────────────────────────────────────── */
+    function toggleStep(step) {
+        setDone(step, !isDone(step));
+        saveProgress();
+        render();
+    }
+
+    function initSteps() {
+        steps.forEach(function (step) {
+            var check = step.querySelector('.step-check');
+            if (!check) return;
+            check.setAttribute('role', 'checkbox');
+            check.setAttribute('tabindex', '0');
+            check.setAttribute('aria-label', 'Done');
+        });
+
+        var main = document.querySelector('.main');
+        if (!main) return;
+        main.addEventListener('click', function (e) {
+            var step = e.target.closest('.step');
+            if (!step || e.target.closest('a, .step-detail')) return;
+            if (step.classList.contains('has-detail') && !e.target.closest('.step-check')) {
+                toggleDetail(step);
+                return;
+            }
+            // Selecting text in a row should not tick it.
+            var sel = window.getSelection && window.getSelection();
+            if (sel && sel.toString().length > 0 && step.contains(sel.anchorNode)) return;
+            toggleStep(step);
+        });
+        main.addEventListener('keydown', function (e) {
+            if (e.key !== 'Enter' && e.key !== ' ') return;
+            var target = e.target;
+            if (target.classList.contains('step-check')) toggleStep(target.closest('.step'));
+            else if (target.classList.contains('step-line')) toggleDetail(target.closest('.step'));
+            else return;
+            e.preventDefault();
+        });
+
+        var reset = document.getElementById('resetProgress');
+        if (reset) reset.addEventListener('click', resetProgress);
+    }
 
     function init() {
+        if (!STORAGE_KEY) return;
+        steps = Array.prototype.slice.call(document.querySelectorAll('.step[data-step]'));
+        initLeagues();
+        foldStepNotes();
+        collectZones();
+        collectNotes();
+        buildRail();
         loadProgress();
-        initStepRowClicks();
-        initZoneMarks();
-        initViewFilters();
+        initSteps();
+        initViews();
+        applyViews();
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
-        init();
-    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
 })();

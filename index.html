@@ -14,16 +14,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoE2 Guide 0.5.5 — Campaign Leveling, Endgame & Crafting</title>
-    <meta name="description" content="PoE2 Patch 0.5.5 (Forbidden Rites): free Path of Exile 2 guide | PoE 2 campaign leveling, Endgame Atlas, and Crafting Codex. By a player for the community.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>PoE2 Guide 0.5.5 — Campaign Leveling &amp; Endgame</title>
+    <meta name="description" content="PoE2 Patch 0.5.5 (Forbidden Rites): free Path of Exile 2 guide | PoE 2 campaign leveling and Endgame Atlas. By a player for the community.">
     <meta name="author" content="domistae">
     <meta name="theme-color" content="#181410">
     <link rel="canonical" href="https://domistae.github.io/poe2-leveling/">
 
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="PoE2 Leveling Guide">
-    <meta property="og:title" content="PoE2 Guide 0.5.5 — Campaign Leveling, Endgame & Crafting">
-    <meta property="og:description" content="PoE2 Patch 0.5.5 (Forbidden Rites): a free interactive Path of Exile 2 guide covering campaign leveling with progress tracking, Endgame Atlas progression, and the full Crafting Codex. Made by a player, for the community.">
+    <meta property="og:title" content="PoE2 Guide 0.5.5 — Campaign Leveling & Endgame">
+    <meta property="og:description" content="PoE2 Patch 0.5.5 (Forbidden Rites): a free interactive Path of Exile 2 guide covering campaign leveling with progress tracking and Endgame Atlas progression. Made by a player, for the community.">
     <meta property="og:url" content="https://domistae.github.io/poe2-leveling/">
     <meta property="og:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
     <meta property="og:image:width" content="1200">
@@ -31,582 +33,335 @@
     <meta property="og:image:alt" content="Path of Exile 2 Leveling Guide — Interactive checklist for Patch 0.5.5 Forbidden Rites">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="PoE2 Guide 0.5.5 — Campaign Leveling, Endgame & Crafting">
-    <meta name="twitter:description" content="PoE2 Patch 0.5.5 (Forbidden Rites): a free interactive Path of Exile 2 guide covering campaign leveling with progress tracking, Endgame Atlas progression, and the full Crafting Codex. Made by a player, for the community.">
+    <meta name="twitter:title" content="PoE2 Guide 0.5.5 — Campaign Leveling & Endgame">
+    <meta name="twitter:description" content="PoE2 Patch 0.5.5 (Forbidden Rites): a free interactive Path of Exile 2 guide covering campaign leveling with progress tracking and Endgame Atlas progression. Made by a player, for the community.">
     <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
 
-    <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM" />
+    <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM">
+    <script src="assets/analytics.js" defer></script>
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7N3S1HHM51"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-7N3S1HHM51');
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <script>
-        (function() {
-            try {
-                var saved = localStorage.getItem('poe2-theme');
-                if (saved !== 'light' && saved !== 'dark' && saved !== 'night') {
-                    var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-                    saved = prefersLight ? 'light' : 'dark';
-                }
-                /* night reuses the dark theme + a [data-tint] layer */
-                document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
-                if (saved === 'night') document.documentElement.setAttribute('data-tint', 'night');
-            } catch (e) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-            try {
-                var fs = parseFloat(localStorage.getItem('poe2-font-scale'));
-                if (fs >= 0.85 && fs <= 1.30) document.documentElement.style.setProperty('--user-font-scale', fs);
-            } catch (e) {}
-        })();
-    </script>
+    <script src="assets/site.js"></script>
 
     <link rel="stylesheet" href="assets/base.css">
     <style>
-/* Index-specific extras layered on top of assets/base.css */
-:root {
-    --hero-ember:  radial-gradient(ellipse 65% 70% at bottom left,  rgba(217, 119, 6, 0.13) 0%, rgba(217, 119, 6, 0.04) 30%, transparent 60%);
-    --hero-aether: radial-gradient(ellipse 65% 70% at bottom right, rgba(29, 78, 216, 0.10) 0%, rgba(29, 78, 216, 0.03) 30%, transparent 60%);
-}
-[data-theme="dark"] {
-    --hero-ember:  radial-gradient(ellipse 70% 80% at bottom left,  rgba(217, 119, 6, 0.32) 0%, rgba(180, 70, 20, 0.14) 28%, transparent 62%);
-    --hero-aether: radial-gradient(ellipse 70% 80% at bottom right, rgba(56, 92, 158, 0.34) 0%, rgba(30, 50, 100, 0.16) 28%, transparent 62%);
-}
+/* ─── Home page — 2027 look. Text is unchanged; only layout + styling. ─── */
 body { overflow-x: hidden; }
 a { color: inherit; }
 
+/* Top bar (wordmark left, theme toggle floats right as on every page) */
+.home-bar {
+    position: relative; z-index: 5;
+    max-width: 1200px; margin: 0 auto;
+    min-height: 48px; padding: 0 7.5rem 0 1.25rem;
+    display: flex; align-items: center;
+}
+.home-mark {
+    font-family: var(--font-display); font-variation-settings: 'wdth' 125;
+    font-weight: 800; font-size: 0.8125rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text-primary); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+}
+.home-mark svg { color: var(--gold); }
 
-    /* ─── DUAL-MOOD ATMOSPHERIC BACKGROUND ──────────────────────── */
-    .codex-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-    .codex-bg-art {
-        position: absolute; inset: 0;
-        background-size: cover;
-        background-position: center;
-        opacity: 0.55;
-        mix-blend-mode: screen;
-    }
-    [data-theme=""] .codex-bg-art,
-    :root:not([data-theme="dark"]) .codex-bg-art { opacity: 0.10; mix-blend-mode: multiply; }
-    .codex-bg-art.left {
-        left: 0; right: 50%;
-        background-image: url('img/hero-bg-left.jpg');
-        mask-image: linear-gradient(to right, #000 0%, #000 55%, transparent 100%);
-        -webkit-mask-image: linear-gradient(to right, #000 0%, #000 55%, transparent 100%);
-    }
-    .codex-bg-art.right {
-        left: 50%; right: 0;
-        background-image: url('img/hero-bg-right.jpg');
-        mask-image: linear-gradient(to left, #000 0%, #000 55%, transparent 100%);
-        -webkit-mask-image: linear-gradient(to left, #000 0%, #000 55%, transparent 100%);
-    }
-    .codex-bg::before,
-    .codex-bg::after { content: ''; position: absolute; inset: 0; }
-    .codex-bg::before { background: var(--hero-ember); }
-    .codex-bg::after  { background: var(--hero-aether); }
+/* ─── MASTHEAD: the site title on its own band (no artwork behind it) ───
+   Dark slate from the design palette: soft #3c5163 glow over #141518 → #0f1012. */
+.masthead {
+    position: relative; color: #ece6df; padding: 1.05rem 1.25rem 0.95rem;
+    border-top: 1px solid var(--border-subtle);
+    background:
+        radial-gradient(ellipse 65% 170% at 50% 0%, rgba(60,81,99,.42) 0%, rgba(60,81,99,0) 72%),
+        linear-gradient(180deg, #141518 0%, #0f1012 100%);
+}
 
-    .codex-vignette {
-        position: fixed; inset: 0; z-index: 1; pointer-events: none;
-        background: radial-gradient(ellipse 120% 80% at center, transparent 40%, rgba(0,0,0,0.45) 100%);
-    }
-    :root:not([data-theme="dark"]) .codex-vignette {
-        background: radial-gradient(ellipse 120% 80% at center, transparent 60%, rgba(15, 23, 42, 0.06) 100%);
-    }
+/* ─── HERO: Leveling + Endgame on their artwork, dark in both themes ─── */
+.hero {
+    position: relative; overflow: hidden;
+    background: #0d0d0e; color: #ece6df;
+    border-top: 1px solid rgba(236,230,223,.07);
+    border-bottom: 1px solid var(--border-subtle);
+}
+.hero-art { position: absolute; inset: 0; display: flex; }
+.hero-art span { position: relative; flex: 1; overflow: hidden; }
+/* the picture sits on ::before so it can zoom inside its own half on hover */
+.hero-art span::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--art) var(--art-pos) / cover no-repeat;
+    filter: saturate(.7) brightness(.8); transition: transform .4s, filter .4s;
+}
+.hero-art .left  { --art: url('img/card-leveling.webp'); --art-pos: 42% center; }
+.hero-art .right { --art: url('img/card-endgame.webp');  --art-pos: center; }
+.hero:has(.hero-card--leveling:hover) .hero-art .left::before,
+.hero:has(.hero-card--endgame:hover) .hero-art .right::before { transform: scale(1.04); filter: saturate(.75) brightness(.92); }
+.hero::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(13,13,14,.5) 0%, rgba(13,13,14,.3) 45%, rgba(13,13,14,.85) 100%);
+}
+.hero-inner {
+    position: relative; z-index: 1;
+    max-width: 1200px; margin: 0 auto;
+    padding: 5rem 1.25rem 4rem;
+}
+.codex-header { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
+.codex-eyebrow {
+    font-size: 0.78125rem; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase;
+    color: #7993b1;
+}
+.codex-title-line {
+    margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0 0.28em;
+    font-family: var(--font-display); font-variation-settings: 'wdth' 125;
+    font-weight: 900; font-size: clamp(1.9rem, calc(4.4vw * var(--user-font-scale, 1)), 3.5rem * var(--user-font-scale, 1)); line-height: 0.95; letter-spacing: -0.015em;
+}
+.codex-wordmark { color: #f0ebe5; }
+.codex-title { color: #93a9c4; }
+.codex-tagline { font-size: 0.9375rem; color: #bfb2a5; margin: 0; }
 
+/* Two fixed columns; they stack at the same breakpoint as the artwork below,
+   so each card always sits on its own image. */
+.hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.75rem 4rem;
+}
+/* Each entry has its own colour for title and button (design palette, Night):
+   Leveling tan, Endgame steel blue, League burgundy as on the act pages
+   (the League colours sit in the .league-banner rule further down). */
+.hero-card--leveling { --accent: #d9bb8f; --accent-title: #d9bb8f; --accent-ink: #0d0d0e; }
+.hero-card--endgame  { --accent: #93a9c4; --accent-title: #93a9c4; --accent-ink: #0d0d0e; }
+.hero-card { display: flex; flex-direction: column; gap: 0.6rem; text-decoration: none; color: #ece6df; }
+.hero-card-title {
+    margin: 0; font-family: var(--font-display); font-variation-settings: 'wdth' 125;
+    font-weight: 900; font-size: 2.125rem; line-height: 0.9; letter-spacing: -0.01em; color: var(--accent-title);
+}
+.hero-card-desc { margin: 0 0 0.3rem; font-size: 0.875rem; line-height: 1.5; color: #bfb2a5; max-width: 46ch; }
+/* margin-top: auto pins the button to the bottom of its card, so both cards'
+   buttons line up however long each description is */
+.hero-cta {
+    align-self: flex-start; margin-top: auto;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    height: 38px; padding: 0 1rem;
+    font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.02em;
+    background: var(--accent); color: var(--accent-ink); border: 1px solid var(--accent);
+    transition: filter .15s;
+}
+.hero-card:hover .hero-cta, .league-banner:hover .hero-cta { filter: brightness(1.15); }
+.hero-cta-arrow { font-weight: 700; }
 
-    /* ─── PAGE CONTAINER ────────────────────────────────────────── */
-    .codex-page {
-        position: relative;
-        z-index: 2;
-        max-width: 1180px;
-        margin: 0 auto;
-        padding: 3.5rem 1.5rem 2rem;
-    }
+/* ─── LEAGUE BANNER: full width under the hero, dark in both themes ───
+   Seasonal: text in the markup, picture in .league-banner-art. */
+.league-banner {
+    --accent: #8c3f4a; --accent-title: #d79aa3; --accent-ink: #ffffff;
+    position: relative; display: block; overflow: hidden;
+    background: #0d0d0e; color: #ece6df; text-decoration: none;
+    border-bottom: 1px solid var(--border-subtle);
+}
+.league-banner-art {
+    position: absolute; inset: 0;
+    /* picture: img/card-league.webp (seasonal), darkened on the left behind the text */
+    background:
+        linear-gradient(90deg, rgba(13,13,14,.88) 0%, rgba(13,13,14,.62) 38%, rgba(13,13,14,.12) 70%, rgba(13,13,14,0) 100%),
+        url('img/card-league.webp') center 30% / cover no-repeat,
+        #160f12;
+    transition: transform .4s, filter .4s;
+}
+.league-banner:hover .league-banner-art { transform: scale(1.04); filter: brightness(1.15); }
+.league-banner-inner {
+    position: relative; max-width: 1200px; margin: 0 auto; min-height: 168px;
+    padding: 1.35rem 1.25rem; display: flex; flex-direction: column; justify-content: center; gap: 0.45rem;
+}
+.league-banner-eyebrow {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #d79aa3;
+}
+.league-banner-title {
+    font-family: var(--font-display); font-variation-settings: 'wdth' 125;
+    font-weight: 900; font-size: 2.125rem; line-height: 0.9; letter-spacing: -0.01em; color: var(--accent-title);
+}
+.league-banner-desc { font-size: 0.875rem; line-height: 1.5; color: #bfb2a5; max-width: 60ch; margin-bottom: 0.3rem; }
+.league-banner .hero-cta { margin-top: 0; }
+.codex-updated {
+    position: relative; z-index: 1; text-align: center;
+    font-family: var(--font-mono); font-size: 0.6875rem; color: #948a80;
+    padding: 0 1.25rem 1.1rem;
+}
 
-    /* ─── EDITORIAL HEADING (eyebrow + wordmark + rule + title) ─── */
-    .codex-header {
-        text-align: center;
-        margin-bottom: 2.25rem;
-    }
-    .codex-eyebrow {
-        font-family: 'Inter', sans-serif;
-        font-size: 11px;
-        font-weight: 500;
-        color: var(--text-muted);
-        letter-spacing: 0.32em;
-        text-transform: uppercase;
-        margin-bottom: 0.75rem;
-    }
-    .codex-wordmark {
-        font-family: 'Cinzel', serif;
-        font-size: clamp(2rem, 5.6vw, 2.75rem); /* 32 → 44px */
-        font-weight: 600;
-        letter-spacing: 0.06em;
-        color: var(--gold);
-        line-height: 1;
-        margin: 0;
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
-    }
-    :root:not([data-theme="dark"]) .codex-wordmark {
-        color: var(--gold-deep);
-        text-shadow: none;
-    }
-    .codex-wordmark .of { font-size: 0.8em; }
-    .codex-wordmark-rule {
-        border: 0;
-        border-top: 0.5px solid var(--border-accent);
-        max-width: 320px;
-        width: 60%;
-        margin: 0.95rem auto 1rem;
-        opacity: 0.7;
-    }
-    .codex-title {
-        font-family: 'Cinzel', serif;
-        font-size: clamp(2.4rem, 6vw, 4.2rem);
-        font-weight: 400;
-        letter-spacing: 0.32em;
-        color: var(--text-primary);
-        margin: 0;
-        text-shadow: 0 2px 14px rgba(0,0,0,0.35);
-        line-height: 1;
-    }
-    :root:not([data-theme="dark"]) .codex-title { text-shadow: none; }
-    .codex-tagline {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.875rem;
-        color: var(--text-muted);
-        letter-spacing: 0.04em;
-        font-weight: 400;
-        margin-top: 0.9rem;
-    }
-    .codex-flourish {
-        margin: 1.1rem auto 0;
-        width: 180px;
-        opacity: 0.45;
-        color: var(--gold);
-    }
+/* ─── BELOW THE HERO ─── */
+.codex-page { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 1.75rem 1.25rem 1rem; }
+.home-cols {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
+    gap: 0.75rem; align-items: start;
+}
 
-    /* ─── WHAT'S NEW · site update banner ───────────────────────── */
-    .whats-new {
-        position: relative;
+/* What's new */
+.whats-new {
+    background: var(--bg-surface); border: 1px solid var(--border-subtle);
+    padding: 0.9rem 1.1rem 1rem; margin: 0;
+}
+.whats-new-header { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+.whats-new-label { color: var(--text-muted); font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; }
+.whats-new-badge {
+    color: var(--gold); border: 1px solid color-mix(in srgb, currentColor 50%, transparent);
+    font-size: 0.625rem; font-weight: 700; letter-spacing: 0.08em; padding: 0 0.4rem; line-height: 1.6;
+    text-transform: uppercase;
+}
+.whats-new-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.whats-new-item { font-size: 0.8125rem; color: var(--text-body); line-height: 1.55; padding-left: 1rem; position: relative; }
+.whats-new-item::before {
+    content: ''; position: absolute; left: 0.1rem; top: 0.55rem;
+    width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg);
+}
+.whats-new-item strong { color: var(--text-primary); font-weight: 600; }
+.whats-new-item a {
+    color: var(--gold); text-decoration: none; font-weight: 600;
+    border-bottom: 1px solid color-mix(in srgb, currentColor 40%, transparent);
+}
+.whats-new-item a:hover { color: var(--text-primary); }
+
+/* League scope — the one burgundy element */
+.league-scope {
+    background: var(--overlay-plum);
+    border: 1px solid color-mix(in srgb, var(--plum) 45%, transparent);
+    padding: 0.9rem 1.1rem 1rem; margin: 0;
+}
+.league-scope-header { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.55rem; flex-wrap: wrap; }
+.league-scope-label {
+    color: var(--plum); font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 0.45rem;
+}
+.league-scope-label::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--plum); }
+.league-scope-badge {
+    color: var(--text-primary); border: 1px solid color-mix(in srgb, var(--plum) 50%, transparent);
+    font-family: var(--font-mono); font-size: 0.625rem; font-weight: 600; padding: 0 0.4rem; line-height: 1.6;
+}
+.league-scope p { font-size: 0.8125rem; line-height: 1.6; color: var(--text-body); margin: 0 0 0.5rem; }
+.league-scope p:last-child { margin-bottom: 0; }
+.league-scope strong { color: var(--text-primary); font-weight: 600; }
+.league-scope em { color: var(--plum); font-style: normal; font-weight: 600; }
+
+/* Disclaimer */
+.disclaimer-block { margin: 2rem 0 1rem; padding: 1.25rem 0 0; border-top: 1px solid var(--border-subtle); }
+.disclaimer-block h3 {
+    color: var(--text-muted); font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase;
+    margin: 0 0 0.45rem; font-weight: 700;
+}
+.disclaimer-block h3:not(:first-child) { margin-top: 1.1rem; }
+.disclaimer-block p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.55; margin: 0 0 0.5rem; }
+.disclaimer-block p:last-child { margin-bottom: 0; }
+.disclaimer-block strong { color: var(--text-body); font-weight: 600; }
+.disclaimer-block a { color: var(--gold); text-decoration: underline; }
+.disclaimer-block a:hover { color: var(--text-primary); }
+
+/* Footer */
+.site-footer {
+    position: relative; z-index: 2; max-width: 1200px; margin: 0 auto;
+    padding: 1.1rem 1.25rem 1.5rem; border-top: 1px solid var(--border-subtle);
+    color: var(--text-muted); font-size: 0.75rem; line-height: 1.55;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1.25rem;
+}
+.site-footer-links { display: flex; gap: 0.4rem; flex-wrap: wrap; order: 3; }
+.site-footer-link {
+    color: var(--text-body); text-decoration: none; font-size: 0.75rem; font-weight: 600;
+    padding: 0.25rem 0.65rem; border: 1px solid var(--border-subtle); border-radius: 2px;
+}
+.site-footer-link:hover { color: var(--text-primary); border-color: var(--border-accent); }
+.site-footer-disclaimer { font-size: 0.75rem; color: var(--text-dim); }
+
+/* ─── TABLET / MOBILE ─── */
+@media (max-width: 820px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    /* Stack the artwork with the cards: leveling art on top, endgame below. */
+    .hero-art { flex-direction: column; }
+    .hero-art .left  { flex: 1.15; --art-pos: center 40%; }
+    .hero-art .right { flex: 1; --art-pos: center 70%; }
+}
+@media (max-width: 760px) {
+    .masthead { padding: 1rem 1rem 0.9rem; }
+    .hero-inner { padding: 3.25rem 1rem 2.75rem; }
+    .hero-card-title, .league-banner-title { font-size: 1.75rem; }
+    .league-banner-inner { min-height: 0; padding: 1.5rem 1rem; }
+    /* text spans the whole width here, so darken the picture evenly */
+    .league-banner-art {
         background:
-            radial-gradient(ellipse at top left, var(--overlay-gold-strong) 0%, transparent 55%),
-            linear-gradient(135deg, var(--overlay-gold-soft) 0%, var(--bg-surface) 65%);
-        border: 1px solid var(--border-accent);
-        border-left: 4px solid var(--gold);
-        border-radius: 6px;
-        padding: 1rem 1.2rem 1.05rem;
-        margin: 0 0 1.75rem 0;
-        box-shadow: var(--shadow-md);
+            linear-gradient(180deg, rgba(13,13,14,.6) 0%, rgba(13,13,14,.74) 100%),
+            url('img/card-league.webp') 60% 30% / cover no-repeat,
+            #160f12;
     }
-    .whats-new-header { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.65rem; }
-    .whats-new-label {
-        font-family: 'Cinzel', serif;
-        color: var(--gold-deep);
-        font-size: 11.5px;
-        letter-spacing: 2.2px;
-        text-transform: uppercase;
-        font-weight: 700;
-    }
-    [data-theme="dark"] .whats-new-label { color: var(--gold-bright); }
-    .whats-new-badge {
-        background: var(--overlay-plum);
-        color: var(--plum);
-        border: 1px solid rgba(124, 58, 237, 0.4);
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 9px;
-        font-weight: 700;
-        letter-spacing: 1.1px;
-        padding: 0.18rem 0.5rem;
-        border-radius: 3px;
-        text-transform: uppercase;
-    }
-    [data-theme="dark"] .whats-new-badge { border-color: rgba(184, 138, 210, 0.45); }
-    .whats-new-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.55rem; }
-    .whats-new-item {
-        font-size: 0.78125rem;
-        color: var(--text-body);
-        line-height: 1.55;
-        padding-left: 1.1rem;
-        position: relative;
-    }
-    .whats-new-item::before {
-        content: '◆';
-        position: absolute; left: 0; top: 0.05rem;
-        color: var(--gold);
-        font-size: 10px;
-    }
-    .whats-new-date {
-        font-family: 'IBM Plex Mono', monospace;
-        color: var(--text-muted);
-        font-size: 10px;
-        letter-spacing: 0.6px;
-        text-transform: uppercase;
-        margin-right: 0.45rem;
-        white-space: nowrap;
-    }
-    .whats-new-item strong { color: var(--text-primary); font-weight: 600; }
-    .whats-new-item a {
-        color: var(--gold);
-        text-decoration: none;
-        font-weight: 600;
-        border-bottom: 1px dotted var(--gold);
-        transition: color 0.15s, border-color 0.15s;
-    }
-    .whats-new-item a:hover { color: var(--gold-deep); border-bottom-color: var(--gold-deep); }
-    @keyframes whats-new-pulse {
-        0%, 100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.35); }
-        50%      { box-shadow: 0 0 0 5px rgba(124, 58, 237, 0); }
-    }
-    .whats-new-badge { animation: whats-new-pulse 2.6s ease-out infinite; }
-    @media (prefers-reduced-motion: reduce) { .whats-new-badge { animation: none; } }
-
-    /* ─── LEAGUE SCOPE · what this site targets ─────────────────── */
-    .league-scope {
-        background: linear-gradient(135deg, var(--overlay-steel) 0%, var(--bg-surface) 70%);
-        border: 1px solid var(--border-subtle);
-        border-left: 4px solid var(--steel);
-        border-radius: 6px;
-        padding: 0.9rem 1.2rem 0.95rem;
-        margin: 0 0 1.25rem 0;
-        box-shadow: var(--shadow-sm);
-    }
-    .league-scope-header { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
-    .league-scope-label {
-        font-family: 'Cinzel', serif;
-        color: var(--steel);
-        font-size: 11px;
-        letter-spacing: 2.2px;
-        text-transform: uppercase;
-        font-weight: 700;
-    }
-    .league-scope-badge {
-        background: var(--overlay-steel);
-        color: var(--steel);
-        border: 1px solid rgba(29, 78, 216, 0.4);
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 9px;
-        font-weight: 700;
-        letter-spacing: 1.1px;
-        padding: 0.18rem 0.5rem;
-        border-radius: 3px;
-        text-transform: uppercase;
-    }
-    [data-theme="dark"] .league-scope-badge { border-color: rgba(126, 158, 184, 0.45); }
-    .league-scope p {
-        font-size: 0.78125rem;
-        line-height: 1.6;
-        color: var(--text-body);
-        margin: 0 0 0.5rem 0;
-    }
-    .league-scope p:last-child { margin-bottom: 0; }
-    .league-scope strong { color: var(--text-primary); font-weight: 600; }
-    .league-scope em { color: var(--steel); font-style: normal; font-weight: 600; }
-
-    /* ─── HERO CARD GRID ────────────────────────────────────────── */
-    .hero-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.75rem;
-        margin-bottom: 2.5rem;
-    }
-
-    .hero-card {
-        --card-accent: var(--gold);
-        --card-accent-bright: var(--gold-bright);
-
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        background: linear-gradient(180deg,
-            rgba(0,0,0,0.0) 0%,
-            rgba(0,0,0,0.30) 60%,
-            rgba(0,0,0,0.65) 100%),
-            var(--bg-surface);
-        border: 1px solid color-mix(in srgb, var(--card-accent) 35%, transparent);
-        border-radius: 8px;
-        overflow: hidden;
-        text-decoration: none;
-        color: var(--text-body);
-        min-height: 540px;
-        box-shadow:
-            0 1px 0 color-mix(in srgb, var(--card-accent) 18%, transparent) inset,
-            var(--shadow-md);
-        transition: transform 0.35s cubic-bezier(.2,.7,.2,1),
-                    box-shadow 0.35s,
-                    border-color 0.35s;
-        isolation: isolate;
-    }
-    :root:not([data-theme="dark"]) .hero-card {
-        background: linear-gradient(180deg,
-            rgba(255,255,255,0.0) 0%,
-            rgba(255,255,255,0.4) 60%,
-            rgba(255,255,255,0.92) 100%),
-            var(--bg-surface);
-    }
-    .hero-card:hover {
-        transform: translateY(-4px);
-        box-shadow:
-            0 1px 0 color-mix(in srgb, var(--card-accent) 32%, transparent) inset,
-            var(--shadow-lg),
-            0 0 40px color-mix(in srgb, var(--card-accent) 18%, transparent);
-        border-color: color-mix(in srgb, var(--card-accent) 70%, transparent);
-    }
-
-    /* Per-card themes — same accent colors light + dark, very vibrant */
-    .hero-card--leveling {
-        --card-accent: #d97706;
-        --card-accent-bright: #f59e0b;
-    }
-    .hero-card--endgame {
-        --card-accent: #3b82f6;
-        --card-accent-bright: #60a5fa;
-    }
-    .hero-card--crafting {
-        --card-accent: #64748b;
-        --card-accent-bright: #94a3b8;
-    }
-
-    /* Card art area (upper portion) */
-    .hero-art {
-        position: relative;
-        height: 280px;
-        background-size: cover;
-        background-position: center;
-        background-color: color-mix(in srgb, var(--card-accent) 14%, var(--bg-elevated));
-    }
-    .hero-card--leveling .hero-art { background-image: url('img/card-leveling.jpg'); }
-    .hero-card--endgame  .hero-art { background-image: url('img/card-endgame.jpg');  }
-    .hero-card--crafting .hero-art { background-image: url('img/card-crafting.jpg'); }
-    .hero-art::after {
-        content: '';
-        position: absolute; inset: 0;
-        background: linear-gradient(180deg,
-            transparent 0%,
-            transparent 55%,
-            color-mix(in srgb, var(--bg-surface) 92%, transparent) 100%);
-    }
-    :root:not([data-theme="dark"]) .hero-art::after {
-        background: linear-gradient(180deg,
-            transparent 0%,
-            transparent 50%,
-            color-mix(in srgb, var(--bg-surface) 96%, transparent) 100%);
-    }
-
-    /* Card content (lower portion) — title + divider + description + CTA, vertically centered */
-    .hero-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 1.7rem 1.4rem 1.85rem;
-        text-align: center;
-        position: relative;
-        z-index: 2;
-    }
-    .hero-card-title {
-        font-family: 'Cinzel', serif;
-        font-size: 1.55rem;
-        font-weight: 600;
-        letter-spacing: 0.18em;
-        color: var(--card-accent-bright);
-        margin-bottom: 0.4rem;
-        text-shadow: 0 2px 8px rgba(0,0,0,0.4);
-    }
-    :root:not([data-theme="dark"]) .hero-card-title {
-        color: var(--card-accent);
-        text-shadow: none;
-    }
-    .hero-card-diamond {
-        color: var(--card-accent);
-        font-size: 10px;
-        letter-spacing: 0.4em;
-        margin-bottom: 0.95rem;
-        opacity: 0.7;
-    }
-    .hero-card-desc {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.8rem;
-        line-height: 1.65;
-        color: var(--text-body);
-        margin: 0 auto 1.15rem;
-        font-weight: 400;
-        max-width: 32ch;
-    }
-    /* CTA button anchored at the bottom of the centered content group */
-    .hero-cta {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.55rem;
-        margin: 0 auto;
-        padding: 0.75rem 1.4rem;
-        min-width: 180px;
-        background: color-mix(in srgb, var(--card-accent) 14%, transparent);
-        border: 1px solid color-mix(in srgb, var(--card-accent) 55%, transparent);
-        border-radius: 4px;
-        color: var(--card-accent-bright);
-        font-family: 'Cinzel', serif;
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
-    :root:not([data-theme="dark"]) .hero-cta {
-        color: var(--card-accent);
-        background: color-mix(in srgb, var(--card-accent) 8%, transparent);
-    }
-    .hero-card:hover .hero-cta {
-        background: color-mix(in srgb, var(--card-accent) 26%, transparent);
-        border-color: var(--card-accent);
-        box-shadow: 0 0 18px color-mix(in srgb, var(--card-accent) 24%, transparent);
-    }
-    .hero-cta-arrow {
-        font-family: 'Inter', sans-serif;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: 0;
-        transition: transform 0.2s;
-    }
-    .hero-card:hover .hero-cta-arrow { transform: translateX(2px); }
-
-    /* ─── BOTTOM META ───────────────────────────────────────────── */
-    .codex-foot { text-align: center; margin-top: 0.5rem; }
-    .codex-flourish-bottom {
-        margin: 0 auto 0.9rem;
-        width: 160px;
-        opacity: 0.4;
-        color: var(--gold);
-    }
-    .codex-updated {
-        font-family: 'IBM Plex Mono', monospace;
-        font-size: 11px;
-        color: var(--text-muted);
-        letter-spacing: 0.06em;
-    }
-
-    /* ─── DISCLAIMER BLOCK ──────────────────────────────────────── */
-    .disclaimer-block {
-        margin: 3rem 0 1.5rem;
-        padding: 1.5rem 0 0;
-        border-top: 1px solid var(--border-subtle);
-    }
-    .disclaimer-block h3 {
-        font-family: 'Cinzel', serif;
-        color: var(--text-primary);
-        font-size: 11.5px;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        margin: 0 0 0.55rem;
-        font-weight: 600;
-        text-align: center;
-    }
-    .disclaimer-block h3:not(:first-child) { margin-top: 1.4rem; }
-    .disclaimer-block p {
-        font-size: 10.5px;
-        color: var(--text-muted);
-        line-height: 1.55;
-        margin: 0 0 0.55rem;
-    }
-    .disclaimer-block p:last-child { margin-bottom: 0; }
-    .disclaimer-block strong { color: var(--text-body); font-weight: 600; }
-    .disclaimer-block a { color: var(--gold); text-decoration: underline; }
-    .disclaimer-block a:hover { color: var(--gold-deep); }
-    [data-theme="dark"] .disclaimer-block a:hover { color: var(--gold-bright); }
-
-    /* ─── SITE FOOTER ───────────────────────────────────────────── */
-    .site-footer {
-        position: relative; z-index: 2;
-        max-width: 1180px; margin: 0 auto;
-        text-align: center; padding: 1.75rem 1.5rem 1.75rem;
-        border-top: 1px solid var(--border-subtle);
-        color: var(--text-muted);
-        font-size: 11.5px; line-height: 1.55;
-        display: flex; flex-direction: column; align-items: center; gap: 0.65rem;
-    }
-    .site-footer-tag { color: var(--text-muted); }
-    .site-footer-links { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
-    .site-footer-link {
-        display: inline-flex; align-items: center; gap: 0.35rem;
-        color: var(--gold); text-decoration: none;
-        padding: 0.32rem 0.85rem; font-size: 10.5px; font-weight: 600;
-        font-family: 'Cinzel', serif; letter-spacing: 1px; text-transform: uppercase;
-        border: 1px solid var(--border-subtle); border-radius: 999px;
-        transition: color 0.15s, border-color 0.15s, background 0.15s, transform 0.15s;
-    }
-    .site-footer-link:hover {
-        color: var(--gold-bright); border-color: var(--gold);
-        background: var(--overlay-gold-soft); transform: translateY(-1px);
-    }
-    .site-footer-disclaimer { font-size: 10.5px; color: var(--text-dim); opacity: 0.85; max-width: 480px; }
-
-    /* ─── TABLET ────────────────────────────────────────────────── */
-    @media (max-width: 980px) {
-        .hero-grid {
-            grid-template-columns: 1fr;
-            max-width: 480px;
-            margin-left: auto; margin-right: auto;
-            gap: 1.25rem;
-        }
-        .hero-card { min-height: 480px; }
-        .hero-art { height: 240px; }
-        .codex-page { padding: 2.5rem 1rem 1.5rem; }
-    }
-    /* ─── MOBILE ────────────────────────────────────────────────── */
-    @media (max-width: 560px) {
-        .hero-card { min-height: 420px; }
-        .hero-art { height: 200px; }
-        .hero-card-title { font-size: 1.35rem; }
-        .hero-cta { min-width: 160px; padding: 0.7rem 1.2rem; }
-        .codex-title { letter-spacing: 0.24em; }
-        .theme-toggle { top: 0.5rem; right: 0.5rem; padding: 0.4rem 0.7rem; font-size: 10.5px; }
-    }
+    .codex-page { padding: 1.25rem 1rem 1rem; }
+    .site-footer { flex-direction: column; align-items: flex-start; }
+    .site-footer-links { order: 0; }
+}
+@media (max-width: 560px) {
+    .home-bar { padding: 0 5.5rem 0 1rem; min-height: 46px; }
+    .codex-eyebrow { font-size: 0.6875rem; letter-spacing: 0.2em; }
+    .theme-toggle { top: 0.45rem; right: 0.5rem; }
+}
     </style>
 </head>
 <body>
 
     <!-- Theme toggle (matches sitewide contract: key 'poe2-theme') -->
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+    <button type="button" class="theme-toggle" aria-label="Toggle theme">
         <span class="icon" id="theme-icon">☾</span>
-        <span id="theme-label">Dark</span>
+        <span id="theme-label">Night</span>
     </button>
 
-    <!-- Atmospheric background (works with or without bitmap images) -->
-    <div class="codex-bg" aria-hidden="true">
-        <div class="codex-bg-art left"></div>
-        <div class="codex-bg-art right"></div>
+    <div class="home-bar">
+        <a href="index.html" class="home-mark" aria-label="PoE2 Codex home">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 2 L21 12 L12 22 L3 12 Z"/><path d="M12 7 L16 12 L12 17 L8 12 Z"/></svg>
+            PoE2 Codex
+        </a>
     </div>
-    <div class="codex-vignette" aria-hidden="true"></div>
 
-    <main class="codex-page">
-
-        <!-- ╔══ HEADER ══════════════════════════════════════════════════════ ╗ -->
+    <!-- ╔══ MASTHEAD ═════════════════════════════════════════════════════ ╗ -->
+    <section class="masthead" aria-label="Path of Exile 2 Codex">
         <header class="codex-header">
             <div class="codex-eyebrow">A&nbsp;&nbsp;COMPREHENSIVE&nbsp;&nbsp;GUIDE&nbsp;&nbsp;TO</div>
-            <div class="codex-wordmark">PATH <span class="of">OF</span> EXILE 2</div>
-            <hr class="codex-wordmark-rule">
-            <h1 class="codex-title">CODEX</h1>
+            <h1 class="codex-title-line"><span class="codex-wordmark">PATH OF EXILE 2</span> <span class="codex-title">CODEX</span></h1>
             <p class="codex-tagline">Patch 0.5.5 · Forbidden Rites</p>
-
-            <svg class="codex-flourish" viewBox="0 0 180 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M0 8 L70 8" stroke="currentColor" stroke-width="0.6" />
-                <path d="M110 8 L180 8" stroke="currentColor" stroke-width="0.6" />
-                <path d="M90 2 L96 8 L90 14 L84 8 Z" stroke="currentColor" stroke-width="0.8" fill="none" />
-                <circle cx="78" cy="8" r="1" fill="currentColor" />
-                <circle cx="102" cy="8" r="1" fill="currentColor" />
-            </svg>
         </header>
+    </section>
 
-        <!-- ╔══ WHAT'S NEW · site updates ════════════════════════════════════ ╗ -->
+    <!-- ╔══ HERO · Leveling + Endgame ═══════════════════════════════════ ╗ -->
+    <section class="hero" aria-label="Guides">
+        <div class="hero-art" aria-hidden="true"><span class="left"></span><span class="right"></span></div>
+        <div class="hero-inner">
+            <div class="hero-grid">
+                <a href="poe2_leveling_guide.html" class="hero-card hero-card--leveling">
+                    <h2 class="hero-card-title">LEVELING</h2>
+                    <p class="hero-card-desc">
+                        Interactive checklist for Acts&nbsp;I–IV and the Interludes.
+                        All waypoints, skill gems, items, rewards, and passive&nbsp;tree
+                        points marked.
+                    </p>
+                    <span class="hero-cta">VIEW GUIDES <span class="hero-cta-arrow">›</span></span>
+                </a>
+                <a href="poe2_endgame_guide.html" class="hero-card hero-card--endgame">
+                    <h2 class="hero-card-title">ENDGAME</h2>
+                    <p class="hero-card-desc">
+                        5 new endgame storylines (Origins of Divinity, Delirium, Breach, Ritual,
+                        Masters of the Atlas) + 2 core revamps (Abyss, Fate of the Vaal) +
+                        the new league The Runes of Aldur, and pinnacle bosses.
+                    </p>
+                    <span class="hero-cta">EXPLORE ENDGAME <span class="hero-cta-arrow">›</span></span>
+                </a>
+            </div>
+        </div>
+        <div class="codex-updated">Last updated: 7 Sep 2026 · Patch 0.5.5 · Forbidden Rites · event league, runs until 1.0</div>
+    </section>
+
+    <!-- ╔══ LEAGUE BANNER · seasonal: update the text (and picture) each league ══ ╗ -->
+    <a href="poe2_league_guide.html" class="league-banner">
+        <span class="league-banner-art" aria-hidden="true"></span>
+        <span class="league-banner-inner">
+            <span class="league-banner-eyebrow">New league · Path of Exile 2 1.0 · from 11 December</span>
+            <span class="league-banner-title">CONQUERORS OF WRAECLAST</span>
+            <span class="league-banner-desc">
+                Recruit an army, build a castle and lay siege to rival strongholds: the 1.0 launch league in one place.
+            </span>
+            <span class="hero-cta">LEAGUE GUIDE <span class="hero-cta-arrow">›</span></span>
+        </span>
+    </a>
+
+    <main class="codex-page">
+        <div class="home-cols">
         <!-- Reusable changelog. Add new <li class="whats-new-item"> entries on top. -->
         <aside class="whats-new" aria-label="What's new on this site">
             <div class="whats-new-header">
@@ -625,11 +380,6 @@ a { color: inherit; }
                     A 0.5.5 pass is still to come — <a href="poe2_endgame_guide.html">endgame guide →</a>
                 </li>
                 <li class="whats-new-item">
-                    <strong>Crafting</strong> — unchanged since the 0.5 reconciliation. Runeforging is now core in
-                    0.5.5, but parts of §XV still describe the Runes of Aldur league version —
-                    <a href="poe2_crafting_codex.html">crafting codex →</a>
-                </li>
-                <li class="whats-new-item">
                     <strong>Site</strong> — new <strong>Night</strong> theme (light / dark / night),
                     <strong>Hide done</strong> and <strong>Alt leveling</strong> filters in a rebuilt sidebar panel,
                     and a readability pass across every page. If the new colours or buttons don't show up,
@@ -638,74 +388,6 @@ a { color: inherit; }
             </ul>
         </aside>
 
-        <!-- ╔══ HERO CARDS · Leveling · Endgame · Crafting ═══════════════════ ╗ -->
-        <div class="hero-grid">
-
-            <!-- LEVELING → renamed campaign hub -->
-            <a href="poe2_leveling_guide.html" class="hero-card hero-card--leveling">
-                <div class="hero-art" role="img" aria-label="Adventurer overlooking a burning ruined city at sunset"></div>
-                <div class="hero-content">
-                    <h2 class="hero-card-title">LEVELING</h2>
-                    <div class="hero-card-diamond">◆</div>
-                    <p class="hero-card-desc">
-                        Interactive checklist for Acts&nbsp;I–IV and the Interludes.
-                        All waypoints, skill gems, items, rewards, and passive&nbsp;tree
-                        points marked.
-                    </p>
-                    <span class="hero-cta">
-                        VIEW GUIDES <span class="hero-cta-arrow">›</span>
-                    </span>
-                </div>
-            </a>
-
-            <!-- ENDGAME -->
-            <a href="poe2_endgame_guide.html" class="hero-card hero-card--endgame">
-                <div class="hero-art" role="img" aria-label="Mystical spire with rising blue energy beam over a ritual altar"></div>
-                <div class="hero-content">
-                    <h2 class="hero-card-title">ENDGAME</h2>
-                    <div class="hero-card-diamond">◆</div>
-                    <p class="hero-card-desc">
-                        5 new endgame storylines (Origins of Divinity, Delirium, Breach, Ritual,
-                        Masters of the Atlas) + 2 core revamps (Abyss, Fate of the Vaal) +
-                        the new league The Runes of Aldur, and pinnacle bosses.
-                    </p>
-                    <span class="hero-cta">
-                        EXPLORE ENDGAME <span class="hero-cta-arrow">›</span>
-                    </span>
-                </div>
-            </a>
-
-            <!-- CRAFTING CODEX -->
-            <a href="poe2_crafting_codex.html" class="hero-card hero-card--crafting">
-                <div class="hero-art" role="img" aria-label="Dark stone crafting workshop with anvil, hammer, and candlelight"></div>
-                <div class="hero-content">
-                    <h2 class="hero-card-title">CRAFTING</h2>
-                    <div class="hero-card-diamond">◆</div>
-                    <p class="hero-card-desc">
-                        As complete as possible PoE&nbsp;2 crafting reference — currencies,
-                        modifiers, omens, essences, recombinators, and the Genesis&nbsp;Tree.
-                        Tips and tricks for leveling and endgame.
-                    </p>
-                    <span class="hero-cta">
-                        OPEN CODEX <span class="hero-cta-arrow">›</span>
-                    </span>
-                </div>
-            </a>
-
-        </div>
-
-        <!-- Bottom flourish + last-updated stamp -->
-        <div class="codex-foot">
-            <svg class="codex-flourish-bottom" viewBox="0 0 160 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M0 7 L60 7" stroke="currentColor" stroke-width="0.6" />
-                <path d="M100 7 L160 7" stroke="currentColor" stroke-width="0.6" />
-                <path d="M80 1 L86 7 L80 13 L74 7 Z" stroke="currentColor" stroke-width="0.8" fill="none" />
-            </svg>
-            <div class="codex-updated">Last updated: 7 Sep 2026 · Patch 0.5.5 · Forbidden Rites · event league, runs until 1.0</div>
-        </div>
-
-        <!-- ╔══ DISCLAIMER ═══════════════════════════════════════════════════ ╗ -->
-        <!-- ╔══ LEAGUE SCOPE · which league this site is written for ═════════ ╗ -->
         <!-- Update the badge + first paragraph whenever a new league goes live. -->
         <aside class="league-scope" aria-label="Which league this guide covers">
             <div class="league-scope-header">
@@ -731,46 +413,45 @@ a { color: inherit; }
                 Cross-check the official patch notes before anything expensive.
             </p>
         </aside>
+        </div>
 
         <section class="disclaimer-block" aria-label="Disclaimer and sources">
-            <h3>This Codex is a Community Summary, Not Ground Truth</h3>
+            <h3>A Community Summary, Not Official Documentation</h3>
             <p>
-                This site is a <strong>community-driven summary</strong> compiled from multiple sources —
-                the live in-game systems, datamined references (PoE2DB), guide sites (Maxroll, Mobalytics, Vulkk),
-                official PoE2 communications and reveal streams, and crafting demonstrations shared by community
-                streamers. Sources sometimes disagree, the game changes every patch, and even the best community
-                datamining lags real in-game behaviour by hours-to-days. <strong>Treat this codex as a quick reference,
-                not as authoritative documentation.</strong> Before any expensive or high-stakes craft, cross-check
-                against PoE2DB and the live in-game tooltips.
+                This guide summarises information from the game itself, community data such as PoE2DB, guide sites
+                and official Grinding Gear Games announcements. Sources can disagree and every patch changes things,
+                so <strong>treat it as a quick reference</strong> and check the in-game tooltips when it matters.
             </p>
 
             <h3>Disclaimer</h3>
             <p>
-                This is a free, unofficial, fan-made site maintained by a single person as a hobby. It is not
-                affiliated with, endorsed by, or sponsored by Grinding Gear Games. Path of Exile and Path of Exile 2
-                are © Grinding Gear Games. All trademarks, product names, screenshots, in-game terminology and
-                game content are the property of their respective owners.
+                This is a free, unofficial fan site run by one person as a hobby. It is not affiliated with,
+                endorsed by or sponsored by Grinding Gear Games. Path of Exile and Path of Exile 2 are trademarks
+                of Grinding Gear Games; all game names, terms, images and other game content belong to their
+                respective owners and are used here only to identify and describe the game.
             </p>
             <p>
-                Content here is shared <strong>as-is, without warranty of any kind</strong>. It may be incomplete,
-                out of date, or simply wrong. No liability is accepted for any in-game decisions made on the basis
-                of this material — including crafts that brick, currency spent on misinterpreted breakpoints, or
-                any other outcome of using this information. If you rely on a number here for an expensive craft
-                and the number turns out to be stale, that's on the patch cycle, not on a contract. Use your own
-                judgement and verify with the in-game tooltips and PoE2DB.
+                The information is provided <strong>"as is", without warranty of any kind</strong>, express or
+                implied, including as to its accuracy or completeness. To the fullest extent permitted by applicable
+                law, the author is not liable for any loss or damage arising from the use of, or reliance on, this
+                site, including in-game losses. Nothing here excludes liability that cannot be excluded by law.
+            </p>
+            <p id="privacy">
+                <strong>Privacy.</strong> Only if you allow it, this site uses Google Analytics, which sets cookies,
+                to measure visits; Google processes that data under its <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">privacy
+                policy</a>. You can change your choice at any time with <strong>Cookie settings</strong> at the bottom
+                of every page. Your checklist progress, display settings and cookie choice are stored only in your
+                own browser and are never sent anywhere.
             </p>
             <p>
-                If you are the author of a guide, video, dataset, or other resource referenced (directly or
-                indirectly) by this site, and you would prefer not to be cited, summarised, or linked —
-                please <a href="https://github.com/domistae/poe2-leveling/issues/new" target="_blank" rel="noopener">open
-                an issue on GitHub</a> and the reference will be removed promptly. The same channel handles
-                factual corrections, broken links, and patch updates.
+                Spotted an error, or are you the author of a source referenced here and would rather not be cited
+                or linked? Please <a href="https://github.com/domistae/poe2-leveling/issues/new" target="_blank" rel="noopener noreferrer">open
+                an issue on GitHub</a> and it will be handled promptly.
             </p>
         </section>
 
     </main>
 
-    <!-- ╔══ SITE FOOTER ══════════════════════════════════════════════════════ ╗ -->
     <footer class="site-footer">
         <div class="site-footer-tag">Made for the PoE2 community · A community-driven summary, AI-assisted</div>
         <div class="site-footer-links">
@@ -779,29 +460,5 @@ a { color: inherit; }
         </div>
         <div class="site-footer-disclaimer">Path of Exile 2 is © Grinding Gear Games. Unofficial fan-made content.</div>
     </footer>
-
-    <script src="assets/theme.js" defer></script>
-    <!-- Buy Me a Coffee widget (index + leveling hub only) -->
-    <style>
-      /* Trim the BMC widget a notch — button, message bubble, and donation panel.
-         Targets the injected markup from widget.prod.min.js; the message bubble is an
-         anonymous inline-styled div, keyed off its 18px font. transform on #bmc-iframe
-         shrinks the panel and its (cross-origin) text together. */
-      #bmc-wbtn { width: 50px !important; height: 50px !important; }
-      #bmc-wbtn img { width: 28px !important; height: 28px !important; }
-      #bmc-wbtn ~ div[style*="font-size: 18px"] { font-size: 12px !important; padding: 10px 12px !important; }
-      /* Dark theme: BMC hardcodes the message bubble white — recolor it to match the site. */
-      [data-theme="dark"] #bmc-wbtn ~ div[style*="font-size: 18px"] {
-        background: var(--bg-surface) !important; color: var(--text-body) !important;
-        border: 1px solid var(--border-subtle) !important;
-      }
-      /* Shrink the donation panel and bring its top down a bit (it opened nearly full-height). */
-      #bmc-iframe { transform: scale(0.85) !important; min-height: 0 !important; height: 600px !important; max-height: 80vh !important; }
-      /* While the panel is closed (opacity 0) it still sits there at full size with
-         pointer-events:auto, creating a dead click-zone. Let clicks pass through until
-         it opens (opacity flips to 1). */
-      #bmc-iframe[style*="opacity: 0"] { pointer-events: none !important; }
-    </style>
-    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="domistae" data-description="Support me on Buy me a coffee!" data-message="Keeping the PoE2 Codex alive, one coffee at a time. ☕ Thanks for your support!" data-color="#FF5F5F" data-position="left" data-x_margin="18" data-y_margin="18"></script>
 </body>
 </html>

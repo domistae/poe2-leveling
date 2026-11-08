@@ -3,177 +3,128 @@
    League colors tuned to canonical PoE iconography, bright for light mode.
    ───────────────────────────────────────────────────────────── */
 
+/* ─────────────────────────────────────────────────────────────
+   2027 look — two themes, built on the official PoE2 palette:
+   #0D0D0E ink · #BFB2A5 stone · #60534C taupe · #7993B1 / #6072A2 /
+   #3C5163 steel blues. Burgundy is reserved for current-league content.
+   Light is the default token set; Night is [data-theme="dark"].
+   Variable NAMES are unchanged so every page's existing rules keep
+   working — only the values moved. --gold* now means "accent".
+   ───────────────────────────────────────────────────────────── */
+
 :root {
+    --font-body: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-display: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
     /* Surfaces */
-    --bg-base: #f4f6fa;          /* cool off-white */
-    --bg-surface: #ffffff;
-    --bg-elevated: #eef2f7;
-    --bg-step: #f8fafc;
-    --border-subtle: #dfe4ec;
-    --border-accent: #c4cbd6;
+    --bg-base: #f1eeea;
+    --bg-surface: #fbfaf8;
+    --bg-elevated: #e8e3dd;
+    --bg-step: #fbfaf8;
+    --border-subtle: #ddd6cf;
+    --border-accent: #b9aea4;
 
-    /* Text */
-    --text-primary: #0f172a;     /* near-black, slate undertone */
-    --text-body: #334155;
-    --text-muted: #57657a;       /* was #64748b — 3.90 contrast on light ground */
-    --text-dim: #636d7b;         /* was #94a3b8 — 2.37 */
-    --parchment: #0f172a;        /* now means "darkest text" for headings */
+    /* Text (all ≥ 4.5:1 on --bg-base) */
+    --text-primary: #0d0d0e;
+    --text-body: #3e3833;
+    --text-muted: #5a4f48;
+    --text-dim: #60534c;
+    --parchment: #0d0d0e;
 
-    /* Gold accents (PoE2 native).
-       LIGHT-MODE CONTRAST: these are text colours on a near-white ground, so
-       they are deepened to clear WCAG AA (4.5:1) at the 10-13px sizes the
-       guides actually use. The dark-theme block below keeps the brighter
-       values, which already pass there. Do not lighten these back without
-       re-checking contrast. */
-    --gold: #7a5c26;             /* was #b08537 — 2.61 */
-    --gold-bright: #d4a258;      /* decorative / dark-mode only */
-    --gold-deep: #6b5122;        /* was #8a6a2c — 3.87 */
+    /* Accent — steel blue (name kept as --gold for compatibility) */
+    --gold: #3c5163;
+    --gold-bright: #6072a2;
+    --gold-deep: #2f4152;
 
-    /* Semantic colors — canonical PoE league hues, deepened for light mode */
-    --sage:    #0f7434;          /* was #16a34a — 2.80 */
-    --burnt:   #c11f1f;          /* was #dc2626 — 3.96 */
-    --steel:   #1d4ed8;          /* loc / abyss — already passes */
-    --tan:     #a44b08;          /* was #b45309 — 4.18 */
-    --plum:    #7c3aed;          /* TEMPORARY league content only (Forbidden Rites) */
-    --cue:     #8a6410;          /* navigational visual cues — soft yellow */
-    --crimson: #b91c1c;          /* pinnacle threats */
+    /* Semantic colours — muted, readable on stone */
+    --sage:    #2f6b3c;
+    --burnt:   #a23a2e;          /* bosses */
+    --steel:   #3c5163;          /* locations */
+    --tan:     #7a5a2e;          /* NPCs */
+    --plum:    #7d2f3a;          /* current league (burgundy) */
+    --cue:     #6b5a1e;          /* navigation cues */
+    --crimson: #9b2c2c;
 
-    /* Per-league solid colors (used in endgame zone cards + diagram) */
-    --c-fortress:   #b45309;     /* NW · precursor bronze */
-    --c-vaal:       #991b1b;     /* N  · vaal crimson */
-    --c-abyss:      #047857;     /* E  · deep green (per user) */
-    --c-expedition: #a55b05;     /* SE · Kalguuran gold — deepened from #d97706;
-                                    Atlas tiles carry cream text, which only
-                                    reached 2.86 against the brighter gold */
-    --c-breach:     #7c3aed;     /* S  · breach purple */
-    --c-delirium:   #64748b;     /* SW · silver chrome (mid-stop) */
-    --c-delirium-a: #e2e8f0;     /* light end of silver gradient */
-    --c-delirium-b: #64748b;     /* dark end of silver gradient */
-    --c-ritual:     #be185d;     /* W  · rose-wine (blood ritual) */
+    /* Per-league marker colours (only used as small dots / bars) */
+    --c-fortress:   #8a6a3c;
+    --c-vaal:       #8a3c33;
+    --c-abyss:      #2f6f58;
+    --c-expedition: #7f6a2a;
+    --c-breach:     #5f4f94;
+    --c-delirium:   #6b7480;
+    --c-delirium-a: #c9ced6;
+    --c-delirium-b: #6b7480;
+    --c-ritual:     #8a4452;
 
-    /* Shadow stack */
-    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
-    --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.08);
-    --shadow-lg: 0 12px 30px rgba(15, 23, 42, 0.12);
+    /* Shadows — kept very light; the look is flat */
+    --shadow-sm: none;
+    --shadow-md: 0 1px 2px rgba(13, 13, 14, 0.06);
+    --shadow-lg: 0 6px 20px rgba(13, 13, 14, 0.10);
 
-    /* Overlays (theme-aware) */
-    --overlay-gold-soft: rgba(176, 133, 55, 0.07);
-    --overlay-gold-strong: rgba(176, 133, 55, 0.14);
-    --overlay-sage: rgba(22, 163, 74, 0.08);
-    --overlay-burnt: rgba(220, 38, 38, 0.08);
-    --overlay-steel: rgba(29, 78, 216, 0.08);
-    --overlay-tan: rgba(180, 83, 9, 0.08);
-    --overlay-plum: rgba(124, 58, 237, 0.08);
-    --overlay-cue: rgba(214, 178, 66, 0.13);
+    /* Overlays */
+    --overlay-gold-soft: rgba(60, 81, 99, 0.06);
+    --overlay-gold-strong: rgba(60, 81, 99, 0.11);
+    --overlay-sage: rgba(47, 107, 60, 0.08);
+    --overlay-burnt: rgba(162, 58, 46, 0.08);
+    --overlay-steel: rgba(60, 81, 99, 0.08);
+    --overlay-tan: rgba(122, 90, 46, 0.08);
+    --overlay-plum: rgba(125, 47, 58, 0.08);
+    --overlay-cue: rgba(107, 90, 30, 0.09);
 
-    /* Body font weight feels lighter on cream — use normal */
     --body-weight: 400;
 }
 
 [data-theme="dark"] {
-    --bg-base: #181410;
-    --bg-surface: #221c15;
-    --bg-elevated: #2a2218;
-    --bg-step: #1f1a13;
-    --border-subtle: #3a2f20;
-    --border-accent: #5a4830;
+    --bg-base: #0d0d0e;
+    --bg-surface: #141518;
+    --bg-elevated: #1a1d23;
+    --bg-step: #141518;
+    --border-subtle: #24272d;
+    --border-accent: #3c5163;
 
-    --text-primary: #d8cab0;
-    --text-body: #b8a888;
-    /* DARK-MODE CONTRAST: these are text colours on the near-black ground.
-       Lightened to clear WCAG AA (4.5:1) at the 10-13px sizes in use.
-       --text-muted is kept a step brighter than --text-dim so the two levels
-       of de-emphasis stay distinguishable. Do not darken without re-checking. */
-    --text-muted: #ae9d7e;       /* was #8a7c64 — 3.84 */
-    --text-dim: #978468;         /* was #5a4f3e — 2.12, the worst on the site */
-    --parchment: #e8d8a8;
+    --text-primary: #ece6df;
+    --text-body: #bfb2a5;
+    --text-muted: #a3988d;
+    --text-dim: #948a80;
+    --parchment: #ece6df;
 
-    --gold: #c89860;             /* already passes */
-    --gold-bright: #e8b878;
-    --gold-deep: #b18547;        /* was #a07840 — 3.92 */
+    --gold: #93a9c4;
+    --gold-bright: #b4c4d8;
+    --gold-deep: #7993b1;
 
-    --sage:    #9bb87a;
-    --burnt:   #d27565;          /* was #c87060 — 4.31 */
-    --steel:   #7e9eb8;
-    --tan:     #c4a47e;
-    --plum:    #b88aa0;
-    --cue:     #e3cd86;          /* soft yellow — visual cues */
-    --crimson: #fa5c5c;          /* was #c84a4a — 3.15 */
+    --sage:    #9cbf8f;
+    --burnt:   #e0928a;
+    --steel:   #93a9c4;
+    --tan:     #d9bb8f;
+    --plum:    #d79aa3;
+    --cue:     #d6c58f;
+    --crimson: #ec8a8a;
 
-    /* Per-league colors — slightly desaturated for dark mode */
-    --c-fortress:   #d97706;
-    --c-vaal:       #dc2626;
-    --c-abyss:      #10b981;     /* brighter green for dark */
-    --c-expedition: #fbbf24;
-    --c-breach:     #a78bfa;
-    --c-delirium:   #94a3b8;
-    --c-delirium-a: #cbd5e1;
-    --c-delirium-b: #475569;
-    --c-ritual:     #ec4899;     /* brighter rose for dark */
+    --c-fortress:   #b08a5a;
+    --c-vaal:       #b0625a;
+    --c-abyss:      #5f9a84;
+    --c-expedition: #b39a5a;
+    --c-breach:     #8a78b8;
+    --c-delirium:   #9aa3ad;
+    --c-delirium-a: #c9ced6;
+    --c-delirium-b: #5d6672;
+    --c-ritual:     #b0707c;
 
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.55);
+    --shadow-sm: none;
+    --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
 
-    --overlay-gold-soft: rgba(200, 152, 96, 0.06);
-    --overlay-gold-strong: rgba(200, 152, 96, 0.12);
-    --overlay-sage: rgba(155, 184, 122, 0.08);
-    --overlay-burnt: rgba(200, 112, 96, 0.08);
-    --overlay-steel: rgba(126, 158, 184, 0.08);
-    --overlay-tan: rgba(196, 164, 126, 0.08);
-    --overlay-plum: rgba(184, 138, 160, 0.08);
-    --overlay-cue: rgba(227, 205, 134, 0.10);
+    --overlay-gold-soft: rgba(121, 147, 177, 0.06);
+    --overlay-gold-strong: rgba(121, 147, 177, 0.12);
+    --overlay-sage: rgba(156, 191, 143, 0.08);
+    --overlay-burnt: rgba(224, 146, 138, 0.08);
+    --overlay-steel: rgba(121, 147, 177, 0.09);
+    --overlay-tan: rgba(217, 187, 143, 0.08);
+    --overlay-plum: rgba(140, 63, 74, 0.16);
+    --overlay-cue: rgba(214, 197, 143, 0.08);
 
-    --body-weight: 300;
-}
-
-/* ─── NIGHT ────────────────────────────────────────────────────
-   A cool, near-black variant of the dark theme (requested on GitHub:
-   "a dark one with black or blueish background").
-
-   It is layered as a separate [data-tint] attribute ON TOP of
-   data-theme="dark" rather than being its own data-theme value. That
-   matters: there are ~117 `[data-theme="dark"] .foo` rules spread across
-   base.css, checklist.css and several pages' inline styles. Reusing the
-   dark theme means every one of them keeps applying, and only the ground
-   and text tokens are re-pointed here.
-
-   Gold accents are deliberately kept — the darker ground only increases
-   their contrast, and it preserves the site's identity. */
-/* :root[...] (0,2,0) is used deliberately so these also beat the
-   `[data-theme="dark"]` (0,1,0) blocks declared inside individual pages'
-   inline <style>, which would otherwise win on source order. */
-:root[data-tint="night"] {
-    --bg-base:      #080b12;
-    --bg-surface:   #0e131c;
-    --bg-elevated:  #141b27;
-    --bg-step:      #0b1017;
-    --border-subtle: #1e2836;
-    --border-accent: #35485f;
-
-    --text-primary: #e4eaf3;
-    --text-body:    #c3cddb;
-    --text-muted:   #9aa8ba;
-    --text-dim:     #8694a6;
-    --parchment:    #dce5f2;
-
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.55);
-    --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.7);
-}
-/* Warm amber wash on the dark body becomes a cool blue one */
-:root[data-tint="night"] body {
-    background: radial-gradient(ellipse at top left, rgba(96, 140, 210, 0.09) 0%, transparent 55%), var(--bg-base);
-}
-/* The sidebar gradient is hardcoded warm brown in checklist.css and in two
-   pages' inline styles — re-point it once here instead of in three files. */
-:root[data-tint="night"] .sidebar {
-    background: linear-gradient(180deg, rgba(14, 19, 28, 0.95) 0%, rgba(8, 11, 18, 0.95) 100%);
-}
-/* Landing-page atmosphere: swap the ember/aether wash to cool blues */
-:root[data-tint="night"] {
-    --hero-ember:  radial-gradient(ellipse 70% 80% at bottom left,  rgba(56, 92, 158, 0.30) 0%, rgba(30, 50, 100, 0.14) 28%, transparent 62%);
-    --hero-aether: radial-gradient(ellipse 70% 80% at bottom right, rgba(90, 130, 190, 0.26) 0%, rgba(30, 50, 100, 0.14) 28%, transparent 62%);
+    --body-weight: 400;
 }
 
 /* ─── BASE ─────────────────────────────────────────────────── */
@@ -183,7 +134,7 @@
    element fell back to the browser default anywhere else. Shared here;
    the codex's own rule still overrides it there. */
 kbd {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 0.9em;
     padding: 0.08em 0.34em;
     border: 1px solid var(--border-accent);
@@ -202,83 +153,93 @@ html {
     font-size: calc(100% * var(--user-font-scale, 1));
 }
 body {
-    font-family: 'Inter', 'IBM Plex Sans', system-ui, sans-serif;
+    font-family: var(--font-body);
     background: var(--bg-base);
     color: var(--text-body);
-    font-size: 0.84375rem;   /* was 13.5px — scales with html font-size now */
-    line-height: 1.6;
+    font-size: 0.875rem;     /* 14px at 100% — scales with html font-size */
+    line-height: 1.55;
     min-height: 100vh;
     font-weight: var(--body-weight);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-variation-settings: 'wdth' 100;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
-body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: none;
-    pointer-events: none;
-    z-index: 0;
+/* Page backdrop: a hero picture in the lower-right corner of the window,
+   fading into the page background towards the rest of the screen. Fixed,
+   so it stays put while the page scrolls. Switched on per page with a class
+   on <body>: backdrop-leveling (hub) or backdrop-endgame. */
+body[class*="backdrop-"]::before {
+    content: ''; position: fixed; right: 0; bottom: 0; z-index: -1; pointer-events: none;
+    width: 60vw; height: 65vh;
+    background: no-repeat 40% 40% / cover;
+    -webkit-mask-image: radial-gradient(ellipse 100% 100% at 100% 100%, #000 25%, transparent 75%);
+            mask-image: radial-gradient(ellipse 100% 100% at 100% 100%, #000 25%, transparent 75%);
+    opacity: .6; filter: saturate(.85);
 }
-[data-theme="dark"] body { background: radial-gradient(ellipse at top left, rgba(200, 152, 96, 0.05) 0%, transparent 50%), var(--bg-base); }
+[data-theme="dark"] body[class*="backdrop-"]::before { opacity: .45; filter: saturate(.8); }
+body.backdrop-leveling::before { background-image: url('../img/card-leveling.webp'); }
+body.backdrop-endgame::before  { background-image: url('../img/card-endgame.webp'); background-position: center 70%; }
+@media (max-width: 760px) { body[class*="backdrop-"]::before { width: 100vw; height: 50vh; } }
+
+/* Display type: wide, heavy Archivo instead of the old serif. Every
+   former 'Cinzel' rule now points at --font-display; these rules add the
+   wide axis to the big headings. */
+h1, h2 { font-family: var(--font-display); font-variation-settings: 'wdth' 112; letter-spacing: -0.01em; }
+h1 { font-weight: 800; }
 
 /* ─── THEME TOGGLE (top-right floating) ────────────────────── */
 .theme-toggle {
     position: fixed;
-    top: 1rem; right: 1rem;
+    top: 0.6rem; right: 1rem;
     z-index: 1000;
     background: var(--bg-surface);
     border: 1px solid var(--border-accent);
-    color: var(--text-body);
-    padding: 0.5rem 0.9rem;
-    border-radius: 100px;
+    color: var(--text-primary);
+    padding: 0 0.75rem;
+    height: 32px;
+    border-radius: 2px;
     cursor: pointer;
-    font-family: 'Inter', 'IBM Plex Sans', sans-serif;
-    font-size: 11.5px;
-    font-weight: 500;
-    letter-spacing: 0.3px;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
     display: flex; align-items: center; gap: 0.45rem;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.2s;
+    transition: border-color 0.15s, color 0.15s;
 }
-.theme-toggle:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-}
-.theme-toggle .icon { font-size: 13px; }
+.theme-toggle:hover { border-color: var(--gold); color: var(--gold); }
+.theme-toggle .icon { font-size: 0.8125rem; line-height: 1; }
 
 /* ─── FONT SCALER (stacks directly below theme-toggle) ─────── */
 .font-scaler {
     position: fixed;
-    top: 3.5rem; right: 1rem;
+    top: 3rem; right: 1rem;
     z-index: 1000;
     display: flex; align-items: center;
     background: var(--bg-surface);
-    border: 1px solid var(--border-accent);
-    border-radius: 100px;
-    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-subtle);
+    border-radius: 2px;
     overflow: hidden;
-    transition: box-shadow 0.2s, border-color 0.2s;
+    transition: border-color 0.15s;
 }
-.font-scaler:hover { border-color: var(--gold); box-shadow: var(--shadow-md); }
+.font-scaler:hover { border-color: var(--border-accent); }
 .font-scaler button {
     background: transparent; border: 0; cursor: pointer;
     color: var(--text-body);
-    padding: 0.45rem 0.7rem;
-    font-size: 12px; font-weight: 600;
-    font-family: 'Inter', 'IBM Plex Sans', sans-serif;
+    padding: 0.4rem 0.65rem;
+    font-size: 0.75rem; font-weight: 600;
+    font-family: var(--font-body);
     transition: color 0.15s, background 0.15s;
     line-height: 1;
 }
 .font-scaler button:hover { color: var(--gold); background: var(--bg-elevated); }
-.font-scaler button:disabled { color: var(--text-dim); cursor: not-allowed; }
+.font-scaler button:disabled { color: var(--text-dim); cursor: not-allowed; opacity: .6; }
 .font-scaler .scale-label {
     padding: 0 0.45rem;
-    font-size: 11px; color: var(--text-muted);
+    font-size: 0.6875rem; color: var(--text-muted);
     border-left: 1px solid var(--border-subtle);
     border-right: 1px solid var(--border-subtle);
     min-width: 2.8rem; text-align: center;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
     line-height: 1;
     pointer-events: none;
@@ -286,75 +247,96 @@ body::before {
 
 /* ─── TOP NAV ─────────────────────────────────────────────── */
 .top-nav {
-    background: var(--bg-elevated);
-    border-bottom: 1px solid var(--border-accent);
-    padding: 0.55rem 7rem 0.55rem 1.25rem;
+    background: var(--bg-base);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 0 7.5rem 0 1.25rem;
+    min-height: 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    box-shadow: var(--shadow-sm);
     position: sticky;
     top: 0;
     z-index: 100;
 }
 .top-nav-home {
-    font-family: 'Cinzel', serif;
-    color: var(--text-muted);
+    font-family: var(--font-display);
+    font-variation-settings: 'wdth' 125;
+    color: var(--text-primary);
     text-decoration: none;
-    font-size: 10.5px;
-    letter-spacing: 1.8px;
+    font-size: 0.78125rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 800;
     transition: color 0.15s;
     white-space: nowrap;
 }
 .top-nav-home:hover { color: var(--gold); }
 .top-nav-links {
     display: flex;
-    gap: 0.4rem;
-    align-items: center;
+    gap: 0.15rem;
+    align-items: stretch;
+    align-self: stretch;
     flex-wrap: wrap;
     justify-content: flex-end;
 }
 .top-nav-link {
-    color: var(--text-body);
+    color: var(--text-muted);
     text-decoration: none;
-    padding: 0.3rem 0.7rem;
-    border: 1px solid var(--border-subtle);
-    border-radius: 3px;
-    font-size: 10.5px;
-    font-family: 'Cinzel', serif;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    font-weight: 600;
-    transition: all 0.15s;
+    padding: 0 0.7rem;
+    min-height: 48px;
+    display: inline-flex; align-items: center;
+    border: 0;
+    font-size: 0.8125rem;
+    font-family: var(--font-body);
+    letter-spacing: 0.01em;
+    font-weight: 500;
+    transition: color 0.15s, box-shadow 0.15s;
     white-space: nowrap;
 }
-.top-nav-link:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-    background: var(--overlay-gold-soft);
-}
+.top-nav-link:hover { color: var(--text-primary); box-shadow: inset 0 -2px 0 var(--border-accent); }
 .top-nav-link.current {
-    color: var(--gold);
-    border-color: var(--gold-deep);
-    background: var(--overlay-gold-strong);
+    color: var(--text-primary);
+    font-weight: 700;
+    box-shadow: inset 0 -2px 0 var(--gold);
 }
 @media (max-width: 700px) {
     /* Mobile nav can wrap onto multiple rows, so bump scroll-padding to clear it. */
     html { scroll-padding-top: 6rem; }
     /* Reserve right padding so the fixed theme-toggle doesn't sit on top of nav links */
-    .top-nav { padding: 0.5rem 5.25rem 0.5rem 0.75rem; flex-wrap: wrap; }
-    .top-nav-links { gap: 0.3rem; }
-    .top-nav-link { padding: 0.25rem 0.55rem; font-size: 9.5px; letter-spacing: 1px; }
+    .top-nav { padding: 0.25rem 5.5rem 0.25rem 0.75rem; flex-wrap: wrap; min-height: 44px; }
+    .top-nav-links { gap: 0; justify-content: flex-start; }
+    .top-nav-link { padding: 0 0.5rem; min-height: 40px; font-size: 0.75rem; }
     /* Font scaler stacks below theme-toggle on mobile; hide percent to save space */
-    .font-scaler { top: 2.65rem; right: 0.5rem; }
+    .font-scaler { top: 2.75rem; right: 0.5rem; }
     .font-scaler .scale-label { display: none; }
     .font-scaler button { padding: 0.35rem 0.6rem; }
-    .theme-toggle { top: 0.5rem; right: 0.5rem; padding: 0.4rem 0.7rem; font-size: 10.5px; }
+    .theme-toggle { top: 0.45rem; right: 0.5rem; padding: 0 0.6rem; height: 30px; font-size: 0.71875rem; }
 }
 
 
 /* ─── CONTAINER (sidebar layout) ───────────────────────────── */
 .container { display: flex; min-height: 100vh; position: relative; z-index: 1; }
+
+/* ─── COOKIE CONSENT (built by analytics.js) ───────────────── */
+.consent {
+    position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 2147483000;
+    width: min(640px, calc(100% - 32px)); padding: 0.9rem 1rem;
+    display: flex; align-items: center; gap: 0.75rem 1rem; flex-wrap: wrap;
+    background: var(--bg-surface); color: var(--text-body);
+    border: 1px solid var(--border-accent); box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+.consent[hidden] { display: none; }
+.consent-text { flex: 1 1 300px; margin: 0; font-size: 0.8125rem; line-height: 1.5; }
+.consent-text a { color: var(--gold); text-decoration: underline; }
+.consent-actions { display: flex; gap: 0.5rem; }
+/* both choices look the same: refusing is as easy as accepting */
+.consent-btn {
+    min-height: 34px; padding: 0 1rem; cursor: pointer;
+    font-family: inherit; font-size: 0.8125rem; font-weight: 600;
+    background: transparent; color: var(--text-primary); border: 1px solid var(--border-accent);
+}
+.consent-btn:hover { border-color: var(--gold); }
+.consent-btn:focus-visible, .consent-open:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
+button.consent-open { font-family: inherit; background: none; cursor: pointer; }
+.act-footer-links .consent-open { padding: 0; border: 0; font-size: inherit; color: var(--a-body); }

@@ -14,6 +14,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>PoE 2 Act 1 Walkthrough — Clearfell to Ogham (Patch 0.5.5)</title>
     <meta name="description" content="Path of Exile 2 Act 1 walkthrough with progress tracking. Optimal routing, all skill points and permanent rewards from Clearfell to Ogham Manor. Patch 0.5.5 (Forbidden Rites).">
     <meta name="author" content="domistae">
@@ -35,340 +37,286 @@
     <meta name="twitter:description" content="Optimal Act 1 routing with progress tracking — Clearfell to Ogham, all skill points and permanent rewards. Patch 0.5.5.">
     <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
 
-    <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM" />
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7N3S1HHM51"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-7N3S1HHM51');
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <script>
-        (function() {
-            try {
-                var saved = localStorage.getItem('poe2-theme');
-                if (saved !== 'light' && saved !== 'dark' && saved !== 'night') {
-                    var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-                    saved = prefersLight ? 'light' : 'dark';
-                }
-                /* night reuses the dark theme + a [data-tint] layer */
-                document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
-                if (saved === 'night') document.documentElement.setAttribute('data-tint', 'night');
-            } catch (e) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-            try {
-                var fs = parseFloat(localStorage.getItem('poe2-font-scale'));
-                if (fs >= 0.85 && fs <= 1.30) document.documentElement.style.setProperty('--user-font-scale', fs);
-            } catch (e) {}
-        })();
-    </script>
+    <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM">
+    <script src="assets/analytics.js" defer></script>
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <script src="assets/site.js"></script>
     <link rel="stylesheet" href="assets/base.css">
     <link rel="stylesheet" href="assets/checklist.css">
+    <link rel="stylesheet" href="assets/skin.css">
+    <link rel="stylesheet" href="assets/act.css">
 </head>
-<body>
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-        <span class="icon" id="theme-icon">☀</span>
-        <span id="theme-label">Light</span>
-    </button>
+<body class="act-page" data-progress-key="poe2-act1-v05" data-reset-label="Act I">
+    <header class="site-head">
+        <div class="site-head-row">
+            <a href="index.html" class="brand">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 2 L21 12 L12 22 L3 12 Z"/><path d="M12 7 L16 12 L12 17 L8 12 Z"/></svg>
+                <span>POE2 CODEX</span>
+            </a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="poe2_leveling_guide.html" class="site-nav-link current">Leveling</a>
+                <a href="poe2_endgame_guide.html" class="site-nav-link">Endgame</a>
+                <a href="poe2_league_guide.html" class="site-nav-link">League</a>
+                <a href="https://github.com/domistae/poe2-leveling" class="site-nav-link">GitHub</a>
+                <button type="button" class="theme-toggle" aria-label="Toggle theme">
+                    <span class="icon" id="theme-icon">☾</span>
+                    <span id="theme-label">Night</span>
+                </button>
+            </nav>
+        </div>
+    </header>
 
-    <nav class="top-nav" aria-label="Main navigation">
-        <a href="poe2_leveling_guide.html" class="top-nav-home">← Leveling Hub</a>
-        <div class="top-nav-links">
-            <a href="poe2_act1_guide.html" class="top-nav-link current" aria-current="page">Act I</a>
-            <a href="poe2_act2_guide.html" class="top-nav-link">Act II</a>
-            <a href="poe2_act3_guide.html" class="top-nav-link">Act III</a>
-            <a href="poe2_act4_guide.html" class="top-nav-link">Act IV</a>
-            <a href="poe2_interludes_guide.html" class="top-nav-link">Interludes</a>
+    <nav class="act-strip" aria-label="Acts">
+        <div class="act-strip-row">
+            <div class="act-tabs">
+            <a href="poe2_act1_guide.html" class="act-tab current" aria-current="page">Act I</a>
+            <a href="poe2_act2_guide.html" class="act-tab">Act II</a>
+            <a href="poe2_act3_guide.html" class="act-tab">Act III</a>
+            <a href="poe2_act4_guide.html" class="act-tab">Act IV</a>
+            <a href="poe2_interludes_guide.html" class="act-tab">Interludes</a>
+            <span class="act-tab coming" title="Coming with 1.0">Act V</span>
+            <span class="act-tab coming" title="Coming with 1.0">Act VI</span>
+            </div>
+            <div class="act-progress" title="Steps done on this page"><span class="act-progress-count" id="actProgressText">0 / 0</span><span class="act-progress-bar" aria-hidden="true"><span id="actProgressBar"></span></span><button type="button" class="act-reset" id="resetProgress" title="Clear progress on this page">Reset</button></div>
         </div>
     </nav>
 
-    <div class="container">
-        <aside class="sidebar">
-            <div class="progress-panel">
-                <div class="progress-row">
-                    <div class="progress-head">
-                        <span class="progress-name">⚡ Required</span>
-                        <span class="progress-count" id="progressTextFast">0 / 0</span>
-                    </div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill fast" id="progressBarFast"></div></div>
-                </div>
-                <div class="progress-row">
-                    <div class="progress-head">
-                        <span class="progress-name complete">◆ Complete</span>
-                        <span class="progress-count" id="progressTextComplete">0 / 0</span>
-                    </div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill complete" id="progressBarComplete"></div></div>
-                </div>
-
-                <div class="view-filters">
-                    <button type="button" class="view-chip" data-view="hide-completed" aria-pressed="false" title="Hide steps you have already ticked off">
-                        <span class="dot" aria-hidden="true"></span>Hide done
-                    </button>
-                    <button type="button" class="view-chip" data-view="alt-leveling" aria-pressed="false" title="Alt leveling — show only the necessary steps, hiding everything marked (Opt)">
-                        <span class="dot" aria-hidden="true"></span>Alt leveling
-                    </button>
-                </div>
-
-                <div class="panel-actions">
-                    <button class="mini-btn reset" onclick="resetProgress()" title="Clear progress on this page">Reset</button>
-                    <button class="mini-btn export" onclick="exportAllProgress()" title="Copy a progress code covering every page">Export</button>
-                    <button class="mini-btn import" onclick="showImportDialog()" title="Paste a progress code">Import</button>
-                </div>
-                <div id="importDialog" class="import-dialog" style="display:none;">
-                    <textarea id="importCode" placeholder="Paste progress code…"></textarea>
-                    <div class="import-actions">
-                        <button class="mini-btn" onclick="importAllProgress()">Import</button>
-                        <button class="mini-btn" onclick="hideImportDialog()">Cancel</button>
-                    </div>
-                </div>
+    <div class="act-top">
+        <section class="act-head">
+            <div class="act-title"><span class="act-num">I</span><h1>Clearfell to Ogham</h1><span class="act-meta">Lvl 1–14 · all classes · 0.5.5</span></div>
+            <div class="act-filters" role="group" aria-label="Filters">
+                <button type="button" class="view-chip" data-view="hide-completed" aria-pressed="false" title="Hide steps you have already ticked off">Hide done</button>
+                <button type="button" class="view-chip" data-view="alt-leveling" aria-pressed="false" title="Alt run: only the necessary steps, everything marked (Opt) is hidden">Alt run</button>
+                <button type="button" class="view-chip league" data-view="league-notes" aria-pressed="true" title="Show or hide league-only notes">League notes</button>
+                <button type="button" class="view-chip cue-toggle" data-view="cue-notes" aria-pressed="true" title="Show or hide the visual cues"><svg class="eye-open" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/></svg><svg class="eye-shut" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><path d="M4.5 4.5l15 15"/></svg><span>Cues</span></button>
             </div>
+        </section>
+        <div class="act-rewards">
+            <span class="act-rewards-label">Act rewards</span>
+            <span class="act-chip">+4 Weapon Set Skill Points</span>
+            <span class="act-chip">+10% Cold Resistance</span>
+            <span class="act-chip">+30 Spirit</span>
+            <span class="act-chip">+20 Maximum Life</span>
+            <span class="act-chip">Salvage Bench (1st char)</span>
+            <span class="act-legend" role="group" aria-label="Colour key">
+                <span class="lg-boss">Boss</span><span class="lg-npc">NPC</span><span class="lg-loc">Location</span><span class="lg-gem">Gem</span><span class="lg-perm">Permanent</span>
+            </span>
+        </div>
+    </div>
 
-            <details class="sidebar-section zones-details">
-                <summary class="zones-summary">Zones</summary>
-                <a href="#riverbank" class="sidebar-link">Riverbank</a>
-                <a href="#encampment" class="sidebar-link">Clearfell Encampment</a>
-                <a href="#clearfell" class="sidebar-link perm">Clearfell ◆</a>
-                <a href="#grelwood" class="sidebar-link">The Grelwood</a>
-                <a href="#redvale" class="sidebar-link">The Red Vale</a>
-                <a href="#grimtangle" class="sidebar-link">Grim Tangle</a>
-                <a href="#cemetery" class="sidebar-link">Cemetery of Eternals</a>
-                <a href="#hunting" class="sidebar-link perm">Hunting Grounds ◆</a>
-                <a href="#freythorn" class="sidebar-link perm">Freythorn ◆</a>
-                <a href="#oghamfarm" class="sidebar-link perm">Ogham Farmlands ◆</a>
-                <a href="#oghamvillage" class="sidebar-link">Ogham Village</a>
-                <a href="#ramparts" class="sidebar-link">Manor Ramparts</a>
-                <a href="#manor" class="sidebar-link perm">Ogham Manor ◆</a>
-            </details>
+    <div class="container act-body">
+        <aside class="act-side">
+            <nav class="zone-rail" id="zoneRail" aria-label="Zones"></nav>
         </aside>
 
         <main class="main">
-            <header class="header">
-                <h1>Act I — Clearfell to Ogham</h1>
-                <span class="patch">Patch 0.5.5 · Lvl 1–14 · All classes · Optimal routing</span>
-            </header>
-
-
-            <div class="summary-box">
-                <h3>Permanent Rewards</h3>
-                <div class="summary-grid">
-                    <div class="summary-item">+4 Weapon Set Skill Points</div>
-                    <div class="summary-item">+10% Cold Resistance</div>
-                    <div class="summary-item">+30 Spirit</div>
-                    <div class="summary-item">+20 Maximum Life</div>
-                    <div class="summary-item">Salvage Bench (1st char)</div>
-                </div>
-            </div>
 
 
             <!-- RIVERBANK -->
             <div class="zone-header" id="riverbank">Riverbank <span class="lvl">Lvl 1</span></div>
-            <div class="step" data-step="1"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="1"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Wounded Man</span>, equip starter weapon</div></div>
-            <div class="step" data-step="2"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="2"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Loot Large Chests, equip items + skills</div></div>
-            <div class="step" data-step="3"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="3"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">The Bloated Miller</span></div></div>
-            <div class="step" data-step="4"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="4"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Clearfell Encampment</span> behind boss</div></div>
 
             <!-- CLEARFELL ENCAMPMENT -->
             <div class="zone-header" id="encampment">Clearfell Encampment <span class="wp town">TOWN</span> <span class="lvl">Lvl 2</span></div>
-            <div class="step" data-step="5"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="5"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Renly</span> <span class="reward-tag gem">Skill Gem Lv1</span></div></div>
-            <div class="step" data-step="6"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="6"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Clearfell</span></div></div>
 
             <!-- CLEARFELL -->
             <div class="zone-header" id="clearfell">Clearfell <span class="lvl">Lvl 2–3</span></div>
             <div class="note change"><span class="label">0.5.5 Verisium Anvil</span>In <strong>Forbidden Rites</strong> (and Standard), the Anvil is <strong>not</strong> unlocked here — you unlock it by completing <strong>The Runeseeker quest in Act 4</strong>. After that, <span class="npc">Farrow</span> can be placed in your <strong>Hideout in all leagues</strong>, and Farrow / Dannig / Expedition become core Atlas content. See the <a href="poe2_act4_guide.html">Act 4 guide</a>.</div>
-            <div class="note legacy"><span class="label">Runes of Aldur only</span>In that league the unlock is an <strong>Act 1 chain</strong> instead: collect <strong>3 Runestones</strong> → <span class="loc">Lost Catacombs</span> → return to <span class="loc">Clearfell</span>. Runeforging then spends <strong>Verisium</strong> to add <strong>Runic Ward</strong>, a regenerating layer that absorbs damage at 1 life. The per-act ladder (Armour Runeforging → Runic Inscriptions → Unique Runeforging → Ancient Runes) is league-only. Detail in the <a href="poe2_crafting_codex.html">Crafting Codex</a>.</div>
-            <div class="step" data-step="8"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="note league" data-league="runes-of-aldur">In that league the unlock is an <strong>Act 1 chain</strong> instead: collect <strong>3 Runestones</strong> → <span class="loc">Lost Catacombs</span> → return to <span class="loc">Clearfell</span>. Runeforging then spends <strong>Verisium</strong> to add <strong>Runic Ward</strong>, a regenerating layer that absorbs damage at 1 life. The per-act ladder (Armour Runeforging → Runic Inscriptions → Unique Runeforging → Ancient Runes) is league-only.</div>
+            <div class="step" data-step="8"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Beira of the Rotten Pack</span> (north) <span class="reward-tag">+10% Cold Res</span></div></div>
-            <div class="step" data-step="9"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="9"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="loc">Mud Burrow</span> → <span class="boss">The Devourer</span> <span class="reward-tag gem">Skill Gem Lv2</span></div></div>
             <div class="note tip">A <span class="loc">waypoint</span> sits right next to <span class="loc">Mud Burrow</span>; the bridge onward leads to <span class="loc">The Grelwood</span></div>
             <div class="note tip">After the kill, talk to <span class="npc">Renly</span> in town for a Support Gem Lv1</div>
-            <div class="step" data-step="10"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="10"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Abandoned Stash</span> (inside the <span class="loc">Mysterious Campsite</span>) <span class="reward-tag gem">Skill Gem Lv1</span></div></div>
-            <div class="step" data-step="11"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="11"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">The Grelwood</span></div></div>
 
             <!-- GRELWOOD -->
-            <div class="zone-header" id="grelwood">The Grelwood <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 3–5</span></div>
-            <div class="note cue"><span class="label">Visual Cue</span><strong>Glowing roots.</strong> Magical roots with a subtle glow thread through the Grelwood and all lead the same way — toward the <span class="loc">Tree of Souls</span>. Separately, <strong>follow the river upstream</strong> and it always brings you to the <span class="loc">Red Vale</span> entrance.</div>
-            <div class="step" data-step="12"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="zone-header" id="grelwood">The Grelwood <button type="button" class="cue-mark" data-view="cue-notes" aria-pressed="true" aria-label="Visual cues in this zone: show or hide" title="Visual cues in this zone — show or hide"><svg class="eye-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/></svg><svg class="eye-shut" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><path d="M4.5 4.5l15 15"/></svg></button> <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 3–5</span></div>
+            <div class="note cue"><span class="label">Visual cue</span><strong class="cue-title">Glowing roots.</strong> Magical roots with a subtle glow thread through the Grelwood and all lead the same way — toward the <span class="loc">Tree of Souls</span>. Separately, <strong>follow the river upstream</strong> and it always brings you to the <span class="loc">Red Vale</span> entrance.</div>
+            <div class="step" data-step="12"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Find/summon/talk <span class="npc">Una</span></div></div>
-            <div class="step" data-step="13"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="13"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Take <span class="loc">waypoint</span></div></div>
-            <div class="step" data-step="14"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="14"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Grim Tangle</span> → take WP → return</div></div>
-            <div class="step" data-step="15"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="15"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">The Red Vale</span> → take WP → return</div></div>
-            <div class="step" data-step="16"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="16"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Kill <span class="boss">Gerung, the Brambleghast</span> <span class="reward-tag gem">Skill Gem Lv2</span></div></div>
-            <div class="step" data-step="17"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="17"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Hut with Cauldron (medium life + mana flasks) → <span class="boss">Areagne</span> <span class="reward-tag gem">Support Gem Lv1</span></div></div>
             <div class="note tip">Areagne is the hardest early fight — frost bomb chills her, makes it manageable</div>
-            <div class="step" data-step="18"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="18"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">The Red Vale</span></div></div>
 
             <!-- RED VALE -->
             <div class="zone-header" id="redvale">The Red Vale <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 5–6</span></div>
-            <div class="step" data-step="19"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="19"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Find 3 <span class="item">Obelisks of Rust</span>, loot Runed Girdle each</div></div>
-            <div class="step" data-step="20"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="20"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="boss">The Rust King</span> spawns on last obelisk <span class="reward-tag gem">Skill Gem Lv3</span></div></div>
             <div class="note tip">Kite mobs under his feet for AoE damage uptime</div>
-            <div class="step" data-step="21"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="21"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP back to town</div></div>
 
             <!-- BACK TO TOWN -->
             <div class="zone-header">Clearfell Encampment</div>
-            <div class="step" data-step="22"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="22"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Renly</span>, get <span class="item">Runed Spikes</span></div></div>
-            <div class="step" data-step="23"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="23"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP to <span class="loc">Grelwood</span></div></div>
 
             <!-- GRELWOOD RETURN -->
             <div class="zone-header">The Grelwood (Return)</div>
-            <div class="step" data-step="24"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="24"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Activate 3 <span class="item">Runic Seals</span></div></div>
-            <div class="step" data-step="25"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="25"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Una</span></div></div>
-            <div class="step" data-step="26"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="26"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP back to town</div></div>
 
             <!-- TOWN AGAIN -->
             <div class="zone-header">Clearfell Encampment</div>
-            <div class="step" data-step="27"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="27"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Una</span></div></div>
-            <div class="step" data-step="28"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="28"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP to <span class="loc">Grim Tangle</span></div></div>
 
             <!-- GRIM TANGLE -->
-            <div class="zone-header" id="grimtangle">Grim Tangle <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 6</span></div>
-            <div class="note cue"><span class="label">Visual Cue</span><strong>Mushrooms and caskets.</strong> Clusters of <strong>mushrooms</strong> on the ground mean the <span class="loc">Grim Tangle</span> entrance is nearby — follow them toward the Druid. A separate trail of <strong>caskets</strong> runs toward the <span class="loc">Cemetery of the Eternals</span>. The two diverge, so pick the trail matching your objective.</div>
-            <div class="step" data-step="29"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="zone-header" id="grimtangle">Grim Tangle <button type="button" class="cue-mark" data-view="cue-notes" aria-pressed="true" aria-label="Visual cues in this zone: show or hide" title="Visual cues in this zone — show or hide"><svg class="eye-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/></svg><svg class="eye-shut" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><path d="M4.5 4.5l15 15"/></svg></button> <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 6</span></div>
+            <div class="note cue"><span class="label">Visual cue</span><strong class="cue-title">Mushrooms and caskets.</strong> Clusters of <strong>mushrooms</strong> on the ground mean the <span class="loc">Grim Tangle</span> entrance is nearby — follow them toward the Druid. A separate trail of <strong>caskets</strong> runs toward the <span class="loc">Cemetery of the Eternals</span>. The two diverge, so pick the trail matching your objective.</div>
+            <div class="step" data-step="29"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Kill <span class="boss">Ervig, the Rotted Druid</span> <span class="reward-tag gem">Support Gem</span></div></div>
-            <div class="step" data-step="30"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="30"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Cemetery of the Eternals</span></div></div>
 
             <!-- CEMETERY -->
-            <div class="zone-header" id="cemetery">Cemetery of the Eternals <span class="lvl">Lvl 6–9</span></div>
-            <div class="step" data-step="31"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="zone-header" id="cemetery">Cemetery of the Eternals <button type="button" class="cue-mark" data-view="cue-notes" aria-pressed="true" aria-label="Visual cues in this zone: show or hide" title="Visual cues in this zone — show or hide"><svg class="eye-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/></svg><svg class="eye-shut" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><path d="M4.5 4.5l15 15"/></svg></button> <span class="lvl">Lvl 6–9</span></div>
+            <div class="step" data-step="31"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Lachlann the Lost</span></div></div>
-            <div class="step" data-step="32"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="32"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Ancient Ruins</span> (sarcophagus near checkpoint) <span class="reward-tag optional">Iron or Lazuli Ring</span></div></div>
-            <div class="step" data-step="33"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="33"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="loc">Mausoleum of the Praetor</span> → <span class="boss">Draven</span> → <span class="item">Draven's Memorial Key Piece</span>, TP back</div></div>
-            <div class="step" data-step="34"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="34"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="loc">Mausoleum of the Praetor</span> — <span class="item">Forgotten Riches</span> hidden cache <span class="reward-tag gem">Support Gem 1</span> <span class="reward-tag optional">Loot</span> <span class="reward-tag craft">Gold</span></div></div>
-            <div class="note cue"><span class="label">Visual Cue</span><strong>Lit pillar switch.</strong> The <span class="item">Forgotten Riches</span> cache sits behind a large sarcophagus near a checkpoint. The <strong>hidden switch is on a nearby pillar and lights up as you approach it</strong> — that glow is the tell. Pure loot (gold + rare chests, no guaranteed item), and it is repeatable by resetting the zone from the waypoint.</div>
-            <div class="step" data-step="35"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="note cue"><span class="label">Visual cue</span><strong class="cue-title">Lit pillar switch.</strong> The <span class="item">Forgotten Riches</span> cache sits behind a large sarcophagus near a checkpoint. The <strong>hidden switch is on a nearby pillar and lights up as you approach it</strong> — that glow is the tell. Pure loot (gold + rare chests, no guaranteed item), and it is repeatable by resetting the zone from the waypoint.</div>
+            <div class="step" data-step="35"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="loc">Tomb of the Consort</span> → <span class="boss">Asinia</span> → <span class="item">Asinia's Memorial Key Piece</span>, TP back</div></div>
-            <div class="step" data-step="67"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="67"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Haunted Treasure</span> secret <span class="reward-tag gem">Support Gem Lv1</span></div></div>
-            <div class="step" data-step="36"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="36"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Open <span class="item">Memorial Gate</span> next to Lachlann</div></div>
-            <div class="step" data-step="37"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="37"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Lachlann</span>, loot Ring <span class="reward-tag gem">Skill Gem Lv3</span></div></div>
-            <div class="step" data-step="38"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="38"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Exit to <span class="loc">Hunting Grounds</span> — take <span class="item">Waypoint</span> <span class="reward-tag">WP</span></div></div>
-            <div class="step" data-step="39"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="39"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP to town</div></div>
 
             <!-- TOWN -->
             <div class="zone-header">Clearfell Encampment</div>
-            <div class="step" data-step="40"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="40"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Finn</span>, <span class="npc">Una</span>, <span class="npc">The Hooded One</span></div></div>
             <div class="note tip"><span class="label">Revival</span> <span class="npc">The Hooded One</span> revives upon return — <strong>Identify</strong> is now available</div>
 
             <!-- HUNTING GROUNDS -->
-            <div class="zone-header" id="hunting">Hunting Grounds <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 10</span></div>
-            <div class="note cue"><span class="label">Visual Cue</span><strong>Locust trail.</strong> Completing this zone's small <strong>ritual encounter</strong> spawns a <strong>trail of locusts</strong> running straight to the <span class="loc">Freythorn</span> entrance. Ritual chains always point to the next-closest one — the same trick carries into endgame rituals.</div>
-            <div class="note cue"><span class="label">Visual Cue</span><strong>Blood trails + signpost.</strong> <strong>Crowbells</strong> peck at dead livestock and leave <strong>blood trails</strong> leading directly to the boss — a "farm-to-table" path straight to <span class="boss">The Crowbell</span>. A <strong>signpost on the road</strong> points the way onward to <span class="loc">Ogham Farmlands</span> — the Farmlands come first, the Village is the zone after.</div>
-            <div class="step" data-step="42"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="zone-header" id="hunting">Hunting Grounds <button type="button" class="cue-mark" data-view="cue-notes" aria-pressed="true" aria-label="Visual cues in this zone: show or hide" title="Visual cues in this zone — show or hide"><svg class="eye-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/></svg><svg class="eye-shut" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><path d="M4.5 4.5l15 15"/></svg></button> <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 10</span></div>
+            <div class="note cue"><span class="label">Visual cue</span><strong class="cue-title">Locust trail.</strong> Completing this zone's small <strong>ritual encounter</strong> spawns a <strong>trail of locusts</strong> running straight to the <span class="loc">Freythorn</span> entrance. Ritual chains always point to the next-closest one — the same trick carries into endgame rituals.</div>
+            <div class="note cue"><span class="label">Visual cue</span><strong class="cue-title">Blood trails + signpost.</strong> <strong>Crowbells</strong> peck at dead livestock and leave <strong>blood trails</strong> leading directly to the boss — a "farm-to-table" path straight to <span class="boss">The Crowbell</span>. A <strong>signpost on the road</strong> points the way onward to <span class="loc">Ogham Farmlands</span> — the Farmlands come first, the Village is the zone after.</div>
+            <div class="step" data-step="42"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Talk to <span class="npc">Delwyn</span> — starts the wisp mechanic only</div></div>
-            <div class="step" data-step="43"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="43"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">The Crowbell</span> <span class="reward-tag">+2 Skill Points</span></div></div>
             <div class="note warning">Watch slam attacks — can one-shot. Boss flees at low HP, kite carefully</div>
-            <div class="step" data-step="44"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="44"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Freythorn</span> → take WP → return</div></div>
-            <div class="step" data-step="45"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="45"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Ogham Farmlands</span> → take WP → return</div></div>
-            <div class="step" data-step="46"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="46"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Small ritual event (not near the start of the zone) — <strong>do this one</strong>, it spawns the locust trail <span class="reward-tag gem">Support Gem Lv1</span></div></div>
-            <div class="step" data-step="47"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="47"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP to <span class="loc">Freythorn</span></div></div>
 
             <!-- FREYTHORN -->
-            <div class="zone-header" id="freythorn">Freythorn <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 11–12</span></div>
-            <div class="step" data-step="48"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="zone-header" id="freythorn">Freythorn <button type="button" class="cue-mark" data-view="cue-notes" aria-pressed="true" aria-label="Visual cues in this zone: show or hide" title="Visual cues in this zone — show or hide"><svg class="eye-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/></svg><svg class="eye-shut" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><path d="M4.5 4.5l15 15"/></svg></button> <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 11–12</span></div>
+            <div class="step" data-step="48"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Activate 3 small <span class="item">Ritual Altars</span></div></div>
-            <div class="note cue"><span class="label">Visual Cue</span><strong>Smoke tendrils.</strong> The big central altar trails <strong>smoke</strong> that reaches out toward each of the three small <span class="item">Ritual Altars</span> — follow a tendril and it leads you straight to one. No need to sweep the zone.</div>
-            <div class="step" data-step="49"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="note cue"><span class="label">Visual cue</span><strong class="cue-title">Smoke tendrils.</strong> The big central altar trails <strong>smoke</strong> that reaches out toward each of the three small <span class="item">Ritual Altars</span> — follow a tendril and it leads you straight to one. No need to sweep the zone.</div>
+            <div class="step" data-step="49"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Big Ritual Altar → kill <span class="boss">The King in the Mists</span> <span class="reward-tag">+30 Spirit</span> <span class="reward-tag gem">Spirit Gem Lv4 (Persistent Buff)</span></div></div>
             <div class="note tip"><span class="npc">Aoife</span> spawns in this fight (Druid class only?) and drops a spirit gem</div>
             <div class="note warning">Phase 2: dodge totem summons + curses (stand still vs keep moving differ)</div>
-            <div class="step" data-step="50"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="50"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Ominous Altars</span> → cleanse, then claim a Charm from <span class="npc">Finn</span> in town <span class="reward-tag optional">Ruby/Sapphire/Topaz Charm</span></div></div>
-            <div class="step" data-step="51"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="51"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP to <span class="loc">Ogham Farmlands</span></div></div>
 
             <!-- OGHAM FARMLANDS -->
             <div class="zone-header" id="oghamfarm">Ogham Farmlands <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 12</span></div>
-            <div class="step" data-step="52"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="52"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="item">Una's Lute Box</span> in house near checkpoint → <span class="item">Una's Lute</span> <span class="reward-tag">+2 Skill Points</span></div></div>
             <div class="note tip">Deliver to Una in town for the reward</div>
-            <div class="step" data-step="53"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="53"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Rare dogs in crop circle <span class="reward-tag gem">Skill Gem Lv4</span></div></div>
-            <div class="step" data-step="54"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="54"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Ogham Village</span></div></div>
 
             <!-- OGHAM VILLAGE -->
-            <div class="zone-header" id="oghamvillage">Ogham Village <span class="lvl">Lvl 12–13</span></div>
-            <div class="step" data-step="55"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="zone-header" id="oghamvillage">Ogham Village <button type="button" class="cue-mark" data-view="cue-notes" aria-pressed="true" aria-label="Visual cues in this zone: show or hide" title="Visual cues in this zone — show or hide"><svg class="eye-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/></svg><svg class="eye-shut" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><path d="M4.5 4.5l15 15"/></svg></button> <span class="lvl">Lvl 12–13</span></div>
+            <div class="step" data-step="55"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="action">(1st char)</span> <span class="item">Smithing Tools</span> in house <span class="reward-tag craft">Salvage Bench</span></div></div>
-            <div class="note cue"><span class="label">Visual Cue</span><strong>Cobble road.</strong> Follow the paved <strong>cobble road</strong> through the village — it runs straight to the <strong>smithing house</strong>. Stay on the stone rather than cutting between buildings and you land on the Smithing Tools and the Blacksmith's Chest without searching.</div>
-            <div class="step" data-step="56"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="note cue"><span class="label">Visual cue</span><strong class="cue-title">Cobble road.</strong> Follow the paved <strong>cobble road</strong> through the village — it runs straight to the <strong>smithing house</strong>. Stay on the stone rather than cutting between buildings and you land on the Smithing Tools and the Blacksmith's Chest without searching.</div>
+            <div class="step" data-step="56"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Blacksmith's Chest</span> same house <span class="reward-tag optional">Blank Rune + Artificer's Orb</span></div></div>
-            <div class="step" data-step="57"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="57"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">The Executioner</span> <span class="reward-tag gem">Support Gem Lv1</span></div></div>
             <div class="note tip">Fight is mostly in the north of the village</div>
-            <div class="step" data-step="58"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="58"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Upstairs → Lever → talk to <span class="npc">Leitis</span></div></div>
-            <div class="step" data-step="59"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="59"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">The Manor Ramparts</span></div></div>
 
             <!-- MANOR RAMPARTS -->
             <div class="zone-header" id="ramparts">The Manor Ramparts <span class="lvl">Lvl 13</span></div>
-            <div class="step" data-step="60"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="60"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Gallows</span> secret (rope on hanging man, near checkpoint) <span class="reward-tag gem">Support Gem Lv1</span></div></div>
             <div class="note tip">Confirm Lvl 10 flask + Lvl 11 chest piece before entering Manor — much safer</div>
-            <div class="step" data-step="61"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="61"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Ogham Manor</span></div></div>
 
             <!-- OGHAM MANOR -->
             <div class="zone-header" id="manor">Ogham Manor <span class="lvl">Lvl 13–14</span></div>
-            <div class="step" data-step="62"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="62"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Candlemass</span> (1st floor) <span class="reward-tag">+20 Max Life</span></div></div>
             <div class="note tip">Usually after the first walkway (when you first see the Count), sometimes earlier — drops Essence + double-res belt</div>
-            <div class="step" data-step="63"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="63"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Downstairs → kill <span class="boss">Geonor</span> (Act Boss)</div></div>
             <div class="note tip">Manor descent: take each floor heading the opposite direction from the floor above — retrace how you crossed the walkway</div>
             <div class="note warning">Phase 2: dodge roll under his sword. Frost bomb at start of Phase 2 chills him</div>
-            <div class="step" data-step="64"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="64"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP back to town</div></div>
 
             <!-- FINAL TOWN -->
             <div class="zone-header">Clearfell Encampment (End of Act)</div>
-            <div class="step" data-step="65"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="65"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to all NPCs</div></div>
-            <div class="step" data-step="66"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="66"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">The Hooded One</span> → "Follow the Beast's Trail"</div></div>
             <div class="note success">Act I Complete — proceed to Act II</div>
 
@@ -376,25 +324,16 @@
                 <a href="index.html">← Index</a>
                 <a href="poe2_act2_guide.html">Act II →</a>
             </div>
-            <footer class="site-footer">
-                <div class="site-footer-tag">Made for the PoE2 community · AI-assisted, community-verified</div>
-                <div class="site-footer-links">
-                    <a href="https://github.com/domistae/poe2-leveling/issues/new" class="site-footer-link">Suggestions</a>
-                    <a href="https://github.com/domistae/poe2-leveling" class="site-footer-link">GitHub</a>
-                </div>
-                <div class="site-footer-disclaimer">Path of Exile 2 is © Grinding Gear Games. Unofficial fan-made content.</div>
-            </footer>
         </main>
     </div>
 
-    <script>
-        window.POE2_PROGRESS = {
-            storageKey: "poe2-act1-v05",
-            allKeys: ["poe2-act1-v05", "poe2-act2-v05", "poe2-act3-v05", "poe2-act4-v05", "poe2-interludes-v06"],
-            resetLabel: "Act I"
-        };
-    </script>
+    <footer class="site-footer act-footer">
+        <div class="act-footer-row">
+            <span>Unofficial, fan-made. Path of Exile 2 is © Grinding Gear Games.</span>
+            <span class="act-footer-links"><a href="https://github.com/domistae/poe2-leveling/issues/new">Suggestions</a><a href="https://github.com/domistae/poe2-leveling">GitHub</a></span>
+        </div>
+    </footer>
+    <script src="assets/league.js" defer></script>
     <script src="assets/progress.js" defer></script>
-    <script src="assets/theme.js" defer></script>
 </body>
 </html>

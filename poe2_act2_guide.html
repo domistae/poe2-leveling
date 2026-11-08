@@ -14,6 +14,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>PoE 2 Act 2 Walkthrough — Vastiri to Dreadnought (Patch 0.5.5)</title>
     <meta name="description" content="Path of Exile 2 Act 2 walkthrough with progress tracking. Optimal routing, ascendancy guidance, all permanent rewards from Vastiri to Dreadnought. Patch 0.5.5 (Forbidden Rites).">
     <meta name="author" content="domistae">
@@ -35,357 +37,302 @@
     <meta name="twitter:description" content="Optimal Act 2 routing with progress tracking — Vastiri to Dreadnought, ascendancy, all skill points. Patch 0.5.5.">
     <meta name="twitter:image" content="https://domistae.github.io/poe2-leveling/og-image.png">
 
-    <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM" />
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7N3S1HHM51"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-7N3S1HHM51');
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <script>
-        (function() {
-            try {
-                var saved = localStorage.getItem('poe2-theme');
-                if (saved !== 'light' && saved !== 'dark' && saved !== 'night') {
-                    var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-                    saved = prefersLight ? 'light' : 'dark';
-                }
-                /* night reuses the dark theme + a [data-tint] layer */
-                document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
-                if (saved === 'night') document.documentElement.setAttribute('data-tint', 'night');
-            } catch (e) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-            try {
-                var fs = parseFloat(localStorage.getItem('poe2-font-scale'));
-                if (fs >= 0.85 && fs <= 1.30) document.documentElement.style.setProperty('--user-font-scale', fs);
-            } catch (e) {}
-        })();
-    </script>
+    <meta name="google-site-verification" content="97--Tcu6ftMsekIsByOualijpqUhXa_pOvMME-dgzXM">
+    <script src="assets/analytics.js" defer></script>
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <script src="assets/site.js"></script>
     <link rel="stylesheet" href="assets/base.css">
     <link rel="stylesheet" href="assets/checklist.css">
+    <link rel="stylesheet" href="assets/skin.css">
+    <link rel="stylesheet" href="assets/act.css">
 </head>
-<body>
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-        <span class="icon" id="theme-icon">☀</span>
-        <span id="theme-label">Light</span>
-    </button>
+<body class="act-page" data-progress-key="poe2-act2-v05" data-reset-label="Act II">
+    <header class="site-head">
+        <div class="site-head-row">
+            <a href="index.html" class="brand">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 2 L21 12 L12 22 L3 12 Z"/><path d="M12 7 L16 12 L12 17 L8 12 Z"/></svg>
+                <span>POE2 CODEX</span>
+            </a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="poe2_leveling_guide.html" class="site-nav-link current">Leveling</a>
+                <a href="poe2_endgame_guide.html" class="site-nav-link">Endgame</a>
+                <a href="poe2_league_guide.html" class="site-nav-link">League</a>
+                <a href="https://github.com/domistae/poe2-leveling" class="site-nav-link">GitHub</a>
+                <button type="button" class="theme-toggle" aria-label="Toggle theme">
+                    <span class="icon" id="theme-icon">☾</span>
+                    <span id="theme-label">Night</span>
+                </button>
+            </nav>
+        </div>
+    </header>
 
-    <nav class="top-nav" aria-label="Main navigation">
-        <a href="poe2_leveling_guide.html" class="top-nav-home">← Leveling Hub</a>
-        <div class="top-nav-links">
-            <a href="poe2_act1_guide.html" class="top-nav-link">Act I</a>
-            <a href="poe2_act2_guide.html" class="top-nav-link current" aria-current="page">Act II</a>
-            <a href="poe2_act3_guide.html" class="top-nav-link">Act III</a>
-            <a href="poe2_act4_guide.html" class="top-nav-link">Act IV</a>
-            <a href="poe2_interludes_guide.html" class="top-nav-link">Interludes</a>
+    <nav class="act-strip" aria-label="Acts">
+        <div class="act-strip-row">
+            <div class="act-tabs">
+            <a href="poe2_act1_guide.html" class="act-tab">Act I</a>
+            <a href="poe2_act2_guide.html" class="act-tab current" aria-current="page">Act II</a>
+            <a href="poe2_act3_guide.html" class="act-tab">Act III</a>
+            <a href="poe2_act4_guide.html" class="act-tab">Act IV</a>
+            <a href="poe2_interludes_guide.html" class="act-tab">Interludes</a>
+            <span class="act-tab coming" title="Coming with 1.0">Act V</span>
+            <span class="act-tab coming" title="Coming with 1.0">Act VI</span>
+            </div>
+            <div class="act-progress" title="Steps done on this page"><span class="act-progress-count" id="actProgressText">0 / 0</span><span class="act-progress-bar" aria-hidden="true"><span id="actProgressBar"></span></span><button type="button" class="act-reset" id="resetProgress" title="Clear progress on this page">Reset</button></div>
         </div>
     </nav>
 
-    <div class="container">
-        <aside class="sidebar">
-            <div class="progress-panel">
-                <div class="progress-row">
-                    <div class="progress-head">
-                        <span class="progress-name">⚡ Required</span>
-                        <span class="progress-count" id="progressTextFast">0 / 0</span>
-                    </div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill fast" id="progressBarFast"></div></div>
-                </div>
-                <div class="progress-row">
-                    <div class="progress-head">
-                        <span class="progress-name complete">◆ Complete</span>
-                        <span class="progress-count" id="progressTextComplete">0 / 0</span>
-                    </div>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill complete" id="progressBarComplete"></div></div>
-                </div>
-
-                <div class="view-filters">
-                    <button type="button" class="view-chip" data-view="hide-completed" aria-pressed="false" title="Hide steps you have already ticked off">
-                        <span class="dot" aria-hidden="true"></span>Hide done
-                    </button>
-                    <button type="button" class="view-chip" data-view="alt-leveling" aria-pressed="false" title="Alt leveling — show only the necessary steps, hiding everything marked (Opt)">
-                        <span class="dot" aria-hidden="true"></span>Alt leveling
-                    </button>
-                </div>
-
-                <div class="panel-actions">
-                    <button class="mini-btn reset" onclick="resetProgress()" title="Clear progress on this page">Reset</button>
-                    <button class="mini-btn export" onclick="exportAllProgress()" title="Copy a progress code covering every page">Export</button>
-                    <button class="mini-btn import" onclick="showImportDialog()" title="Paste a progress code">Import</button>
-                </div>
-                <div id="importDialog" class="import-dialog" style="display:none;">
-                    <textarea id="importCode" placeholder="Paste progress code…"></textarea>
-                    <div class="import-actions">
-                        <button class="mini-btn" onclick="importAllProgress()">Import</button>
-                        <button class="mini-btn" onclick="hideImportDialog()">Cancel</button>
-                    </div>
-                </div>
+    <div class="act-top">
+        <section class="act-head">
+            <div class="act-title"><span class="act-num">II</span><h1>Vastiri to Dreadnought</h1><span class="act-meta">Lvl 14–29 · all classes · 0.5.5</span></div>
+            <div class="act-filters" role="group" aria-label="Filters">
+                <button type="button" class="view-chip" data-view="hide-completed" aria-pressed="false" title="Hide steps you have already ticked off">Hide done</button>
+                <button type="button" class="view-chip" data-view="alt-leveling" aria-pressed="false" title="Alt run: only the necessary steps, everything marked (Opt) is hidden">Alt run</button>
+                <button type="button" class="view-chip league" data-view="league-notes" aria-pressed="true" title="Show or hide league-only notes">League notes</button>
+                <button type="button" class="view-chip cue-toggle" data-view="cue-notes" aria-pressed="true" title="Show or hide the visual cues"><svg class="eye-open" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/></svg><svg class="eye-shut" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><path d="M4.5 4.5l15 15"/></svg><span>Cues</span></button>
             </div>
+        </section>
+        <div class="act-rewards">
+            <span class="act-rewards-label">Act rewards</span>
+            <span class="act-chip">+4 Weapon Set Skill Points</span>
+            <span class="act-chip">+10% Lightning Resistance</span>
+            <span class="act-chip">+1 Charm Slot + Charm buff (choice)</span>
+            <span class="act-chip">⚡ First Ascendancy</span>
+            <span class="act-legend" role="group" aria-label="Colour key">
+                <span class="lg-boss">Boss</span><span class="lg-npc">NPC</span><span class="lg-loc">Location</span><span class="lg-gem">Gem</span><span class="lg-perm">Permanent</span>
+            </span>
+        </div>
+    </div>
 
-            <details class="sidebar-section zones-details">
-                <summary class="zones-summary">Zones</summary>
-                <a href="#vastiri" class="sidebar-link">Vastiri Outskirts</a>
-                <a href="#caravan" class="sidebar-link">Ardura Caravan</a>
-                <a href="#mawdun" class="sidebar-link">Mawdun Quarry/Mine</a>
-                <a href="#traitor" class="sidebar-link">Traitor's Passage</a>
-                <a href="#halani" class="sidebar-link">Halani Gates</a>
-                <a href="#mastodon" class="sidebar-link">Mastodon Badlands</a>
-                <a href="#bonepits" class="sidebar-link">The Bone Pits</a>
-                <a href="#keth" class="sidebar-link perm">Keth ◆</a>
-                <a href="#lostcity" class="sidebar-link">The Lost City</a>
-                <a href="#valley" class="sidebar-link perm">Valley of Titans ◆</a>
-                <a href="#deshar" class="sidebar-link perm">Deshar ◆</a>
-                <a href="#spires" class="sidebar-link perm">Spires of Deshar ◆</a>
-                <a href="#trial" class="sidebar-link quest">Trial of Sekhemas ⚡</a>
-                <a href="#dreadnought" class="sidebar-link">The Dreadnought</a>
-            </details>
+    <div class="container act-body">
+        <aside class="act-side">
+            <nav class="zone-rail" id="zoneRail" aria-label="Zones"></nav>
         </aside>
 
         <main class="main">
-            <header class="header">
-                <h1>Act II — Vastiri to Dreadnought</h1>
-                <span class="patch">Patch 0.5.5 · Lvl 14–29 · All classes · Optimal routing</span>
-            </header>
-
-
-            <div class="summary-box">
-                <h3>Permanent Rewards</h3>
-                <div class="summary-grid">
-                    <div class="summary-item">+4 Weapon Set Skill Points</div>
-                    <div class="summary-item">+10% Lightning Resistance</div>
-                    <div class="summary-item">+1 Charm Slot + Charm buff (choice)</div>
-                    <div class="summary-item">⚡ First Ascendancy</div>
-                </div>
-            </div>
 
 
             <!-- VASTIRI OUTSKIRTS -->
             <div class="zone-header" id="vastiri">Vastiri Outskirts <span class="lvl">Lvl 14–15</span></div>
-            <div class="step" data-step="1"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="1"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">The Hooded One</span></div></div>
-            <div class="step" data-step="2"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="2"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Rathbreaker</span></div></div>
-            <div class="step" data-step="3"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="3"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP back to start of zone</div></div>
-            <div class="step" data-step="4"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="4"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Zarka</span> <span class="reward-tag gem">Uncut Skill Gem Lv5</span></div></div>
-            <div class="step" data-step="5"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="5"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">The Ardura Caravan</span></div></div>
 
             <!-- ARDURA CARAVAN -->
             <div class="zone-header" id="caravan">The Ardura Caravan <span class="wp town">TOWN</span></div>
-            <div class="step" data-step="6"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="6"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Hooded One</span> + <span class="npc">Sekhema Asala</span> (×2)</div></div>
-            <div class="note legacy"><span class="label">Runes of Aldur only</span>That league adds an <strong>Ezomyte Remnant</strong> in every zone (inscribe runes → fight waves → claim a reward), plus <strong>Runestones</strong> in the Bone Pits, Keth and Deshar that summon Farrow. Its Deshar chain (Runestone → caravan to the <strong>Skull of the Titan</strong> → cave mouth → <strong>Runic Vault</strong>) unlocks Runic Inscriptions. <strong>None of this appears in Forbidden Rites</strong> — there the Verisium Anvil is unlocked in <a href="poe2_act4_guide.html">Act 4</a> instead.</div>
-            <div class="step" data-step="7"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="note league" data-league="runes-of-aldur">That league adds an <strong>Ezomyte Remnant</strong> in every zone (inscribe runes → fight waves → claim a reward), plus <strong>Runestones</strong> in the Bone Pits, Keth and Deshar that summon Farrow. Its Deshar chain (Runestone → caravan to the <strong>Skull of the Titan</strong> → cave mouth → <strong>Runic Vault</strong>) unlocks Runic Inscriptions. <strong>None of this appears in Forbidden Rites</strong> — there the Verisium Anvil is unlocked in <a href="poe2_act4_guide.html">Act 4</a> instead.</div>
+            <div class="step" data-step="7"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Use <span class="item">Desert Map</span> → travel to <span class="loc">Halani Gates</span></div></div>
-            <div class="step" data-step="8"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="8"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter Halani Gates → talk to <span class="npc">Sekhema Asala</span></div></div>
-            <div class="step" data-step="9"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="9"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Back to Caravan → talk to <span class="npc">Sekhema Asala</span></div></div>
-            <div class="step" data-step="10"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="10"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Travel to <span class="loc">Mawdun Quarry</span></div></div>
 
             <!-- MAWDUN QUARRY -->
             <div class="zone-header" id="mawdun">Mawdun Quarry <span class="lvl">Lvl 15</span></div>
-            <div class="step" data-step="11"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="11"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Faridun War Cache</span> near checkpoint <span class="reward-tag optional">Artificer's Orb</span></div></div>
-            <div class="step" data-step="12"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="12"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Mawdun Mine</span> (follow checkpoints)</div></div>
 
             <!-- MAWDUN MINE -->
-            <div class="zone-header">Mawdun Mine <span class="lvl">Lvl 16</span></div>
-            <div class="note cue"><span class="label">Visual Cue</span><strong>Railroad tracks.</strong> Follow the <strong>railroad tracks</strong> through the mine. At each intersection take the <strong>turnout that connects the tracks</strong> — staying on connected rail keeps you on the critical path and skips the dead ends.</div>
-            <div class="step" data-step="13"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="zone-header">Mawdun Mine <button type="button" class="cue-mark" data-view="cue-notes" aria-pressed="true" aria-label="Visual cues in this zone: show or hide" title="Visual cues in this zone — show or hide"><svg class="eye-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/></svg><svg class="eye-shut" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><path d="M4.5 4.5l15 15"/></svg></button> <span class="lvl">Lvl 16</span></div>
+            <div class="note cue"><span class="label">Visual cue</span><strong class="cue-title">Railroad tracks.</strong> Follow the <strong>railroad tracks</strong> through the mine. At each intersection take the <strong>turnout that connects the tracks</strong> — staying on connected rail keeps you on the critical path and skips the dead ends.</div>
+            <div class="step" data-step="13"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Rudja</span> <span class="reward-tag gem">Uncut Skill Gem Lv6</span></div></div>
-            <div class="step" data-step="14"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="14"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Risu</span> in cage</div></div>
-            <div class="step" data-step="15"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="15"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP back to town</div></div>
 
             <!-- CARAVAN -->
             <div class="zone-header">The Ardura Caravan</div>
-            <div class="step" data-step="16"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="16"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Risu</span> + <span class="npc">Sekhema Asala</span></div></div>
-            <div class="step" data-step="17"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="17"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Travel to <span class="loc">Traitor's Passage</span></div></div>
 
             <!-- TRAITOR'S PASSAGE -->
-            <div class="zone-header" id="traitor">Traitor's Passage <span class="lvl">Lvl 17</span></div>
-            <div class="note cue"><span class="label">Visual Cue</span><strong>Maraketh parchment.</strong> The passage now always generates with one <strong>guaranteed intersection</strong>. The branch strung with <strong>parchment</strong> — the paper the Maraketh use to bind djinns — leads to <span class="npc">Balbala</span>. The other branch is the exit. You cannot miss the split.</div>
-            <div class="step" data-step="18"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="zone-header" id="traitor">Traitor's Passage <button type="button" class="cue-mark" data-view="cue-notes" aria-pressed="true" aria-label="Visual cues in this zone: show or hide" title="Visual cues in this zone — show or hide"><svg class="eye-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/></svg><svg class="eye-shut" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><path d="M4.5 4.5l15 15"/></svg></button> <span class="lvl">Lvl 17</span></div>
+            <div class="note cue"><span class="label">Visual cue</span><strong class="cue-title">Maraketh parchment.</strong> The passage now always generates with one <strong>guaranteed intersection</strong>. The branch strung with <strong>parchment</strong> — the paper the Maraketh use to bind djinns — leads to <span class="npc">Balbala</span>. The other branch is the exit. You cannot miss the split.</div>
+            <div class="step" data-step="18"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Interact with <span class="item">Ancient Seal</span> door + Runic Seals</div></div>
-            <div class="step" data-step="19"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="19"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Kill <span class="boss">Balbala, the Traitor</span> <span class="reward-tag asc">Djinn Barya</span> <span class="reward-tag gem">Uncut Skill Gem Lv6</span></div></div>
             <div class="note tip">Most builds skip — get backup Barya from Deshar vultures (less mobile fight, better XP at Lvl 28)</div>
-            <div class="step" data-step="20"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="20"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Bell Chest</span> in dead end <span class="reward-tag optional">Random loot</span></div></div>
-            <div class="step" data-step="21"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="21"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">The Halani Gates</span> (stairs up)</div></div>
 
             <!-- HALANI GATES -->
             <div class="zone-header" id="halani">The Halani Gates <span class="lvl">Lvl 18</span></div>
-            <div class="step" data-step="22"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="22"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Summon <span class="npc">Asala</span> to open gates</div></div>
             <div class="note tip">If Asala lags behind on terra-cotta soldiers, reset checkpoint — she'll snap to you</div>
             <div class="note tip">Push <strong>forward to the command tents</strong> for loot before opening the gates</div>
-            <div class="step" data-step="23"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="23"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Jamanra</span> (first encounter)</div></div>
-            <div class="step" data-step="24"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="24"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Stairs down, search checkpoint</div></div>
-            <div class="step" data-step="25"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="25"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP back to town</div></div>
 
             <!-- CARAVAN -->
             <div class="zone-header">The Ardura Caravan</div>
-            <div class="step" data-step="26"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="26"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Shambrin</span>, <span class="npc">Zarka</span>, <span class="npc">Sekhema Asala</span></div></div>
-            <div class="step" data-step="27"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="27"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Travel to <span class="loc">Trial of Sekhemas</span> → take WP <span class="reward-tag asc">Run later at Lvl 28</span></div></div>
-            <div class="step" data-step="28"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="28"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP back → travel to <span class="loc">Mastodon Badlands</span></div></div>
 
             <!-- MASTODON BADLANDS -->
-            <div class="zone-header" id="mastodon">Mastodon Badlands <span class="lvl">Lvl 19–20</span></div>
-            <div class="note cue"><span class="label">Visual Cue</span><strong>Cracks in the ground.</strong> To find the <strong>Lightless Passage</strong> and track down the abyssal here, look for <strong>cracks in the ground</strong> — follow them and they lead straight to the lair, letting you find and unlock the <strong>Well of Souls</strong>.</div>
+            <div class="zone-header" id="mastodon">Mastodon Badlands <button type="button" class="cue-mark" data-view="cue-notes" aria-pressed="true" aria-label="Visual cues in this zone: show or hide" title="Visual cues in this zone — show or hide"><svg class="eye-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/></svg><svg class="eye-shut" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><path d="M4.5 4.5l15 15"/></svg></button> <span class="lvl">Lvl 19–20</span></div>
+            <div class="note cue"><span class="label">Visual cue</span><strong class="cue-title">Cracks in the ground.</strong> To find the <strong>Lightless Passage</strong> and track down the abyssal here, look for <strong>cracks in the ground</strong> — follow them and they lead straight to the lair, letting you find and unlock the <strong>Well of Souls</strong>.</div>
             <div class="note tip">Run this BEFORE Keth — pushes Keth's level up so Kabala drops Lvl 7 gem</div>
-            <div class="step" data-step="29"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="29"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Shrine of Bones</span> (Effigy) near checkpoint <span class="reward-tag gem">Support Gem Lv2</span></div></div>
-            <div class="step" data-step="30"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="30"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">The Bone Pits</span></div></div>
 
             <!-- BONE PITS -->
             <div class="zone-header" id="bonepits">The Bone Pits <span class="lvl">Lvl 20–21</span></div>
             <div class="note tip">Loot the <strong>Effigy at the checkpoint</strong> on your way through</div>
-            <div class="step" data-step="31"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="31"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill hyenas until <span class="item">Sun Clan Relic</span> drops</div></div>
             <div class="note tip">Tall hyenas (Goliaths) have higher drop chance. Save for Valley of the Titans altar</div>
-            <div class="step" data-step="32"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="32"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Iktab &amp; Ekbab</span> → loot <span class="item">Mastodon Tusks</span></div></div>
             <div class="note tip"><strong>Preserved Witness</strong> (Abyss objective): a target you survive/escort through a gauntlet for high-tier loot. Tends to spawn in the <strong>Lightless Passage</strong> / <strong>Well of Souls</strong> alongside mini-bosses like the <strong>Desiccated Lich</strong> — optional, build-dependent</div>
-            <div class="step" data-step="33"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="33"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP back to town</div></div>
 
             <!-- CARAVAN -->
             <div class="zone-header">The Ardura Caravan</div>
-            <div class="step" data-step="34"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="34"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Zarka</span></div></div>
-            <div class="step" data-step="35"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="35"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Travel to <span class="loc">Keth</span></div></div>
 
             <!-- KETH -->
             <div class="zone-header" id="keth">Keth <span class="lvl">Lvl 22</span></div>
-            <div class="step" data-step="36"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="36"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill snakes until <span class="item">Kabala Clan Relic</span> drops</div></div>
-            <div class="step" data-step="37"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="37"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Abandoned Prayer</span> (down the stairs) <span class="reward-tag optional">Magic Amulet</span></div></div>
-            <div class="step" data-step="38"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="38"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Kabala, Constrictor Queen</span> (the <span class="loc">Venom Pit</span>) <span class="reward-tag">+2 Skill Points</span></div></div>
             <div class="note tip">Drops Lvl 7 skill gem because Mastodon was done first — useful for all classes</div>
-            <div class="step" data-step="39"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="39"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">The Lost City</span></div></div>
 
             <!-- LOST CITY -->
             <div class="zone-header" id="lostcity">The Lost City <span class="lvl">Lvl 23</span></div>
-            <div class="step" data-step="40"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="40"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Kill <span class="boss">Ninth Treasure of Keth</span> (the <span class="loc">Galleria</span>) <span class="reward-tag optional">Jewel</span></div></div>
-            <div class="step" data-step="41"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="41"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">Golden Tomb</span> <span class="reward-tag gem">Spirit Gem Lv7</span></div></div>
-            <div class="step" data-step="42"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="42"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Buried Shrines</span></div></div>
 
             <!-- BURIED SHRINES -->
             <div class="zone-header">Buried Shrines <span class="lvl">Lvl 23</span></div>
-            <div class="step" data-step="43"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="43"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Guarded sarcophagus <span class="reward-tag gem">Support Gem (Lesser Jeweller's Orb)</span></div></div>
-            <div class="step" data-step="44"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="44"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Choose Offering (fire/water/lightning) <span class="reward-tag optional">Resist Ring</span></div></div>
-            <div class="step" data-step="45"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="45"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">The Heart of Keth</span></div></div>
 
             <!-- HEART OF KETH -->
             <div class="zone-header">The Heart of Keth <span class="lvl">Lvl 24</span></div>
             <div class="note tip">Descend through the <strong>Vestibule</strong> (crumbling floors, acid-bursting hydrozoids) to the <strong>Halani Shrine</strong> at the bottom — that is where <span class="boss">Azarian</span> waits</div>
-            <div class="step" data-step="46"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="46"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Azarian</span></div></div>
-            <div class="step" data-step="47"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="47"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk <span class="npc">Water Goddess (Halani)</span> → <span class="item">Everburning Cinders</span> → ignite Goddess <span class="reward-tag">Essence of Water</span></div></div>
-            <div class="step" data-step="48"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="48"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP back to town</div></div>
 
             <!-- CARAVAN -->
             <div class="zone-header">The Ardura Caravan</div>
-            <div class="step" data-step="49"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="49"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Zarka</span></div></div>
-            <div class="step" data-step="50"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="50"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Travel to <span class="loc">Valley of the Titans</span></div></div>
 
             <!-- VALLEY OF TITANS -->
-            <div class="zone-header" id="valley">Valley of the Titans <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 25</span></div>
-            <div class="note cue"><span class="label">Visual Cue</span><strong>Titan heads.</strong> The giant buried <strong>titan heads</strong> are visible from the moment you enter. Each has an entrance nearby leading to a short <strong>linear canyon</strong> with a seal at the end and a portal back — so the whole zone's layout reads at a glance instead of being explored blind.</div>
-            <div class="step" data-step="51"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="zone-header" id="valley">Valley of the Titans <button type="button" class="cue-mark" data-view="cue-notes" aria-pressed="true" aria-label="Visual cues in this zone: show or hide" title="Visual cues in this zone — show or hide"><svg class="eye-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/></svg><svg class="eye-shut" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><path d="M4.5 4.5l15 15"/></svg></button> <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 25</span></div>
+            <div class="note cue"><span class="label">Visual cue</span><strong class="cue-title">Titan heads.</strong> The giant buried <strong>titan heads</strong> are visible from the moment you enter. Each has an entrance nearby leading to a short <strong>linear canyon</strong> with a seal at the end and a portal back — so the whole zone's layout reads at a glance instead of being explored blind.</div>
+            <div class="step" data-step="51"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Find 3 <span class="item">Ancient Seals</span> (perimeter)</div></div>
-            <div class="step" data-step="52"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="52"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Find <span class="item">Medallion</span> (Relic Altar), place both relics <span class="reward-tag choice">+1 Charm Slot + choose buff</span></div></div>
             <div class="note tip">The Relic Altar sits on a <strong>side path off one of the routes to the Ancient Seals</strong></div>
             <div class="note tip">Grants <strong>+1 Charm Slot</strong> plus your choice of <strong>30% increased Charm Charges gained</strong> OR <strong>30% increased Charm Effect Duration</strong> (changeable later)</div>
-            <div class="step" data-step="53"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="53"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">The Titan Grotto</span></div></div>
 
             <!-- TITAN GROTTO -->
             <div class="zone-header">The Titan Grotto <span class="lvl">Lvl 25–26</span></div>
-            <div class="step" data-step="54"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="54"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Zalmarath, the Colossus</span> → loot <span class="item">Flame Ruby</span></div></div>
-            <div class="step" data-step="55"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="55"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP back to town</div></div>
 
             <!-- CARAVAN -->
             <div class="zone-header">The Ardura Caravan</div>
-            <div class="step" data-step="56"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="56"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Zarka</span> + <span class="npc">Sekhema Asala</span></div></div>
-            <div class="step" data-step="57"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="57"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Travel to <span class="loc">Traitor's Passage</span> (don't enter)</div></div>
-            <div class="step" data-step="58"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="58"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Sound <span class="item">Horn</span> at top of caravan</div></div>
-            <div class="step" data-step="59"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="59"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Talk to <span class="npc">Sekhema Asala</span></div></div>
-            <div class="step" data-step="60"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="60"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Travel to <span class="loc">Deshar</span></div></div>
 
             <!-- DESHAR -->
             <div class="zone-header" id="deshar">Deshar <span class="lvl">Lvl 26–27</span></div>
-            <div class="step" data-step="61"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="61"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Find/loot <span class="item">Fallen Dekhara</span> near tower <span class="reward-tag">+2 Skill Points</span></div></div>
             <div class="note tip">Letter from Lihl Lima → deliver to Shambrin in town</div>
-            <div class="step" data-step="62"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="62"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill 2 <span class="boss">Vultures</span> on side area <span class="reward-tag asc">Backup Djinn Barya (Lvl 28)</span></div></div>
             <div class="note success">This is the easy ascend path — much simpler than Balbala for all classes</div>
-            <div class="step" data-step="63"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="63"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> <span class="item">The Unremembered</span> (skeleton) near checkpoint <span class="reward-tag optional">Artificer's Orb</span></div></div>
-            <div class="step" data-step="64"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="64"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">Path of Mourning</span></div></div>
 
             <!-- PATH OF MOURNING -->
             <div class="zone-header">Path of Mourning <span class="lvl">Lvl 27</span></div>
             <div class="note tip">Trust the overworld map for direction — exit is straightforward</div>
-            <div class="step" data-step="65"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="65"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content"><span class="skip">(Opt)</span> Shifting Vases / Hushed Urn encounter <span class="reward-tag optional">4 rares + Support Gem Lv2</span></div></div>
-            <div class="step" data-step="66"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="66"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Enter <span class="loc">The Spires of Deshar</span></div></div>
 
             <!-- SPIRES OF DESHAR -->
             <div class="zone-header" id="spires">The Spires of Deshar <span class="lvl">Lvl 27</span></div>
-            <div class="step" data-step="67"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="67"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Interact with <span class="item">Sisters of Garukhan</span> shrine <span class="reward-tag">+10% Lightning Res</span></div></div>
-            <div class="step" data-step="68"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="68"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Tor Gul</span></div></div>
             <div class="note warning">One of the hardest fights in Act II — cap lightning res, watch defiler attacks</div>
-            <div class="step" data-step="69"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="69"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP back to town → speak with <span class="npc">Sekhema Asala</span> (×2)</div></div>
 
             <!-- TRIAL OF SEKHEMAS -->
@@ -393,32 +340,32 @@
 
             <div class="zone-header" id="trial">Trial of the Sekhemas <span class="wp">WAYPOINT</span> <span class="lvl">Lvl 28</span></div>
             <div class="note change"><span class="label">0.5 QoL</span><strong>Reforging Bench</strong> now sits at the Trial entrance, and your <strong>max Runic Ward</strong> is added to your starting <strong>Honour</strong>. In <strong>Forbidden Rites</strong> the Verisium Anvil is an <a href="poe2_act4_guide.html">Act 4</a> unlock, so you will usually have no Runic Ward yet at this point.</div>
-            <div class="step" data-step="70"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="70"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">On entry, manually pick the <span class="item">Lvl 28 Djinn Barya</span> (Deshar vultures) — <strong>not</strong> the default Lvl 22 Balbala one</div></div>
-            <div class="step" data-step="71"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="71"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Set <span class="action">relic affinity</span> to keep your inventory clean</div></div>
-            <div class="step" data-step="72"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="72"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Room priority: <span class="action">Ritual &gt; Chalice &gt; Hourglass &gt; Gauntlet</span></div></div>
             <div class="note tip">Hourglass: kill rares to chunk the timer · Chalice: points to rare locations</div>
-            <div class="step" data-step="73"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="73"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Complete the trial → <span class="reward-tag asc">1st Ascendancy</span></div></div>
             <div class="note tip">Smith of Kitava (Warrior): stash a white chest piece first — ascending locks you out of magic/rare chests</div>
 
             <!-- DREADNOUGHT -->
             <div class="zone-header" id="dreadnought">The Dreadnought <span class="lvl">Lvl 28–29</span></div>
-            <div class="step" data-step="74"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="74"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Travel to <span class="loc">The Dreadnought</span></div></div>
-            <div class="step" data-step="75"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="75"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Kill <span class="boss">Jamanra, the Abomination</span> (Act Boss)</div></div>
             <div class="note tip">Already starts armor-broken. ~55k phys damage = stuns him before lightning fence phase</div>
-            <div class="step" data-step="76"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="76"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">TP back to town</div></div>
 
             <!-- END -->
             <div class="zone-header">The Ardura Caravan (End of Act)</div>
-            <div class="step" data-step="77"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="77"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Exit caravan (top left) → talk <span class="npc">Hooded One</span> → wait animation</div></div>
-            <div class="step" data-step="78"><div class="step-check" onclick="toggleStep(this)"><div class="checkbox"></div></div>
+            <div class="step" data-step="78"><div class="step-check"><div class="checkbox"></div></div>
                 <div class="step-content">Back → talk <span class="npc">Sekhema Asala</span> → "Travel to the Sandswept Marsh"</div></div>
             <div class="note success">Act II Complete — proceed to Act III</div>
 
@@ -427,24 +374,16 @@
                 <a href="index.html">Index</a>
                 <a href="poe2_act3_guide.html">Act III →</a>
             </div>
-            <footer class="site-footer">
-                <div class="site-footer-tag">Made for the PoE2 community · AI-assisted, community-verified</div>
-                <div class="site-footer-links">
-                    <a href="https://github.com/domistae/poe2-leveling/issues/new" class="site-footer-link">Suggestions</a>
-                    <a href="https://github.com/domistae/poe2-leveling" class="site-footer-link">GitHub</a>
-                </div>
-                <div class="site-footer-disclaimer">Path of Exile 2 is © Grinding Gear Games. Unofficial fan-made content.</div>
-            </footer>
         </main>
     </div>
-    <script>
-        window.POE2_PROGRESS = {
-            storageKey: "poe2-act2-v05",
-            allKeys: ["poe2-act1-v05", "poe2-act2-v05", "poe2-act3-v05", "poe2-act4-v05", "poe2-interludes-v06"],
-            resetLabel: "Act II"
-        };
-    </script>
+
+    <footer class="site-footer act-footer">
+        <div class="act-footer-row">
+            <span>Unofficial, fan-made. Path of Exile 2 is © Grinding Gear Games.</span>
+            <span class="act-footer-links"><a href="https://github.com/domistae/poe2-leveling/issues/new">Suggestions</a><a href="https://github.com/domistae/poe2-leveling">GitHub</a></span>
+        </div>
+    </footer>
+    <script src="assets/league.js" defer></script>
     <script src="assets/progress.js" defer></script>
-    <script src="assets/theme.js" defer></script>
 </body>
 </html>
